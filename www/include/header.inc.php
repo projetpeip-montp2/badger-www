@@ -17,6 +17,5 @@
         </div>
 
         <div id="Header">
-	        <a href="index.php?lang=<?php echo $TEXT['Lang']; ?>"><img src="images/logo.jpg" alt="logo Semaine du Numérique"/></a>
+        	<a href="index.php?lang=<?php echo $TEXT['Lang']; ?>"><img src="images/logo_polytech.png" alt="logo Semaine du Numérique"/></a>
         </div>
-
