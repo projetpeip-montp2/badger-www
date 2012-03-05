@@ -5,6 +5,9 @@
 	// Include of required libs
 	require_once("include/security.inc.php");
 
+	// Include valids pages
+	require_once("include/pages.inc.php");
+
 	// Language definition
 	require_once("include/lang.inc.php");
 
@@ -14,14 +17,17 @@
 
 	<div id="Body">
 		<?php
-			if (!empty($_GET['page']))
+            $pageName = $configurations['default_page'];
+
+			if (isset($_GET['page']) && !empty($_GET['page']))
 			{
 				$pageName = secureInputData($_GET['page']);
-				if (is_file("controllers/" . $pageName . ".php"))
-					include("controllers/" . $pageName . ".php");
+
+                if(!isValidPage($pageName))
+                    $pageName = $configurations['default_page'];
 			}
-			else
-				require_once("controllers/home.php");
+
+			include("controllers/" . $pageName . ".php");
 		?>
 	</div>
 
