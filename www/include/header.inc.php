@@ -4,5 +4,5 @@
 	<?php echo $TEXT['UserBar_Welcome']; ?> Username<a href="#"><?php echo $TEXT['UserBar_Logout']; ?></a>
 </div>
 <div id="Header">
-	<a href="index.php?lang=<?php echo $TEXT['Lang']; ?>"><img src="images/logo_polytech.png" alt="logo Semaine du Numérique"/></a>
+	<a href="index.php"><img src="images/logo_polytech.png" alt="logo Semaine du Numérique"/></a>
 </div>
