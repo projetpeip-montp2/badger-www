@@ -1,6 +1,6 @@
 <?php	
-	// Get values from the configuration file
-	//$configurations = parse_ini_file("conf.ini", true);
+	// Include of configurations
+	require_once("include/config.inc.php");
 
 	// Include of required libs
 	require_once("include/security.inc.php");

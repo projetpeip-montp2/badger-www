@@ -1,5 +1,5 @@
 <?php
-    $defaultValue = "fr";
+    $defaultValue = $configurations["default_lang"];
 
 	if ( isset($_GET["lang"]) )
 	{
