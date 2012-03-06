@@ -15,8 +15,8 @@
 	require_once("include/pages.inc.php");
 
     // Header and menu
-	require_once("include/header.inc.php");
-	require_once("include/menu.inc.php");
+	require_once("views/header.php");
+	require_once("views/menu.php");
 ?>
 
 	<div id="Body">
@@ -37,5 +37,5 @@
 
 <?php
     // Footer
-	require_once("include/footer.inc.php");
+	require_once("views/footer.php");
 ?>
