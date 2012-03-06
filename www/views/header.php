@@ -20,4 +20,3 @@
         <div id="Header">
         	<a href="index.php"><img src="images/logo_polytech.png" alt="logo Semaine du Numérique"/></a>
         </div>
-    
