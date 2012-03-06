@@ -3,7 +3,6 @@
 	$TEXT['Page_Title'] = "Semaine du Numérique";
 
 	$TEXT['UserBar_Welcome'] = "Bienvenue";
-	$TEXT['UserBar_Logout'] = "Déconnexion";
 
 	$TEXT['Menu_Home'] = "Accueil";
 	$TEXT['Menu_NumericalWeek'] = "Semaine du Numérique";
