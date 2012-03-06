@@ -55,7 +55,6 @@ body
 	border: 2px solid black;
 }
 
-
 a
 {
     text-decoration: none;
@@ -75,4 +74,9 @@ a
 #Body h2
 {
 	font-size: 14px;
+}
+
+#LangageSelector
+{
+	display: inline;
 }

@@ -1,28 +1,11 @@
 <?php
-	// Get values from the configuration file
+	// Initialization
 	//$configuration = parse_ini_file("conf.ini");
-
-	// Include of required libs
 	require_once("include/security.inc.php");
-
-	// Language definition
-	if ( isset($_GET["lang"]) )
-	{
-		$lang = secureInputData($_GET["lang"]);
-		if ($lang == "en")
-			require_once("lang/en.php");
-		elseif ($lang == "fr")
-			require_once("lang/fr.php");
-		// To use another language, use following commented code
-		/*
-		elseif ($lang == "template")
-			require_once("lang/template.php");
-		*/
-		else
-			require_once("lang/fr.php");
-	}
-	else
-		require_once("lang/fr.php");
+	session_start();
+	if (!isset($_SESSION['lang']))
+		$_SESSION['lang'] = "fr";
+	require_once("lang/" . $_SESSION['lang'] .".php");
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -47,7 +30,9 @@
 				{
 					$pageName = secureInputData($_GET['page']);
 					if (is_file("controllers/" . $pageName . ".php"))
-						include("controllers/" . $pageName . ".php");
+						require_once("controllers/" . $pageName . ".php");
+					else
+						require_once("controllers/home.php");
 				}
 				else
 					require_once("controllers/home.php");
