@@ -4,6 +4,7 @@
 
 	// Include of required libs
 	require_once("include/functions.inc.php");
+	require_once("include/class.inc.php");
 
     // Language definition
 	session_start();
