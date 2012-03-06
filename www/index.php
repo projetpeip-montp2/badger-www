@@ -1,7 +1,7 @@
 <?php
 	// Initialization
 	//$configuration = parse_ini_file("conf.ini");
-	require_once("include/security.inc.php");
+	require_once("include/functions.inc.php");
 	session_start();
 	if (!isset($_SESSION['lang']))
 		$_SESSION['lang'] = "fr";

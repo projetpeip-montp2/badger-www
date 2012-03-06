@@ -8,7 +8,7 @@ body
 {
 	background-color: #999999;
 	text-align: right;
-	padding-right: 2%;
+	padding-right: 0.5%;
 }
 
 #Header
@@ -79,4 +79,10 @@ a
 #LangageSelector
 {
 	display: inline;
+}
+
+#Flags
+{
+    padding-left: 0.5%;
+    float: left;
 }
