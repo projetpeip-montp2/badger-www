@@ -4,6 +4,12 @@ body
 	font-family: Verdana, serif;
 }
 
+#Flags
+{
+    padding-left: 0.5%;
+    float: left;
+}
+
 #UserBar
 {
 	background-color: #999999;
@@ -20,12 +26,6 @@ body
 	padding-bottom: 0.5%;
 	padding-left: 0.5%;
 	background-color: #E0E0E0;
-}
-
-#Header h1
-{
-	font-size: 36px;
-	color: white;
 }
 
 #Menu
@@ -55,9 +55,10 @@ body
 	border: 2px solid black;
 }
 
-a
+a, a:visited
 {
     text-decoration: none;
+    color: blue;
 }
 
 #Body h
@@ -74,15 +75,4 @@ a
 #Body h2
 {
 	font-size: 14px;
-}
-
-#LangageSelector
-{
-	display: inline;
-}
-
-#Flags
-{
-    padding-left: 0.5%;
-    float: left;
 }
