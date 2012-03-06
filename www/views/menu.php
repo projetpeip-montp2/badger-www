@@ -6,6 +6,9 @@
 		<li><a href="index.php?page=guide"><?php echo $TEXT['Menu_Guide'] ?></a></li>
 	</ul>
     <ul>
+        <li><a href="index.php?page=MCQ"><?php echo $TEXT['Menu_MCQ'] ?></a></li>
+    </ul>
+    <ul>
         <li><a href="index.php?page=admin">Administration</a></li>
     </ul>
 </div>

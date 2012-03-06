@@ -9,4 +9,5 @@
 	$TEXT['Menu_NumericalWeek'] = "Semaine du Numérique";
 	$TEXT['Menu_Lectures'] = "Conférences";
 	$TEXT['Menu_Guide'] = "Guide d'utilisation";
+	$TEXT['Menu_MCQ'] = "Q.C.M";
 ?>

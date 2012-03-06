@@ -2,6 +2,7 @@
     $validPages = array(
 					    'home',
                         'guide',
-                        'lectures'
+                        'lectures',
+                        'MCQ'
 					    );
 ?>
