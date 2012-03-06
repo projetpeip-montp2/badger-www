@@ -30,6 +30,7 @@
                 if(!isValidPage($pageName))
                     $pageName = $configurations['default_page'];
 			}
+            $_SESSION['page'] = $pageName;
 
 			include("controllers/" . $pageName . ".php");
 		?>

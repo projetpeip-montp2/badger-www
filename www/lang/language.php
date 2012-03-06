@@ -4,5 +4,6 @@
 		$_SESSION['lang'] = $_GET['lang'];
 	else
 		$_SESSION['lang'] = "fr";
-	header('Location: ../index.php');
+
+	header('Location: ../index.php?page=' . $_SESSION['page']);
 ?>
