@@ -1,0 +1,4 @@
+AuthName "Protection des pages internes du site"
+AuthType Basic
+AuthUserFile "localhost/www/badger-www/www/controllers/.htpasswd"
+Require valid-user
