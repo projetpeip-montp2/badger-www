@@ -1,1 +1,14 @@
-Depuis language.php, retomber sur la même page
+    TODO list
+
+
+- Admin:
+    - Ajouter l'accueil de l'admin. Cela doit être protégé par une fonction vérifiant si l'user est un admin
+
+
+- Menu
+    - Revoir les liens du menu
+    !!! FAIT EN PARTIE
+
+- Footer
+    - Trouver quoi mettre dedans
+
