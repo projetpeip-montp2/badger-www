@@ -4,7 +4,7 @@
 	foreach ($questions as $q)
     {
         displayQuestion($q);
-        echo "<br/>";
+        echo "\n<br/>";
     }
 ?>
 </form>

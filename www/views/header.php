@@ -6,6 +6,7 @@
 		 <meta http-equiv="Content-Language" content="<?php echo $TEXT['Lang']; ?>" />
 		 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 		 <link href="style.css" rel="stylesheet" type="text/css" />
+         <script src="js/jquery-1.7.1.min.js"></script>
 	</head>
 
 	<body>
@@ -15,7 +16,7 @@
 	            <a href="lang/language.php?lang=en"><img src="images/english_flag.jpg" alt="Anglais"/></a>
             </span>
 
-	        Nom Prénom Année Département
+	        Nom Prénom | Département
         </div>
 
         <div id="Header">

@@ -5,7 +5,7 @@
     function displayQuestion($question)
     {
         $questionId = "Q" . $question->getId();
-        echo "<label>" . $question->getLabel() . "</label>";
+        echo "\n<label>" . $question->getLabel() . "</label>\n";
         echo "<br/>";
 
         $answers = $question->getAnswers();
