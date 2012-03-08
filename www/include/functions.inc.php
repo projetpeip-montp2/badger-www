@@ -28,11 +28,4 @@ function includeView($pageName)
     require_once("views/" . $_SESSION['lang'] . "/" . $pageName . ".php");
 }
 
-function isValidPage($pageName)
-{
-        global $validPages;
-
-	    return (is_file("controllers/" . $pageName . ".php") && in_array($pageName, $validPages) === TRUE) ? true : false;
-}
-
 ?>

@@ -6,11 +6,20 @@
 	require_once("include/functions.inc.php");
 	require_once("include/class.inc.php");
 
+
+	// Include valids users
+	require_once("include/access.inc.php");
+
     // Language definition
 	session_start();
+
+    // TODO: Remove the second condition when the website is finished
+    if (!isset($_SESSION['logon']) || !isValidUser($_SESSION['logon']))
+        header('Location: http://www.polytech.univ-montp2.fr/intra/');
 	if (!isset($_SESSION['lang']))
 		$_SESSION['lang'] = "fr";
 	require_once("lang/" . $_SESSION['lang'] .".php");
+
 
 	// Include valids pages
 	require_once("include/pages.inc.php");

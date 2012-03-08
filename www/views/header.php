@@ -16,7 +16,7 @@
 	            <a href="lang/language.php?lang=en"><img src="images/english_flag.jpg" alt="Anglais"/></a>
             </span>
 
-	        Nom Prénom | Département
+	        <?php echo $_SESSION['logon'] ?> | Département
         </div>
 
         <div id="Header">
