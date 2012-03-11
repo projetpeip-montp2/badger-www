@@ -8,6 +8,9 @@
 
     // Language definition
 	session_start();
+    // RETIRER LA DEUXIEME CONDITION UNE FOIS LE PROJET
+    if (!isset($_SESSION['logon']) || ($_SESSION['logon'] != "vbmifare"))
+        header('Location: http://www.polytech.univ-montp2.fr/intra/');
 	if (!isset($_SESSION['lang']))
 		$_SESSION['lang'] = "fr";
 	require_once("lang/" . $_SESSION['lang'] .".php");
