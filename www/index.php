@@ -6,14 +6,17 @@
 	require_once("include/functions.inc.php");
 	require_once("include/class.inc.php");
 
-    // Language definition
+	// Include valids users
+	require_once("include/access.inc.php");
+
 	session_start();
-    // RETIRER LA DEUXIEME CONDITION UNE FOIS LE PROJET
-    if (!isset($_SESSION['logon']) || ($_SESSION['logon'] != "vbmifare"))
+    // TODO: Remove the second condition when the website is finished
+    if (!isset($_SESSION['logon']) || !isValidUser($_SESSION['logon']))
         header('Location: http://www.polytech.univ-montp2.fr/intra/');
 	if (!isset($_SESSION['lang']))
 		$_SESSION['lang'] = "fr";
 	require_once("lang/" . $_SESSION['lang'] .".php");
+
 
 	// Include valids pages
 	require_once("include/pages.inc.php");
