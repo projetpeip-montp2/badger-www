@@ -4,7 +4,6 @@
 
 	// Include of required libs
 	require_once("include/functions.inc.php");
-	require_once("include/class.inc.php");
 
 	// Include valids users
 	require_once("include/access.inc.php");
