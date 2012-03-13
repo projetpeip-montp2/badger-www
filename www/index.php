@@ -5,6 +5,11 @@
 	// Include of required libs
 	require_once("include/functions.inc.php");
 
+	// Include of required classes
+    // TODO: Faire un script qui charge automatiquement les classes utilisées
+	require_once("lib/Lecture.class.php");
+	require_once("lib/Question.class.php");
+
 	// Include valids users
 	require_once("include/access.inc.php");
 
