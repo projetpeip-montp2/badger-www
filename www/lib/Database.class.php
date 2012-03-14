@@ -1,15 +1,57 @@
 <?php
 
-class Statement
+class MySQLIterator implements Iterator
+{
+	private $m_position;
+	private $m_curResult;
+	private $m_req;
+	
+	function __construct($req)
+	{
+		$this->m_position = 0;
+		$this->m_req = $req;
+	}
+	
+	function current()
+	{
+		return ($this->m_curResult);
+	}
+	
+	function key()
+	{
+		return ($this->m_position);
+	}
+	
+	function next()
+	{
+		$this->m_position++;
+		$this->m_curResult = mysqli_fetch_assoc($this->m_req);
+	}
+	
+	function rewind()
+	{
+		$this->m_position = 0;
+		mysqli_data_seek($this->m_req, 0);
+		$this->m_curResult = mysqli_fetch_assoc($this->m_req);
+	}
+	
+	function valid()
+	{
+		return ((boolean) $this->m_curResult);
+	}
+}
+
+class Statement implements IteratorAggregate
 {
 	private $m_link;
 	private $m_id;
 	private $m_req;
 	
-	function __construct($link, $id)
+	function __construct($link, $id, $req = null)
 	{
 		$this->m_link = $link;
 		$this->m_id = $id;
+		$this->m_req = $req;
 	}
 	
 	function execute($opts)
@@ -45,22 +87,23 @@ class Statement
 		$result = array();
 		
 		while(($data = $this->fetch()) !== NULL)
-			$result[] = $data;
+			$result []= $data;
 
 		return ($result);
 	}
+	
+	function getIterator()
+	{
+		return new MySQLIterator($this->m_req);
+	}
 }
-
-
 
 class Database
 {
 	private $m_link;
-	private $m_req;
 
 	function __construct($host, $username, $password, $dbName)
 	{	
-		$this->m_req = FALSE;
 		$this->m_link = mysqli_connect($host, $username, $password);
 
 		if ($this->m_link === FALSE)
@@ -77,10 +120,14 @@ class Database
 	
 	function query($request)
 	{
-		$this->m_req = mysqli_query($this->m_link, $request);
-
-		if ($this->m_req === FALSE)
+		$req = mysqli_query($this->m_link, $request);
+		
+		if ($req === FALSE)
 			throw new RuntimeException('Cannot execute request');
+			
+		$stmt = new Statement($this->m_link, null, $req);
+		
+		return ($stmt);
 	}
 	
 	function prepare($preparedRequest)
@@ -93,21 +140,6 @@ class Database
 		$stmt = new Statement($this->m_link, $id);
 
 		return ($stmt);
-	}
-
-	function fetch()
-	{
-		return (mysqli_fetch_assoc($this->m_req));
-	}
-	
-	function fetchAll()
-	{
-		$result = array();
-		
-		while(($data = $this->fetch()) !== NULL)
-			$result[] = $data;
-
-		return ($result);
 	}
 }
 
