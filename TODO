@@ -3,12 +3,13 @@
 
 - Général:
     - Trouver quoi mettre dans le footer
+    - Traduire les exceptions en anglais
 
 
 - Frontend:
-    - Vérifier que la langue est une des définies
+    - Vérifier que la langue est une des définies (fichier de config?)
 
 
 - Backend
-    - Ajouter l'accueil de l'admin. Cela doit être protégé par une fonction vérifiant si l'user est un admin
+    - Inclure les nouveaux modules
 
