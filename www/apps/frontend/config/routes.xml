@@ -1,0 +1,7 @@
+<routes>
+    <route url="/" module="home" action="index"/>
+    <route url="/home/index\.html" module="home" action="index"/>
+    <route url="/home/guide\.html" module="home" action="guide"/>
+
+    <route url="/home/changeLang-([a-zA-Z]+)\.html" module="home" action="changeLang" vars="newLang"/>
+</routes>

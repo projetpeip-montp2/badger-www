@@ -1,0 +1,14 @@
+    TODO list
+
+
+- Général:
+    - Trouver quoi mettre dans le footer
+
+
+- Frontend:
+    - Vérifier que la langue est une des définies
+
+
+- Backend
+    - Ajouter l'accueil de l'admin. Cela doit être protégé par une fonction vérifiant si l'user est un admin
+

@@ -1,0 +1,8 @@
+<definitions>
+    <define var="adminUsersList" value="vbmifare"/>
+
+    <define var="availablesUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>
+
+    <!-- For tests-->
+    <define var="global" value="100"/>
+</definitions>
