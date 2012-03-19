@@ -2,9 +2,8 @@
 
 
 - Général:
-    - Trouver quoi mettre dans le footer
+    - Faire un design plus aléchant
     - Traduire les exceptions en anglais
-    - Commencer les noms d'attributs par 'm_'
     - Sécuriser les variables $_GET
 
 
