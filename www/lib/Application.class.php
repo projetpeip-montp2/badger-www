@@ -1,55 +1,60 @@
 <?php
     abstract class Application
     {
-        protected $configLocal;
-        protected $configGlobal;
-        protected $httpRequest;
-        protected $httpResponse;
-        protected $name;
-        protected $user;
+        private $m_configLocal;
+        private $m_configGlobal;
+        private $m_httpRequest;
+        private $m_httpResponse;
+        private $m_name;
+        private $m_user;
         
         public function __construct()
         {
-            $this->configLocal = new Config($this, false);
-            $this->configGlobal = new Config($this, true);
+            $this->m_configLocal = new Config($this, false);
+            $this->m_configGlobal = new Config($this, true);
 
-            $this->httpRequest = new HTTPRequest($this);
-            $this->httpResponse = new HTTPResponse($this);
-            $this->user = new User($this);
+            $this->m_httpRequest = new HTTPRequest($this);
+            $this->m_httpResponse = new HTTPResponse($this);
+            $this->m_user = new User($this);
             
-            $this->name = '';
+            $this->m_name = '';
         }
         
         abstract public function run();
         
         public function configLocal()
         {
-            return $this->configLocal;
+            return $this->m_configLocal;
         }
 
         public function configGlobal()
         {
-            return $this->configGlobal;
+            return $this->m_configGlobal;
         }
         
         public function httpRequest()
         {
-            return $this->httpRequest;
+            return $this->m_httpRequest;
         }
         
         public function httpResponse()
         {
-            return $this->httpResponse;
+            return $this->m_httpResponse;
         }
         
         public function name()
         {
-            return $this->name;
+            return $this->m_name;
+        }
+
+        protected function setName($name)
+        {
+            $this->m_name = $name;
         }
         
         public function user()
         {
-            return $this->user;
+            return $this->m_user;
         }
     } 
 ?>

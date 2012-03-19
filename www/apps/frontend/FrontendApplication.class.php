@@ -7,7 +7,7 @@
         {
             parent::__construct();
             
-            $this->name = 'frontend';
+            $this->setName('frontend');
         }
         
         public function run()
@@ -18,8 +18,8 @@
             $controller->page()->setLanguageFileToInclude(dirname(__FILE__).'/lang/'.$this->user()->getAttribute('lang').'.php');
             $controller->execute();
             
-            $this->httpResponse->setPage($controller->page());
-            $this->httpResponse->send();
+            $this->httpResponse()->setPage($controller->page());
+            $this->httpResponse()->send();
         }
     } 
 ?>

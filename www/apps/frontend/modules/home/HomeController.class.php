@@ -16,9 +16,9 @@
             if(!in_array($request->getData('newLang'), explode(';', $this->app()->configGlobal()->get('availablesLanguagesList'))))
                 throw new RuntimeException('The language requested is forbiden');
 
-            $this->app->user()->setAttribute('lang', $request->getData('newLang'));
+            $this->app()->user()->setAttribute('lang', $request->getData('newLang'));
 
-            $this->app->httpResponse()->redirect($request->getData('previousPage'));
+            $this->app()->httpResponse()->redirect($request->getData('previousPage'));
         }
     }
 ?>

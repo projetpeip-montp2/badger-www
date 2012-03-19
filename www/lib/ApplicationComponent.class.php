@@ -1,16 +1,16 @@
 <?php
     abstract class ApplicationComponent
     {
-        protected $app;
+        private $m_app;
         
         public function __construct(Application $app)
         {
-            $this->app = $app;
+            $this->m_app = $app;
         }
         
         public function app()
         {
-            return $this->app;
+            return $this->m_app;
         }
     }
 ?>

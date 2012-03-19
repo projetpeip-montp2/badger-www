@@ -1,7 +1,7 @@
 <?php
     class HTTPResponse extends ApplicationComponent
     {
-        protected $page;
+        protected $m_page;
         
         public function addHeader($header)
         {
@@ -16,8 +16,8 @@
         
         public function redirect404()
         {
-            $this->page = new Page($this->app);
-            $this->page->setContentFile(dirname(__FILE__).'/../errors/404.html');
+            $this->m_page = new Page($this->app());
+            $this->m_page->setContentFile(dirname(__FILE__).'/../errors/404.html');
             
             $this->addHeader('HTTP/1.0 404 Not Found');
             
@@ -26,8 +26,8 @@
 
         public function redirect403()
         {
-            $this->page = new Page($this->app);
-            $this->page->setContentFile(dirname(__FILE__).'/../errors/403.html');
+            $this->m_page = new Page($this->app());
+            $this->m_page->setContentFile(dirname(__FILE__).'/../errors/403.html');
             
             $this->addHeader('HTTP/1.0 403 Forbiden access');
             
@@ -36,12 +36,12 @@
         
         public function send()
         {
-            exit($this->page->getGeneratedPage());
+            exit($this->m_page->getGeneratedPage());
         }
         
         public function setPage(Page $page)
         {
-            $this->page = $page;
+            $this->m_page = $page;
         }
         
         // Changement par rapport à la fonction setcookie() : le dernier argument est par défaut à true
