@@ -18,7 +18,7 @@
 
             $this->app->user()->setAttribute('lang', $request->getData('newLang'));
 
-            $this->app->httpResponse()->redirect('/home/index.html');
+            $this->app->httpResponse()->redirect($request->getData('previousPage'));
         }
     }
 ?>

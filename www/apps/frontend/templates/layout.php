@@ -15,8 +15,8 @@
     <body>
         <div id="UserBar">
             <span id="Flags">
-            <a href="/home/changeLang-fr.html"><img src="/web/images/french_flag.jpg" alt="Français"/></a>
-            <a href="/home/changeLang-en.html"><img src="/web/images/english_flag.jpg" alt="Anglais"/></a>
+            <a href="/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/web/images/french_flag.jpg" alt="Français"/></a>
+            <a href="/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/web/images/english_flag.jpg" alt="Anglais"/></a>
             </span>
 
             <?php echo $user->getAttribute('logon'); ?> | Département
@@ -31,8 +31,6 @@
         </div>
         
         <div id="Body">
-            <?php echo $user->isAdmin() ? '<p>Admin</p>' : '<p>Student</p>'; ?>
-
             <?php echo $content; ?>
         </div>
     
