@@ -1,10 +1,10 @@
 <?php
     class Page extends ApplicationComponent
     {
-        protected $m_languageFileToInclude = "";
+        protected $m_filesToInclude = array();
         protected $m_contentFile;
         protected $m_vars = array();
-        
+
         public function addVar($var, $value)
         {
             if (!is_string($var) || is_numeric($var) || empty($var))
@@ -13,9 +13,9 @@
             $this->m_vars[$var] = $value;
         }
 
-        public function setLanguageFileToInclude($filename)
+        public function addFileToInclude($filename)
         {
-            $this->m_languageFileToInclude = $filename;
+            $this->m_filesToInclude[] = $filename;
         }
         
         public function getGeneratedPage()
@@ -25,8 +25,11 @@
             
             $user = $this->app()->user();
             
-            if(!empty($this->m_languageFileToInclude))
-                require $this->m_languageFileToInclude;
+            foreach($this->m_filesToInclude as $filename)
+            {
+                if(!empty($filename))
+                    require_once $filename;
+            }
 
             extract($this->m_vars);
             
