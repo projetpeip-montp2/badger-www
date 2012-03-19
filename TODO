@@ -5,10 +5,12 @@
     - Trouver quoi mettre dans le footer
     - Traduire les exceptions en anglais
     - Commencer les noms d'attributs par 'm_'
+    - Sécuriser les variables $_GET
 
 
 - Frontend:
-    - Vérifier que la langue est une des définies (fichier de config?)
+    - Afficher le département de l'utilsateur
+    - Ne permettre l'accès qu'à certains couple département-année
 
 
 - Backend
