@@ -47,18 +47,16 @@
         
         public function isAdmin()
         {
-            $adminArray = explode(';', $this->app()->configGlobal()->get('adminUsersList') );
-
-            return (in_array($this->getAttribute('logon'), $adminArray) === TRUE);
+            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('adminUsersList')));
         }
 
         
-        // TODO: Supprimer aussi cette fonction
+
+
+        // TODO: Supprimer aussi cette fonction qui n'aura plus lieu d'être.
         public function isAvailable()
         {
-            $adminArray = explode(';', $this->app()->configGlobal()->get('availablesUsersList') );
-
-            return (in_array($this->getAttribute('logon'), $adminArray) === TRUE);
+            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availablesUsersList')));
         }
     } 
 ?>
