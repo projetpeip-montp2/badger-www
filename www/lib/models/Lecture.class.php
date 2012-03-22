@@ -1,5 +1,5 @@
 <?php
-    class Lecture
+    class Lecture extends Record
     {
         private $m_id;
         private $m_name;

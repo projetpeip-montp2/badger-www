@@ -12,9 +12,17 @@
         
         public function run()
         {
-            $router = new Router($this);
-            
-            $controller = $router->getController();
+            if (!$this->user()->existsAttribute('infos'))
+            {
+                require dirname(__FILE__).'/modules/connexion/ConnexionController.class.php';
+                $controller = new ConnexionController($this, 'connexion', 'index');
+            }
+            else
+            {
+                $router = new Router($this);
+                $controller = $router->getController();
+            }
+
             $controller->page()->addFileToInclude(dirname(__FILE__).'/lang/'.$this->user()->getAttribute('lang').'.php');
             $controller->execute();
             

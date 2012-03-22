@@ -1,5 +1,5 @@
 <?php
-    class Question
+    class Question extends Record
     {
         private $m_id;
         private $m_label;
