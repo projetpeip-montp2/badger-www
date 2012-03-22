@@ -5,7 +5,7 @@
         {
             //$dbPolytech = new Database('localhost', 'vbMifare', 'vbMifare2012', 'Polytech');
 
-            $dbvbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
+            $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
 
             // Si on ne trouve pas l'étudiant dans la bdd vbmifare
             //     S'il existe une entré dans la bdd polytech et qu'elle est autorisé            

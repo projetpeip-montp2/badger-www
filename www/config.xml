@@ -1,8 +1,6 @@
 <definitions>
     <define var="root" value="/vbMifare"/>
 
-    <define var="availableAdminsList" value="vbmifare"/>
+    <!-- Seulement pour les tests -->
     <define var="availableUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>
-
-    <define var="availablesLanguagesList" value="fr;en"/>
 </definitions>

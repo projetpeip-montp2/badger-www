@@ -45,12 +45,6 @@
             return $this->existsAttribute('logon');
         }
         
-        public function isAdmin()
-        {
-            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availableAdminsList')));
-        }
-
-        
 
 
         // TODO: Supprimer aussi cette fonction qui n'aura plus lieu d'être.

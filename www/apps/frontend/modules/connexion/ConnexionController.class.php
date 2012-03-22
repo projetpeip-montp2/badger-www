@@ -11,6 +11,8 @@
                 throw new RuntimeException('You are not present in Polytech user database');
 
             $this->app()->user()->setAttribute('infos', $infos);
+
+            $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
         }
     }
 ?>

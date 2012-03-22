@@ -12,12 +12,17 @@
         
         public function run()
         {
-            if(!$this->user()->isAdmin())
-                $this->httpResponse->redirect403();
+            if (!$this->user()->existsAttribute('admin'))
+            {
+                require dirname(__FILE__).'/modules/connexion/ConnexionController.class.php';
+                $controller = new ConnexionController($this, 'connexion', 'index');
+            }
+            else
+            {
+                $router = new Router($this);
+                $controller = $router->getController();
+            }
 
-            $router = new Router($this);
-            
-            $controller = $router->getController();
             $controller->execute();
             
             $this->httpResponse()->setPage($controller->page());
