@@ -55,10 +55,10 @@
 		    $this->m_req = $req;
 	    }
 	
-	    public function execute($opts)
+	    public function execute($opts = array())
 	    {
 		    $varList = '';
-		
+			
 		    while (list($key, $val) = each($opts))
 		    {
 			    $val = mysqli_real_escape_string($this->m_link, $val);
@@ -72,8 +72,11 @@
 				    $varList .= ", @$key";
 		    }
 
-		    $this->m_req = mysqli_query($this->m_link, "EXECUTE {$this->m_id} USING $varList");
-
+			if (!empty($opts))
+				$this->m_req = mysqli_query($this->m_link, "EXECUTE {$this->m_id} USING $varList");
+			else
+				$this->m_req = mysqli_query($this->m_link, "EXECUTE {$this->m_id}");
+				
 		    if ($this->m_req === FALSE)
 			    throw new RuntimeException('Execution of prepared request failed');
 	    }
@@ -137,7 +140,7 @@
 	    {
 		    $id = uniqid();
 
-		    if (mysqli_query($this->m_link, "PREPARE $id FROM '$preparedRequest'") === FALSE)
+		    if (mysqli_query($this->m_link, "PREPARE $id FROM '$preparedRequest'") == FALSE)
 			    throw new RuntimeException('Cannot prepare request');
 
 		    $stmt = new Statement($this->m_link, $id);
