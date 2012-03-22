@@ -9,21 +9,21 @@
         <meta http-equiv="Content-Language" content="<?php echo $user->getAttribute('lang'); ?>" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         
-        <link rel="stylesheet" href="/web/styles/style.css" type="text/css" />
+        <link rel="stylesheet" href="/vbMifare/web/styles/style.css" type="text/css" />
     </head>
     
     <body>
         <div id="UserBar">
             <span id="Flags">
-            <a href="/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/web/images/french_flag.jpg" alt="Français"/></a>
-            <a href="/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/web/images/english_flag.jpg" alt="Anglais"/></a>
+            <a href="/vbMifare/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/vbMifare/web/images/french_flag.jpg" alt="Français"/></a>
+            <a href="/vbMifare/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/vbMifare/web/images/english_flag.jpg" alt="Anglais"/></a>
             </span>
 
             <?php echo $user->getAttribute('logon'); ?> | Département
         </div>
 
         <div id="Header">
-            <a href="/home/index.html"><img src="/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
+            <a href="/vbMifare/home/index.html"><img src="/vbMifare/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
         </div>
         
         <div id="Menu">

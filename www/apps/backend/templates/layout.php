@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Language" content="fr" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         
-        <link rel="stylesheet" href="/web/styles/style.css" type="text/css" />
+        <link rel="stylesheet" href="/vbMifare/web/styles/style.css" type="text/css" />
     </head>
     
     <body>
@@ -18,7 +18,7 @@
         </div>
 
         <div id="Header">
-            <a href="/admin/home/index.html"><img src="/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
+            <a href="/vbMifare/admin/home/index.html"><img src="/vbMifare/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
         </div>
         
         <div id="Menu">

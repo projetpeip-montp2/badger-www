@@ -1,7 +1,8 @@
 <definitions>
-    <define var="adminUsersList" value="vbmifare"/>
+    <define var="root" value="/vbMifare"/>
 
-    <define var="availablesUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>
+    <define var="availableAdminsList" value="vbmifare"/>
+    <define var="availableUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>
 
     <define var="availablesLanguagesList" value="fr;en"/>
 </definitions>

@@ -5,6 +5,7 @@
     - Faire un design plus aléchant
     - Traduire les exceptions en anglais
     - Sécuriser les variables $_GET
+    - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
 
 
 - Frontend:

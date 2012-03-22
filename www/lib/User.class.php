@@ -47,7 +47,7 @@
         
         public function isAdmin()
         {
-            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('adminUsersList')));
+            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availableAdminsList')));
         }
 
         
@@ -56,7 +56,7 @@
         // TODO: Supprimer aussi cette fonction qui n'aura plus lieu d'être.
         public function isAvailable()
         {
-            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availablesUsersList')));
+            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availableUsersList')));
         }
     } 
 ?>
