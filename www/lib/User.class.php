@@ -9,7 +9,7 @@
 
             /////////////////////////////////////////////////////////////////////
             // TODO: Retirer les lignes suivantes, qui ne sert que pour les tests
-            $this->setAttribute('logon', 'vbmifare');
+            $this->setAttribute('logon', 'victor.hiairrassary');
 
             if(!$this->isAvailable())
                 throw new RuntimeException('User is not allowed to be on this web site');

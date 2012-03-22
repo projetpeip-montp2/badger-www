@@ -5,7 +5,11 @@
     - Faire un design plus aléchant
     - Traduire les exceptions en anglais
     - Sécuriser les variables $_GET
+    - Faire commenecer les variables de sessions utilisées par "vbmifare"
+
+Production:
     - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
+    - Retirer les fonctions inutiles comme celle dans la classe User
 
 
 - Frontend:

@@ -1,3 +1,5 @@
 <definitions>
+    <define var="availablesStudentsList" value="PEIP2"/>
+
     <define var="availablesLanguagesList" value="fr;en"/>
 </definitions>
