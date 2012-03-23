@@ -5,12 +5,11 @@
         {
             $manager = new ConnectionManager();
             
-            $infos = $manager->retrieveInformations($this->app()->user()->getAttribute('logon'));
+            $student = $manager->retrieveStudent($this->app()->user()->getAttribute('logon'));
 
-            if($infos == null)
-                throw new RuntimeException('You are not present in Polytech user database');
+            // TODO: Check here if the student can be on the web site
 
-            $this->app()->user()->setAttribute('infos', $infos);
+            $this->app()->user()->setAttribute('vbmifareStudent', $student);
 
             $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
         }

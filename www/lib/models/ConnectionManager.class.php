@@ -1,24 +1,30 @@
 <?php
     class ConnectionManager extends Manager
     {
-        public function retrieveInformations($logon)
+        private function loadStudentFromPolytech($logon)
         {
-            //$dbPolytech = new Database('localhost', 'vbMifare', 'vbMifare2012', 'Polytech');
+            $db_polytech = new Database('localhost', 'vbMifare', 'vbMifare2012', 'Polytech');
 
+            $reqPoly = $db_polytech->prepare('SELECT Username, Departement, anApogee, Mifare FROM Users WHERE Username = ?');
+            $reqPoly->execute(array($logon));
+
+            return new Student($reqPoly->fetch());
+        }
+
+        public function retrieveStudent($logon)
+        {
             $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
 
-            // Si on ne trouve pas l'étudiant dans la bdd vbmifare
-            //     S'il existe une entré dans la bdd polytech et qu'elle est autorisé            
-            //         Alors on fait un insert dans la bdd vbmifare et renvoi l'élève
-            // 
-            //     Sinon 
-            //         Erreur
-            //
-            // Alors 
-            //     On renvoi l'élève charger depuis la bdd polytech
-            //
-                
-            return null;
+            $reqVB = $db_vbMifare->prepare('SELECT Id_user FROM Users WHERE Id_user = ?');
+            $reqVB->execute(array($logon));
+            
+            if(!$reqVB->fetch())
+            {
+                $reqVB = $db_vbMifare->prepare('INSERT INTO Users(Id_user, Mark) VALUES(?, 0)');
+                $reqVB->execute(array($logon));
+            }
+
+            return $this->loadStudentFromPolytech($logon);
         }
     }
 ?>

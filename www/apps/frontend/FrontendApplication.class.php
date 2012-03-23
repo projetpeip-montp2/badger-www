@@ -12,7 +12,7 @@
         
         public function run()
         {
-            if (!$this->user()->existsAttribute('infos'))
+            if (!$this->user()->existsAttribute('vbmifareStudent'))
             {
                 require dirname(__FILE__).'/modules/connection/ConnectionController.class.php';
                 $controller = new ConnectionController($this, 'connexion', 'index');

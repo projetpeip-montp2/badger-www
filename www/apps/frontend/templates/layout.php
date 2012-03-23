@@ -19,7 +19,12 @@
             <a href="/vbMifare/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/vbMifare/web/images/english_flag.jpg" alt="Anglais"/></a>
             </span>
 
-            <?php echo $user->getAttribute('logon'); ?> | Département
+            <?php echo $user->getAttribute('logon'); ?> |
+            <?php 
+                $student = $user->getAttribute('vbmifareStudent');
+                echo $student->getDepartement(); 
+                echo $student->getAnApogee(); 
+            ?>
         </div>
 
         <div id="Header">
