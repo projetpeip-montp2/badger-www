@@ -1,9 +1,9 @@
 <?php
-    class ConnexionController extends BackController
+    class ConnectionController extends BackController
     {
         public function executeIndex(HTTPRequest $request)
         {
-            $manager = new ConnexionManager();
+            $manager = new ConnectionManager();
             
             $infos = $manager->retrieveInformations($this->app()->user()->getAttribute('logon'));
 

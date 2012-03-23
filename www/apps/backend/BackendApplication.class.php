@@ -14,8 +14,8 @@
         {
             if (!$this->user()->existsAttribute('admin'))
             {
-                require dirname(__FILE__).'/modules/connexion/ConnexionController.class.php';
-                $controller = new ConnexionController($this, 'connexion', 'index');
+                require dirname(__FILE__).'/modules/connection/ConnectionController.class.php';
+                $controller = new ConnectionController($this, 'connexion', 'index');
             }
             else
             {

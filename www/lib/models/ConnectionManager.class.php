@@ -1,5 +1,5 @@
 <?php
-    class ConnexionManager extends Manager
+    class ConnectionManager extends Manager
     {
         public function retrieveInformations($logon)
         {

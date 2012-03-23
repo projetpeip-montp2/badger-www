@@ -1,5 +1,5 @@
 <?php
-    class ConnexionController extends BackController
+    class ConnectionController extends BackController
     {
         public function executeIndex(HTTPRequest $request)
         {
