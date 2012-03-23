@@ -1,3 +1,3 @@
 <?php
-    require dirname(__FILE__).'/lang/'. $user->getAttribute('lang') .'/guide.php';
+    require dirname(__FILE__).'/lang/'. $user->getAttribute('vbmifareLang') .'/guide.php';
 ?>

@@ -23,7 +23,7 @@
                 $controller = $router->getController();
             }
 
-            $controller->page()->addFileToInclude(dirname(__FILE__).'/lang/'.$this->user()->getAttribute('lang').'.php');
+            $controller->page()->addFileToInclude(dirname(__FILE__).'/lang/'.$this->user()->getAttribute('vbmifareLang').'.php');
             $controller->execute();
             
             $this->httpResponse()->setPage($controller->page());

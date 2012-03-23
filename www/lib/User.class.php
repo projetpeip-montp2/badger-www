@@ -18,8 +18,8 @@
             if(!$this->isLogged())
                 throw new RuntimeException('User is not logged');
 
-            if(!$this->existsAttribute('lang'))
-                $this->setAttribute('lang', 'fr');
+            if(!$this->existsAttribute('vbmifareLang'))
+                $this->setAttribute('vbmifareLang', 'fr');
         }
 
         public function setAttribute($attr, $value)
