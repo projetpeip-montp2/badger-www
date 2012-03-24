@@ -8,11 +8,8 @@
             parent::__construct($app);
 
             /////////////////////////////////////////////////////////////////////
-            // TODO: Retirer les lignes suivantes, qui ne sert que pour les tests
+            // TODO: Retirer la ligne suivantes, qui ne sert que pour les tests
             $this->setAttribute('logon', 'victor.hiairrassary');
-
-            if(!$this->isAvailable())
-                throw new RuntimeException('User is not allowed to be on this web site');
             /////////////////////////////////////////////////////////////////////
 
             if(!$this->isLogged())
@@ -44,13 +41,5 @@
         {
             return $this->existsAttribute('logon');
         }
-        
-
-
-        // TODO: Supprimer aussi cette fonction qui n'aura plus lieu d'être.
-        public function isAvailable()
-        {
-            return in_array($this->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availableUsersList')));
-        }
-    } 
+    }
 ?>

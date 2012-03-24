@@ -23,7 +23,7 @@
             <?php 
                 $student = $user->getAttribute('vbmifareStudent');
                 echo $student->getDepartement(); 
-                echo $student->getAnApogee(); 
+                echo $student->getSchoolYear();
             ?>
         </div>
 
