@@ -25,19 +25,22 @@
         {
             $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
 
-            $req = $db_vbMifare->prepare('SELECT Id_user, Mark FROM Users WHERE Id_user = ?');
+            $req = $db_vbMifare->prepare('SELECT Id_user, HasPassedMCQ, Mark FROM Users WHERE Id_user = ?');
             $req->execute(array($student->getUsername()));
             
             $data = $req->fetch();
 
             if(!$data)
             {
-                $req = $db_vbMifare->prepare('INSERT INTO Users(Id_user, Mark) VALUES(?, 0)');
+                $req = $db_vbMifare->prepare('INSERT INTO Users(Id_user, HasPassedMCQ, Mark) VALUES(?, FALSE, 0)');
                 $req->execute(array($student->getUsername()));
             }
             
             else
+            {
+                $student->setHasPassedMCQ($data['HasPassedMCQ']);
                 $student->setMark($data['Mark']);
+            }
         }
     }
 ?>
