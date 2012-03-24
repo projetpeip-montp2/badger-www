@@ -4,8 +4,10 @@
 - Général:
     - Faire un design plus aléchant
     - Traduire les exceptions en anglais
-    - Sécuriser les variables $_GET
+    - Sécuriser les variables $_GET qui utilisera une fonction de la classe Security
+    - Dans les managers (= models), utiliser une fonction pour sécuriser $_GET et $_POST
     - Faire commenecer les variables de sessions utilisées par "vbmifare"
+
 
 Production:
     - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
@@ -13,7 +15,6 @@ Production:
 
 
 - Frontend:
-    - Afficher le département de l'utilsateur
     - Ne permettre l'accès qu'à certains couple département-année
 
 
