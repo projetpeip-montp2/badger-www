@@ -1,0 +1,64 @@
+! Informations en anglais
+
+Etudiant:
+    Prénom
+	Nom
+    Département 
+	Année de la promo
+	Numero etudiant
+    Numero MyFare
+	
+    Conférences choisies
+    Présence aux conférences
+    Présence au QCM
+	Note
+
+	
+Badgage:
+    Date 
+    Heure
+    Numero myfare
+	
+
+Admin:
+    Inscriptions ouvertes / fermées
+    Identité / mot de passe
+
+
+Conférence:
+    Nom
+    Intervenant
+    Description
+    Département(s)
+    Date
+	Document(s)
+	
+	
+Creneaux horaires:
+    heure debut
+    heure fin
+	
+
+Salle:
+    Numéro
+    Contenance
+    Disponibilité (?)	
+	
+	
+Question:
+    Intitulé
+    Réponses possibles
+    Bonnes réponses
+    Réponses des élèves
+	Statut % intégration QCM (possible/impossible/obligatoire)
+	
+	
+Examen/QCM
+    date
+    liste des questions
+    type de barême
+    nb min/max questions
+	
+
+Autres:
+    Dates limites (inscription / affectation / passage examen)
