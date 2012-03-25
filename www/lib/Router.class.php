@@ -19,7 +19,7 @@
                     $file = dirname(__FILE__).'/../apps/'.$this->app()->name().'/modules/'.$module.'/'.$classname.'.class.php';
                     
                     if (!file_exists($file))
-                       throw new RuntimeException('Le module où pointe la route n\'existe pas');
+                       throw new RuntimeException('The module use by the route "' . $route->getAttribute('url') . '" does not exist');
                     
                     require $file;
                     

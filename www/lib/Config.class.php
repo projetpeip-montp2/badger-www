@@ -32,7 +32,7 @@
             }
             
             if(!isset($this->m_vars[$var]))
-                throw new RuntimeException('La variable de config "'. $var .'" n\'existe pas');
+                throw new RuntimeException('The config variable "'. $var .'" is not defined in file "' . $this->m_filename . '"');
 
             return $this->m_vars[$var];
             

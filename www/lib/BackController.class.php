@@ -22,7 +22,7 @@
             $method = 'execute'.ucfirst($this->m_action);
             
             if (!is_callable(array($this, $method)))
-                throw new RuntimeException('L\'action "'.$this->m_action.'" n\'est pas définie sur ce module');
+                throw new RuntimeException('The action "'. $this->m_action . '" does not exist in the module : ' . $this->m_module);
             
             $this->$method($this->app()->httpRequest());
         }
@@ -35,7 +35,7 @@
         public function setModule($module)
         {
             if (!is_string($module) || empty($module))
-                throw new InvalidArgumentException('Le module doit être une chaine de caractères valide');
+                throw new InvalidArgumentException('The module must be a valid string');
             
             $this->m_module = $module;
         }
@@ -43,7 +43,7 @@
         public function setAction($action)
         {
             if (!is_string($action) || empty($action))
-                throw new InvalidArgumentException('L\'action doit être une chaine de caractères valide');
+                throw new InvalidArgumentException('The action must be a valid string');
             
             $this->m_action = $action;
         }
@@ -51,7 +51,7 @@
         public function setView($view)
         {
             if (!is_string($view) || empty($view))
-                throw new InvalidArgumentException('La vue doit être une chaine de caractères valide');
+                throw new InvalidArgumentException('The view must be a valid string');
             
             $this->m_view = $view;
             
