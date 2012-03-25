@@ -32,7 +32,7 @@
         </div>
         
         <div id="Menu">
-            Menu
+            <?php require dirname(__FILE__).'/menu.php'; ?>
         </div>
         
         <div id="Body">
