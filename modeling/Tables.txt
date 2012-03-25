@@ -60,16 +60,16 @@ Registations:
 
 Questions:
     Id_question
-    Statement_fr
-    Statement_en
+    Label_fr
+    Label_en
     Status(Possible, Impossible, Obligatory)
 
 
 Answers:
     Id_answer
     Id_question
-    Statement_fr
-    Statement_en
+    Label_fr
+    Label_en
     TrueOrFalse
 	
 	

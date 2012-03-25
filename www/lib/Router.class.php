@@ -5,12 +5,10 @@
         {
             $dom = new DOMDocument;
             $dom->load(dirname(__FILE__).'/../apps/'.$this->app()->name().'/config/routes.xml');
-
-            $root = $this->app()->configGlobal()->get('root');
             
             foreach ($dom->getElementsByTagName('route') as $route)
             {
-                if (preg_match('`^'.$root.$route->getAttribute('url').'$`', $this->app()->httpRequest()->requestURI(), $matches))                
+                if (preg_match('`^'.'/vbMifare'.$route->getAttribute('url').'$`', $this->app()->httpRequest()->requestURI(), $matches))                
                 {
                     $module = $route->getAttribute('module');
                     $action = $route->getAttribute('action');

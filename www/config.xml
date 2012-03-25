@@ -1,5 +1,5 @@
 <definitions>
-    <define var="root" value="/vbMifare"/>
+    <define var="availablesStudentsList" value="PEIP2;ERII4"/>
 
     <!-- Seulement pour les tests -->
     <define var="availableUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>
