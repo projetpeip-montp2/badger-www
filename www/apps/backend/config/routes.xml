@@ -1,4 +1,10 @@
 <routes>
     <route url="/admin/" module="home" action="index"/>
     <route url="/admin/home/index\.html" module="home" action="index"/>
+
+    <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
+
+    <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
+
+    <route url="/admin/statistics/index\.html" module="statistics" action="index"/>
 </routes>

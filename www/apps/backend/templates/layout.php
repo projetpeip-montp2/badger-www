@@ -23,6 +23,12 @@
         
         <div id="Menu">
             Menu
+            <ul>
+                <li><a href="/vbMifare/admin/home/index.html">Accueil</a></li>
+                <li><a href="/vbMifare/admin/lectures/index.html">Conférence</a></li>
+                <li><a href="/vbMifare/admin/mcq/index.html">QCM</a></li>
+                <li><a href="/vbMifare/admin/statistics/index.html">Statistiques</a></li>
+            </ul>
         </div>
         
         <div id="Body">
