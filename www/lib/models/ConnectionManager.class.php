@@ -32,13 +32,13 @@
 
             if(!$data)
             {
-                $req = $db_vbMifare->prepare('INSERT INTO Users(Id_user, HasPassedMCQ, Mark) VALUES(?, FALSE, 0)');
+                $req = $db_vbMifare->prepare('INSERT INTO Users(Id_user, HasTakenMCQ, Mark) VALUES(?, FALSE, 0)');
                 $req->execute(array($student->getUsername()));
             }
             
             else
             {
-                $student->setHasPassedMCQ($data['HasPassedMCQ']);
+                $student->setHasPassedMCQ($data['HasTakenMCQ']);
                 $student->setMark($data['Mark']);
             }
         }
