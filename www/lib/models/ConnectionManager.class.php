@@ -25,7 +25,7 @@
         {
             $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
 
-            $req = $db_vbMifare->prepare('SELECT Id_user, HasPassedMCQ, Mark FROM Users WHERE Id_user = ?');
+            $req = $db_vbMifare->prepare('SELECT * FROM Users WHERE Id_user = ?');
             $req->execute(array($student->getUsername()));
             
             $data = $req->fetch();
