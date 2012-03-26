@@ -1,5 +1,5 @@
 <routes>
-    <route url="/admin/" module="home" action="index"/>
+    <route url="/admin/*" module="home" action="index"/>
     <route url="/admin/home/index\.html" module="home" action="index"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>

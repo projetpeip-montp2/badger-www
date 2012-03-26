@@ -9,7 +9,7 @@
 
             /////////////////////////////////////////////////////////////////////
             // TODO: Retirer la ligne suivantes, qui ne sert que pour les tests
-            $this->setAttribute('logon', 'victor.hiairrassary');
+            $this->setAttribute('logon', 'vbmifare');
             /////////////////////////////////////////////////////////////////////
 
             if(!$this->isLogged())
