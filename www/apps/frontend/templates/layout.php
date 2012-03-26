@@ -36,7 +36,12 @@
         </div>
         
         <div id="Body">
-            <?php echo $content; ?>
+            <?php 
+                if($user->hasFlash()) 
+                    echo '<p id="Flash">', $user->getFlash(), '</p>'; 
+
+                echo $content;
+            ?>
         </div>
     
         <div id="Footer">

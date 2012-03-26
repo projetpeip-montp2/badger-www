@@ -24,10 +24,18 @@
             $_SESSION[$attr] = $value;
         }
 
+        public function unsetAttribute($attr)
+        {
+            if(!$this->existsAttribute($attr))
+                throw new RuntimeException('The attribute "' . $attr . '" does not exist in $_SESSION for unset');
+
+            unset($_SESSION[$attr]);
+        }
+
         public function getAttribute($attr)
         {
             if(!$this->existsAttribute($attr))
-                throw new RuntimeException('The attribute "' . $attr . '" does not exist in $_SESSION');
+                throw new RuntimeException('The attribute "' . $attr . '" does not exist in $_SESSION for get');
 
             return $_SESSION[$attr];
         }
@@ -40,6 +48,24 @@
         public function isLogged()
         {
             return $this->existsAttribute('logon');
+        }
+
+        public function setFlash($value)
+        {
+            $this->setAttribute('vbmifareFlash', $value);
+        }
+
+        public function getFlash()
+        {
+            $flash = $this->getAttribute('vbmifareFlash');
+            $this->unsetAttribute('vbmifareFlash');
+            
+            return $flash;
+        }
+        
+        public function hasFlash()
+        {
+            return $this->existsAttribute('vbmifareFlash');
         }
     }
 ?>
