@@ -38,7 +38,7 @@
             
             else
             {
-                $student->setHasPassedMCQ($data['HasTakenMCQ']);
+                $student->setHasTakenMCQ($data['HasTakenMCQ']);
                 $student->setMark($data['Mark']);
             }
         }
