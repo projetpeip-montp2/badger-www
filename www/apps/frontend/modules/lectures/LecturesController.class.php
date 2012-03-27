@@ -65,5 +65,10 @@
 
             $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
         }
+
+        public function executeSchedule()
+        {
+
+        }
     }
 ?>
