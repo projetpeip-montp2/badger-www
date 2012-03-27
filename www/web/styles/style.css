@@ -84,7 +84,7 @@ a, a:visited
 	font-size: 14px;
 }
 
-.LectureHide
+.lectureDescription
 {
-    display: none;
+    padding-left: 3%;
 }

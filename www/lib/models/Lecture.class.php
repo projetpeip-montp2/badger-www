@@ -13,6 +13,11 @@
         private $m_endTime;
         private $m_tags;
 
+        public function setId($id)
+        {
+            $this->m_id = $id;
+        }
+
         public function getId()
         {
             return $this->m_idLecture;

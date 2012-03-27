@@ -3,9 +3,11 @@
 
     <route url="/home/index\.html" module="home" action="index"/>
     <route url="/home/guide\.html" module="home" action="guide"/>
-    <route url="/home/changeLang-([a-zA-Z]+)-([a-zA-Z0-9\.\\\/]+)\.html" module="home" action="changeLang" vars="newLang,previousPage"/>
+    <route url="/home/changeLang-([a-zA-Z]+)-([a-zA-Z0-9\.\\\/\-]+)\.html" module="home" action="changeLang" vars="newLang,previousPage"/>
 
     <route url="/lectures/index\.html" module="lectures" action="index"/>
+    <route url="/lectures/show-([0-9]+)\.html" module="lectures" action="show" vars="id"/>
+    <route url="/lectures/showAll\.html" module="lectures" action="showAll"/>
 
     <route url="/mcq/index\.html" module="mcq" action="index"/>
 </routes>
