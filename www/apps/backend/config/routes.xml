@@ -8,4 +8,6 @@
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
 
     <route url="/admin/statistics/index\.html" module="statistics" action="index"/>
+
+    <route url="/admin/reset/index\.html" module="reset" action="index"/>
 </routes>
