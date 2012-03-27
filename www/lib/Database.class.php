@@ -129,7 +129,7 @@
 		    $req = mysqli_query($this->m_link, $request);
 		
 		    if ($req === FALSE)
-			    throw new RuntimeException('Cannot execute request');
+			    throw new RuntimeException('Cannot execute request "' . mysqli_error($this->m_link) . '"');
 			
 		    $stmt = new Statement($this->m_link, null, $req);
 		
@@ -141,7 +141,7 @@
 		    $id = uniqid();
 
 		    if (mysqli_query($this->m_link, "PREPARE $id FROM '$preparedRequest'") == FALSE)
-			    throw new RuntimeException('Cannot prepare request');
+			    throw new RuntimeException('Cannot prepare request "' . mysqli_error($this->m_link) . '"');
 
 		    $stmt = new Statement($this->m_link, $id);
 
