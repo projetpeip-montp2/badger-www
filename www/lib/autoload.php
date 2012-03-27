@@ -16,6 +16,7 @@
   'lecturemanager' => 'lib/models/LectureManager.class.php',
   'question' => 'lib/models/Question.class.php',
   'lecture' => 'lib/models/Lecture.class.php',
+  'registrationmanager' => 'lib/models/RegistrationManager.class.php',
   'answerofuser' => 'lib/models/AnswerOfUser.class.php',
   'availabilty' => 'lib/models/Availabilty.class.php',
   'registration' => 'lib/models/Registration.class.php',

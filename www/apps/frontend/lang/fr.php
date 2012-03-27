@@ -8,9 +8,16 @@
 	$TEXT['Menu_Lectures'] = "Conférences";
 	$TEXT['Menu_MCQ'] = "Q.C.M";
 
+	$TEXT['Flash_SubscribeOk'] = "Votre incription est prise en compte.";
+	$TEXT['Flash_UnsubscribeOk'] = "Votre désincription est prise en compte.";
+	$TEXT['Flash_SubscribeWrong'] = "Votre incription est n'a pas pu avoir lieu.";
+	$TEXT['Flash_UnsubscribeWrong'] = "Votre désincription est n'a pas pu avoir lieu.";
+
 	$TEXT['Lecture_DoNotExists'] = "La conférence demandée n'existe pas!";
 	$TEXT['Lecture_Description'] = "Description";
 	$TEXT['Lecture_Lecturer'] = "Conférencier";
 	$TEXT['Lecture_Tags'] = "Tags";
+	$TEXT['Lecture_Subscribe'] = "S'inscrire";
+	$TEXT['Lecture_Unsubscribe'] = "Se désinscrire";
 ?>
 

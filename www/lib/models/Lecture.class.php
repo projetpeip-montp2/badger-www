@@ -13,9 +13,9 @@
         private $m_endTime;
         private $m_tags;
 
-        public function setId($id)
+        public function setId($idLecture)
         {
-            $this->m_id = $id;
+            $this->m_idLecture = $idLecture;
         }
 
         public function getId()
