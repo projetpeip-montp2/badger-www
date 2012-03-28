@@ -7,7 +7,7 @@
             
             $student = $manager->retrieveStudentFromPolytech($this->app()->user()->getAttribute('logon'));
 
-            // Check here if the student can be on this web site
+            // TODO: Check here if the student can be on this web site
 
             // Ce test sert seulement pour le developpement
             if(!in_array($this->app()->user()->getAttribute('logon'), explode(';', $this->app()->configGlobal()->get('availableUsersList'))))
