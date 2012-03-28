@@ -26,7 +26,7 @@
 
             $username = $this->app()->user()->getAttribute('logon');
 
-            $managerRegistration = new RegistrationManager;
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
 
             $registrations = $managerRegistration->getResgistrationsFromUser($username, 'Present');
             
