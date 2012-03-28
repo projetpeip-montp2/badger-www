@@ -7,6 +7,7 @@
     - Sécuriser les variables $_GET qui utilisera une fonction de la classe Security
     - Dans les managers (= models), utiliser une fonction pour sécuriser $_GET et $_POST
     - Faire commenecer les variables de sessions utilisées par "vbmifare"
+    - Commenter le code
 
 
 Production:
