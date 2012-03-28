@@ -3,8 +3,6 @@
     {
         public function getResgistrationsFromUser($idUsername, $status = NULL)
         {
-            $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
-
             $SQLreq = 'SELECT * FROM Registrations WHERE Id_user = ?';
             $SQLparams = array($idUsername);
             if($status)
@@ -16,7 +14,7 @@
                 $SQLparams[] = $status;
             }
 
-            $req = $db_vbMifare->prepare($SQLreq);
+            $req = $this->m_dao->prepare($SQLreq);
             $req->execute($SQLparams);
 
             $result = array();
