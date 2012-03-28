@@ -1,6 +1,6 @@
 <definitions>
     <define var="availableStudentsList" value="PEIP2;ERII4"/>
-    <define var="MCQStartDate" value="28-03-2013"/>
+    <define var="MCQStartDate" value="28-03-2011"/>
 
     <!-- Seulement pour les tests -->
     <define var="availableUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>

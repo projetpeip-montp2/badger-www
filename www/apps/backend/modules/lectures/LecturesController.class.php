@@ -43,7 +43,7 @@
 
                     fclose($file);
 
-                    $manager = new LectureManager;
+                    $manager = $this->m_managers->getManagerOf('lecture');
                     $manager->save($lectures);
 
                     $this->app()->user()->setFlash('File uploaded');

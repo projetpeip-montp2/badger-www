@@ -10,7 +10,7 @@
         {
             $username = $this->app()->user()->getAttribute('logon');
 
-            $managerRegistration = new RegistrationManager;
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
 
             $this->page()->addVar('registrations', $managerRegistration->getResgistrationsIdFromUser($username));
 
@@ -18,7 +18,7 @@
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $managerLectures = new LectureManager;
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
 
             $lectures = $managerLectures->get($lang, $request->getData('idLecture'));
 
@@ -31,7 +31,7 @@
         {
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $manager = new LectureManager;
+            $manager = $this->m_managers->getManagerOf('lecture');
 
             $this->page()->addVar('lectures', $manager->get($lang, -1));
             $this->page()->addVar('lang', $lang);
@@ -43,7 +43,7 @@
 
             require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
-            $managerLectures = new LectureManager;
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
 
             $lectures = $managerLectures->get($lang, $request->getData('idLecture'));
 
@@ -53,7 +53,7 @@
             {
                 $username = $this->app()->user()->getAttribute('logon');
 
-                $managerRegistration = new RegistrationManager;
+                $managerRegistration = $this->m_managers->getManagerOf('registration');
 
                 $managerRegistration->subscribe($request->getData('idLecture'), $username, $yesOrNo);
 

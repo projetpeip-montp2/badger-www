@@ -3,7 +3,7 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-            $manager = new ConnectionManager();
+            $manager = $this->m_managers->getManagerOf('connection');
             
             $student = $manager->retrieveStudentFromPolytech($this->app()->user()->getAttribute('logon'));
 
