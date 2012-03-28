@@ -12,6 +12,7 @@
     $TEXT['Flash_UnsubscribeOk'] = "Votre désincription est prise en compte.";
     $TEXT['Flash_SubscribeWrong'] = "Votre incription est n'a pas pu avoir lieu.";
     $TEXT['Flash_UnsubscribeWrong'] = "Votre désincription est n'a pas pu avoir lieu.";
+    $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
 
     $TEXT['Lecture_DoNotExists'] = "La conférence demandée n'existe pas!";
     $TEXT['Lecture_Description'] = "Description";
@@ -24,7 +25,6 @@
     $TEXT['Lecture_Schedule'] = "Planning";
     $TEXT['Lecture_ListOf'] = "Liste des conférences :";
 
-    $TEXT['MCQ_NoTakeMCQ'] = "Impossible de passer le QCM.";
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";
 ?>

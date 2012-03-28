@@ -12,6 +12,7 @@
     $TEXT['Flash_UnsubscribeOk'] = "Your unsubscribe is ok!";
     $TEXT['Flash_SubscribeWrong'] = "Your subscribe is wrong!";
     $TEXT['Flash_UnsubscribeWrong'] = "Your unsubscribe is wrong!";
+    $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
 
     $TEXT['Lecture_DoNotExists'] = "The requested lecture doesn't exist!";
     $TEXT['Lecture_Description'] = "Description";
@@ -24,7 +25,6 @@
     $TEXT['Lecture_Schedule'] = "Schedule";
     $TEXT['Lecture_ListOf'] = "List of lectures :";
 
-    $TEXT['MCQ_NoTakeMCQ'] = "Impossible to take MCQ.";
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";
 ?>

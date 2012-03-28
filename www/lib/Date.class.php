@@ -7,23 +7,22 @@
 
         public function __construct($day, $month, $year)
         {
-                $this->set($day, $month, $year);
+            $this->set($day, $month, $year);
         }
 
         public function set($day, $month, $year)
         {
-                $this->setYear($year);
-                $this->setMonth($month);
-                $this->setDay($day);
+            $this->setYear($year);
+            $this->setMonth($month);
+            $this->setDay($day);
         }
 
         public function setFromString($date)
         {
-            if(!preg_match('#(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-](19|20)[0-9]{2}#', $date))
+            if(!preg_match('#[0-9]{2}-[0-9]{2}-[0-9]{4}#', $date))
                 throw new InvalidArgumentException('Invalid date format in Date setFromString');
             else
                 $dateArray = explode('-', $date);
-                print_r($dateArray);
                 $this->set(intval($dateArray[0]), intval($dateArray[1]), intval($dateArray[2]));
         }
 
@@ -42,7 +41,7 @@
             if($day <= 0 || $day > $lastDay)
                 throw new InvalidArgumentException('Invalid argument in Date day setter');
             else
-                $m_day = $day;
+                $this->m_day = $day;
         }
 
         public function setMonth($month)
@@ -53,7 +52,7 @@
             if($month <= 0 || $month > 12)
                 throw new InvalidArgumentException('Invalid argument in Date month setter');
             else
-                $m_month = $month;
+                $this->m_month = $month;
         }
 
         public function setYear($year)
@@ -64,7 +63,7 @@
             if($year < 0)
                 throw new InvalidArgumentException('Negative argument in Date year setter');
             else
-                $m_year = $year;
+                $this->m_year = $year;
         }
 
         public function day()
@@ -93,7 +92,7 @@
         ////////////////////////////////////////////////////////////
         /// \brief Compare two dates
         /// \params
-        /// \return Integer
+        /// \return -1 if date1 < date2 | 1 if date1 > date2 | 0 if equal
         ////////////////////////////////////////////////////////////
         static public function compare(Date $date1 , Date $date2)
         {
@@ -102,16 +101,16 @@
                     if($date1->day() == $date2->day())
                         return 0;
                     else
-                        return ($date1->day() > $date2->day()) ? -1 : 1;
+                        return ($date1->day() > $date2->day()) ? 1 : -1;
                 else
-                    return ($date1->month() > $date2->month()) ? -1 : 1;
+                    return ($date1->month() > $date2->month()) ? 1 : -1;
             else
-                return ($date1->year() > $date2->year()) ? -1 : 1;
+                return ($date1->year() > $date2->year()) ? 1 : -1;
         }
 
         public function __toString()
         {
-            // TODO: Implémenter __toString() de Date si besoin.
+            return $this->m_day.'-'.$this->m_month.'-'.$this->m_year;
         }
     }
 ?>

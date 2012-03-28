@@ -18,7 +18,8 @@
             {
                 // Inclusion of the langage file
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                $this->app()->user()->setFlash($TEXT['NoTakeMCQ']);
+
+                $this->app()->user()->setFlash($TEXT['Flash_NoTakeMCQ']);
                 $this->page()->addVar('showMCQLink', false);
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
@@ -35,12 +36,12 @@
         {
             $hasTakenMCQ = $this->app()->user()->getAttribute('vbmifareStudent')->hasTakenMCQ();
 
-            $startDate = new Date;
-            $currentDate = new Date;
+            $startDate = new Date(1,1,1999);
+            $currentDate = new Date(1,1,1999);
             $startDate->setFromString($this->app()->configGlobal()->get('MCQStartDate'));
-            $currentDate->setFromString(date('d-m-y'));
+            $currentDate->setFromString(date('d-m-Y'));
 
-            return !($hasTakenMCQ || Date::compare($startDate, $currentDate) == 1);
+            return (!$hasTakenMCQ && (Date::compare($currentDate, $startDate) >= 0));
         }
     }
 ?>
