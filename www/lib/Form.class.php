@@ -33,6 +33,30 @@
 
 
 
+    class FormComponentHidden extends FormComponent
+    {
+        private $m_value;
+
+        public function value($value)
+        {
+            $this->m_value = $value;
+
+            return $this;
+        }
+
+        public function getValue()
+        {
+            return $this->m_value;
+        }
+
+        public function getOutput()
+        {
+            return '<input type="hidden" name="' . $this->getName() . '" value="' . $this->getValue() . '" />';
+        }
+    }
+
+
+
     abstract class FormComponentWithLabel extends FormComponent
     {
         private $m_label = null;
@@ -203,6 +227,10 @@
                 case 'file':
                     $component = new FormComponentFile($name);
                     $this->m_sendFile = true;
+                    break;
+
+                case 'hidden':
+                    $component = new FormComponentHidden($name);
                     break;
 
                 case 'radiobox':

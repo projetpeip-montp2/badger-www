@@ -17,16 +17,14 @@
 
         $link = '/vbMifare/lectures/subscribe-' . $lecture->getId() . '-' . $yesOrNo . '.html';
 ?>
-        <p>
-            <h> <?php echo $lecture->$methodName(); ?> </h>
-            <ul>
-                <li><?php echo $TEXT['Lecture_Lecturer'] . ': ' . $lecture->getLecturer(); ?></li>
-                <li><?php echo $TEXT['Lecture_Description'] . ': ' . $lecture->$methodDescription(); ?></li>
-                <li><?php echo $TEXT['Lecture_Tags'] . ': ' . $lecture->getTags(); ?></li>
-            </ul>
+        <h1><?php echo $lecture->$methodName(); ?></h1>
+        <ul>
+            <li><?php echo $TEXT['Lecture_Lecturer'] . ': ' . $lecture->getLecturer(); ?></li>
+            <li><?php echo $TEXT['Lecture_Description'] . ': ' . $lecture->$methodDescription(); ?></li>
+            <li><?php echo $TEXT['Lecture_Tags'] . ': ' . $lecture->getTags(); ?></li>
+        </ul>
 
-            <input type="button" name="subscribing" value="<?php echo $buttonName; ?>" onclick="self.location.href='<?php echo $link; ?>'">
-        </p>
+        <input type="button" name="subscribing" value="<?php echo $buttonName; ?>" onclick="self.location.href='<?php echo $link; ?>'">
 <?php
     }
 ?>
