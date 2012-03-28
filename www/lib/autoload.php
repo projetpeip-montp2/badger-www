@@ -17,6 +17,7 @@
   'config' => 'lib/Config.class.php',
   'availabilty' => 'lib/models/Availabilty.class.php',
   'connectionmanager' => 'lib/models/ConnectionManager.class.php',
+  'registrationmanager' => 'lib/models/RegistrationManager.class.php',
   'lecturemanager' => 'lib/models/LectureManager.class.php',
   'answer' => 'lib/models/Answer.class.php',
   'document' => 'lib/models/Document.class.php',

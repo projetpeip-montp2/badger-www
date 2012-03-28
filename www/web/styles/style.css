@@ -89,7 +89,7 @@ a, a:visited
 
 }
 
-.LectureHide
+.lectureDescription
 {
-    display: none;
+    padding-left: 3%;
 }

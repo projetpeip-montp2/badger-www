@@ -28,6 +28,7 @@
                 <li><a href="/vbMifare/admin/lectures/index.html">Conférence</a></li>
                 <li><a href="/vbMifare/admin/mcq/index.html">QCM</a></li>
                 <li><a href="/vbMifare/admin/statistics/index.html">Statistiques</a></li>
+                <li><a href="/vbMifare/admin/reset/index.html">Reset</a></li>
             </ul>
         </div>
         
