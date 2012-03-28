@@ -8,4 +8,5 @@
     <route url="/lectures/index\.html" module="lectures" action="index"/>
 
     <route url="/mcq/index\.html" module="mcq" action="index"/>
+    <route url="/mcq/takeMCQ\.html" module="mcq" action="takeMCQ"/>
 </routes>
