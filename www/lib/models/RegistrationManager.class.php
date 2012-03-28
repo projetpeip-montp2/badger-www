@@ -1,7 +1,40 @@
 <?php
     class RegistrationManager extends Manager
     {
-        public function getResgistrationsFromUser($idUsername)
+        public function getResgistrationsFromUser($idUsername, $status = NULL)
+        {
+            $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
+
+            $SQLreq = 'SELECT * FROM Registrations WHERE Id_user = ?';
+            $SQLparams = array($idUsername);
+            if($status)
+            {
+                if(!in_array($status, array('Absent', 'Present', 'Coming')))
+                    throw new InvalidArgumentException('Invalid status in RegistrationManager::getResgistrationsFromUser');
+
+                $SQLreq .= ' AND Status = ?';
+                $SQLparams[] = $status;
+            }
+
+            $req = $db_vbMifare->prepare($SQLreq);
+            $req->execute($SQLparams);
+
+            $result = array();
+            
+            while($data = $req->fetch())
+            {
+                $reg = new Registration;
+                $reg->setId($data['Id_lecture']);
+                $reg->setIdUser($data['Id_user']);
+                $reg->setStatus($data['Status']);
+
+                $result[] = $reg;
+            }
+
+            return $result;
+        }
+
+        public function getResgistrationsIdFromUser($idUsername)
         {
             $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
 

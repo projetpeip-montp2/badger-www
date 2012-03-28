@@ -24,6 +24,11 @@
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
 
+            $username = $this->app()->user()->getAttribute('logon');
+
+            $managerRegistration = new RegistrationManager;
+
+            $registrations = $managerRegistration->getResgistrationsFromUser($username, 'Present');
             
         }
 

@@ -12,7 +12,7 @@
 
             $managerRegistration = new RegistrationManager;
 
-            $this->page()->addVar('registrations', $managerRegistration->getResgistrationsFromUser($username));
+            $this->page()->addVar('registrations', $managerRegistration->getResgistrationsIdFromUser($username));
 
 
 
