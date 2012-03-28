@@ -11,10 +11,8 @@
         $methodDescription = 'getDescription'.ucfirst($lang);
 ?>
         <li>
-        <p>
-            <h> <?php echo $lecture->$methodName(); ?> </h>
+            <h1><?php echo $lecture->$methodName(); ?></h1>
             <p class="lectureDescription"><?php echo $lecture->$methodDescription(); ?></p>
-        </p>
         </li>
 <?php
     }
