@@ -22,5 +22,6 @@
     $TEXT['Lecture_Index'] = "From this page, you can do some operations, like subscribe to a lecture, or view you schedule.";
     $TEXT['Lecture_ShowAll'] = "Show all lectures";
     $TEXT['Lecture_Schedule'] = "Schedule";
+    $TEXT['Lecture_ListOf'] = "List of lectures :";
 ?>
 

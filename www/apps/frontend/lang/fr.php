@@ -22,5 +22,6 @@
     $TEXT['Lecture_Index'] = "Cette page vous permet d'effectuer des opérations sur les conférences, comme l'inscription, où voir votre planning.";
     $TEXT['Lecture_ShowAll'] = "Afficher toutes les conférences";
     $TEXT['Lecture_Schedule'] = "Planning";
+    $TEXT['Lecture_ListOf'] = "Liste des conférences :";
 ?>
 

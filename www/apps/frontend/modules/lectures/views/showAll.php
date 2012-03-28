@@ -1,4 +1,4 @@
-<p>Liste des conférences</p>
+<p><?php echo $TEXT['Lecture_ListOf']; ?></p>
 
 <?php
     $lang;
@@ -9,9 +9,11 @@
     {
         $methodName = 'getName'.ucfirst($lang);
         $methodDescription = 'getDescription'.ucfirst($lang);
+
+        $link = '/vbMifare/lectures/show-'. $lecture->getId() .'.html'
 ?>
         <li>
-            <h1><?php echo $lecture->$methodName(); ?></h1>
+            <a href="<?php echo $link; ?>"><?php echo $lecture->$methodName(); ?></a>
             <p class="lectureDescription"><?php echo $lecture->$methodDescription(); ?></p>
         </li>
 <?php
