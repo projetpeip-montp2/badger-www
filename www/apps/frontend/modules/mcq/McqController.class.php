@@ -24,12 +24,8 @@
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
 
-            $username = $this->app()->user()->getAttribute('logon');
-
-            $managerRegistration = $this->m_managers->getManagerOf('registration');
-
-            $registrations = $managerRegistration->getResgistrationsFromUser($username, 'Present');
-            
+            $questions = $this->getAllQuestions();
+            print_r($questions);
         }
 
         ////////////////////////////////////////////////////////////
@@ -50,6 +46,29 @@
             $currentDate->setFromString(date('d-m-Y'));
 
             return (!$hasTakenMCQ && (Date::compare($currentDate, $startDate) >= 0));
+        }
+
+        private function getAllQuestions()
+        {
+            $username = $this->app()->user()->getAttribute('logon');
+
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
+
+            $registrations = $managerRegistration->getResgistrationsFromUser($username, 'Present');
+
+            $managerQCM = $this->m_managers->getManagerOf('mcq');
+
+            $questions = array();
+            foreach($registrations as $reg)
+            {
+                $obligatory = $managerQCM->getQuestionsFromLecture($reg->getId(), $lang, 'Obligatory');
+                $possible = $managerQCM->getQuestionsFromLecture($reg->getId(), $lang, 'Possible');
+                $questions = array_merge($questions, $obligatory , $possible);
+            }
+
+            return $questions;
         }
     }
 ?>
