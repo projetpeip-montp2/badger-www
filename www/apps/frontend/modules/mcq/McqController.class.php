@@ -39,6 +39,9 @@
         ////////////////////////////////////////////////////////////
         private function canTakeMCQ()
         {
+            // TODO: Trouver le warning que lance la fonction php date(). Apparement
+            // Il faudrait spéficier le fuseau horaire ou quelque chose de la sorte.
+
             $hasTakenMCQ = $this->app()->user()->getAttribute('vbmifareStudent')->hasTakenMCQ();
 
             $startDate = new Date(1,1,1999);
