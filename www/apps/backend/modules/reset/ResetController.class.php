@@ -1,64 +1,76 @@
 <?php
     class ResetController extends BackController
     {
-        private static $m_tables = array('Answers' => '',
-                                         'AnswersOfUsers' => '', 
-                                         'Availabilities' => '', 
-                                         'BadgingInformations' => '', 
-                                         'Classrooms' => '', 
-                                         'Documents' => '', 
-                                         'Lectures' => '', 
-                                         'Questions' => '', 
-                                         'Registrations' => '',
-                                         'Users' => '');
+        private static $m_tables = array('Answers',
+                                         'AnswersOfUsers', 
+                                         'Availabilities', 
+                                         'BadgingInformations', 
+                                         'Classrooms', 
+                                         'Documents', 
+                                         'Lectures', 
+                                         'Questions', 
+                                         'Registrations',
+                                         'Users');
 
         public function executeIndex(HTTPRequest $request)
         {
-            $select = array();
-
-            foreach(self::$m_tables as $key => $value)
-                $select[$key] = $key;
-
-            if ($request->postExists('vbmifareTable'))
+            if($request->postExists('isSubmitted'))
             {
-                $tableSelected = $request->postData('vbmifareTable');
+                $tablesSelected = '';
 
-                if(!in_array($tableSelected, $select))
+                $num = count(self::$m_tables);
+                
+                for ($i=0; $i<$num; $i++)
                 {
-                    $this->app()->user()->setFlash('La table demandée n\'existe pas');
+                    if($request->postExists(self::$m_tables[$i]))
+                        $tablesSelected .= self::$m_tables[$i] . ';';
+                }
+
+                if($tablesSelected == '')
+                {
+                    $this->app()->user()->setFlash('Aucune table sélectionnée.');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
                 }
 
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate-' . $tableSelected . '.html');
+                $tablesSelected = substr($tablesSelected, 0, strlen($tablesSelected)-1);
+
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate-' . $tablesSelected . '.html');
             }
 
             else
-                $this->page()->addVar('select', $select);
+                $this->page()->addVar('checkboxes', self::$m_tables);
         }
 
         public function executeTruncate(HTTPRequest $request)
         {
-            if(!$request->postExists('isSubmitted'))
+            // TODO: Pour la variable $_GET, il serait interessant d'avoir une regex
+            // qui force à avoir "Table1;Table2;TableN". Au moins pas besoin de se 
+            // prendre la tête avec les verifications. Il faut donc pas de point 
+            // virgule à la fin.
+
+            $tablesSelected = $request->getData('tablesSelected');
+
+            $tablesSelectedArray = explode(';', $tablesSelected);
+
+            for ($i=0; $i<count($tablesSelectedArray); $i++)
             {
-                $tableSelected = $request->getData('tableSelected');
-
-                $select = array();
-
-                foreach(self::$m_tables as $key => $value)
-                    $select[$key] = $key;
-
-                if(!in_array($tableSelected, $select))
+                if(!in_array($tablesSelectedArray[$i] , self::$m_tables))
                 {
                     $this->app()->user()->setFlash('La table demandée n\'existe pas');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
                 }
-
-                $this->page()->addVar('tableSelected', $tableSelected);
             }
+
+            if(!$request->postExists('isSubmitted'))
+                $this->page()->addVar('tablesSelected', $tablesSelected);
 
             else
             {
-                $this->app()->user()->setFlash('Suppresion de table en cours dìmplémentation');
+                $manager = $this->m_managers->getManagerOf('reset');
+
+                $manager->truncate($tablesSelectedArray);
+
+                $this->app()->user()->setFlash('Les tables ont bien été vidée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
             }
         }

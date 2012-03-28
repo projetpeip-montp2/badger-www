@@ -1,10 +1,9 @@
-<p>Etes-vous sûr de vouloir vider la table : <?php echo $tableSelected;?></p>
+<p>Les tables suivante seront vidées : "<?php echo $tablesSelected;?>"</p>
+
+<p>Attention : Cette opérations est irréversible!</p>
 
 <?php
     $form = new Form('', 'post');
-
-    $form->add('checkbox', 'truncateDependencies')
-         ->label('Voulez-vous vider les tables dont dépend celle-ci?');
 
     $form->add('hidden', 'isSubmitted')
          ->value('on');
