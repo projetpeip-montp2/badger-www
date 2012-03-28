@@ -3,9 +3,8 @@
     {
         public function retrieveStudentFromPolytech($logon)
         {
-            $db_polytech = new Database('localhost', 'vbMifare', 'vbMifare2012', 'Polytech');
-
-            $req = $db_polytech->prepare('SELECT Username, Departement, anApogee, Mifare, Actif, Statut FROM Users WHERE Username = ?');
+            // The request is on Polytech database here!
+            $req = $this->m_dao->prepare('SELECT Username, Departement, anApogee, Mifare, Actif, Statut FROM Polytech.Users WHERE Username = ?');
             $req->execute(array($logon));
 
             $data = $req->fetch();
