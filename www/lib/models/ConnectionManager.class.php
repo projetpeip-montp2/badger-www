@@ -23,16 +23,14 @@
 
         public function insertOrLoadIfFirstVisit(Student $student)
         {
-            $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
-
-            $req = $db_vbMifare->prepare('SELECT * FROM Users WHERE Id_user = ?');
+            $req = $this->m_dao->prepare('SELECT * FROM Users WHERE Id_user = ?');
             $req->execute(array($student->getUsername()));
             
             $data = $req->fetch();
 
             if(!$data)
             {
-                $req = $db_vbMifare->prepare('INSERT INTO Users(Id_user, HasTakenMCQ, Mark) VALUES(?, FALSE, 0)');
+                $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, HasTakenMCQ, Mark) VALUES(?, FALSE, 0)');
                 $req->execute(array($student->getUsername()));
             }
             

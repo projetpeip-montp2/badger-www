@@ -5,6 +5,7 @@
         protected $m_module = '';
         protected $m_page = null;
         protected $m_view = '';
+        protected $m_managers = null;
         
         public function __construct(Application $app, $module, $action)
         {
@@ -12,6 +13,7 @@
             
             $this->m_page = new Page($app);
             
+            $this->m_managers = new Managers;
             $this->setModule($module);
             $this->setAction($action);
             $this->setView($action);

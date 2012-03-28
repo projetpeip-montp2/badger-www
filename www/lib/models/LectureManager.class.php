@@ -6,8 +6,6 @@
             $methodName = 'setName'.ucfirst($lang);
             $methodDescription = 'setDescription'.ucfirst($lang);
 
-            $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
-
             $requestSQL = 'SELECT Id_lecture,
                                   Id_availability, 
                                   Name_'.$lang.', 
@@ -21,7 +19,7 @@
             if($id != -1)
                 $requestSQL .= ' WHERE Id_lecture = ' . $id;
 
-            $req = $db_vbMifare->prepare($requestSQL);
+            $req = $this->m_dao->prepare($requestSQL);
             $req->execute(); 
 
             $lectures = array();
@@ -47,9 +45,7 @@
 
         public function save($lectures)
         {
-            $db_vbMifare = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
-
-            $req = $db_vbMifare->prepare('INSERT INTO Lectures(Id_availability, 
+            $req = $this->m_dao->prepare('INSERT INTO Lectures(Id_availability, 
                                                                Name_fr, 
                                                                Name_en, 
                                                                Lecturer,
