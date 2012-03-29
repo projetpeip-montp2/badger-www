@@ -16,5 +16,5 @@
 
     $form->add('submit', 'Vider');
 
-    echo $form;
+    echo $form->toString();
 ?>

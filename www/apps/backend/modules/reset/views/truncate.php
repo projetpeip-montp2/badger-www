@@ -10,6 +10,6 @@
 
     $form->add('submit', 'Valider');
 
-    echo $form;
+    echo $form->toString();
 ?>
 

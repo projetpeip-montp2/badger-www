@@ -6,5 +6,5 @@
 
     $form->add('submit', 'Envoyer');
 
-    echo $form;
+    echo $form->toString();
 ?>

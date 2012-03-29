@@ -75,6 +75,17 @@
     }
 
 
+
+    class FormComponentLabel extends FormComponentWithLabel
+    {
+        public function getOutput()
+        {
+            return '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
+        }
+    }
+
+
+
     class FormComponentText extends FormComponentWithLabel
     {
         public function getOutput()
@@ -92,7 +103,7 @@
 
 
 
-    class FormComponentCheckBox extends FormComponentWithLabel
+    class FormComponentCheckbox extends FormComponentWithLabel
     {
         public function getOutput()
         {
@@ -142,7 +153,7 @@
 
     }
 
-    class FormComponentRadioBox extends FormComponentWithLabelAndChoices
+    class FormComponentRadiobox extends FormComponentWithLabelAndChoices
     {
         public function getOutput()
         {
@@ -202,6 +213,7 @@
             $this->setMethod($method);
 
             $m_sendFile = false;
+            $m_hasSubmit = false;
         }
 
         public function setAction($action)
@@ -216,41 +228,27 @@
 
         public function add($type, $name)
         {
+            $componentName = 'FormComponent'.ucfirst($type);
+
             $component;
 
             switch($type)
             {
-                case 'checkbox':
-                    $component = new FormComponentCheckBox($name);
-                    break;
-
                 case 'file':
                     $component = new FormComponentFile($name);
                     $this->m_sendFile = true;
                     break;
 
-                case 'hidden':
-                    $component = new FormComponentHidden($name);
-                    break;
-
-                case 'radiobox':
-                    $component = new FormComponentRadioBox($name);
-                    break;
-
-                case 'select':
-                    $component = new FormComponentSelect($name);
-                    break;
-
                 case 'submit':
                     $component = new FormComponentSubmit($name);
-                    break;
+                    if($this->m_hasSubmit)
+                        throw new RuntimeException('The form have already a submit field');
 
-                case 'text':
-                    $component = new FormComponentText($name);
+                    $this->m_hasSubmit = true;
                     break;
 
                 default:
-                    throw new RuntimeException('Unknown FormComponent : "' . $type . '"');
+                    $component = new $componentName($name);
                     break;
             }
 
@@ -259,8 +257,11 @@
             return $component;
         }
 
-        public function __toString()
+        public function toString()
         {
+            if(!$this->m_hasSubmit)
+                throw new RuntimeException('No submit field in the form');
+
             $output = '';
             $output .= '<form action="' .  $this->m_action . '" method="' . $this->m_method . '"';
 
