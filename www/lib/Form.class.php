@@ -33,6 +33,36 @@
 
 
 
+    class FormComponentFielsetBegin extends FormComponent
+    {
+        public function getOutput()
+        {
+            return '<fieldset>';
+        }
+    }
+
+
+
+    class FormComponentFielsetEnd extends FormComponent
+    {
+        public function getOutput()
+        {
+            return '</fieldset>';
+        }
+    }
+
+
+
+    class FormComponentLegend extends FormComponent
+    {
+        public function getOutput()
+        {
+            return '<legend>' . $this->getName() . '</legend>';
+        }
+    }
+
+
+
     class FormComponentHidden extends FormComponent
     {
         private $m_value;
@@ -153,6 +183,8 @@
 
     }
 
+
+
     class FormComponentRadiobox extends FormComponentWithLabelAndChoices
     {
         public function getOutput()
@@ -203,8 +235,8 @@
         private $m_method;
     
         private $m_sendFile;
-
         private $m_hasSubmit;
+        private $m_fieldsetOpen;
     
         public function __construct($action, $method)
         {
@@ -212,8 +244,9 @@
             $this->setAction($action);
             $this->setMethod($method);
 
-            $m_sendFile = false;
-            $m_hasSubmit = false;
+            $this->m_sendFile = false;
+            $this->m_hasSubmit = false;
+            $this->m_fieldsetOpen = false;
         }
 
         public function setAction($action)
@@ -226,29 +259,72 @@
             $this->m_method = $method;
         }
 
+        public function beginFieldset($name)
+        {
+            if($this->m_fieldsetOpen)
+                throw new RuntimeException('An another fieldset is already open');
+
+            $this->m_formComponents[] = new FormComponentFielsetBegin('');
+            $this->m_formComponents[] = new FormComponentLegend($name);
+
+            $this->m_fieldsetOpen = true;
+        }
+
+        public function endFieldset()
+        {
+            if(!$this->m_fieldsetOpen)
+                throw new RuntimeException('Anyone fieldset open');
+
+            $this->m_formComponents[] = new FormComponentFielsetEnd('');
+
+            $this->m_fieldsetOpen = false;
+        }
+
         public function add($type, $name)
         {
-            $componentName = 'FormComponent'.ucfirst($type);
-
             $component;
 
             switch($type)
             {
+                case 'checkbox':
+                    $component = new FormComponentCheckBox($name);
+                    break;
+
                 case 'file':
                     $component = new FormComponentFile($name);
                     $this->m_sendFile = true;
                     break;
 
+                case 'hidden':
+                    $component = new FormComponentHidden($name);
+                    break;
+
+                case 'label':
+                    $component = new FormComponentLabel($name);
+                    break;
+
+                case 'radiobox':
+                    $component = new FormComponentRadioBox($name);
+                    break;
+
+                case 'select':
+                    $component = new FormComponentSelect($name);
+                    break;
+
                 case 'submit':
                     $component = new FormComponentSubmit($name);
                     if($this->m_hasSubmit)
-                        throw new RuntimeException('The form have already a submit field');
+                        throw new RuntimeException('The form have already a submit input');
 
                     $this->m_hasSubmit = true;
                     break;
 
+                case 'text':
+                    $component = new FormComponentText($name);
+                    break;
+
                 default:
-                    $component = new $componentName($name);
+                    throw new RuntimeException('Unknown FormComponent : "' . $type . '"');
                     break;
             }
 
@@ -259,8 +335,11 @@
 
         public function toString()
         {
+            if($this->m_fieldsetOpen)
+                throw new RuntimeException('A fielset in always open');
+
             if(!$this->m_hasSubmit)
-                throw new RuntimeException('No submit field in the form');
+                throw new RuntimeException('No submit input in the form');
 
             $output = '';
             $output .= '<form action="' .  $this->m_action . '" method="' . $this->m_method . '"';
