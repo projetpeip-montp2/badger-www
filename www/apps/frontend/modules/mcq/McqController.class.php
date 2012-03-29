@@ -24,8 +24,11 @@
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
 
-            $questions = $this->getAllQuestions();
-            print_r($questions);
+            // Get questions and associated answers
+            $questions = $this->selectQuestions();
+            $answers = $this->getAssociatedAnswers($questions);
+            $this->page()->addVar('questions', $questions);
+            $this->page()->addVar('answers', $answers);
         }
 
         ////////////////////////////////////////////////////////////
@@ -48,8 +51,10 @@
             return (!$hasTakenMCQ && (Date::compare($currentDate, $startDate) >= 0));
         }
 
-        private function getAllQuestions()
+        private function selectQuestions()
         {
+            $maxQuestionNumber = $this->app()->configGlobal()->get('MCQMaxQuestions');
+
             $username = $this->app()->user()->getAttribute('logon');
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
@@ -58,17 +63,51 @@
 
             $registrations = $managerRegistration->getResgistrationsFromUser($username, 'Present');
 
-            $managerQCM = $this->m_managers->getManagerOf('mcq');
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
+            // Get obligatory questions
             $questions = array();
             foreach($registrations as $reg)
             {
-                $obligatory = $managerQCM->getQuestionsFromLecture($reg->getId(), $lang, 'Obligatory');
-                $possible = $managerQCM->getQuestionsFromLecture($reg->getId(), $lang, 'Possible');
-                $questions = array_merge($questions, $obligatory , $possible);
+                $questionOneLecture = $managerMCQ->getQuestionsFromLecture($reg->getId(), $lang, 'Obligatory');
+                $questions = array_merge($questions, $questionOneLecture);
             }
 
-            return $questions;
+            // Enough obligatory questions
+            if(count($questions) >= $maxQuestionNumber)
+                return array_splice($questions, $maxQuestionNumber);
+
+            // Count remaining questions to choose and save obligatory ones
+            $remaining = $maxQuestionNumber - count($questions);
+            $finalQuestions = $questions;
+
+            // Get possible questions
+            $questions = array();
+            foreach($registrations as $reg)
+            {
+                $questionsOneLecture = $managerMCQ->getQuestionsFromLecture($reg->getId(), $lang, 'Possible');
+                $questions = array_merge($questions, $questionsOneLecture);
+            }
+            shuffle($questions);
+            array_splice($questions, $remaining);
+
+            return array_merge($finalQuestions, $questions);
+        }
+
+        private function getAssociatedAnswers($questions)
+        {
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+
+            $answers = array();
+            foreach($questions as $question)
+            {
+                $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId(), $lang);
+                $answers = array_merge($answers, $answersOneQuestion);
+            }
+
+            return $answers;
         }
     }
 ?>
