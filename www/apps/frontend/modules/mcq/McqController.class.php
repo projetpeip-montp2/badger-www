@@ -29,6 +29,7 @@
             $answers = $this->getAssociatedAnswers($questions);
             $this->page()->addVar('questions', $questions);
             $this->page()->addVar('answers', $answers);
+            $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
         }
 
         ////////////////////////////////////////////////////////////
