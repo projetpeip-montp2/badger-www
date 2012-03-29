@@ -16,9 +16,9 @@ Production:
 
 
 - Frontend:
-    - Ne permettre l'accès qu'à certains couple département-année
+    - Empécher aux 'Visitor' certaines actions, comme l'inscription aux conférences
 
 
 - Backend
-    - Inclure les nouveaux modules
+    - Permettre dans le module reset certaines actions comme 'Supprimer les notes', etc
 
