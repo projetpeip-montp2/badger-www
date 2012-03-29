@@ -8,7 +8,7 @@
         private $m_schoolYear;
         private $m_mifare;
 
-        private $m_hasTakenMCQ;
+        private $m_mcqStatus;
         private $m_mark;
 
         public function setUsername($username)
@@ -76,14 +76,14 @@
             return $this->m_mark;
         }
 
-        public function setHasTakenMCQ($hasTakenMCQ)
+        public function setMCQStatus($mcqStatus)
         {
-            $this->m_hasTakenMCQ = $hasTakenMCQ;
+            $this->m_mcqStatus = $mcqStatus;
         }
 
-        public function hasTakenMCQ()
+        public function getMCQStatus()
         {
-            return $this->m_hasTakenMCQ;
+            return $this->m_mcqStatus;
         }
     }
 ?>

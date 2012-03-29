@@ -20,8 +20,11 @@
             return $student;
         }
 
-        public function insertOrLoadIfFirstVisit(Student $student)
+        public function insertOrLoadIfFirstVisit(Student $student, $mcqStatus)
         {
+            if(!in_array($mcqStatus, array('Visitor', 'CanTakeMCQ', 'Generated', 'Taken')))
+                throw new InvalidArgumentException('Invalid MCQStatus in ConnectionManager::insertOrLoadIfFirstVisit');
+
             $req = $this->m_dao->prepare('SELECT * FROM Users WHERE Id_user = ?');
             $req->execute(array($student->getUsername()));
             
@@ -29,13 +32,15 @@
 
             if(!$data)
             {
-                $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, HasTakenMCQ, Mark) VALUES(?, FALSE, 0)');
-                $req->execute(array($student->getUsername()));
+                $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, MCQStatus, Mark) VALUES(?, ?, 0)');
+                $req->execute(array($student->getUsername(), $mcqStatus));
+                $student->setMCQStatus($mcqStatus);
+                $student->setMark(0);
             }
             
             else
             {
-                $student->setHasTakenMCQ($data['HasTakenMCQ']);
+                $student->setMCQStatus($data['MCQStatus']);
                 $student->setMark($data['Mark']);
             }
         }

@@ -42,14 +42,14 @@
             // TODO: Trouver le warning que lance la fonction php date(). Apparement
             // Il faudrait spéficier le fuseau horaire ou quelque chose de la sorte.
 
-            $hasTakenMCQ = $this->app()->user()->getAttribute('vbmifareStudent')->hasTakenMCQ();
+            $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
 
             $startDate = new Date(1,1,1999);
             $currentDate = new Date(1,1,1999);
             $startDate->setFromString($this->app()->configGlobal()->get('MCQStartDate'));
             $currentDate->setFromString(date('d-m-Y'));
 
-            return (!$hasTakenMCQ && (Date::compare($currentDate, $startDate) >= 0));
+            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && (Date::compare($currentDate, $startDate) >= 0));
         }
 
         private function selectQuestions()
