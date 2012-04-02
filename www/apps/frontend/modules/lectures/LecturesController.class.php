@@ -10,21 +10,41 @@
         {
             $username = $this->app()->user()->getAttribute('logon');
 
-            $managerRegistration = $this->m_managers->getManagerOf('registration');
-
-            $this->page()->addVar('registrations', $managerRegistration->getResgistrationsIdFromUser($username));
-
-
-
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $managerLectures = $this->m_managers->getManagerOf('lecture');
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
+            $registrationsId = $managerRegistration->getResgistrationsIdFromUser($username);
 
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
             $lectures = $managerLectures->get($lang, $request->getData('idLecture'));
 
-            $this->page()->addVar('lectures', $lectures);
+            if(count($lectures) != 1)
+            {
+                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
+
+                $this->app()->user()->setFlash($TEXT['Flash_LectureUnknown']);
+                $this->app()->httpResponse()->redirect('/vbMifare/lectures/showAll.html');
+            }
+
+            $lecture = $lectures[0];
+
+            $wantSubscribe = !in_array($lecture->getId(), $registrationsId);
+
+            if($request->postExists('isSubmitted'))
+            {
+                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
+
+                $managerRegistration->subscribe($request->getData('idLecture'), $username, $wantSubscribe ? 1 : 0);
+
+                $this->app()->user()->setFlash($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
+
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            $this->page()->addVar('wantSubscribe', $wantSubscribe);
+
+            $this->page()->addVar('lecture', $lecture);
             $this->page()->addVar('lang', $lang);
-            $this->page()->addVar('exists', (count($lectures) == 1));
         }
 
         public function executeShowAll(HTTPRequest $request)
@@ -35,35 +55,6 @@
 
             $this->page()->addVar('lectures', $manager->get($lang, -1));
             $this->page()->addVar('lang', $lang);
-        }
-
-        public function executeSubscribe(HTTPRequest $request)
-        {
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
-
-            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-
-            $managerLectures = $this->m_managers->getManagerOf('lecture');
-
-            $lectures = $managerLectures->get($lang, $request->getData('idLecture'));
-
-            $yesOrNo = $request->getData('yesOrNo');
-
-            if(count($lectures) == 1)
-            {
-                $username = $this->app()->user()->getAttribute('logon');
-
-                $managerRegistration = $this->m_managers->getManagerOf('registration');
-
-                $managerRegistration->subscribe($request->getData('idLecture'), $username, $yesOrNo);
-
-                $this->app()->user()->setFlash($yesOrNo ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
-            }
-
-            else
-                $this->app()->user()->setFlash($yesOrNo ? $TEXT['Flash_SubscribeWrong'] : $TEXT['Flash_UnsubscribeWrong']);
-
-            $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
         }
 
         public function executeSchedule()

@@ -8,7 +8,6 @@
     <route url="/lectures/index\.html" module="lectures" action="index"/>
     <route url="/lectures/show-([0-9]+)\.html" module="lectures" action="show" vars="idLecture"/>
     <route url="/lectures/showAll\.html" module="lectures" action="showAll"/>
-    <route url="/lectures/subscribe-([0-9]+)-([0-1]{1})\.html" module="lectures" action="subscribe" vars="idLecture,yesOrNo"/>
     <route url="/lectures/schedule.html" module="lectures" action="schedule"/>
 
     <route url="/mcq/index\.html" module="mcq" action="index"/>

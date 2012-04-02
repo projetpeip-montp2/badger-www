@@ -13,8 +13,8 @@
     $TEXT['Flash_SubscribeWrong'] = "Votre incription est n'a pas pu avoir lieu.";
     $TEXT['Flash_UnsubscribeWrong'] = "Votre désincription est n'a pas pu avoir lieu.";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
+    $TEXT['Flash_LectureUnknown'] = "La conférence demandée n'existe pas!";
 
-    $TEXT['Lecture_DoNotExists'] = "La conférence demandée n'existe pas!";
     $TEXT['Lecture_Description'] = "Description";
     $TEXT['Lecture_Lecturer'] = "Conférencier";
     $TEXT['Lecture_Tags'] = "Tags";

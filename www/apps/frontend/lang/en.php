@@ -13,8 +13,8 @@
     $TEXT['Flash_SubscribeWrong'] = "Your subscribe is wrong!";
     $TEXT['Flash_UnsubscribeWrong'] = "Your unsubscribe is wrong!";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
+    $TEXT['Flash_LectureUnknown'] = "The lecture doesn't exist!";
 
-    $TEXT['Lecture_DoNotExists'] = "The requested lecture doesn't exist!";
     $TEXT['Lecture_Description'] = "Description";
     $TEXT['Lecture_Lecturer'] = "Lecturer";
     $TEXT['Lecture_Tags'] = "Tags";
