@@ -2,10 +2,13 @@
     abstract class FormComponent
     {
         private $m_name;
+        protected $m_isInParagraph;
 
         public function __construct($name)
         {
             $this->name($name);
+
+            $this->m_isInParagraph = false;
         }
 
         public function name($name)
@@ -18,13 +21,35 @@
             return $this->m_name;
         }
 
+        public function isInParagraph()
+        {
+            return $this->m_isInParagraph;
+        }
+
         public abstract function getOutput();
     }
 
 
 
-    class FormComponentSubmit extends FormComponent
+    abstract class FormComponentWithParagraph extends FormComponent
     {
+        public function setIsInParagraph($isInParagraph)
+        {
+            $this->m_isInParagraph = $isInParagraph;
+        }
+    }
+
+
+
+    class FormComponentSubmit extends FormComponentWithParagraph
+    {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = false;
+        }
+
         public function getOutput()
         {
             return '<input type="submit" value="' . $this->getName() . '" />';
@@ -35,6 +60,13 @@
 
     class FormComponentFielsetBegin extends FormComponent
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = false;
+        }
+
         public function getOutput()
         {
             return '<fieldset>';
@@ -45,6 +77,13 @@
 
     class FormComponentFielsetEnd extends FormComponent
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = false;
+        }
+
         public function getOutput()
         {
             return '</fieldset>';
@@ -55,6 +94,13 @@
 
     class FormComponentLegend extends FormComponent
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = false;
+        }
+
         public function getOutput()
         {
             return '<legend>' . $this->getName() . '</legend>';
@@ -66,6 +112,13 @@
     class FormComponentHidden extends FormComponent
     {
         private $m_value;
+
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = false;
+        }
 
         public function value($value)
         {
@@ -87,7 +140,7 @@
 
 
 
-    abstract class FormComponentWithLabel extends FormComponent
+    abstract class FormComponentWithLabel extends FormComponentWithParagraph
     {
         private $m_label = null;
 
@@ -108,9 +161,16 @@
 
     class FormComponentLabel extends FormComponentWithLabel
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+        }
+
         public function getOutput()
         {
-            return '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
+            return '<label>' . $this->getLabel() . '</label>';
         }
     }
 
@@ -118,6 +178,13 @@
 
     class FormComponentText extends FormComponentWithLabel
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+        }
+
         public function getOutput()
         {
             $output = '';
@@ -135,6 +202,13 @@
 
     class FormComponentCheckbox extends FormComponentWithLabel
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+        }
+
         public function getOutput()
         {
             $output = '';
@@ -150,6 +224,13 @@
 
     class FormComponentFile extends FormComponentWithLabel
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+        }
+
         public function getOutput()
         {
             $output = '';
@@ -187,6 +268,13 @@
 
     class FormComponentRadiobox extends FormComponentWithLabelAndChoices
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+        }
+
         public function getOutput()
         {
             $output = '';
@@ -208,6 +296,13 @@
 
     class FormComponentSelect extends FormComponentWithLabelAndChoices
     {
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+        }
+
         public function getOutput()
         {
             $output = '';
@@ -236,7 +331,7 @@
     
         private $m_sendFile;
         private $m_hasSubmit;
-        private $m_fieldsetOpen;
+        private $m_fieldsetNumber;
     
         public function __construct($action, $method)
         {
@@ -246,7 +341,7 @@
 
             $this->m_sendFile = false;
             $this->m_hasSubmit = false;
-            $this->m_fieldsetOpen = false;
+            $this->m_fieldsetNumber = 0;
         }
 
         public function setAction($action)
@@ -259,25 +354,24 @@
             $this->m_method = $method;
         }
 
-        public function beginFieldset($name)
+        public function beginFieldset($name = '')
         {
-            if($this->m_fieldsetOpen)
-                throw new RuntimeException('An another fieldset is already open');
-
             $this->m_formComponents[] = new FormComponentFielsetBegin('');
-            $this->m_formComponents[] = new FormComponentLegend($name);
 
-            $this->m_fieldsetOpen = true;
+            if($name != '')
+                $this->m_formComponents[] = new FormComponentLegend($name);
+
+            $this->m_fieldsetNumber++;
         }
 
         public function endFieldset()
         {
-            if(!$this->m_fieldsetOpen)
-                throw new RuntimeException('Anyone fieldset open');
+            if($this->m_fieldsetNumber <= 0)
+                throw new RuntimeException('No fieldset open');
 
             $this->m_formComponents[] = new FormComponentFielsetEnd('');
 
-            $this->m_fieldsetOpen = false;
+            $this->m_fieldsetNumber--;
         }
 
         public function add($type, $name)
@@ -335,8 +429,8 @@
 
         public function toString()
         {
-            if($this->m_fieldsetOpen)
-                throw new RuntimeException('A fielset in always open');
+            if($this->m_fieldsetNumber > 0)
+                throw new RuntimeException('A fieldset is always open');
 
             if(!$this->m_hasSubmit)
                 throw new RuntimeException('No submit input in the form');
@@ -350,7 +444,15 @@
             $output .= '>';
 
             foreach($this->m_formComponents as $component)
-                $output .= '<p>' . $component->getOutput() . '</p>';
+            {
+                if($component->isInParagraph())
+                    $output .= '<p>';
+
+                $output .= $component->getOutput();
+
+                if($component->isInParagraph())
+                    $output .= '</p>';
+            }
 
             $output .= '</form>';
 
