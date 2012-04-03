@@ -11,4 +11,9 @@
 
     <route url="/admin/reset/index\.html" module="reset" action="index"/>
     <route url="/admin/reset/truncate-([a-zA-Z;]+)\.html" module="reset" action="truncate" vars="tablesSelected"/>
+
+    <route url="/admin/settings/index\.html" module="settings" action="index"/>
+    <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
+    <route url="/admin/settings/changeAvailableStudents\.html" module="settings" action="changeAvailableStudents"/>
+    <route url="/admin/settings/mcq\.html" module="settings" action="mcq"/>
 </routes>
