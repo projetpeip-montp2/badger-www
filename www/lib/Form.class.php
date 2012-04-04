@@ -170,7 +170,7 @@
 
         public function getOutput()
         {
-            return '<label>' . $this->getName() . '</label>';
+            return '<label>' . $this->getLabel() . '</label>';
         }
     }
 
@@ -214,7 +214,7 @@
             $output = '';
 
             $output .= "\t" . '<input type="checkbox" name="' . $this->getName() . '" id="' . $this->getName() . '"/>';
-            $output .= '<label for="' . $this->getName() . '">' . $this->getName() . '</label>';
+            $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
 
             return $output;
         }

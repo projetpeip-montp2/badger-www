@@ -9,11 +9,14 @@
     $size = count($answers) - 1;
     foreach($questions as $question)
     {
-        $form->add('label', $question->$methodLabel());
+        $form->add('label', $question->$methodLabel())
+             ->label($question->$methodLabel());
         while($i < $size && $answers[$i]->getIdQuestion() == $question->getId())
         {
             $i++;
-            $form->add('checkbox', $answers[$i]->$methodLabel());
+            // TODO: MODIFIER LE NAME ET LE ID POUR TRAITER LE FORM
+            $form->add('checkbox', $answers[$i]->$methodLabel())
+                 ->label($answers[$i]->$methodLabel());
         }
     }
     $form->add('submit', $TEXT['MCQ_SubmitAnswers']);
