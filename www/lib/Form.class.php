@@ -213,8 +213,8 @@
         {
             $output = '';
 
-            $output .= '<input type="checkbox" name="' . $this->getName() . '" id="' . $this->getName() . '"/>';
-            $output .= '<label for="' . $this->getName() . '">' . $this->getName() . '</label><br />';
+            $output .= "\t" . '<input type="checkbox" name="' . $this->getName() . '" id="' . $this->getName() . '"/>';
+            $output .= '<label for="' . $this->getName() . '">' . $this->getName() . '</label>';
 
             return $output;
         }
@@ -441,7 +441,7 @@
             if($this->m_sendFile)
                 $output .= ' enctype="multipart/form-data"';
 
-            $output .= '>';
+            $output .= '>' . "\n";
 
             foreach($this->m_formComponents as $component)
             {
@@ -451,10 +451,10 @@
                 $output .= $component->getOutput();
 
                 if($component->isInParagraph())
-                    $output .= '</p>';
+                    $output .= '</p>'  . "\n";
             }
 
-            $output .= '</form>';
+            $output .= "\n" . '</form>';
 
             return $output;
         }

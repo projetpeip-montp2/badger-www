@@ -24,8 +24,17 @@
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
 
+            $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
+            if($mcqStatus != 'Generated')
+            {
+                // TODO: Mettre Generated pour le user dans la BDD
+                $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Generated');
+                $questions = $this->selectQuestions();
+            }
+            else
+                $questions = $this->loadUsersQuestions();
+
             // Get questions and associated answers
-            $questions = $this->selectQuestions();
             $answers = $this->getAssociatedAnswers($questions);
             $this->page()->addVar('questions', $questions);
             $this->page()->addVar('answers', $answers);
@@ -75,8 +84,13 @@
             }
 
             // Enough obligatory questions
-            if(count($questions) >= $maxQuestionNumber)
-                return array_splice($questions, $maxQuestionNumber);
+            if(count($questions) > $maxQuestionNumber)
+            {
+                $finalQuestions = array_splice($questions, $maxQuestionNumber);
+                $managerMCQ->saveQuestions($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
+                print_r($finalQuestions);
+                return $finalQuestions;
+            }
 
             // Count remaining questions to choose and save obligatory ones
             $remaining = $maxQuestionNumber - count($questions);
@@ -92,7 +106,18 @@
             shuffle($questions);
             array_splice($questions, $remaining);
 
-            return array_merge($finalQuestions, $questions);
+            $result = array_merge($finalQuestions, $questions);
+            $managerMCQ->saveQuestions($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
+            return $result;
+        }
+
+        private function loadUsersQuestions()
+        {
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+
+            return $managerMCQ->loadQuestions($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $lang);
         }
 
         private function getAssociatedAnswers($questions)

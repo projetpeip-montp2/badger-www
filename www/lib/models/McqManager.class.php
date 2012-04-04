@@ -58,5 +58,42 @@
 
             return $result;
         }
+
+        public function loadQuestions($idUser, $lang)
+        {
+            $methodLabel = 'setLabel'.ucfirst($lang);
+
+            $reqId = $this->m_dao->prepare('SELECT Id_question FROM QuestionsOfUsers WHERE Id_user = ?');
+            $reqId->execute(array($idUser));
+
+            $questionIds = array();
+            while($data = $reqId->fetch())
+                $questionIds[] = $data['Id_question'];
+
+            $result = array();
+            $req = $this->m_dao->prepare('SELECT Label_'.$lang.' FROM Questions WHERE Id_question = ?');
+            foreach($questionIds as $id)
+            {
+                $req->execute(array($id));
+                $data = $req->fetch();
+
+                $question = new Question;
+                $question->setId($id);
+                $question->$methodLabel($data['Label_'.$lang]);
+
+                $result[] = $question;
+            }
+
+            return $result;
+        }
+
+        public function saveQuestions($idUser, $questions)
+        {
+            $req = $this->m_dao->prepare('INSERT INTO QuestionsOfUsers(Id_user,
+                                                                       Id_question) VALUES(?, ?)');
+            foreach($questions as $question)
+                $req->execute(array($idUser,
+                                    $question->getId()));
+        }
     }
 ?>

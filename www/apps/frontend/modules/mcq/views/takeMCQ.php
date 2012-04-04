@@ -3,6 +3,7 @@
 
     $form = new Form('', 'post');
 
+    // TODO: Corriger la génération du QCM, problème dans l'ordre des questions
     // Vars to browse the answers array
     $i = 0;
     $size = count($answers) - 1;
