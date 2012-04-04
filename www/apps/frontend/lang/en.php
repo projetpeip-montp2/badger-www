@@ -27,5 +27,6 @@
 
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";
+    $TEXT['MCQ_SubmitAnswers'] = "Submit answers";
 ?>
 
