@@ -2,7 +2,7 @@
     class Question extends Record
     {
         private $m_idQuestion;
-        private $m_idLecture;
+        private $m_idPackage;
         private $m_label_fr;
         private $m_label_en;
         private $m_status;
@@ -17,14 +17,14 @@
             return $this->m_idQuestion;
         }
 
-        public function setIdLecture($idLecture)
+        public function setIdPackage($idPackage)
         {
-            $this->m_idLecture = $idLecture;
+            $this->m_idPackage = $idPackage;
         }
 
-        public function getIdLecture()
+        public function getIdPackage()
         {
-            return $this->m_idLecture;
+            return $this->m_idPackage;
         }
 
         public function setLabelFr($labelFr)

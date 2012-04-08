@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Dim 08 Avril 2012 à 23:08
+-- Généré le : Lun 09 Avril 2012 à 00:04
 -- Version du serveur: 5.5.22
 -- Version de PHP: 5.3.10
 
@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `vbMifare`;
 USE `vbMifare`;
+
 
 -- --------------------------------------------------------
 
@@ -132,17 +133,16 @@ CREATE TABLE IF NOT EXISTS `Lectures` (
   `Date` date NOT NULL,
   `StartTime` time NOT NULL,
   `EndTime` time NOT NULL,
-  `Tags` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`Id_lecture`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `Package`
+-- Structure de la table `Packages`
 --
 
-CREATE TABLE IF NOT EXISTS `Package` (
+CREATE TABLE IF NOT EXISTS `Packages` (
   `Id_package` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Name_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,

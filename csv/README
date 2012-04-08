@@ -1,7 +1,12 @@
-Structure des fichiers CSV
-==========================
+Structure of CSV files
+======================
+
+Package
+-------
+    "Name_fr","Name_en"
+
 
 Lecture
 -------
-   
-    "Name_fr","Name_en","Lecturer","Description_fr","Description_en","Date","StartTime","EndTime","Tags"
+    "Name_fr","Name_en","Lecturer","Description_fr","Description_en","Date","StartTime","EndTime"
+

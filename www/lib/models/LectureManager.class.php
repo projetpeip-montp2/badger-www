@@ -7,14 +7,14 @@
             $methodDescription = 'setDescription'.ucfirst($lang);
 
             $requestSQL = 'SELECT Id_lecture,
+                                  Id_package,
                                   Id_availability, 
                                   Name_'.$lang.', 
                                   Lecturer,
                                   Description_'.$lang.', 
                                   Date,
                                   StartTime,
-                                  EndTime,
-                                  Tags FROM Lectures';
+                                  EndTime FROM Lectures';
 
             if($id != -1)
                 $requestSQL .= ' WHERE Id_lecture = ' . $id;
@@ -28,6 +28,7 @@
             {
                 $lecture = new Lecture;
                 $lecture->setId($data['Id_lecture']);
+                $lecture->setIdPackage($data['Id_package']);
                 $lecture->setIdAvailability($data['Id_availability']);
                 $lecture->$methodName($data['Name_'.$lang]);
                 $lecture->setLecturer($data['Lecturer']);
@@ -35,7 +36,6 @@
                 $lecture->setDate($data['Date']);
                 $lecture->setStartTime($data['StartTime']);
                 $lecture->setEndTime($data['EndTime']);
-                $lecture->setTags($data['Tags']);
 
                 $lectures[] = $lecture;
             }
@@ -45,7 +45,8 @@
 
         public function save($lectures)
         {
-            $req = $this->m_dao->prepare('INSERT INTO Lectures(Id_availability, 
+            $req = $this->m_dao->prepare('INSERT INTO Lectures(Id_package,
+                                                               Id_availability, 
                                                                Name_fr, 
                                                                Name_en, 
                                                                Lecturer,
@@ -53,19 +54,18 @@
                                                                Description_en,
                                                                Date,
                                                                StartTime,
-                                                               EndTime,
-                                                               Tags) VALUES(0, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+                                                               EndTime) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?)');
 
             foreach($lectures as $lecture)
-                $req->execute(array($lecture->getNameFr(),
+                $req->execute(array($lecture->getIdPackage(),
+                                    $lecture->getNameFr(),
                                     $lecture->getNameEn(),
                                     $lecture->getLecturer(),
                                     $lecture->getDescriptionFr(),
                                     $lecture->getDescriptionEn(),
                                     $lecture->getDate(),
                                     $lecture->getStartTime(),
-                                    $lecture->getEndTime(),
-                                    $lecture->getTags()));
+                                    $lecture->getEndTime()));
         }
     }
 ?>

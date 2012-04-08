@@ -1,14 +1,14 @@
 <?php
     class McqManager extends Manager
     {
-        public function getQuestionsFromLecture($idLecture, $lang, $status = NULL)
+        public function getQuestionsFromPackage($idPackage, $lang, $status = NULL)
         {
             $methodLabel = 'setLabel'.ucfirst($lang);
 
             $SQLreq = 'SELECT Id_question,
                               Label_'.$lang.',
                               Status FROM Questions WHERE Id_Lecture = ?';
-            $SQLparams = array($idLecture);
+            $SQLparams = array($idPackage);
             if($status)
             {
                 if(!in_array($status, array('Impossible', 'Possible', 'Obligatory')))

@@ -58,7 +58,6 @@ Lectures:
     Date
     StartTime
     EndTime
-    Tags
 	
 
 Package:

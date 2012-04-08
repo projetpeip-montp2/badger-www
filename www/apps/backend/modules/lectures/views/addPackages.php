@@ -1,7 +1,7 @@
 <?php
     $form = new Form('', 'post');
 
-    $form->add('file', 'vbmifareFileCSV')
+    $form->add('file', 'vbmifarePackagesCSV')
          ->label('Chemin du fichier : ');
 
     $form->add('submit', 'Envoyer');

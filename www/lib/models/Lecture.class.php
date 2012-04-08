@@ -2,6 +2,7 @@
     class Lecture extends Record
     {
         private $m_idLecture;
+        private $m_idPackage;
         private $m_idAvailability;
         private $m_name_fr;
         private $m_name_en;
@@ -11,7 +12,6 @@
         private $m_date;
         private $m_startTime;
         private $m_endTime;
-        private $m_tags;
 
         public function setId($idLecture)
         {
@@ -21,6 +21,16 @@
         public function getId()
         {
             return $this->m_idLecture;
+        }
+
+        public function setIdPackage($idPackage)
+        {
+            $this->m_idPackage = $idPackage;
+        }
+
+        public function getIdPackage()
+        {
+            return $this->m_idPackage;
         }
 
         public function setIdAvailability($idAvailability)
@@ -111,16 +121,6 @@
         public function getEndTime()
         {
             return $this->m_endTime;
-        }
-
-        public function setTags($tags)
-        {
-            $this->m_tags = $tags;
-        }
-
-        public function getTags()
-        {
-            return $this->m_tags;
         }
     }
 ?>

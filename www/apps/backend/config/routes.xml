@@ -3,7 +3,8 @@
     <route url="/admin/home/index\.html" module="home" action="index"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
-    <route url="/admin/lectures/addLectures\.html" module="lectures" action="addLectures"/>
+    <route url="/admin/lectures/addLecturesAndQuestionsAnswers\.html" module="lectures" action="addLecturesAndQuestionsAnswers"/>
+    <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
 
