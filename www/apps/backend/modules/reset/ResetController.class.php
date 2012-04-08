@@ -8,7 +8,8 @@
                                          'Classrooms', 
                                          'Documents', 
                                          'Lectures', 
-                                         'Questions', 
+                                         'Questions',
+                                         'QuestionsOfUsers',
                                          'Registrations',
                                          'Users');
 
