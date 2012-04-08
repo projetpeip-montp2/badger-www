@@ -87,13 +87,46 @@
             return $result;
         }
 
-        public function saveQuestions($idUser, $questions)
+        public function saveQuestionsOfUsers($idUser, $questions)
         {
             $req = $this->m_dao->prepare('INSERT INTO QuestionsOfUsers(Id_user,
                                                                        Id_question) VALUES(?, ?)');
             foreach($questions as $question)
                 $req->execute(array($idUser,
                                     $question->getId()));
+        }
+
+        public function saveQuestions($questions)
+        {
+            $req = $this->m_dao->prepare('INSERT INTO Questions(Id_package,
+                                                                Label_fr, 
+                                                                Label_en, 
+                                                                Status) VALUES(?, ?, ?, ?)');
+
+            foreach($questions as $question)
+            {
+                if(!in_array($question->getStatus(), array('Possible', 'Impossible', 'Obligatory')))
+                    throw new InvalidArgumentException('Invalid question status in McqManager::saveQuestions');
+
+                $req->execute(array($question->getIdPackage(),
+                                    $question->getlabelFr(),
+                                    $question->getlabelEn(),
+                                    $question->getStatus()));
+            }
+        }
+
+        public function saveAnswers($answers)
+        {
+            $req = $this->m_dao->prepare('INSERT INTO Answers(Id_question,
+                                                              Label_fr, 
+                                                              Label_en, 
+                                                              TrueOrFalse) VALUES(?, ?, ?, ?)');
+
+            foreach($answers as $answer)
+                $req->execute(array($question->getIdQuestion(),
+                                    $question->getlabelFr(),
+                                    $question->getlabelEn(),
+                                    $question->getTrueOrFalse()));
         }
     }
 ?>

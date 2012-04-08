@@ -50,6 +50,7 @@
 
         public function executeAddLecturesAndQuestionsAnswers(HTTPRequest $request)
         {
+            // Upload lectures for a package
             if($request->fileExists('vbmifareLecturesCSV'))
             {
                 $fileData = $request->fileData('vbmifareLecturesCSV');
@@ -84,8 +85,8 @@
 
                     fclose($file);
 
-                    $manager = $this->m_managers->getManagerOf('lecture');
-                    $manager->save($lectures);
+                    $managerLectures = $this->m_managers->getManagerOf('lecture');
+                    $managerLectures->save($lectures);
 
                     $this->app()->user()->setFlash('Lectures uploaded.');
                 }
@@ -94,12 +95,37 @@
                     $this->app()->user()->setFlash('Cannot upload lectures.');
             }
 
+
+            // Upload questions/answers for a package
             if($request->fileExists('vbmifareQuestionsAnswersCSV'))
             {
-                $this->app()->user()->setFlash('Questions/Answers upload not implemented');
-                $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
+                $fileData = $request->fileData('vbmifareQuestionsAnswersCSV');
+
+                if($fileData['error'] == 0)
+                {
+                    $file = fopen($fileData['tmp_name'], 'r');
+
+                    $questions = array();
+                    $answers = array();
+
+                    // Processing here...
+                    $this->app()->user()->setFlash('Upload questions/answers is not implemented yet.');
+
+                    fclose($file);
+
+                    $managerMCQ = $this->m_managers->getManagerOf('mcq');
+                    $managerMCQ->saveQuestions($questions);
+                    $managerMCQ->saveAnswers($answers);
+
+                    //$this->app()->user()->setFlash('Questions/answers uploaded.');
+                }
+
+                else
+                    $this->app()->user()->setFlash('Cannot upload questions/answers.');
             }
 
+
+            // Else display the form
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
             $managerPackages = $this->m_managers->getManagerOf('package');
@@ -108,7 +134,7 @@
             if( count($packages) == 0)
             {
                 $this->app()->user()->setFlash('You need at least a package to upload Lectures or Questions/Answers.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/home/index.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
             $this->page()->addVar('packages', $packages);

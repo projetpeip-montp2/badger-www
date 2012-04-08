@@ -79,7 +79,7 @@
             $questions = array();
             foreach($registrations as $reg)
             {
-                $questionOneLecture = $managerMCQ->getQuestionsFromLecture($reg->getId(), $lang, 'Obligatory');
+                $questionOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getId(), $lang, 'Obligatory');
                 $questions = array_merge($questions, $questionOneLecture);
             }
 
@@ -87,7 +87,7 @@
             if(count($questions) > $maxQuestionNumber)
             {
                 $finalQuestions = array_splice($questions, $maxQuestionNumber);
-                $managerMCQ->saveQuestions($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
+                $managerMCQ->saveQuestionsOfUsers($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
                 print_r($finalQuestions);
                 return $finalQuestions;
             }
@@ -100,14 +100,14 @@
             $questions = array();
             foreach($registrations as $reg)
             {
-                $questionsOneLecture = $managerMCQ->getQuestionsFromLecture($reg->getId(), $lang, 'Possible');
+                $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getId(), $lang, 'Possible');
                 $questions = array_merge($questions, $questionsOneLecture);
             }
             shuffle($questions);
             array_splice($questions, $remaining);
 
             $result = array_merge($finalQuestions, $questions);
-            $managerMCQ->saveQuestions($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
+            $managerMCQ->saveQuestionsOfUsers($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
             return $result;
         }
 
