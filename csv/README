@@ -1,0 +1,7 @@
+Structure des fichiers CSV
+==========================
+
+Lecture
+-------
+   
+    "Name_fr","Name_en","Lecturer","Description_fr","Description_en","Date","StartTime","EndTime","Tags"
