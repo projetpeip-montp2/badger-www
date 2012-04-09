@@ -6,11 +6,6 @@
 
         }
 
-        public function executeMcq(HTTPRequest $request)
-        {
-
-        }
-
         public function executeChangeAvailableStudents(HTTPRequest $request)
         {
 

@@ -1,20 +1,10 @@
-<p>Cette page permet de vider certaines tables.</p>
+<h1>Reset</h1>
 
-<?php
-    $form = new Form('', 'post');
+<p>
+    Depuis cette page il est possible d'effectuer certaines actions permettant de
+    remettre à zéro le site web.
+</p>
 
-    $num = count($checkboxes);
-    
-    for ($i=0; $i<$num; $i++)
-    {
-        $form->add('checkbox', $checkboxes[$i])
-             ->label($checkboxes[$i]);
-    }
-
-    $form->add('hidden', 'isSubmitted')
-         ->value('on');
-
-    $form->add('submit', 'Vider');
-
-    echo $form->toString();
-?>
+<ul>
+    <li><a href="/vbMifare/admin/reset/truncate.html">Vider les tables</a></li>
+</ul>

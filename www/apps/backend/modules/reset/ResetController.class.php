@@ -17,8 +17,15 @@
 
         public function executeIndex(HTTPRequest $request)
         {
+
+        }
+
+
+        public function executeTruncate(HTTPRequest $request)
+        {
             if($request->postExists('isSubmitted'))
             {
+                $tablesSelectedArray = array();
                 $tablesSelected = '';
 
                 $num = count(self::$m_tables);
@@ -26,56 +33,29 @@
                 for ($i=0; $i<$num; $i++)
                 {
                     if($request->postExists(self::$m_tables[$i]))
+                    {
+                        $tablesSelectedArray[] = self::$m_tables[$i];
+
                         $tablesSelected .= self::$m_tables[$i] . ';';
+                    }
                 }
 
-                if($tablesSelected == '')
+                if(count($tablesSelectedArray) == 0)
                 {
-                    $this->app()->user()->setFlash('Aucune table sélectionnée.');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
+                    $this->app()->user()->setFlash('No table selected.');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
                 }
 
-                $tablesSelected = substr($tablesSelected, 0, strlen($tablesSelected)-1);
+                $managerReset = $this->m_managers->getManagerOf('reset');
+                $managerReset->truncate($tablesSelectedArray);
 
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate-' . $tablesSelected . '.html');
+                // Display tables truncated.
+                $this->app()->user()->setFlash('Table(s) truncated : "' . substr($tablesSelected, 0, strlen($tablesSelected)-1) . '".');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
             }
 
             else
                 $this->page()->addVar('checkboxes', self::$m_tables);
-        }
-
-        public function executeTruncate(HTTPRequest $request)
-        {
-            // TODO: Pour la variable $_GET, il serait interessant d'avoir une regex
-            // qui force à avoir "Table1;Table2;TableN". Au moins pas besoin de se 
-            // prendre la tête avec les verifications. Il faut donc pas de point 
-            // virgule à la fin.
-
-            $tablesSelected = $request->getData('tablesSelected');
-
-            $tablesSelectedArray = explode(';', $tablesSelected);
-
-            for ($i=0; $i<count($tablesSelectedArray); $i++)
-            {
-                if(!in_array($tablesSelectedArray[$i] , self::$m_tables))
-                {
-                    $this->app()->user()->setFlash('The table needed does not exist');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
-                }
-            }
-
-            if(!$request->postExists('isSubmitted'))
-                $this->page()->addVar('tablesSelected', $tablesSelected);
-
-            else
-            {
-                $manager = $this->m_managers->getManagerOf('reset');
-
-                $manager->truncate($tablesSelectedArray);
-
-                $this->app()->user()->setFlash('Tables have been truncated.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
-            }
         }
     }
 ?>

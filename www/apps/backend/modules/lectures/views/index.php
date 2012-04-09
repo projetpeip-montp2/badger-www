@@ -1,3 +1,5 @@
+<h1>Conférences</h1>
+
 <p>Cette page permet de gérér tout ce qui a trait aux conférences </p>
 
 <ul>
