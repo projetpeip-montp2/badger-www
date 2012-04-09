@@ -13,17 +13,22 @@
     $TEXT['Flash_SubscribeWrong'] = "Your subscribe is wrong!";
     $TEXT['Flash_UnsubscribeWrong'] = "Your unsubscribe is wrong!";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
-    $TEXT['Flash_LectureUnknown'] = "The lecture doesn't exist!";
+    $TEXT['Flash_PackageUnknown'] = "The package doesn't exist!";
 
-    $TEXT['Lecture_Description'] = "Description";
-    $TEXT['Lecture_Lecturer'] = "Lecturer";
-    $TEXT['Lecture_Tags'] = "Tags";
-    $TEXT['Lecture_Subscribe'] = "Subscribe";
-    $TEXT['Lecture_Unsubscribe'] = "Unsubscribe";
-    $TEXT['Lecture_Index'] = "From this page, you can do some operations, like subscribe to a lecture, or view you schedule.";
-    $TEXT['Lecture_ShowAll'] = "Show all lectures";
+    $TEXT['Package_ListOf'] = "List of packages :";
+    $TEXT['Package_ShowAll'] = "Show all packages";
+    $TEXT['Package_Description'] = "Description";
+    $TEXT['Package_Lecturer'] = "Lecturer";
+    $TEXT['Package_Tags'] = "Tags";
+    $TEXT['Package_Subscribe'] = "Subscribe";
+    $TEXT['Package_Unsubscribe'] = "Unsubscribe";
+    $TEXT['Package_ListOfLecture'] = "List of lectures in the package:";
+
+    $TEXT['Lecture_Index'] = "From this page, you can do some operations, like subscribe to a package, or view you schedule.";
     $TEXT['Lecture_Schedule'] = "Schedule";
-    $TEXT['Lecture_ListOf'] = "List of lectures :";
+    $TEXT['Lecture_Date'] = "Date";
+    $TEXT['Lecture_StartTime'] = "Start time";
+    $TEXT['Lecture_EndTime'] = "End time";
 
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";

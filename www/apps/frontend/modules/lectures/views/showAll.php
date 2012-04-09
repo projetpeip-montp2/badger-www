@@ -1,20 +1,21 @@
-<p><?php echo $TEXT['Lecture_ListOf']; ?></p>
+<p><?php echo $TEXT['Package_ListOf']; ?></p>
 
 <?php
     $lang;
 
     echo '<ul>';
 
-    foreach($lectures as $lecture)
+    foreach($packages as $package)
     {
         $methodName = 'getName'.ucfirst($lang);
         $methodDescription = 'getDescription'.ucfirst($lang);
 
-        $link = '/vbMifare/lectures/show-'. $lecture->getId() .'.html'
+        $link = '/vbMifare/lectures/show-'. $package->getId() .'.html'
 ?>
         <li>
-            <a href="<?php echo $link; ?>"><?php echo $lecture->$methodName(); ?></a>
-            <p class="lectureDescription"><?php echo $lecture->$methodDescription(); ?></p>
+            <a href="<?php echo $link; ?>"><?php echo $package->$methodName(); ?></a>
+            <p class="lectureDescription"><?php echo $package->getLecturer(); ?></p>
+            <p class="lectureDescription"><?php echo $package->$methodDescription(); ?></p>
         </li>
 <?php
     }

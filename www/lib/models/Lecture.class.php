@@ -6,7 +6,6 @@
         private $m_idAvailability;
         private $m_name_fr;
         private $m_name_en;
-        private $m_lecturer;
         private $m_description_fr;
         private $m_description_en;
         private $m_date;
@@ -61,16 +60,6 @@
         public function getNameEn()
         {
             return $this->m_name_en;
-        }
-
-        public function setLecturer($lecturer)
-        {
-            $this->m_lecturer = $lecturer;
-        }
-
-        public function getLecturer()
-        {
-            return $this->m_lecturer;
         }
 
         public function setDescriptionFr($description_fr)

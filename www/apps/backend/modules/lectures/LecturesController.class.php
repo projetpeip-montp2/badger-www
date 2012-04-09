@@ -20,16 +20,19 @@
 
                     while (($lineDatas = fgetcsv($file)) !== FALSE) 
                     {
-                        if(count($lineDatas) != 2)
+                        if(count($lineDatas) != 5)
                         {
-                            $this->app()->user()->setFlash('File has not got 2 rows');
+                            $this->app()->user()->setFlash('File has not got 5 rows');
                             $this->app()->httpResponse()->redirect('./addPackages.html');
                             break;
                         }
         
                         $package = new Package;
-                        $package->setNameFr($lineDatas[0]);
-                        $package->setNameEn($lineDatas[1]);
+                        $package->setLecturer($lineDatas[0]);
+                        $package->setNameFr($lineDatas[1]);
+                        $package->setNameEn($lineDatas[2]);
+                        $package->setDescriptionFr($lineDatas[3]);
+                        $package->setDescriptionEn($lineDatas[4]);
 
                         array_push($packages, $package);
                     }
@@ -63,9 +66,9 @@
 
                     while (($lineDatas = fgetcsv($file)) !== FALSE) 
                     {
-                        if(count($lineDatas) != 8)
+                        if(count($lineDatas) != 7)
                         {
-                            $this->app()->user()->setFlash('Lecture csv file has not got 8 rows.');
+                            $this->app()->user()->setFlash('Lecture csv file has not got 7 rows.');
                             $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                         }
         
@@ -73,12 +76,11 @@
                         $lecture->setIdPackage($request->postData('vbmifarePackage'));
                         $lecture->setNameFr($lineDatas[0]);
                         $lecture->setNameEn($lineDatas[1]);
-                        $lecture->setLecturer($lineDatas[2]);
-                        $lecture->setDescriptionFr($lineDatas[3]);
-                        $lecture->setDescriptionEn($lineDatas[4]);
-                        $lecture->setDate($lineDatas[5]);
-                        $lecture->setStartTime($lineDatas[6]);
-                        $lecture->setEndTime($lineDatas[7]);
+                        $lecture->setDescriptionFr($lineDatas[2]);
+                        $lecture->setDescriptionEn($lineDatas[3]);
+                        $lecture->setDate($lineDatas[4]);
+                        $lecture->setStartTime($lineDatas[5]);
+                        $lecture->setEndTime($lineDatas[6]);
 
                         array_push($lectures, $lecture);
                     }

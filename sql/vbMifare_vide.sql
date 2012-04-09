@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Lun 09 Avril 2012 à 00:04
+-- Généré le : Lun 09 Avril 2012 à 02:30
 -- Version du serveur: 5.5.22
 -- Version de PHP: 5.3.10
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `vbMifare`;
 USE `vbMifare`;
-
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,6 @@ CREATE TABLE IF NOT EXISTS `Lectures` (
   `Id_availability` smallint(5) unsigned NOT NULL,
   `Name_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `Lecturer` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Description_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Description_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Date` date NOT NULL,
@@ -144,8 +142,11 @@ CREATE TABLE IF NOT EXISTS `Lectures` (
 
 CREATE TABLE IF NOT EXISTS `Packages` (
   `Id_package` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `Lecturer` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `Description_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `Description_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`Id_package`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

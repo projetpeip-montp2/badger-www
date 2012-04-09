@@ -1,7 +1,7 @@
 <?php
     class LectureManager extends Manager
     {
-        public function get($lang, $id = -1)
+        public function get($lang, $idPackage = -1)
         {
             $methodName = 'setName'.ucfirst($lang);
             $methodDescription = 'setDescription'.ucfirst($lang);
@@ -10,14 +10,13 @@
                                   Id_package,
                                   Id_availability, 
                                   Name_'.$lang.', 
-                                  Lecturer,
                                   Description_'.$lang.', 
                                   Date,
                                   StartTime,
                                   EndTime FROM Lectures';
 
-            if($id != -1)
-                $requestSQL .= ' WHERE Id_lecture = ' . $id;
+            if($idPackage != -1)
+                $requestSQL .= ' WHERE Id_package = ' . $idPackage;
 
             $req = $this->m_dao->prepare($requestSQL);
             $req->execute(); 
@@ -31,7 +30,6 @@
                 $lecture->setIdPackage($data['Id_package']);
                 $lecture->setIdAvailability($data['Id_availability']);
                 $lecture->$methodName($data['Name_'.$lang]);
-                $lecture->setLecturer($data['Lecturer']);
                 $lecture->$methodDescription($data['Description_'.$lang]);
                 $lecture->setDate($data['Date']);
                 $lecture->setStartTime($data['StartTime']);
@@ -49,18 +47,16 @@
                                                                Id_availability, 
                                                                Name_fr, 
                                                                Name_en, 
-                                                               Lecturer,
                                                                Description_fr,
                                                                Description_en,
                                                                Date,
                                                                StartTime,
-                                                               EndTime) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?)');
+                                                               EndTime) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?)');
 
             foreach($lectures as $lecture)
                 $req->execute(array($lecture->getIdPackage(),
                                     $lecture->getNameFr(),
                                     $lecture->getNameEn(),
-                                    $lecture->getLecturer(),
                                     $lecture->getDescriptionFr(),
                                     $lecture->getDescriptionEn(),
                                     $lecture->getDate(),

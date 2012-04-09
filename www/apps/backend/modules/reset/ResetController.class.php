@@ -59,7 +59,7 @@
             {
                 if(!in_array($tablesSelectedArray[$i] , self::$m_tables))
                 {
-                    $this->app()->user()->setFlash('La table demandée n\'existe pas');
+                    $this->app()->user()->setFlash('The table needed does not exist');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
                 }
             }
@@ -73,7 +73,7 @@
 
                 $manager->truncate($tablesSelectedArray);
 
-                $this->app()->user()->setFlash('Les tables ont bien été vidée.');
+                $this->app()->user()->setFlash('Tables have been truncated.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/index.html');
             }
         }

@@ -3,10 +3,10 @@ Structure of CSV files
 
 Package
 -------
-    "Name_fr","Name_en"
+    "Lecturer","Name_fr","Name_en","Description_fr","Description_en"
 
 
 Lecture
 -------
-    "Name_fr","Name_en","Lecturer","Description_fr","Description_en","Date","StartTime","EndTime"
+    "Name_fr","Name_en","Description_fr","Description_en","Date","StartTime","EndTime"
 

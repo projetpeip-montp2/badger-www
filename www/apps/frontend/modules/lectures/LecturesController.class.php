@@ -15,26 +15,26 @@
             $managerRegistration = $this->m_managers->getManagerOf('registration');
             $registrationsId = $managerRegistration->getResgistrationsIdFromUser($username);
 
-            $managerLectures = $this->m_managers->getManagerOf('lecture');
-            $lectures = $managerLectures->get($lang, $request->getData('idLecture'));
+            $managerPackage = $this->m_managers->getManagerOf('package');
+            $packages = $managerPackage->get($lang, $request->getData('idPackage'));
 
-            if(count($lectures) != 1)
+            if(count($packages) != 1)
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
-                $this->app()->user()->setFlash($TEXT['Flash_LectureUnknown']);
+                $this->app()->user()->setFlash($TEXT['Flash_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/vbMifare/lectures/showAll.html');
             }
 
-            $lecture = $lectures[0];
+            $package = $packages[0];
 
-            $wantSubscribe = !in_array($lecture->getId(), $registrationsId);
+            $wantSubscribe = !in_array($package->getId(), $registrationsId);
 
             if($request->postExists('isSubmitted'))
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
-                $managerRegistration->subscribe($request->getData('idLecture'), $username, $wantSubscribe ? 1 : 0);
+                $managerRegistration->subscribe($request->getData('idPackage'), $username, $wantSubscribe ? 1 : 0);
 
                 $this->app()->user()->setFlash($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
 
@@ -43,17 +43,20 @@
 
             $this->page()->addVar('wantSubscribe', $wantSubscribe);
 
-            $this->page()->addVar('lecture', $lecture);
+            $this->page()->addVar('package', $package);
             $this->page()->addVar('lang', $lang);
+
+            $managerLecture = $this->m_managers->getManagerOf('lecture');
+            $this->page()->addVar('lectures', $managerLecture->get($lang, $request->getData('idPackage')));
         }
 
         public function executeShowAll(HTTPRequest $request)
         {
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $manager = $this->m_managers->getManagerOf('lecture');
+            $managerPackage = $this->m_managers->getManagerOf('package');
 
-            $this->page()->addVar('lectures', $manager->get($lang, -1));
+            $this->page()->addVar('packages', $managerPackage->get($lang, -1));
             $this->page()->addVar('lang', $lang);
         }
 
