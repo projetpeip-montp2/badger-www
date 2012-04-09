@@ -34,6 +34,8 @@
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
+                // TODO: Avant d'enregistrer l'inscription, vérifier s'il n'y a pas de conflit.
+
                 $managerRegistration->subscribe($request->getData('idPackage'), $username, $wantSubscribe ? 1 : 0);
 
                 $this->app()->user()->setFlash($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);

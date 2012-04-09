@@ -17,6 +17,9 @@ Afin de pouvoir tester le serveur en local, il faut avoir:
 - php 5.3 minimum (avec mysqli d'activée)  
 - mysql 5.0 minimun  
 
+Pour pouvoir changer les fichiers de configurations des applications, il faut
+penser à donner les droits d'écritures sur ceux-ci au serveur web.
+
 Scripts
 -------
 

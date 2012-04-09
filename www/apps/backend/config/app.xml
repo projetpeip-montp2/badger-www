@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <definitions>
-    <define var="adminsList" value="vbmifare;victor.hiairrassary"/>
+    <define var="adminsList" value="vbmifare;victor.hiairrassary;gregoire.guisez"/>
 </definitions>
