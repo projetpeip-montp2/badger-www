@@ -7,7 +7,7 @@
 
             $SQLreq = 'SELECT Id_question,
                               Label_'.$lang.',
-                              Status FROM Questions WHERE Id_Lecture = ?';
+                              Status FROM Questions WHERE Id_package = ?';
             $SQLparams = array($idPackage);
             if($status)
             {
@@ -41,7 +41,7 @@
 
             $SQLreq = 'SELECT Id_answer,
                               Id_question,
-                              Label_'.$lang.' FROM Answers WHERE Id_Question = ?';
+                              Label_'.$lang.' FROM Answers WHERE Id_question = ?';
             $req = $this->m_dao->prepare($SQLreq);
             $req->execute(array($idQuestion));
 
@@ -59,7 +59,7 @@
             return $result;
         }
 
-        public function loadQuestions($idUser, $lang)
+        public function loadQuestionsOfUser($idUser, $lang)
         {
             $methodLabel = 'setLabel'.ucfirst($lang);
 
@@ -87,7 +87,7 @@
             return $result;
         }
 
-        public function saveQuestionsOfUsers($idUser, $questions)
+        public function saveQuestionsOfUser($idUser, $questions)
         {
             $req = $this->m_dao->prepare('INSERT INTO QuestionsOfUsers(Id_user,
                                                                        Id_question) VALUES(?, ?)');

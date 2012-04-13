@@ -1,6 +1,12 @@
 <?php
     class UserManager extends Manager
     {
+        private function checkStatus($status)
+        {
+            if(!in_array($status, array('Visitor', 'CanTakeMCQ', 'Generated', 'Taken')))
+                throw new InvalidArgumentException('Invalid MCQStatus in ConnectionManager::insertOrLoadIfFirstVisit');
+        }
+
         public function retrieveStudentFromPolytech($logon)
         {
             // The request is on Polytech database here!
@@ -20,10 +26,9 @@
             return $student;
         }
 
-        public function insertOrLoadIfFirstVisit(Student $student, $mcqStatus)
+        public function insertOrLoadIfFirstVisit(Student $student, $status)
         {
-            if(!in_array($mcqStatus, array('Visitor', 'CanTakeMCQ', 'Generated', 'Taken')))
-                throw new InvalidArgumentException('Invalid MCQStatus in ConnectionManager::insertOrLoadIfFirstVisit');
+            $this->checkStatus($status);
 
             $req = $this->m_dao->prepare('SELECT * FROM Users WHERE Id_user = ?');
             $req->execute(array($student->getUsername()));
@@ -33,8 +38,8 @@
             if(!$data)
             {
                 $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, MCQStatus, Mark) VALUES(?, ?, 0)');
-                $req->execute(array($student->getUsername(), $mcqStatus));
-                $student->setMCQStatus($mcqStatus);
+                $req->execute(array($student->getUsername(), $status));
+                $student->setMCQStatus($status);
                 $student->setMark(0);
             }
             
@@ -43,6 +48,14 @@
                 $student->setMCQStatus($data['MCQStatus']);
                 $student->setMark($data['Mark']);
             }
+        }
+
+        public function updateStatus($logon, $status)
+        {
+            $this->checkStatus($status);
+
+            $req = $this->m_dao->prepare('UPDATE Users SET MCQStatus = ? WHERE Id_user = ?');
+            $req->execute(array($status, $logon));
         }
     }
 ?>

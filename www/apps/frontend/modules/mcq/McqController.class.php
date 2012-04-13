@@ -27,7 +27,9 @@
             $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
             if($mcqStatus != 'Generated')
             {
-                // TODO: Mettre Generated pour le user dans la BDD
+                $managerUser = $this->m_managers->getManagerOf('user');
+                $managerUser->updateStatus($this->app()->user()->getAttribute('logon'), 'Generated');
+
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Generated');
                 $questions = $this->selectQuestions();
             }
@@ -56,6 +58,8 @@
             $startDate = new Date(1,1,1999);
             $currentDate = new Date(1,1,1999);
             $startDate->setFromString($this->app()->configGlobal()->get('MCQStartDate'));
+
+            date_default_timezone_set('Europe/Paris');
             $currentDate->setFromString(date('d-m-Y'));
 
             return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && (Date::compare($currentDate, $startDate) >= 0));
@@ -79,7 +83,7 @@
             $questions = array();
             foreach($registrations as $reg)
             {
-                $questionOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getId(), $lang, 'Obligatory');
+                $questionOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), $lang, 'Obligatory');
                 $questions = array_merge($questions, $questionOneLecture);
             }
 
@@ -87,7 +91,7 @@
             if(count($questions) > $maxQuestionNumber)
             {
                 $finalQuestions = array_splice($questions, $maxQuestionNumber);
-                $managerMCQ->saveQuestionsOfUsers($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
+                $managerMCQ->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
                 print_r($finalQuestions);
                 return $finalQuestions;
             }
@@ -100,14 +104,14 @@
             $questions = array();
             foreach($registrations as $reg)
             {
-                $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getId(), $lang, 'Possible');
+                $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), $lang, 'Possible');
                 $questions = array_merge($questions, $questionsOneLecture);
             }
             shuffle($questions);
             array_splice($questions, $remaining);
 
             $result = array_merge($finalQuestions, $questions);
-            $managerMCQ->saveQuestionsOfUsers($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
+            $managerMCQ->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
             return $result;
         }
 
@@ -117,7 +121,7 @@
 
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
-            return $managerMCQ->loadQuestions($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $lang);
+            return $managerMCQ->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $lang);
         }
 
         private function getAssociatedAnswers($questions)
