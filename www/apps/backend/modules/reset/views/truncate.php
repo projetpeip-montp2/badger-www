@@ -8,8 +8,13 @@
     <li>Elle ne supprime pas les dépendances des tables (par exemples supprimer les questions invalidera les réponses)!</li>
 </ul>
 
+<a href="Javascript:void(0)" onclick="changeCheckboxesStateForm('truncateForm', true);">Tout cocher</a>
+/
+<a href="Javascript:void(0)" onclick="changeCheckboxesStateForm('truncateForm', false);">Tout décocher</a>
+
 <?php
     $form = new Form('', 'post');
+    $form->setId("truncateForm");
 
     $form->beginFieldset();
 
@@ -30,4 +35,17 @@
 
     echo $form->toString();
 ?>
+
+<script type="text/javascript">
+    function changeCheckboxesStateForm(container_id, state)
+    {
+        var checkboxes = document.getElementById(container_id).getElementsByTagName('input');
+
+        for(var i=0; i < checkboxes.length; i++)
+        {
+            if(checkboxes[i].type == 'checkbox')
+                checkboxes[i].checked = state;
+        }
+    }
+</script>
 
