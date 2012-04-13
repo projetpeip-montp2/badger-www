@@ -110,16 +110,61 @@
                 {
                     $file = fopen($fileData['tmp_name'], 'r');
 
-                    $questions = array();
                     $answers = array();
+                    $readQuestion = true;
+                    $lastQuestionID;
 
-                    // Processing here...
-                    $flashMessage .= 'Upload questions/answers is not implemented yet.';
+                    $managerMCQ = $this->m_managers->getManagerOf('mcq');
+
+                    while(($line = fgets($file)) !== FALSE) 
+                    {
+                        if(preg_match('#__vbmifare\*#', $line))
+                            $readQuestion = true;
+
+                        else
+                        {
+                            $datas = str_getcsv($line);
+
+                            if($readQuestion)
+                            {
+                                if(count($datas) != 3)
+                                {
+                                    $this->app()->user()->setFlash('Question in csv file has not got 3 rows.');
+                                    $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
+                                }
+
+                                $question = new Question;
+                                $question->setIdPackage($request->postData('vbmifarePackage'));
+                                $question->setLabelFr($datas[0]);
+                                $question->setLabelEn($datas[1]);
+                                $question->setStatus($datas[2]);
+
+                                $lastQuestionID = $managerMCQ->saveQuestion($question);
+
+                                $readQuestion = false;
+                            }
+
+                            else
+                            {
+                                if(count($datas) != 3)
+                                {
+                                    $this->app()->user()->setFlash('Answer in csv file has not got 3 rows.');
+                                    $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
+                                }
+
+                                $answer = new Answer;
+                                $answer->setIdQuestion($lastQuestionID);
+                                $answer->setLabelFr($datas[0]);
+                                $answer->setLabelEn($datas[1]);
+                                $answer->setTrueOrFalse($datas[2]);
+
+                                array_push($answers, $answer);
+                            }
+                        }
+                    }
 
                     fclose($file);
 
-                    $managerMCQ = $this->m_managers->getManagerOf('mcq');
-                    $managerMCQ->saveQuestions($questions);
                     $managerMCQ->saveAnswers($answers);
 
                     $flashMessage .= 'Questions/answers uploaded.';

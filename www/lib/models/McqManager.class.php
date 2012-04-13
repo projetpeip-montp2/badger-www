@@ -96,23 +96,22 @@
                                     $question->getId()));
         }
 
-        public function saveQuestions($questions)
+        public function saveQuestion($question)
         {
+            if(!in_array($question->getStatus(), array('Possible', 'Impossible', 'Obligatory')))
+                throw new InvalidArgumentException('Invalid question status in McqManager::saveQuestion');
+
             $req = $this->m_dao->prepare('INSERT INTO Questions(Id_package,
                                                                 Label_fr, 
                                                                 Label_en, 
                                                                 Status) VALUES(?, ?, ?, ?)');
 
-            foreach($questions as $question)
-            {
-                if(!in_array($question->getStatus(), array('Possible', 'Impossible', 'Obligatory')))
-                    throw new InvalidArgumentException('Invalid question status in McqManager::saveQuestions');
+            $req->execute(array($question->getIdPackage(),
+                                $question->getlabelFr(),
+                                $question->getlabelEn(),
+                                $question->getStatus()));
 
-                $req->execute(array($question->getIdPackage(),
-                                    $question->getlabelFr(),
-                                    $question->getlabelEn(),
-                                    $question->getStatus()));
-            }
+            return $this->m_dao->lastInsertId();
         }
 
         public function saveAnswers($answers)
@@ -123,10 +122,15 @@
                                                               TrueOrFalse) VALUES(?, ?, ?, ?)');
 
             foreach($answers as $answer)
-                $req->execute(array($question->getIdQuestion(),
-                                    $question->getlabelFr(),
-                                    $question->getlabelEn(),
-                                    $question->getTrueOrFalse()));
+            {
+                if(!in_array($answer->getTrueOrFalse(), array('T', 'F')))
+                    throw new InvalidArgumentException('Invalid answers true or false in McqManager::saveAnswers');
+
+                $req->execute(array($answer->getIdQuestion(),
+                                    $answer->getlabelFr(),
+                                    $answer->getlabelEn(),
+                                    $answer->getTrueOrFalse()));
+            }
         }
     }
 ?>

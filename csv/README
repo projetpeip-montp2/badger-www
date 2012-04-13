@@ -10,3 +10,17 @@ Lecture
 -------
     "Name_fr","Name_en","Description_fr","Description_en","Date","StartTime","EndTime"
 
+
+Questions/Answers
+-----------------
+    Note : Use string __vbmifare* on a new line to separate two couple of Question/Answers.
+
+    "Label_fr","Label_en","Status"            // Question 1
+    "Label_fr","Label_en","TrueOrFalse"       // Answer 1 for question 1
+    "Label_fr","Label_en","TrueOrFalse"       // Answer 2 for question 1
+    __vbmifare*                               // Separator for next questions/answers
+    "Label_fr","Label_en","Status"            // Question 2
+    "Label_fr","Label_en","TrueOrFalse"       // Answer 1 for question 2
+    "Label_fr","Label_en","TrueOrFalse"       // Answer 2 for question 2
+    __vbmifare*                               // Separator for next questions/answers
+                                              // etc
