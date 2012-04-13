@@ -59,25 +59,25 @@
 	    {
 		    $varList = '';
 			
-		    while (list($key, $val) = each($opts))
+		    while(list($key, $val) = each($opts))
 		    {
 			    $val = mysqli_real_escape_string($this->m_link, $val);
 
-			    if (mysqli_query($this->m_link, "SET @$key='$val'") === FALSE)
+			    if(mysqli_query($this->m_link, "SET @$key='$val'") === FALSE)
 				    throw new RuntimeException('Cannot assign variables for prepared request');
 
-			    if (empty($varList))
+			    if(empty($varList))
 				    $varList = "@$key";
 			    else
 				    $varList .= ", @$key";
 		    }
 
-			if (!empty($opts))
+			if(!empty($opts))
 				$this->m_req = mysqli_query($this->m_link, "EXECUTE {$this->m_id} USING $varList");
 			else
 				$this->m_req = mysqli_query($this->m_link, "EXECUTE {$this->m_id}");
 				
-		    if ($this->m_req === FALSE)
+		    if($this->m_req === FALSE)
 			    throw new RuntimeException('Execution of prepared request failed');
 	    }
 	
@@ -112,10 +112,10 @@
 	    {	
 		    $this->m_link = mysqli_connect($host, $username, $password);
 
-		    if ($this->m_link === FALSE)
+		    if($this->m_link === FALSE)
 			    throw new RuntimeException('Cannot connect to MySQL');
 
-		    if (mysqli_select_db($this->m_link, $dbName) === FALSE)
+		    if(mysqli_select_db($this->m_link, $dbName) === FALSE)
 			    throw new RuntimeException('Cannot select database');
 	    }
 	
@@ -128,7 +128,7 @@
 	    {
 		    $req = mysqli_query($this->m_link, $request);
 		
-		    if ($req === FALSE)
+		    if($req === FALSE)
 			    throw new RuntimeException('Cannot execute request "' . mysqli_error($this->m_link) . '"');
 			
 		    $stmt = new Statement($this->m_link, null, $req);
@@ -140,12 +140,22 @@
 	    {
 		    $id = uniqid();
 
-		    if (mysqli_query($this->m_link, "PREPARE $id FROM '$preparedRequest'") == FALSE)
+		    if(mysqli_query($this->m_link, "PREPARE $id FROM '$preparedRequest'") == FALSE)
 			    throw new RuntimeException('Cannot prepare request "' . mysqli_error($this->m_link) . '"');
 
 		    $stmt = new Statement($this->m_link, $id);
 
 		    return ($stmt);
+	    }
+
+	    public function lastInsertId()
+	    {
+            $id = mysqli_insert_id($this->m_link);
+
+		    if($id == 0)
+			    throw new RuntimeException('Cannot retrieve the last insert id');
+
+            return $id;
 	    }
     }
 ?>
