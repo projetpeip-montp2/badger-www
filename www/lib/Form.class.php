@@ -328,6 +328,8 @@
         private $m_formComponents;
         private $m_action;
         private $m_method;
+
+        private $m_id;
     
         private $m_sendFile;
         private $m_hasSubmit;
@@ -339,6 +341,7 @@
             $this->setAction($action);
             $this->setMethod($method);
 
+            $this->m_id = '';
             $this->m_sendFile = false;
             $this->m_hasSubmit = false;
             $this->m_fieldsetNumber = 0;
@@ -352,6 +355,11 @@
         public function setMethod($method)
         {
             $this->m_method = $method;
+        }
+
+        public function setId($id)
+        {
+            $this->m_id = $id;
         }
 
         public function beginFieldset($name = '')
@@ -440,6 +448,9 @@
 
             if($this->m_sendFile)
                 $output .= ' enctype="multipart/form-data"';
+
+            if($this->m_id)
+                $output .= ' id="' . $this->m_id . '"';
 
             $output .= '>' . "\n";
 
