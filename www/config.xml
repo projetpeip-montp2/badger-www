@@ -1,5 +1,8 @@
+<?xml version="1.0"?>
 <definitions>
     <define var="availableStudentsList" value="PEIP2;ERII4"/>
+
+    <define var="canSubscribe" value="1"/>
 
     <!-- TODO: Supprimer en production -->
     <define var="availableUsersList" value="vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux"/>

@@ -8,10 +8,9 @@
     $TEXT['Menu_Lectures'] = "Conférences";
     $TEXT['Menu_MCQ'] = "Q.C.M";
 
+    $TEXT['Flash_SubscribeImpossible'] = "Impossible d'accéder aux inscriptions!";
     $TEXT['Flash_SubscribeOk'] = "Votre incription est prise en compte.";
     $TEXT['Flash_UnsubscribeOk'] = "Votre désincription est prise en compte.";
-    $TEXT['Flash_SubscribeWrong'] = "Votre incription est n'a pas pu avoir lieu.";
-    $TEXT['Flash_UnsubscribeWrong'] = "Votre désincription est n'a pas pu avoir lieu.";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
     $TEXT['Flash_PackageUnknown'] = "Le package demandé n'existe pas!";
 

@@ -8,10 +8,9 @@
     $TEXT['Menu_Lectures'] = "Lectures";
     $TEXT['Menu_MCQ'] = "M.C.Q";
 
+    $TEXT['Flash_SubscribeImpossible'] = "Subscribe impossible!";
     $TEXT['Flash_SubscribeOk'] = "Your subscribe is ok!";
     $TEXT['Flash_UnsubscribeOk'] = "Your unsubscribe is ok!";
-    $TEXT['Flash_SubscribeWrong'] = "Your subscribe is wrong!";
-    $TEXT['Flash_UnsubscribeWrong'] = "Your unsubscribe is wrong!";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
     $TEXT['Flash_PackageUnknown'] = "The package doesn't exist!";
 

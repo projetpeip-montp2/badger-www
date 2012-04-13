@@ -34,6 +34,12 @@
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
+                if(!$this->canSubscribe())
+                {
+                    $this->app()->user()->setFlash($TEXT['Flash_SubscribeImpossible']);
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
                 // TODO: Avant d'enregistrer l'inscription, vérifier s'il n'y a pas de conflit.
 
                 $managerRegistration->subscribe($request->getData('idPackage'), $username, $wantSubscribe ? 1 : 0);
@@ -66,5 +72,17 @@
         {
 
         }
+
+
+
+
+
+
+        private function canSubscribe()
+        {
+            return ($this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus() == 'CanTakeMCQ') &&
+                   ($this->app()->configGlobal()->get('canSubscribe') != '0');
+        }
     }
 ?>
+
