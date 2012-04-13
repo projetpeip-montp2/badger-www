@@ -21,9 +21,9 @@ Availabilities:
 
 
 BadgingInformations:
+    Myfare
     Date 
     Time
-    Myfare
 	
 	
 Classrooms:

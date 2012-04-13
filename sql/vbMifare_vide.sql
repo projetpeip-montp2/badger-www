@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.2
+-- version 3.5.0
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Lun 09 Avril 2012 à 02:30
--- Version du serveur: 5.5.22
+-- Généré le: Sam 14 Avril 2012 à 00:19
+-- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -71,8 +71,9 @@ CREATE TABLE IF NOT EXISTS `Availabilities` (
 --
 
 CREATE TABLE IF NOT EXISTS `BadgingInformations` (
-  `DateTime` datetime NOT NULL,
-  `Mifare` char(8) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
+  `Mifare` char(8) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `Date` date NOT NULL,
+  `Time` time NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
