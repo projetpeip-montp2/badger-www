@@ -5,7 +5,7 @@
         private $m_minutes;
         private $m_seconds;
 
-        public function __construct($hours, $minutes, $seconds)
+        public function __construct($hours = 0, $minutes = 0, $seconds = 0)
         {
             $this->set($hours, $minutes, $seconds);
         }

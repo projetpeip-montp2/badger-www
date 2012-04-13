@@ -31,6 +31,7 @@
   'security' => 'lib/Security.class.php',
   'manager' => 'lib/Manager.class.php',
   'backcontroller' => 'lib/BackController.class.php',
+  'time' => 'lib/Time.class.php',
   'record' => 'lib/Record.class.php',
   'router' => 'lib/Router.class.php',
   'database' => 'lib/Database.class.php',

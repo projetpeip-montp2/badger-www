@@ -25,15 +25,24 @@
 
             while($data = $req->fetch())
             {
+                $date = new Date;
+                $date->setFromMySQLResult($data['Date']);
+
+                $startTime = new Time;
+                $startTime->setFromString($data['StartTime']);
+
+                $endTime = new Time;
+                $endTime->setFromString($data['EndTime']);
+
                 $lecture = new Lecture;
                 $lecture->setId($data['Id_lecture']);
                 $lecture->setIdPackage($data['Id_package']);
                 $lecture->setIdAvailability($data['Id_availability']);
                 $lecture->$methodName($data['Name_'.$lang]);
                 $lecture->$methodDescription($data['Description_'.$lang]);
-                $lecture->setDate($data['Date']);
-                $lecture->setStartTime($data['StartTime']);
-                $lecture->setEndTime($data['EndTime']);
+                $lecture->setDate($date);
+                $lecture->setStartTime($startTime);
+                $lecture->setEndTime($endTime);
 
                 $lectures[] = $lecture;
             }

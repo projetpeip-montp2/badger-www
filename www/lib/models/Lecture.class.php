@@ -82,7 +82,7 @@
             return $this->m_description_en;
         }
 
-        public function setDate($date)
+        public function setDate(Date $date)
         {
             $this->m_date = $date;
         }
@@ -92,7 +92,7 @@
             return $this->m_date;
         }
 
-        public function setStartTime($startTime)
+        public function setStartTime(Time $startTime)
         {
             $this->m_startTime = $startTime;
         }
@@ -102,7 +102,7 @@
             return $this->m_startTime;
         }
 
-        public function setEndTime($endTime)
+        public function setEndTime(Time $endTime)
         {
             $this->m_endTime = $endTime;
         }

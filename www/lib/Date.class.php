@@ -5,7 +5,7 @@
         private $m_month;
         private $m_day;
 
-        public function __construct($day, $month, $year)
+        public function __construct($day = 1, $month = 1, $year = 2000)
         {
             $this->set($day, $month, $year);
         }
@@ -87,12 +87,12 @@
             return $this->m_year;
         }
 
-        static public function isLeapYear(int $year)
+        static public function isLeapYear($year)
         {
             if($year < 0)
                 throw new InvalidArgumentException('Negative argument in leapYear function');
             else
-                return ($year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
+                return ($year % 4 == 0) && (($year % 100 != 0) || ($year % 400 == 0));
         }
         
         ////////////////////////////////////////////////////////////

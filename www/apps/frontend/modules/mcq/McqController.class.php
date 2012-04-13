@@ -50,13 +50,10 @@
         ////////////////////////////////////////////////////////////
         private function canTakeMCQ()
         {
-            // TODO: Trouver le warning que lance la fonction php date(). Apparement
-            // Il faudrait spéficier le fuseau horaire ou quelque chose de la sorte.
-
             $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
 
-            $startDate = new Date(1,1,1999);
-            $currentDate = new Date(1,1,1999);
+            $startDate = new Date;
+            $currentDate = new Date;
             $startDate->setFromString($this->app()->configGlobal()->get('MCQStartDate'));
 
             date_default_timezone_set('Europe/Paris');
