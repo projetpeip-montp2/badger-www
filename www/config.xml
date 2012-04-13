@@ -2,6 +2,7 @@
 <definitions>
     <define var="availableStudentsList" value="PEIP2;ERII4"/>
 
+    <define var="minRegistrationsCount" value="4"/>    
     <define var="canSubscribe" value="1"/>
 
     <!-- TODO: Supprimer en production -->
