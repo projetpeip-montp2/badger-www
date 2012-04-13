@@ -93,6 +93,11 @@
                 return ($time1->hours() > $time2->hours()) ? 1 : -1;
         }
 
+        public function toStringMySQL()
+        {
+            return $this->m_hours.':'.$this->m_minutes.':'.$this->m_seconds;
+        }
+
         public function __toString()
         {
             return $this->m_hours.':'.$this->m_minutes.':'.$this->m_seconds;

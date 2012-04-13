@@ -32,20 +32,14 @@
 
             if($request->postExists('isSubmitted'))
             {
-                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-
-                if(!$this->canSubscribe())
-                {
-                    $this->app()->user()->setFlash($TEXT['Flash_SubscribeImpossible']);
-                    $this->app()->httpResponse()->redirect($request->requestURI());
-                }
-
-                // TODO: Avant d'enregistrer l'inscription, vérifier s'il n'y a pas de conflit.
+                $this->checkSubscribe($request);
+                $this->checkConflict($request);
 
                 $managerRegistration->subscribe($request->getData('idPackage'), $username, $wantSubscribe ? 1 : 0);
 
-                $this->app()->user()->setFlash($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
+                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
+                $this->app()->user()->setFlash($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -78,10 +72,53 @@
 
 
 
-        private function canSubscribe()
+
+
+        private function checkSubscribe(HTTPRequest $request)
         {
-            return ($this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus() == 'CanTakeMCQ') &&
-                   ($this->app()->configGlobal()->get('canSubscribe') != '0');
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
+
+            $status = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
+
+            if($status != 'CanTakeMCQ')
+            {
+                $flashMessage = '';
+
+                switch($status)
+                {
+                case 'Visitor':
+                    $flashMessage = $TEXT['Flash_SubscribeVisitor'];
+                    break;
+
+                case 'Generated':
+                    $flashMessage = $TEXT['Flash_SubscribeGenerated'];
+                    break;
+
+                case 'Taken':
+                    $flashMessage = $TEXT['Flash_SubscribeTaken'];
+                    break;
+
+                default:
+                    $flashMessage = 'Your status is unknow :)';
+                    break;
+                }
+
+                $this->app()->user()->setFlash($flashMessage);
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+
+            if($this->app()->configGlobal()->get('canSubscribe') == '0')
+            {
+                $this->app()->user()->setFlash($TEXT['Flash_SubscribeImpossible']);
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+        }
+
+        private function checkConflict(HTTPRequest $request)
+        {
+            // TODO: Implémenter la fonction.
         }
     }
 ?>

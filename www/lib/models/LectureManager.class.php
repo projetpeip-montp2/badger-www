@@ -68,9 +68,9 @@
                                     $lecture->getNameEn(),
                                     $lecture->getDescriptionFr(),
                                     $lecture->getDescriptionEn(),
-                                    $lecture->getDate(),
-                                    $lecture->getStartTime(),
-                                    $lecture->getEndTime()));
+                                    $lecture->getDate()->toStringMySQL(),
+                                    $lecture->getStartTime()->toStringMySQL(),
+                                    $lecture->getEndTime()->toStringMySQL()));
         }
     }
 ?>

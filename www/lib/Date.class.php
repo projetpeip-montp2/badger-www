@@ -114,6 +114,11 @@
                 return ($date1->year() > $date2->year()) ? 1 : -1;
         }
 
+        public function toStringMySQL()
+        {
+            return $this->m_year.'-'.$this->m_month.'-'.$this->m_day;
+        }
+
         public function __toString()
         {
             return $this->m_day.'-'.$this->m_month.'-'.$this->m_year;

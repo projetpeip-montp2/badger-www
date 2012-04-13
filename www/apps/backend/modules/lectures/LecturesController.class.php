@@ -74,6 +74,15 @@
                             $this->app()->user()->setFlash('Lecture csv file has not got 7 rows.');
                             $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                         }
+
+                        $date = new Date;
+                        $date->setFromString($lineDatas[4]);
+
+                        $startTime = new Time;
+                        $startTime->setFromString($lineDatas[5]);
+
+                        $endTime = new Time;
+                        $endTime->setFromString($lineDatas[6]);
         
                         $lecture = new Lecture;
                         $lecture->setIdPackage($request->postData('vbmifarePackage'));
@@ -81,9 +90,9 @@
                         $lecture->setNameEn($lineDatas[1]);
                         $lecture->setDescriptionFr($lineDatas[2]);
                         $lecture->setDescriptionEn($lineDatas[3]);
-                        $lecture->setDate($lineDatas[4]);
-                        $lecture->setStartTime($lineDatas[5]);
-                        $lecture->setEndTime($lineDatas[6]);
+                        $lecture->setDate($date);
+                        $lecture->setStartTime($startTime);
+                        $lecture->setEndTime($endTime);
 
                         array_push($lectures, $lecture);
                     }

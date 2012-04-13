@@ -8,6 +8,9 @@
     $TEXT['Menu_Lectures'] = "Lectures";
     $TEXT['Menu_MCQ'] = "M.C.Q";
 
+    $TEXT['Flash_SubscribeVisitor'] = 'Your can\'t subscribe because you are a visitor.';
+    $TEXT['Flash_SubscribeGenerated'] = 'Your can\'t subscribe because your MCQ is already generated.';
+    $TEXT['Flash_SubscribeTaken'] = 'Your can\'t subscribe because your MCQ is already taken.';
     $TEXT['Flash_SubscribeImpossible'] = "Subscribe impossible!";
     $TEXT['Flash_SubscribeOk'] = "Your subscribe is ok!";
     $TEXT['Flash_UnsubscribeOk'] = "Your unsubscribe is ok!";

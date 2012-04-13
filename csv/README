@@ -1,6 +1,10 @@
 Structure of CSV files
 ======================
 
+    Note : -Format des dates: DD-MM-YYYY
+           -Format des times: HH:MM:SS
+
+
 Package
 -------
     "Lecturer","Name_fr","Name_en","Description_fr","Description_en"
