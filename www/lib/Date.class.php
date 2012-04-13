@@ -26,6 +26,12 @@
                 $this->set(intval($dateArray[0]), intval($dateArray[1]), intval($dateArray[2]));
         }
 
+        public function setFromMySQLResult($date)
+        {
+            // Revert MySQL date format: YYYYMMDD -> DDMMYYYY
+            $this->setFromString( implode('-', array_reverse(explode('-',$date))) );
+        }
+
         public function setDay($day)
         {
             if(!(is_int($day)))
