@@ -8,4 +8,5 @@
 <ul>
     <li><a href="/vbMifare/admin/settings/changeAvailableAdmins.html">Configurations des admins</a></li>
     <li><a href="/vbMifare/admin/settings/changeAvailableStudents.html">Configurations des élèves autorisés</a></li>
+    <li><a href="/vbMifare/admin/settings/changeSubscribesStatus.html">Changer le status des inscriptions</a></li>
 </ul>
