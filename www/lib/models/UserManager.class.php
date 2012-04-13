@@ -1,5 +1,5 @@
 <?php
-    class ConnectionManager extends Manager
+    class UserManager extends Manager
     {
         public function retrieveStudentFromPolytech($logon)
         {
