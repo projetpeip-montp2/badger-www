@@ -111,5 +111,30 @@
         {
             return $this->m_endTime;
         }
+
+
+
+        static public function conflict(Lecture $lft, Lecture $rht)
+        {
+            $result;
+
+            if(Date::compare($lft->getDate(), $rht->getDate()) == 0)
+            {
+                $t1 = $lft->getStartTime();
+                $t2 = $lft->getEndTime();
+
+                $t3 = $rht->getStartTime();
+                $t4 = $rht->getEndTime();
+
+                $result = (Time::compare($t4, $t1) == 1) && 
+                          (Time::compare($t3, $t2) == -1);
+            }
+        
+            else
+                $result = false;
+
+            return $result;
+        }
     }
 ?>
+

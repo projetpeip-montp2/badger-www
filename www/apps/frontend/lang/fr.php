@@ -11,6 +11,7 @@
     $TEXT['Flash_SubscribeVisitor'] = 'Vous ne pouvez pas vous inscrire car vous êtes un visiteur.';
     $TEXT['Flash_SubscribeGenerated'] = 'Vous ne pouvez pas vous inscrire car votre QCM est déjà généré.';
     $TEXT['Flash_SubscribeTaken'] = 'Vous ne pouvez pas vous inscrire car vous avez déjà passé le QCM.';
+    $TEXT['Flash_SubscribeConflict'] = 'Il y a un conflit d\'horaires avec les conférences dèjà inscrites.';
     $TEXT['Flash_SubscribeImpossible'] = "Impossible d'accéder aux inscriptions!";
     $TEXT['Flash_SubscribeOk'] = "Votre incription est prise en compte.";
     $TEXT['Flash_UnsubscribeOk'] = "Votre désincription est prise en compte.";

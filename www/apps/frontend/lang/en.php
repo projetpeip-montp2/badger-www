@@ -11,6 +11,7 @@
     $TEXT['Flash_SubscribeVisitor'] = 'Your can\'t subscribe because you are a visitor.';
     $TEXT['Flash_SubscribeGenerated'] = 'Your can\'t subscribe because your MCQ is already generated.';
     $TEXT['Flash_SubscribeTaken'] = 'Your can\'t subscribe because your MCQ is already taken.';
+    $TEXT['Flash_SubscribeConflict'] = 'There is a conflict with the lectures who have already subscribe.';
     $TEXT['Flash_SubscribeImpossible'] = "Subscribe impossible!";
     $TEXT['Flash_SubscribeOk'] = "Your subscribe is ok!";
     $TEXT['Flash_UnsubscribeOk'] = "Your unsubscribe is ok!";

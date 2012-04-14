@@ -14,7 +14,7 @@
 
             // Retrieve registration id of the users
             $managerRegistration = $this->m_managers->getManagerOf('registration');
-            $registrationsId = $managerRegistration->getResgistrationsIdFromUser($username);
+            $registrationsOfUser = $managerRegistration->getResgistrationsFromUser($username);
 
             // Retrieve the package given by id in URL
             $managerPackage = $this->m_managers->getManagerOf('package');
@@ -31,13 +31,20 @@
 
             $package = $packages[0];
 
-            $wantSubscribe = !in_array($package->getId(), $registrationsId);
+            $wantSubscribe = true;
+            foreach($registrationsOfUser as $reg)
+            {
+                if($reg->getIdPackage() == $package->getId() )
+                    $wantSubscribe = false;
+            }
 
             // If the form is submitted, do the registration
             if($request->postExists('isSubmitted'))
             {
                 $this->checkSubscribe($request);
-                $this->checkConflict($request);
+
+                if($wantSubscribe)
+                    $this->checkConflict($lang, $request, $registrationsOfUser, $package);
 
                 $managerRegistration->subscribe($request->getData('idPackage'), $username, $wantSubscribe ? 1 : 0);
 
@@ -124,9 +131,48 @@
             }
         }
 
-        private function checkConflict(HTTPRequest $request)
+        private function checkConflict($lang, HTTPRequest $request, $registrationsOfUser, $packageNeeded)
         {
-            // TODO: Implémenter la fonction.
+            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
+
+            $managerLecture = $this->m_managers->getManagerOf('lecture');
+
+            // TODO: En créant une fonction dans le LectureManager prenant un
+            // tableau d'id de package on doit pouvoir optimiser toutes ces
+            // requêtes SQL.
+            // De la même façon on doit pouvoir améliorer la qualité du code ci-dessous.
+
+            $lectures = array();
+            foreach($registrationsOfUser as $reg)
+            {
+                $lecturesOfPackages = $managerLecture->get($lang, $reg->getIdPackage());
+
+                foreach($lecturesOfPackages as $l)
+                    array_push($lectures, $l);
+            }
+
+            $lecturesOfPackageNeeded = $managerLecture->get($lang, $packageNeeded->getId());
+
+            foreach($lecturesOfPackageNeeded as $l)
+                array_push($lectures, $l);
+
+
+            // Check all possible conflit
+            for($i=0; $i<count($lectures); $i++)
+            {
+                for($j=($i+1); $j<count($lectures); $j++)
+                {
+                    if(Lecture::conflict($lectures[$i], $lectures[$j]))
+                    {
+                        $messageFlash = $TEXT['Flash_SubscribeConflict'];
+
+                        $this->app()->user()->setFlash($messageFlash);
+                        $this->app()->httpResponse()->redirect($request->requestURI());
+                    }
+                }
+            }
+
+            // No conflict, continue
         }
     }
 ?>

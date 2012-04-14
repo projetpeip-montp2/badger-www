@@ -32,19 +32,6 @@
             return $result;
         }
 
-        public function getResgistrationsIdFromUser($idUsername)
-        {
-            $req = $this->m_dao->prepare('SELECT Id_package FROM Registrations WHERE Id_user = ?');
-            $req->execute(array($idUsername));
-
-            $result = array();
-            
-            while($data = $req->fetch())
-                $result[] = $data['Id_package'];
-
-            return $result;
-        }
-
         public function subscribe($idPackage, $username, $yesOrNo)
         {
             $req = $this->m_dao->prepare('SELECT Id_package FROM Registrations WHERE Id_package = ? AND Id_user = ?');
