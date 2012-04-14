@@ -22,6 +22,8 @@
     
     for ($i=0; $i<$num; $i++)
     {
+        // Don't remove or change the first $checkboxes[$i]! It is used to 
+        // retrieve the tables selected
         $form->add('checkbox', $checkboxes[$i])
              ->label($checkboxes[$i]);
     }

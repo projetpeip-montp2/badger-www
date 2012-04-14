@@ -9,6 +9,7 @@
     - Faire commenecer les variables de sessions utilisées par "vbmifare"
     - Commenter le code!!
     - Quand on veut utiliser des variables TEXT dans les controlleurs on est obliger d'inclure le fichier à la main...
+    - Optimiser les requêtes SQL
 
 
 Production:
@@ -18,6 +19,7 @@ Production:
 
 - Frontend:
     - Ecrire le planning
+    - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
 
 
 - Backend

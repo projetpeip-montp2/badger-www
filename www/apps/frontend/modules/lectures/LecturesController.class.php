@@ -12,12 +12,15 @@
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
+            // Retrieve registration id of the users
             $managerRegistration = $this->m_managers->getManagerOf('registration');
             $registrationsId = $managerRegistration->getResgistrationsIdFromUser($username);
 
+            // Retrieve the package given by id in URL
             $managerPackage = $this->m_managers->getManagerOf('package');
             $packages = $managerPackage->get($lang, $request->getData('idPackage'));
 
+            // Check that the package exists
             if(count($packages) != 1)
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
@@ -30,6 +33,7 @@
 
             $wantSubscribe = !in_array($package->getId(), $registrationsId);
 
+            // If the form is submitted, do the registration
             if($request->postExists('isSubmitted'))
             {
                 $this->checkSubscribe($request);
@@ -43,6 +47,7 @@
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
+            // Else display the form
             $this->page()->addVar('wantSubscribe', $wantSubscribe);
 
             $this->page()->addVar('package', $package);
@@ -54,6 +59,7 @@
 
         public function executeShowAll(HTTPRequest $request)
         {
+            // Display all packages
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
             $managerPackage = $this->m_managers->getManagerOf('package');
@@ -64,7 +70,7 @@
 
         public function executeSchedule()
         {
-
+            // Display schedule
         }
 
 
@@ -81,6 +87,7 @@
 
             $status = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
 
+            // Check is user's status is allowed for registrations
             if($status != 'CanTakeMCQ')
             {
                 $flashMessage = '';
@@ -109,6 +116,7 @@
             }
 
 
+            // Check if registrations are allowed
             if($this->app()->configGlobal()->get('canSubscribe') == '0')
             {
                 $this->app()->user()->setFlash($TEXT['Flash_SubscribeImpossible']);

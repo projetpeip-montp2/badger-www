@@ -8,16 +8,20 @@
 
         public function executeAddPackages(HTTPRequest $request)
         {
+            // If the form containing the filepath exist (aka the form is
+            // submitted)
             if ($request->fileExists('vbmifarePackagesCSV'))
             {
                 $fileData = $request->fileData('vbmifarePackagesCSV');
 
+                // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
                 {
                     $file = fopen($fileData['tmp_name'], 'r');
 
                     $packages = array();
 
+                    // Parsing package here from CSV file
                     while (($lineDatas = fgetcsv($file)) !== FALSE) 
                     {
                         if(count($lineDatas) != 5)
@@ -39,6 +43,7 @@
 
                     fclose($file);
 
+                    // Save all packages parsed
                     $manager = $this->m_managers->getManagerOf('package');
                     $manager->save($packages);
 
@@ -61,6 +66,7 @@
             {
                 $fileData = $request->fileData('vbmifareLecturesCSV');
 
+                // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
                 {
                     $file = fopen($fileData['tmp_name'], 'r');
@@ -99,6 +105,7 @@
 
                     fclose($file);
 
+                    // Save all lectures parsed
                     $managerLectures = $this->m_managers->getManagerOf('lecture');
                     $managerLectures->save($lectures);
 
@@ -115,6 +122,7 @@
             {
                 $fileData = $request->fileData('vbmifareQuestionsAnswersCSV');
 
+                // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
                 {
                     $file = fopen($fileData['tmp_name'], 'r');
@@ -174,6 +182,7 @@
 
                     fclose($file);
 
+                    // Save all questions/answers parsed
                     $managerMCQ->saveAnswers($answers);
 
                     $flashMessage .= 'Questions/answers uploaded.';

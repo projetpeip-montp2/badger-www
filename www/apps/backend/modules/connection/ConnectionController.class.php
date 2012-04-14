@@ -3,6 +3,7 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
+            // Check if the user is a admin
             if(!in_array($this->app()->user()->getAttribute('logon'), explode(';', $this->app()->configLocal()->get('adminsList'))))
                 $this->httpResponse->redirect403();
 
