@@ -123,5 +123,42 @@
         {
             return $this->m_day.'-'.$this->m_month.'-'.$this->m_year;
         }
+
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////
+        /// \brief Return the day of the week for a date.
+        ///
+        /// \warning: Work only with date greater than 1582.
+        ///
+        /// \params date : Date
+        ///
+        /// \return 0: dimanche
+        ///         1: lundi
+        ///         2: mardi
+        ///         3: mercredi
+        ///         4: jeudi
+        ///         5: vendredi
+        ///         6: samedi
+        ////////////////////////////////////////////////////////////
+        static public function dayOfWeek(Date $date)
+        {
+            $d = $date->day();
+            $m = $date->month();
+            $y = $date->year();
+
+            $z = ($m<3) ? $y-1 : $y;
+
+            $tmp = ((23 * $m)/9) + $d + 4 + $y + ($z/4) - ($z/100) + ($z/400);
+
+            if($m >= 3)
+                $tmp -= 2;
+
+            return $tmp % 7;
+        }
     }
 ?>
