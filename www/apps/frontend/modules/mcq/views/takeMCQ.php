@@ -3,23 +3,34 @@
 
     $form = new Form('', 'post');
 
-    // TODO: Corriger la génération du QCM, problème dans l'ordre des questions
-    // Vars to browse the answers array
-    $i = 0;
-    $size = count($answers) - 1;
-    foreach($questions as $question)
+    for($i=0; $i<count($questions); $i++)
     {
-        $form->add('label', $question->$methodLabel())
-             ->label($question->$methodLabel());
-        while($i < $size && $answers[$i]->getIdQuestion() == $question->getId())
+        $form->beginFieldset('Question ' . ($i + 1));
+
+        $form->add('label', '')
+             ->label($questions[$i]->$methodLabel());
+
+        foreach($answers as $answer)
         {
-            $i++;
-            // TODO: MODIFIER LE NAME ET LE ID POUR TRAITER LE FORM
-            $form->add('checkbox', $answers[$i]->$methodLabel())
-                 ->label($answers[$i]->$methodLabel());
+            if($questions[$i]->getId() == $answer->getIdQuestion())
+            {
+                // Don't remove or change $answer->getId()! It is used to 
+                // retrieve the answers of the user
+                $form->add('checkbox', $answer->getId())
+                     ->label($answer->$methodLabel());
+            }
         }
+
+        $form->endFieldset();
     }
+
+    $form->add('hidden', 'isSubmitted')
+         ->value('on');
+
     $form->add('submit', $TEXT['MCQ_SubmitAnswers']);
+
+    // TODO: Ajouter une fenêtre de confirmation en javascript si possible (cf. confirm() )
+
     echo $form->toString();
 ?>
 

@@ -132,5 +132,16 @@
                                     $answer->getTrueOrFalse()));
             }
         }
+
+        public function saveAnswersOfUser($answers)
+        {
+            $req = $this->m_dao->prepare('INSERT INTO AnswersOfUsers(Id_user,
+                                                                     Id_question,
+                                                                     Id_answer) VALUES(?, ?, ?)');
+            foreach($answers as $answer)
+                $req->execute(array($answer->getIdUser(),
+                                    $answer->getIdQuestion(),
+                                    $answer->getIdAnswer()));
+        }
     }
 ?>

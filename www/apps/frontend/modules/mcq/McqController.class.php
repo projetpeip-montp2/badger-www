@@ -14,6 +14,8 @@
         ////////////////////////////////////////////////////////////
         public function executeTakeMCQ(HTTPRequest $request)
         {
+            $logon = $this->app()->user()->getAttribute('logon');
+
             if(!$this->canTakeMCQ())
             {
                 // Inclusion of the langage file
@@ -24,20 +26,41 @@
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
 
+            $managerUser = $this->m_managers->getManagerOf('user');
+
             $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
             if($mcqStatus != 'Generated')
             {
-                $managerUser = $this->m_managers->getManagerOf('user');
                 $managerUser->updateStatus($this->app()->user()->getAttribute('logon'), 'Generated');
-
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Generated');
+
                 $questions = $this->selectQuestions();
             }
+
             else
                 $questions = $this->loadUsersQuestions();
 
             // Get questions and associated answers
             $answers = $this->getAssociatedAnswers($questions);
+
+            // If the user has validated the mcq
+            if($request->postExists('isSubmitted'))
+            {
+                $this->saveUserAnswers($request, $logon, $answers);
+
+                // Update the user status
+                $managerUser->updateStatus($this->app()->user()->getAttribute('logon'), 'Taken');
+                $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Taken');
+
+                // Inclusion of the langage file
+                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
+
+                // Redirection
+                $this->app()->user()->setFlash($TEXT['Flash_MCQTaken']);
+                $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
+            }
+
+            // Else display the form
             $this->page()->addVar('questions', $questions);
             $this->page()->addVar('answers', $answers);
             $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
@@ -119,6 +142,29 @@
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
             return $managerMCQ->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $lang);
+        }
+
+        private function saveUserAnswers(HTTPRequest $request, $logon, $answersInForm)
+        {
+            $answersOfUser = array();
+
+            // Retrieve answers of user from the answers in the form
+            foreach($answersInForm as $answer)
+            {
+                if($request->postExists($answer->getId()))
+                {
+                    $answerOfUser = new AnswerOfUser;
+                    $answerOfUser->setIdUser($logon);
+                    $answerOfUser->setIdQuestion($answer->getIdQuestion());
+                    $answerOfUser->setIdAnswer($answer->getId());
+
+                    array_push($answersOfUser, $answerOfUser);
+                }
+            }
+
+            // Save them
+            $managerMcq = $this->m_managers->getManagerOf('mcq');
+            $managerMcq->saveAnswersOfUser($answersOfUser);
         }
 
         private function getAssociatedAnswers($questions)

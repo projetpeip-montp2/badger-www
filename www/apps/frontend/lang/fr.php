@@ -15,6 +15,7 @@
     $TEXT['Flash_SubscribeOk'] = "Votre incription est prise en compte.";
     $TEXT['Flash_UnsubscribeOk'] = "Votre désincription est prise en compte.";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
+    $TEXT['Flash_MCQTaken'] = 'Vous avez validé vos réponses au QCM.';
     $TEXT['Flash_PackageUnknown'] = "Le package demandé n'existe pas!";
 
     $TEXT['Package_ListOf'] = "Liste des packages :";

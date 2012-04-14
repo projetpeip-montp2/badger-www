@@ -15,6 +15,7 @@
     $TEXT['Flash_SubscribeOk'] = "Your subscribe is ok!";
     $TEXT['Flash_UnsubscribeOk'] = "Your unsubscribe is ok!";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
+    $TEXT['Flash_MCQTaken'] = 'You have validated your answers in the MCQ.';
     $TEXT['Flash_PackageUnknown'] = "The package doesn't exist!";
 
     $TEXT['Package_ListOf'] = "List of packages :";
