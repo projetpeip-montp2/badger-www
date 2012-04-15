@@ -43,16 +43,32 @@
 
     class FormComponentSubmit extends FormComponentWithParagraph
     {
+        private $m_onClick;
+
         public function __construct($name)
         {
             parent::__construct($name);
 
             $this->m_isInParagraph = false;
+
+            $this->m_onClick = '';
+        }
+
+        public function onClick($onClick)
+        {
+            $this->m_onClick = $onClick;
         }
 
         public function getOutput()
         {
-            return '<input type="submit" value="' . $this->getName() . '" />';
+            $output = '<input type="submit" value="' . $this->getName() . '"';
+
+            if($this->m_onClick)
+                $output .= ' onclick="' . $this->m_onClick . '"';
+
+            $output .= '/>';
+
+            return $output;
         }
     }
 

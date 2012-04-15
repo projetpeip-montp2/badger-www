@@ -37,5 +37,6 @@
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";
     $TEXT['MCQ_SubmitAnswers'] = "Valider les réponses";
+    $TEXT['MCQ_Confirmation'] = "Etes-vous sûr de vouloir valider vos réponses?";
 ?>
 
