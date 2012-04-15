@@ -5,6 +5,16 @@ Structure of CSV files
            -Format des times: HH:MM:SS
 
 
+Availability
+------------
+    "Date","StartTime","EndTime"
+
+
+Classroom
+---------
+    "Name","Size"
+
+
 Package
 -------
     "Lecturer","Name_fr","Name_en","Description_fr","Description_en"

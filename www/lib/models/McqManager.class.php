@@ -107,8 +107,8 @@
                                                                 Status) VALUES(?, ?, ?, ?)');
 
             $req->execute(array($question->getIdPackage(),
-                                $question->getlabelFr(),
-                                $question->getlabelEn(),
+                                $question->getLabelFr(),
+                                $question->getLabelEn(),
                                 $question->getStatus()));
 
             return $this->m_dao->lastInsertId();
@@ -127,8 +127,8 @@
                     throw new InvalidArgumentException('Invalid answers true or false in McqManager::saveAnswers');
 
                 $req->execute(array($answer->getIdQuestion(),
-                                    $answer->getlabelFr(),
-                                    $answer->getlabelEn(),
+                                    $answer->getLabelFr(),
+                                    $answer->getLabelEn(),
                                     $answer->getTrueOrFalse()));
             }
         }

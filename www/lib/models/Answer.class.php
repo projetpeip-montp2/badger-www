@@ -32,7 +32,7 @@
             $this->m_label_fr = $labelFr;
         }
 
-        public function getlabelFr()
+        public function getLabelFr()
         {
             return $this->m_label_fr;
         }
@@ -42,7 +42,7 @@
             $this->m_label_en = $labelEn;
         }
 
-        public function getlabelEn()
+        public function getLabelEn()
         {
             return $this->m_label_en;
         }

@@ -4,5 +4,35 @@
         private $m_idClassroom;
         private $m_name;
         private $m_size;
+
+        public function setId($idClassroom)
+        {
+            $this->m_idClassroom = $idClassroom;
+        }
+
+        public function getId()
+        {
+            return $this->m_idClassroom;
+        }
+
+        public function setName($name)
+        {
+            $this->m_name = $name;
+        }
+
+        public function getName()
+        {
+            return $this->m_name;
+        }
+
+        public function setSize($size)
+        {
+            $this->m_size = $size;
+        }
+
+        public function getSize()
+        {
+            return $this->m_size;
+        }
     }
 ?>

@@ -2,6 +2,10 @@
     <route url="/admin/*" module="home" action="index"/>
     <route url="/admin/home/index\.html" module="home" action="index"/>
 
+    <route url="/admin/classrooms/index\.html" module="classrooms" action="index"/>
+    <route url="/admin/classrooms/addClassrooms\.html" module="classrooms" action="addClassrooms"/>
+    <route url="/admin/classrooms/addAvailabilities\.html" module="classrooms" action="addAvailabilities"/>
+
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
     <route url="/admin/lectures/addLecturesAndQuestionsAnswers\.html" module="lectures" action="addLecturesAndQuestionsAnswers"/>
     <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
