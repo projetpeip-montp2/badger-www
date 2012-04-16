@@ -21,7 +21,7 @@ Availabilities:
 
 
 BadgingInformations:
-    Myfare
+    Mifare
     Date 
     Time
 	
@@ -30,6 +30,11 @@ Classrooms:
     Id_classroom
     Name
     Size
+
+
+Config:
+    Key
+    Value
 
 
 DocumentsOfPackages:
@@ -55,6 +60,14 @@ Lectures:
     Lecturer
     Description_fr
     Description_en
+    Date
+    StartTime
+    EndTime
+
+
+MCQs:
+    Department
+    SchoolYear
     Date
     StartTime
     EndTime

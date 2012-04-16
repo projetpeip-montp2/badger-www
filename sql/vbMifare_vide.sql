@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 14 Avril 2012 à 00:19
+-- Généré le: Lun 16 Avril 2012 à 15:02
 -- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
@@ -92,6 +92,17 @@ CREATE TABLE IF NOT EXISTS `Classrooms` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Config`
+--
+
+CREATE TABLE IF NOT EXISTS `Config` (
+  `Key` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `Value` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `DocumentsOfPackages`
 --
 
@@ -134,6 +145,20 @@ CREATE TABLE IF NOT EXISTS `Lectures` (
   `EndTime` time NOT NULL,
   PRIMARY KEY (`Id_lecture`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `MCQs`
+--
+
+CREATE TABLE IF NOT EXISTS `MCQs` (
+  `Department` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `SchoolYear` smallint(5) unsigned NOT NULL,
+  `Date` date NOT NULL,
+  `StartTime` time NOT NULL,
+  `EndTime` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
