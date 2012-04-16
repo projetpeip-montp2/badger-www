@@ -106,7 +106,6 @@ CREATE TABLE IF NOT EXISTS `Config` (
 --
 
 INSERT INTO `Config` (`Name`, `Value`) VALUES
-('availableUsersList', 'vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux'),
 ('MCQStartDate', '12-04-2008'),
 ('MCQMaxQuestions', '3'),
 ('canSubscribe', '1'),

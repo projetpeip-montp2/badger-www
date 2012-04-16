@@ -10,13 +10,8 @@
             // because the website is on intranet
             $student = $manager->retrieveStudentFromPolytech($this->app()->user()->getAttribute('logon'));
 
+            // Default status
             $mcqStatus = 'Visitor';
-
-            // TODO: Supprimer ce test qui sert seulement pour le developpement
-            ////////////////////////////////////////////////////////////////////
-            if(in_array($this->app()->user()->getAttribute('logon'), explode(';', $this->app()->config()->get('availableUsersList'))))
-                $mcqStatus = 'CanTakeMCQ';
-            ////////////////////////////////////////////////////////////////////
 
             // Check here if the visitor can take the mcq
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
