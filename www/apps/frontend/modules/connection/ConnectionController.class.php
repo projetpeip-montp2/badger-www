@@ -19,14 +19,12 @@
             ////////////////////////////////////////////////////////////////////
 
             // Check here if the visitor can take the mcq
-            $availableDptSchoolYear = explode(';', $this->app()->config()->get('availableStudentsList'));
-            $found = false;
-            foreach($availableDptSchoolYear as $elem)
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get();
+            foreach($mcqs as $elem)
             {
-                $dpt = substr($elem, 0, strlen($elem)-1);
-                $year = substr($elem, strlen($elem)-1);
-
-                if($student->getDepartement() == $dpt && $student->getSchoolYear() == $year)
+                if($student->getDepartment() == $elem->getDepartment() && 
+                   $student->getSchoolYear() == $elem->getSchoolYear())
                     $mcqStatus = 'CanTakeMCQ';
             }
  

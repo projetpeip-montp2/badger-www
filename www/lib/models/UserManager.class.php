@@ -17,7 +17,7 @@
 
             $student = new Student;
             $student->setUsername($data['Username']);
-            $student->setDepartement($data['Departement']);
+            $student->setDepartment($data['Departement']);
             $student->setActive($data['Actif']);
             $student->setStatus($data['Statut']);
             $student->setSchoolYear($data['anApogee']);

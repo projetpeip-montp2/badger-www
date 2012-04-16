@@ -21,14 +21,14 @@
             return $this->m_username;
         }
 
-        public function setDepartement($departement)
+        public function setDepartment($department)
         {
-            $this->m_departement = $departement;
+            $this->m_department = $department;
         }
 
-        public function getDepartement()
+        public function getDepartment()
         {
-            return $this->m_departement;
+            return $this->m_department;
         }
 
         public function setActive($active)

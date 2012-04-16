@@ -6,11 +6,6 @@
 
         }
 
-        public function executeChangeAvailableStudents(HTTPRequest $request)
-        {
-
-        }
-
         public function executeChangeAvailableAdmins(HTTPRequest $request)
         {
             // If the form is submitted, we replace the current admin list by 

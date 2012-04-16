@@ -22,7 +22,7 @@
             <?php echo $user->getAttribute('logon'); ?> |
             <?php 
                 $student = $user->getAttribute('vbmifareStudent');
-                echo $student->getDepartement(); 
+                echo $student->getDepartment(); 
                 echo $student->getSchoolYear();
             ?>
         </div>

@@ -14,6 +14,7 @@
   'answer' => 'lib/models/Answer.class.php',
   'documentofpackage' => 'lib/models/DocumentOfPackage.class.php',
   'classroom' => 'lib/models/Classroom.class.php',
+  'mcq' => 'lib/models/MCQ.class.php',
   'lecturemanager' => 'lib/models/LectureManager.class.php',
   'classroommanager' => 'lib/models/ClassroomManager.class.php',
   'package' => 'lib/models/Package.class.php',

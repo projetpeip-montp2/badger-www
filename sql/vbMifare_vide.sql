@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 16 Avril 2012 à 15:02
+-- Généré le: Lun 16 Avril 2012 à 16:35
 -- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `vbMifare`;
 USE `vbMifare`;
+
 
 -- --------------------------------------------------------
 
@@ -96,9 +97,21 @@ CREATE TABLE IF NOT EXISTS `Classrooms` (
 --
 
 CREATE TABLE IF NOT EXISTS `Config` (
-  `Key` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `Name` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Value` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `Config`
+--
+
+INSERT INTO `Config` (`Name`, `Value`) VALUES
+('availableUsersList', 'vbmifare;gregoire.guisez;jamal.hennani;victor.hiairrassary;william.tassoux'),
+('MCQStartDate', '12-04-2008'),
+('MCQMaxQuestions', '3'),
+('canSubscribe', '1'),
+('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
+('availablesLanguagesList', 'fr;en');
 
 -- --------------------------------------------------------
 
