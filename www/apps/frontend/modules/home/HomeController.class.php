@@ -14,7 +14,7 @@
         public function executeChangeLang(HTTPRequest $request)
         {
             // Check that the lang sent by URL is available
-            if(!in_array($request->getData('newLang'), explode(';', $this->app()->configLocal()->get('availablesLanguagesList'))))
+            if(!in_array($request->getData('newLang'), explode(';', $this->app()->config()->get('availablesLanguagesList'))))
                 throw new RuntimeException('The language requested is forbiden');
 
             $this->app()->user()->setAttribute('vbmifareLang', $request->getData('newLang'));

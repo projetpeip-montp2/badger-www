@@ -19,7 +19,7 @@
             {
                 $newAdminList = $this->app()->user()->getAttribute('logon') . ';' . $request->postData('adminList');
 
-                $this->app()->configLocal()->replace('adminsList', $newAdminList);
+                $this->app()->config()->replace('adminsList', $newAdminList);
 
                 $this->app()->user()->setFlash('Admin list changed for "' . $newAdminList . '".');
                 $this->app()->httpResponse()->redirect($request->requestURI());
@@ -31,13 +31,13 @@
         public function executeChangeSubscribesStatus(HTTPRequest $request)
         {
             // Retrieve current registrations status
-            $authorized = $this->app()->configGlobal()->get('canSubscribe') != 0;
+            $authorized = $this->app()->config()->get('canSubscribe') != 0;
 
             // If the form is submitted, we replace the current registration
             // status by the new
             if($request->postExists('isSubmitted'))
             {
-                $this->app()->configGlobal()->replace('canSubscribe', $authorized ? 0 : 1);
+                $this->app()->config()->replace('canSubscribe', $authorized ? 0 : 1);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 

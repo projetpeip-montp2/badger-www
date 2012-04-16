@@ -1,64 +1,41 @@
 <?php
+    // TODO: Sortir les connections à la base de donnée de cette classe
+
     class Config extends ApplicationComponent
     {
         protected $m_vars = array();
-        protected $m_isGlobal;
-        protected $m_filename;
 
-        public function __construct(Application $app, $isGlobal)
+        public function load($force)
         {
-            parent::__construct($app);
-            
-            $this->m_isGlobal = $isGlobal;
+            if (!$this->m_vars || $force)
+            {
+                $dao = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
+
+                $req = $dao->query('SELECT * FROM Config');
+                
+                foreach($req->fetchAll() as $elem)
+                    $this->m_vars[$elem['Name']] = $elem['Value'];
+            }
         }
 
-        private function initFilename()
-        {
-            // We don't create $filename before, because in constructor, app haven't got a name.
-            $this->m_filename = ($this->m_isGlobal) ? dirname(__FILE__).'/../config.xml' :
-                                                      dirname(__FILE__).'/../apps/'.$this->app()->name().'/config/app.xml';
-        }
-        
         public function get($var)
         {
-            $this->initFilename();
-
-            if (!$this->m_vars)
-            {
-                $xml = new DOMDocument;
-                $xml->load($this->m_filename);
-                
-                $elements = $xml->getElementsByTagName('define');
-                
-                foreach ($elements as $element)
-                    $this->m_vars[$element->getAttribute('var')] = $element->getAttribute('value');
-            }
+            $this->load(false);
             
             if(!isset($this->m_vars[$var]))
-                throw new RuntimeException('The config variable "'. $var .'" is not defined in file "' . $this->m_filename . '"');
+                throw new RuntimeException('The config variable "'. $var .'" does not exist.');
 
             return $this->m_vars[$var];
         }
 
-        public function replace($var, $value)
+        public function replace($key, $value)
         {
-            $this->initFilename();
+            $dao = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
 
-            $xml = new DOMDocument;
-            $xml->load($this->m_filename);
-            
-            $elements = $xml->getElementsByTagName('define');
-            
-            foreach ($elements as $element)
-            {
-                if($element->getAttribute('var') == $var)
-                    $element->setAttribute('value', $value);
-            }
+            $req = $dao->prepare('UPDATE Config SET Value = ? WHERE Name = ?');
+            $req->execute(array($value, $key));
 
-            $result = $xml->save($this->m_filename);
-
-            if(!$result)
-                throw new RuntimeException('Impossible to save the new xml config file : ' . $this->m_filename);
+            $this->load(true);
         }
     } 
 ?>

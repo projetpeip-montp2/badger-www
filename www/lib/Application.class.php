@@ -1,8 +1,7 @@
 <?php
     abstract class Application
     {
-        private $m_configLocal;
-        private $m_configGlobal;
+        private $m_config;
         private $m_httpRequest;
         private $m_httpResponse;
         private $m_name;
@@ -10,8 +9,7 @@
         
         public function __construct()
         {
-            $this->m_configLocal = new Config($this, false);
-            $this->m_configGlobal = new Config($this, true);
+            $this->m_config = new Config($this);
 
             $this->m_httpRequest = new HTTPRequest($this);
             $this->m_httpResponse = new HTTPResponse($this);
@@ -22,16 +20,11 @@
         
         abstract public function run();
         
-        public function configLocal()
+        public function config()
         {
-            return $this->m_configLocal;
+            return $this->m_config;
         }
 
-        public function configGlobal()
-        {
-            return $this->m_configGlobal;
-        }
-        
         public function httpRequest()
         {
             return $this->m_httpRequest;
