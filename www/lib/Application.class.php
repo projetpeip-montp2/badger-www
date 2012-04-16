@@ -1,7 +1,6 @@
 <?php
     abstract class Application
     {
-        private $m_config;
         private $m_httpRequest;
         private $m_httpResponse;
         private $m_name;
@@ -9,8 +8,6 @@
         
         public function __construct()
         {
-            $this->m_config = new Config($this);
-
             $this->m_httpRequest = new HTTPRequest($this);
             $this->m_httpResponse = new HTTPResponse($this);
             $this->m_user = new User($this);
@@ -19,11 +16,6 @@
         }
         
         abstract public function run();
-        
-        public function config()
-        {
-            return $this->m_config;
-        }
 
         public function httpRequest()
         {

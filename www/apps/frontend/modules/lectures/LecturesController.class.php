@@ -124,7 +124,7 @@
 
 
             // Check if registrations are allowed
-            if($this->app()->config()->get('canSubscribe') == '0')
+            if($this->m_managers->getManagerOf('config')->get('canSubscribe') == '0')
             {
                 $this->app()->user()->setFlash($TEXT['Flash_SubscribeImpossible']);
                 $this->app()->httpResponse()->redirect($request->requestURI());

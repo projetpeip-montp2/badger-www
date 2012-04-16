@@ -1,7 +1,5 @@
 <?php
-    // TODO: Sortir les connections à la base de donnée de cette classe
-
-    class Config extends ApplicationComponent
+    class ConfigManager extends Manager
     {
         protected $m_vars = array();
 
@@ -9,9 +7,7 @@
         {
             if (!$this->m_vars || $force)
             {
-                $dao = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
-
-                $req = $dao->query('SELECT * FROM Config');
+                $req = $this->m_dao->query('SELECT * FROM Config');
                 
                 foreach($req->fetchAll() as $elem)
                     $this->m_vars[$elem['Name']] = $elem['Value'];
@@ -30,9 +26,7 @@
 
         public function replace($key, $value)
         {
-            $dao = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
-
-            $req = $dao->prepare('UPDATE Config SET Value = ? WHERE Name = ?');
+            $req = $this->m_dao->prepare('UPDATE Config SET Value = ? WHERE Name = ?');
             $req->execute(array($value, $key));
 
             $this->load(true);

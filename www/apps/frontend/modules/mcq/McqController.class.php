@@ -77,7 +77,7 @@
 
             $startDate = new Date;
             $currentDate = new Date;
-            $startDate->setFromString($this->app()->config()->get('MCQStartDate'));
+            $startDate->setFromString($this->m_managers->getManagerOf('config')->get('MCQStartDate'));
 
             date_default_timezone_set('Europe/Paris');
             $currentDate->setFromString(date('d-m-Y'));
@@ -87,7 +87,7 @@
 
         private function selectQuestions()
         {
-            $maxQuestionNumber = $this->app()->config()->get('MCQMaxQuestions');
+            $maxQuestionNumber = $this->m_managers->getManagerOf('config')->get('MCQMaxQuestions');
 
             $username = $this->app()->user()->getAttribute('logon');
 
