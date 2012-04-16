@@ -57,5 +57,17 @@
             $req = $this->m_dao->prepare('UPDATE Users SET MCQStatus = ? WHERE Id_user = ?');
             $req->execute(array($status, $logon));
         }
+
+        public function getDepartments()
+        {
+            $req = $this->m_dao->query('SHOW COLUMNS FROM Polytech.Users LIKE \'Departement\'');
+
+            $result = $req->fetch();
+
+            // Remove enum( at the begining and ) at the end
+            $tmp = $type = substr($result['Type'], 5, -1);
+
+            return str_getcsv($tmp, ',', '\'');
+        }
     }
 ?>
