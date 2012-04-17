@@ -1,13 +1,16 @@
 <?php
     class McqManager extends Manager
     {
-        public function get()
+        public function get($department, $schoolYear)
         {
             $requestSQL = 'SELECT Department,
                                   SchoolYear,
                                   Date,
                                   StartTime,
                                   EndTime FROM MCQs';
+
+            if($department && $schoolYear)
+                $requestSQL .= ' WHERE Departement = ' . $departement . ' AND SchoolYear = ' . $schoolYear;
 
             $req = $this->m_dao->prepare($requestSQL);
             $req->execute(); 

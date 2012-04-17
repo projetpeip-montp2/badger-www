@@ -73,16 +73,36 @@
         ////////////////////////////////////////////////////////////
         private function canTakeMCQ()
         {
-            $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
+            $student = $this->app()->user()->getAttribute('vbmifareStudent');
 
-            $startDate = new Date;
-            $currentDate = new Date;
-            $startDate->setFromString($this->m_managers->getManagerOf('config')->get('MCQStartDate'));
+            $department = $student->getDepartment();
+            $schoolYear = $student->getSchoolYear();
+            $mcqStatus = $student->getMCQStatus();
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get($department, $schoolYear);
+
+            $goodDate = false;
+            $goodTime = false;
 
             date_default_timezone_set('Europe/Paris');
+            $currentDate = new Date;
             $currentDate->setFromString(date('d-m-Y'));
 
-            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && (Date::compare($currentDate, $startDate) >= 0));
+            $currentTime = new Time;
+            $currentTime->setFromString(date('H:i:s'));
+
+            foreach($mcqs as $mcq)
+            {
+                if(Date::compare($currentDate, $mcq->getDate()) == 0)
+                    $goodDate = true;
+
+                if( (Time::compare($currentTime, $mcq->getStartTime()) >= 0) &&
+                    (Time::compare($currentTime, $mcq->getEndTime()) == -1) )
+                    $goodTime = true;
+            }
+
+            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime);
         }
 
         private function selectQuestions()
