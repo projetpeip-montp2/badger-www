@@ -30,8 +30,6 @@
     $form->add('submit', $TEXT['MCQ_SubmitAnswers'])
          ->onClick('return confirmation(\'' . $TEXT['MCQ_Confirmation'] . '\');');
 
-    // TODO: Ajouter une fenêtre de confirmation en javascript si possible (cf. confirm() )
-
     echo $form->toString();
 ?>
 

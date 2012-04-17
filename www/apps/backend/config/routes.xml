@@ -9,6 +9,7 @@
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
     <route url="/admin/lectures/addLecturesAndQuestionsAnswers\.html" module="lectures" action="addLecturesAndQuestionsAnswers"/>
     <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
+    <route url="/admin/lectures/modifyPackages\.html" module="lectures" action="modifyPackages"/>
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
 

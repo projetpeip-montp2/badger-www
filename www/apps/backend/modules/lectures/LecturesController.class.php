@@ -199,13 +199,33 @@
             $managerPackages = $this->m_managers->getManagerOf('package');
             $packages = $managerPackages->get($lang);
 
-            if( count($packages) == 0)
+            if(count($packages) == 0)
             {
                 $this->app()->user()->setFlash('You need at least a package to upload Lectures or Questions/Answers.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
             $this->app()->user()->setFlash($flashMessage); 
+
+            $this->page()->addVar('packages', $packages);
+        }
+
+        public function executeModifyPackages(HTTPRequest $request)
+        {
+            // Handle POST data
+            
+
+            // Else display the form
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $managerPackages = $this->m_managers->getManagerOf('package');
+            $packages = $managerPackages->get($lang);
+
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlash('Il n\'y a pas de packages dans la base de données.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+            }
 
             $this->page()->addVar('packages', $packages);
         }

@@ -5,4 +5,5 @@
 <ul>
     <li><a href="/vbMifare/admin/lectures/addPackages.html">Uploader des packages</a></li>
     <li><a href="/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html">Uploader des conférences, questions et réponses</a></li>
+    <li><a href="/vbMifare/admin/lectures/modifyPackages.html">Modifier un package de conférences</a></li>
 </ul>

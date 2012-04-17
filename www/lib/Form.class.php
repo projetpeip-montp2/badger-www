@@ -21,7 +21,12 @@
             return $this->m_name;
         }
 
-        public function isInParagraph()
+        public function isInParagraph($isInParagraph)
+        {
+            $this->m_isInParagraph = $isInParagraph;
+        }
+
+        public function getIsInParagraph()
         {
             return $this->m_isInParagraph;
         }
@@ -194,11 +199,41 @@
 
     class FormComponentText extends FormComponentWithLabel
     {
+        private $m_placeHolder;
+        private $m_value;
+
         public function __construct($name)
         {
             parent::__construct($name);
 
             $this->m_isInParagraph = true;
+
+            $this->m_placeHolder = '';
+            $this->m_value = '';
+        }
+
+        public function placeHolder($placeHolder)
+        {
+            $this->m_placeHolder = $placeHolder;
+
+            return $this;
+        }
+
+        public function getPlaceHolder()
+        {
+            return $this->m_placeHolder;
+        }
+
+        public function value($value)
+        {
+            $this->m_value = $value;
+
+            return $this;
+        }
+
+        public function getValue()
+        {
+            return $this->m_value;
         }
 
         public function getOutput()
@@ -208,13 +243,83 @@
             if($this->getLabel())
                 $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
 
-            $output .= '<input type="text" name="' . $this->getName() . '" id="' . $this->getName() . '"/>';
+            $output .= '<input type="text" name="' . $this->getName() . 
+                                        '" id="' . $this->getName() . 
+                                        '" placeholder="' . $this->getPlaceHolder() . 
+                                        '" value="' . $this->getValue() . '"/>';
 
             return $output;
         }
     }
 
+    class FormComponentTextArea extends FormComponentWithLabel
+    {
+        private $m_text;
+        private $m_rows;
+        private $m_cols;
 
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = true;
+
+            $this->m_text = '';
+            $this->m_rows = 3;
+            $this->m_cols = 22;
+        }
+
+        public function rows($rows)
+        {
+            $this->m_rows = $rows;
+
+            return $this;
+        }
+
+        public function getRows()
+        {
+            return $this->m_rows;
+        }
+
+        public function cols($cols)
+        {
+            $this->m_cols = $cols;
+
+            return $this;
+        }
+
+        public function getCols()
+        {
+            return $this->m_cols;
+        }
+
+        public function text($text)
+        {
+            $this->m_text = $text;
+
+            return $this;
+        }
+
+        public function getText()
+        {
+            return $this->m_text;
+        }
+
+        public function getOutput()
+        {
+            $output = '';
+
+            if($this->getLabel())
+                $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
+
+            $output .= '<textarea name="' . $this->getName() . 
+                               '" id="' . $this->getName() . 
+                               '" rows="' . $this->getRows() . 
+                               '" cols="' . $this->getCols() . '">' . $this->getText() .'</textarea>';
+
+            return $output;
+        }
+    }
 
     class FormComponentCheckbox extends FormComponentWithLabel
     {
@@ -441,6 +546,10 @@
                     $component = new FormComponentText($name);
                     break;
 
+                case 'textarea':
+                    $component = new FormComponentTextArea($name);
+                    break;
+
                 default:
                     throw new RuntimeException('Unknown FormComponent : "' . $type . '"');
                     break;
@@ -472,18 +581,45 @@
 
             foreach($this->m_formComponents as $component)
             {
-                if($component->isInParagraph())
+                if($component->getIsInParagraph())
                     $output .= '<p>';
 
                 $output .= $component->getOutput();
 
-                if($component->isInParagraph())
+                if($component->getIsInParagraph())
                     $output .= '</p>'  . "\n";
             }
 
             $output .= "\n" . '</form>';
 
             return $output;
+        }
+
+        public function toTr()
+        {
+            $this->disableParagraphs();
+
+            if($this->m_fieldsetNumber > 0)
+                throw new RuntimeException('A fieldset is always open');
+            if(!$this->m_hasSubmit)
+                throw new RuntimeException('No submit input in the form');
+
+            $output = '';
+            $output .= '<form action="' .  $this->m_action . '" method="' . $this->m_method . '">';
+            $output .= '<tr>';
+
+            foreach($this->m_formComponents as $component)
+                $output .= "\n" . '<td class="FormTd">' . $component->getOutput() . '</td>';
+
+            $output .= "\n" . '</tr></form>';
+
+            return $output;
+        }
+
+        public function disableParagraphs()
+        {
+            foreach($this->m_formComponents as $component)
+                $component->isInParagraph(false);
         }
     } 
 ?>

@@ -93,3 +93,13 @@ a, a:visited
 {
     padding-left: 3%;
 }
+
+.FormTable
+{
+    border-collapse: collapse;
+}
+
+.FormTd
+{
+    border: 1px solid black;
+}
