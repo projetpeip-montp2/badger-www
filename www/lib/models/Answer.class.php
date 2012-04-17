@@ -3,8 +3,7 @@
     {
         private $m_idAnswer;
         private $m_idQuestion;
-        private $m_label_fr;
-        private $m_label_en;
+        private $m_label;
         private $m_trueOrFalse;
 
         public function setId($idAnswer)
@@ -27,24 +26,14 @@
             return $this->m_idQuestion;
         }
 
-        public function setLabelFr($labelFr)
+        public function setLabel($lang, $label)
         {
-            $this->m_label_fr = $labelFr;
+            $this->m_label[$lang] = $label;
         }
 
-        public function getLabelFr()
+        public function getLabel($lang)
         {
-            return $this->m_label_fr;
-        }
-
-        public function setLabelEn($labelEn)
-        {
-            $this->m_label_en = $labelEn;
-        }
-
-        public function getLabelEn()
-        {
-            return $this->m_label_en;
+            return $this->m_label[$lang];
         }
 
         public function setTrueOrFalse($trueOrFalse)

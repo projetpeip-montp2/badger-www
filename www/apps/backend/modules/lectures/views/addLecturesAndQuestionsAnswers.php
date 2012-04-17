@@ -4,7 +4,7 @@
     $choices = array();
 
     foreach($packages as $package)
-        $choices[$package->getId()] = $package->getNameFr();
+        $choices[$package->getId()] = $package->getName('fr');
 
     $form->add('select', 'vbmifarePackage')
          ->label('Sélection du package : ')

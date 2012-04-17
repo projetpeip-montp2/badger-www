@@ -1,12 +1,7 @@
-<?php
-    $methodName = 'getName'.ucfirst($lang);
-    $methodDescription = 'getDescription'.ucfirst($lang);
-?>
-
-    <h1><?php echo $package->$methodName(); ?></h1>
+    <h1><?php echo $package->getName($lang); ?></h1>
     <ul>
         <li><?php echo $TEXT['Package_Lecturer'] . ': ' . $package->getLecturer(); ?></li>
-        <li><?php echo $TEXT['Package_Description'] . ': ' . $package->$methodDescription(); ?></li>
+        <li><?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?></li>
     </ul>
 
 
@@ -19,9 +14,9 @@
     foreach($lectures as $lecture)
     {
 ?>
-    <h1><?php echo $lecture->$methodName(); ?></h1>
+    <h1><?php echo $lecture->getName($lang); ?></h1>
     <ul>
-        <li><?php echo $TEXT['Package_Description'] . ': ' . $lecture->$methodDescription(); ?></li>
+        <li><?php echo $TEXT['Package_Description'] . ': ' . $lecture->getDescription($lang); ?></li>
         <li><?php echo $TEXT['Lecture_Date'] . ': ' . $lecture->getDate(); ?></li>
         <li><?php echo $TEXT['Lecture_StartTime'] . ': ' . $lecture->getStartTime(); ?></li>
         <li><?php echo $TEXT['Lecture_EndTime'] . ': ' . $lecture->getEndTime(); ?></li>

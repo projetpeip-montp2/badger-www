@@ -3,10 +3,8 @@
     {
         private $m_idPackage;
         private $m_lecturer;
-        private $m_name_fr;
-        private $m_name_en;
-        private $m_description_fr;
-        private $m_description_en;
+        private $m_name;
+        private $m_description;
 
         public function setId($idPackage)
         {
@@ -28,44 +26,24 @@
             return $this->m_lecturer;
         }
 
-        public function setNameFr($name_fr)
+        public function setName($lang, $name)
         {
-            $this->m_name_fr = $name_fr;
+            $this->m_name[$lang] = $name;
         }
 
-        public function getNameFr()
+        public function getName($lang)
         {
-            return $this->m_name_fr;
+            return $this->m_name[$lang];
         }
 
-        public function setNameEn($name_en)
+        public function setDescription($lang, $description)
         {
-            $this->m_name_en = $name_en;
+            $this->m_description[$lang] = $description;
         }
 
-        public function getNameEn()
+        public function getDescription($lang)
         {
-            return $this->m_name_en;
-        }
-
-        public function setDescriptionFr($description_fr)
-        {
-            $this->m_description_fr = $description_fr;
-        }
-
-        public function getDescriptionFr()
-        {
-            return $this->m_description_fr;
-        }
-
-        public function setDescriptionEn($description_en)
-        {
-            $this->m_description_en = $description_en;
-        }
-
-        public function getDescriptionEn()
-        {
-            return $this->m_description_en;
+            return $this->m_description[$lang];
         }
     }
 ?>

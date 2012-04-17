@@ -123,7 +123,7 @@
             $questions = array();
             foreach($registrations as $reg)
             {
-                $questionOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), $lang, 'Obligatory');
+                $questionOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), 'Obligatory');
                 $questions = array_merge($questions, $questionOneLecture);
             }
 
@@ -144,7 +144,7 @@
             $questions = array();
             foreach($registrations as $reg)
             {
-                $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), $lang, 'Possible');
+                $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), 'Possible');
                 $questions = array_merge($questions, $questionsOneLecture);
             }
             shuffle($questions);
@@ -161,7 +161,7 @@
 
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
-            return $managerMCQ->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $lang);
+            return $managerMCQ->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername());
         }
 
         private function saveUserAnswers(HTTPRequest $request, $logon, $answersInForm)
@@ -196,7 +196,7 @@
             $answers = array();
             foreach($questions as $question)
             {
-                $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId(), $lang);
+                $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId());
                 $answers = array_merge($answers, $answersOneQuestion);
             }
 

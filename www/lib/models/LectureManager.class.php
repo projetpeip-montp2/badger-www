@@ -1,16 +1,15 @@
 <?php
     class LectureManager extends Manager
     {
-        public function get($lang, $idPackage = -1)
+        public function get($idPackage = -1)
         {
-            $methodName = 'setName'.ucfirst($lang);
-            $methodDescription = 'setDescription'.ucfirst($lang);
-
             $requestSQL = 'SELECT Id_lecture,
                                   Id_package,
                                   Id_availability, 
-                                  Name_'.$lang.', 
-                                  Description_'.$lang.', 
+                                  Name_fr, 
+                                  Name_en, 
+                                  Description_fr,
+                                  Description_en,
                                   Date,
                                   StartTime,
                                   EndTime FROM Lectures';
@@ -38,8 +37,10 @@
                 $lecture->setId($data['Id_lecture']);
                 $lecture->setIdPackage($data['Id_package']);
                 $lecture->setIdAvailability($data['Id_availability']);
-                $lecture->$methodName($data['Name_'.$lang]);
-                $lecture->$methodDescription($data['Description_'.$lang]);
+                $lecture->setName('fr', $data['Name_fr']);
+                $lecture->setName('en', $data['Name_en']);
+                $lecture->setDescription('fr', $data['Description_fr']);
+                $lecture->setDescription('en', $data['Description_en']);
                 $lecture->setDate($date);
                 $lecture->setStartTime($startTime);
                 $lecture->setEndTime($endTime);
@@ -64,10 +65,10 @@
 
             foreach($lectures as $lecture)
                 $req->execute(array($lecture->getIdPackage(),
-                                    $lecture->getNameFr(),
-                                    $lecture->getNameEn(),
-                                    $lecture->getDescriptionFr(),
-                                    $lecture->getDescriptionEn(),
+                                    $lecture->getName('fr'),
+                                    $lecture->getName('en'),
+                                    $lecture->getDescription('fr'),
+                                    $lecture->getDescription('en'),
                                     $lecture->getDate()->toStringMySQL(),
                                     $lecture->getStartTime()->toStringMySQL(),
                                     $lecture->getEndTime()->toStringMySQL()));
