@@ -219,13 +219,13 @@
 
                 $package->setId($request->postData('packageId'));
                 $package->setLecturer($request->postData('Lecturer'));
-                $package->setNameFr($request->postData('NameFr'));
-                $package->setNameEn($request->postData('NameEn'));
-                $package->setDescriptionFr($request->postData('DescFr'));
-                $package->setDescriptionEn($request->postData('DescEn'));
+                $package->setName('fr', $request->postData('NameFr'));
+                $package->setName('en', $request->postData('NameEn'));
+                $package->setDescription('fr', $request->postData('DescFr'));
+                $package->setDescription('en', $request->postData('DescEn'));
 
                 $managerPackages = $this->m_managers->getManagerOf('package');
-                $managerPackages->saveModifications($package);
+                $managerPackages->update($package);
 
                 // Redirection
                 $this->app()->user()->setFlash('Modifications prises en compte');
@@ -233,10 +233,8 @@
             }
 
             // Else display the form
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
-
             $managerPackages = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackages->get($lang);
+            $packages = $managerPackages->get();
 
             if(count($packages) == 0)
             {

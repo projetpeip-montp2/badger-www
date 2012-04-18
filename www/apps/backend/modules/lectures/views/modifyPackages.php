@@ -9,13 +9,13 @@
         $form->add('text', 'Lecturer')
              ->value($package->getLecturer());
         $form->add('text', 'NameFr')
-             ->value($package->getNameFr());
+             ->value($package->getName('fr'));
         $form->add('text', 'NameEn')
-             ->value($package->getNameEn());
+             ->value($package->getName('en'));
         $form->add('textarea', 'DescFr')
-             ->text($package->getDescriptionFr());
+             ->text($package->getDescription('fr'));
         $form->add('textarea', 'DescEn')
-             ->text($package->getDescriptionEn());
+             ->text($package->getDescription('en'));
 
         $form->add('hidden', 'packageId')
              ->value($package->getId());
