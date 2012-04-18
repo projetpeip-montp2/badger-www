@@ -133,6 +133,8 @@
 
                 $availability->setId($request->postData('availabilityId'));
 
+// TODO: Vérifier les formats (Voir createMCQ)
+
                 $date = new Date;
                 $date->setFromString($request->postData('Date'));
 

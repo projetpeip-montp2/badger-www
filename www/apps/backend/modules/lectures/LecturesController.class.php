@@ -26,7 +26,7 @@
                     {
                         if(count($lineDatas) != 5)
                         {
-                            $this->app()->user()->setFlash('File has not got 5 rows');
+                            $this->app()->user()->setFlash('Le fichier n\'a pas 5 colonnes');
                             $this->app()->httpResponse()->redirect('./addPackages.html');
                             break;
                         }
@@ -47,11 +47,11 @@
                     $manager = $this->m_managers->getManagerOf('package');
                     $manager->save($packages);
 
-                    $this->app()->user()->setFlash('File uploaded');
+                    $this->app()->user()->setFlash('Fichier uploadé');
                 }
 
                 else
-                    $this->app()->user()->setFlash('Error during the upload of packages');
+                    $this->app()->user()->setFlash('Erreur durant l\'upload du fichier');
             }
         }
 
@@ -77,7 +77,7 @@
                     {
                         if(count($lineDatas) != 7)
                         {
-                            $this->app()->user()->setFlash('Lecture csv file has not got 7 rows.');
+                            $this->app()->user()->setFlash('Le fichier n\'a pas 7 colonnes');
                             $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                         }
 
@@ -109,11 +109,11 @@
                     $managerLectures = $this->m_managers->getManagerOf('lecture');
                     $managerLectures->save($lectures);
 
-                    $flashMessage = 'Lectures uploaded.';
+                    $flashMessage = 'Conférences uploadées.';
                 }
 
                 else
-                    $flashMessage = 'Cannot upload lectures.';
+                    $flashMessage = 'Impossible d\'uploader les conférences.';
             }
 
 
@@ -146,7 +146,7 @@
                             {
                                 if(count($datas) != 3)
                                 {
-                                    $this->app()->user()->setFlash('Question in csv file has not got 3 rows.');
+                                    $this->app()->user()->setFlash('Le fichier n\'a pas 3 colonnes.');
                                     $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                                 }
 
@@ -165,7 +165,7 @@
                             {
                                 if(count($datas) != 3)
                                 {
-                                    $this->app()->user()->setFlash('Answer in csv file has not got 3 rows.');
+                                    $this->app()->user()->setFlash('Le fichier n\'a pas 3 colonnes.');
                                     $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                                 }
 
@@ -185,11 +185,13 @@
                     // Save all questions/answers parsed
                     $managerMCQ->saveAnswers($answers);
 
-                    $flashMessage .= 'Questions/answers uploaded.';
+                    if(!$flashMessage == '')
+                        $flashMessage .= '<br/>';
+                    $flashMessage .= 'Questions/Réponses uploadées.';
                 }
 
                 else
-                    $flashMessage .= 'Cannot upload questions/answers.';
+                    $flashMessage .= 'Impossible d\'uploader les questions/réponses.';
             }
 
 
@@ -201,7 +203,7 @@
 
             if(count($packages) == 0)
             {
-                $this->app()->user()->setFlash('You need at least a package to upload Lectures or Questions/Answers.');
+                $this->app()->user()->setFlash('Il faut au moin un package pour pouvoir uploader des conférences ou des questions/réponses.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 

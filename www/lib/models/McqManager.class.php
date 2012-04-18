@@ -41,6 +41,21 @@
             return $mcqs;
         }
 
+        public function save($mcq)
+        {
+            $req = $this->m_dao->prepare('INSERT INTO MCQs(Department,
+                                                           SchoolYear,
+                                                           Date,
+                                                           StartTime,
+                                                           EndTime) VALUES(?, ?, ?, ?, ?)');
+
+            $req->execute(array($mcq->getDepartment(),
+                                $mcq->getSchoolYear(),
+                                $mcq->getDate()->toStringMySQL(),
+                                $mcq->getStartTime()->toStringMySQL(),
+                                $mcq->getEndTime()->toStringMySQL()));
+        }
+
         public function getQuestionsFromPackage($idPackage, $status = NULL)
         {
             $SQLreq = 'SELECT Id_question,

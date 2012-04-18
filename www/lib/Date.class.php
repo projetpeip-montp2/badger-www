@@ -19,7 +19,7 @@
 
         public function setFromString($date)
         {
-            if(!preg_match('#[0-9]{2}-[0-9]{2}-[0-9]{4}#', $date))
+            if(!Date::checkDate($date))
                 throw new InvalidArgumentException('Invalid date format in Date setFromString');
             else
                 $dateArray = explode('-', $date);
@@ -168,6 +168,11 @@
                 $tmp -= 2;
 
             return $tmp % 7;
+        }
+
+        static public function checkDate($date)
+        {
+            return preg_match('#[0-9]{2}-[0-9]{2}-[0-9]{4}#', $date);
         }
     }
 ?>
