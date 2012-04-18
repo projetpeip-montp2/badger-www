@@ -48,7 +48,7 @@
                 // Check that there is at least one table selected
                 if(count($tablesSelectedArray) == 0)
                 {
-                    $this->app()->user()->setFlash('No table selected.');
+                    $this->app()->user()->setFlash('Aucune table sélectionnée.');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
                 }
 
@@ -57,8 +57,14 @@
                 $managerReset->truncate($tablesSelectedArray);
 
                 // Display table(s) truncated in the next flash message
-                $this->app()->user()->setFlash('Table(s) truncated : "' . substr($tablesSelected, 0, strlen($tablesSelected)-1) . '".');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
+                $emptyTables = explode(';', substr($tablesSelected, 0, strlen($tablesSelected)-1));
+
+                $flashMessage = 'Table(s) vidée(s) :';
+                foreach($emptyTables as $emptyTable)
+                    $flashMessage .= '<br/>' . $emptyTable;
+
+                $this->app()->user()->setFlash($flashMessage);
+                //$this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
             }
 
             // Else we display the form

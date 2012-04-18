@@ -16,7 +16,7 @@
 
                 $this->m_managers->getManagerOf('config')->replace('adminsList', $newAdminList);
 
-                $this->app()->user()->setFlash('Admin list changed for "' . $newAdminList . '".');
+                $this->app()->user()->setFlash('Liste d\'Admin changée: "' . $newAdminList . '".');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
