@@ -3,8 +3,7 @@
     {
         private $m_idQuestion;
         private $m_idPackage;
-        private $m_label_fr;
-        private $m_label_en;
+        private $m_label;
         private $m_status;
 
         public function setId($idQuestion)
@@ -27,24 +26,14 @@
             return $this->m_idPackage;
         }
 
-        public function setLabelFr($labelFr)
+        public function setLabel($lang, $label)
         {
-            $this->m_label_fr = $labelFr;
+            $this->m_label[$lang] = $label;
         }
 
-        public function getlabelFr()
+        public function getLabel($lang)
         {
-            return $this->m_label_fr;
-        }
-
-        public function setLabelEn($labelEn)
-        {
-            $this->m_label_en = $labelEn;
-        }
-
-        public function getlabelEn()
-        {
-            return $this->m_label_en;
+            return $this->m_label[$lang];
         }
 
         public function setStatus($status)

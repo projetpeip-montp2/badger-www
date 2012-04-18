@@ -33,10 +33,10 @@
         
                         $package = new Package;
                         $package->setLecturer($lineDatas[0]);
-                        $package->setNameFr($lineDatas[1]);
-                        $package->setNameEn($lineDatas[2]);
-                        $package->setDescriptionFr($lineDatas[3]);
-                        $package->setDescriptionEn($lineDatas[4]);
+                        $package->setName('fr', $lineDatas[1]);
+                        $package->setName('en', $lineDatas[2]);
+                        $package->setDescription('fr', $lineDatas[3]);
+                        $package->setDescription('en', $lineDatas[4]);
 
                         array_push($packages, $package);
                     }
@@ -92,10 +92,10 @@
         
                         $lecture = new Lecture;
                         $lecture->setIdPackage($request->postData('vbmifarePackage'));
-                        $lecture->setNameFr($lineDatas[0]);
-                        $lecture->setNameEn($lineDatas[1]);
-                        $lecture->setDescriptionFr($lineDatas[2]);
-                        $lecture->setDescriptionEn($lineDatas[3]);
+                        $lecture->setName('fr', $lineDatas[0]);
+                        $lecture->setName('en', $lineDatas[1]);
+                        $lecture->setDescription('fr', $lineDatas[2]);
+                        $lecture->setDescription('en', $lineDatas[3]);
                         $lecture->setDate($date);
                         $lecture->setStartTime($startTime);
                         $lecture->setEndTime($endTime);
@@ -152,8 +152,8 @@
 
                                 $question = new Question;
                                 $question->setIdPackage($request->postData('vbmifarePackage'));
-                                $question->setLabelFr($datas[0]);
-                                $question->setLabelEn($datas[1]);
+                                $question->setLabel('fr', $datas[0]);
+                                $question->setLabel('en', $datas[1]);
                                 $question->setStatus($datas[2]);
 
                                 $lastQuestionID = $managerMCQ->saveQuestion($question);
@@ -171,8 +171,8 @@
 
                                 $answer = new Answer;
                                 $answer->setIdQuestion($lastQuestionID);
-                                $answer->setLabelFr($datas[0]);
-                                $answer->setLabelEn($datas[1]);
+                                $answer->setLabel('fr', $datas[0]);
+                                $answer->setLabel('en', $datas[1]);
                                 $answer->setTrueOrFalse($datas[2]);
 
                                 array_push($answers, $answer);
@@ -197,7 +197,7 @@
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
             $managerPackages = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackages->get($lang);
+            $packages = $managerPackages->get();
 
             if(count($packages) == 0)
             {

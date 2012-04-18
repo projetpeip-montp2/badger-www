@@ -1,15 +1,14 @@
 <?php
     class PackageManager extends Manager
     {
-        public function get($lang, $id = -1)
+        public function get($id = -1)
         {
-            $methodName = 'setName'.ucfirst($lang);
-            $methodDescription = 'setDescription'.ucfirst($lang);
-
             $requestSQL = 'SELECT Id_package,
                                   Lecturer,
-                                  Name_'.$lang.',
-                                  Description_'.$lang.' FROM Packages';
+                                  Name_fr, 
+                                  Name_en,
+                                  Description_fr,
+                                  Description_en FROM Packages';
 
             if($id != -1)
                 $requestSQL .= ' WHERE Id_package = ' . $id;
@@ -24,8 +23,10 @@
                 $package = new Package;
                 $package->setId($data['Id_package']);
                 $package->setLecturer($data['Lecturer']);
-                $package->$methodName($data['Name_'.$lang]);
-                $package->$methodDescription($data['Description_'.$lang]);
+                $package->setName('fr', $data['Name_fr']);
+                $package->setName('en', $data['Name_en']);
+                $package->setDescription('fr', $data['Description_fr']);
+                $package->setDescription('en', $data['Description_en']);
 
                 $packages[] = $package;
             }
@@ -43,10 +44,10 @@
 
             foreach($packages as $package)
                 $req->execute(array($package->getLecturer(),
-                                    $package->getNameFr(),
-                                    $package->getNameEn(),
-                                    $package->getDescriptionFr(),
-                                    $package->getDescriptionEn()));
+                                    $package->getName('fr'),
+                                    $package->getName('en'),
+                                    $package->getDescription('fr'),
+                                    $package->getDescription('en')));
         }
 
         public function saveModifications($package)

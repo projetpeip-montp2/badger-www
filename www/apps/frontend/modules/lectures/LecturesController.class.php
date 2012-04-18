@@ -18,7 +18,7 @@
 
             // Retrieve the package given by id in URL
             $managerPackage = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackage->get($lang, $request->getData('idPackage'));
+            $packages = $managerPackage->get($request->getData('idPackage'));
 
             // Check that the package exists
             if(count($packages) != 1)
@@ -61,7 +61,7 @@
             $this->page()->addVar('lang', $lang);
 
             $managerLecture = $this->m_managers->getManagerOf('lecture');
-            $this->page()->addVar('lectures', $managerLecture->get($lang, $request->getData('idPackage')));
+            $this->page()->addVar('lectures', $managerLecture->get($request->getData('idPackage')));
         }
 
         public function executeShowAll(HTTPRequest $request)
@@ -71,7 +71,7 @@
 
             $managerPackage = $this->m_managers->getManagerOf('package');
 
-            $this->page()->addVar('packages', $managerPackage->get($lang, -1));
+            $this->page()->addVar('packages', $managerPackage->get());
             $this->page()->addVar('lang', $lang);
         }
 
@@ -145,13 +145,13 @@
             $lectures = array();
             foreach($registrationsOfUser as $reg)
             {
-                $lecturesOfPackages = $managerLecture->get($lang, $reg->getIdPackage());
+                $lecturesOfPackages = $managerLecture->get($reg->getIdPackage());
 
                 foreach($lecturesOfPackages as $l)
                     array_push($lectures, $l);
             }
 
-            $lecturesOfPackageNeeded = $managerLecture->get($lang, $packageNeeded->getId());
+            $lecturesOfPackageNeeded = $managerLecture->get($packageNeeded->getId());
 
             foreach($lecturesOfPackageNeeded as $l)
                 array_push($lectures, $l);

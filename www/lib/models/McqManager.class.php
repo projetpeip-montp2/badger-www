@@ -41,12 +41,11 @@
             return $mcqs;
         }
 
-        public function getQuestionsFromPackage($idPackage, $lang, $status = NULL)
+        public function getQuestionsFromPackage($idPackage, $status = NULL)
         {
-            $methodLabel = 'setLabel'.ucfirst($lang);
-
             $SQLreq = 'SELECT Id_question,
-                              Label_'.$lang.',
+                              Label_fr,
+                              Label_en,
                               Status FROM Questions WHERE Id_package = ?';
             $SQLparams = array($idPackage);
             if($status)
@@ -66,7 +65,8 @@
             {
                 $question = new Question;
                 $question->setId($data['Id_question']);
-                $question->$methodLabel($data['Label_'.$lang]);
+                $question->setLabel('fr', $data['Label_fr']);
+                $question->setLabel('en', $data['Label_en']);
                 $question->setStatus($data['Status']);
 
                 $result[] = $question;
@@ -75,13 +75,12 @@
             return $result;
         }
 
-        public function getAnswersFromQuestion($idQuestion, $lang)
+        public function getAnswersFromQuestion($idQuestion)
         {
-            $methodLabel = 'setLabel'.ucfirst($lang);
-
             $SQLreq = 'SELECT Id_answer,
                               Id_question,
-                              Label_'.$lang.' FROM Answers WHERE Id_question = ?';
+                              Label_fr,
+                              Label_en FROM Answers WHERE Id_question = ?';
             $req = $this->m_dao->prepare($SQLreq);
             $req->execute(array($idQuestion));
 
@@ -91,7 +90,8 @@
                 $answer = new Answer;
                 $answer->setId($data['Id_answer']);
                 $answer->setIdQuestion($data['Id_question']);
-                $answer->$methodLabel($data['Label_'.$lang]);
+                $answer->setLabel('fr', $data['Label_fr']);
+                $answer->setLabel('en', $data['Label_en']);
 
                 $result[] = $answer;
             }
@@ -99,10 +99,8 @@
             return $result;
         }
 
-        public function loadQuestionsOfUser($idUser, $lang)
+        public function loadQuestionsOfUser($idUser)
         {
-            $methodLabel = 'setLabel'.ucfirst($lang);
-
             $reqId = $this->m_dao->prepare('SELECT Id_question FROM QuestionsOfUsers WHERE Id_user = ?');
             $reqId->execute(array($idUser));
 
@@ -111,7 +109,7 @@
                 $questionIds[] = $data['Id_question'];
 
             $result = array();
-            $req = $this->m_dao->prepare('SELECT Label_'.$lang.' FROM Questions WHERE Id_question = ?');
+            $req = $this->m_dao->prepare('SELECT Label_fr, Label_en FROM Questions WHERE Id_question = ?');
             foreach($questionIds as $id)
             {
                 $req->execute(array($id));
@@ -119,7 +117,8 @@
 
                 $question = new Question;
                 $question->setId($id);
-                $question->$methodLabel($data['Label_'.$lang]);
+                $question->setLabel('fr', $data['Label_fr']);
+                $question->setLabel('en', $data['Label_en']);
 
                 $result[] = $question;
             }
@@ -147,8 +146,8 @@
                                                                 Status) VALUES(?, ?, ?, ?)');
 
             $req->execute(array($question->getIdPackage(),
-                                $question->getLabelFr(),
-                                $question->getLabelEn(),
+                                $question->getLabel('fr'),
+                                $question->getLabel('en'),
                                 $question->getStatus()));
 
             return $this->m_dao->lastInsertId();
@@ -167,8 +166,8 @@
                     throw new InvalidArgumentException('Invalid answers true or false in McqManager::saveAnswers');
 
                 $req->execute(array($answer->getIdQuestion(),
-                                    $answer->getLabelFr(),
-                                    $answer->getLabelEn(),
+                                    $answer->getLabel('fr'),
+                                    $answer->getLabel('en'),
                                     $answer->getTrueOrFalse()));
             }
         }
