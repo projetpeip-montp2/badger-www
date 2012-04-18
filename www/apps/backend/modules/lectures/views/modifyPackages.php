@@ -1,3 +1,5 @@
+<h1>Modification des packages</h1>
+<p>Depuis cette page, il est possible de modifier les packages enregistrés dans la base de données.</p>
 <?php
     $forms = array();
     foreach($packages as $package)
@@ -14,7 +16,11 @@
              ->text($package->getDescriptionFr());
         $form->add('textarea', 'DescEn')
              ->text($package->getDescriptionEn());
+
+        $form->add('hidden', 'packageId')
+             ->value($package->getId());
         $form->add('submit', 'Modifier');
+
         $forms[] = $form;
     }
 

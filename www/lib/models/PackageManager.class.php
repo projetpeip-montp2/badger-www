@@ -48,5 +48,21 @@
                                     $package->getDescriptionFr(),
                                     $package->getDescriptionEn()));
         }
+
+        public function saveModifications($package)
+        {
+            $req = $this->m_dao->prepare('UPDATE Packages SET Lecturer = ?,
+                                                              Name_fr = ?, 
+                                                              Name_en = ?,
+                                                              Description_fr = ?,
+                                                              Description_en = ? WHERE Id_Package = ?');
+
+            $req->execute(array($package->getLecturer(),
+                                $package->getNameFr(),
+                                $package->getNameEn(),
+                                $package->getDescriptionFr(),
+                                $package->getDescriptionEn(),
+                                $package->getId()));
+        }
     }
 ?>

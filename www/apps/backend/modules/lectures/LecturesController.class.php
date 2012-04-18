@@ -213,7 +213,24 @@
         public function executeModifyPackages(HTTPRequest $request)
         {
             // Handle POST data
-            
+            if($request->postExists('packageId'))
+            {
+                $package = new Package();
+
+                $package->setId($request->postData('packageId'));
+                $package->setLecturer($request->postData('Lecturer'));
+                $package->setNameFr($request->postData('NameFr'));
+                $package->setNameEn($request->postData('NameEn'));
+                $package->setDescriptionFr($request->postData('DescFr'));
+                $package->setDescriptionEn($request->postData('DescEn'));
+
+                $managerPackages = $this->m_managers->getManagerOf('package');
+                $managerPackages->saveModifications($package);
+
+                // Redirection
+                $this->app()->user()->setFlash('Modifications prises en compte');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/modifyPackages.html');
+            }
 
             // Else display the form
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
