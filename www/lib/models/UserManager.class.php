@@ -67,6 +67,7 @@
             // Remove enum( at the begining and ) at the end
             $tmp = $type = substr($result['Type'], 5, -1);
 
+// TODO: Obtenir un array de la forme array('ERII' => 'ERII')
             return str_getcsv($tmp, ',', '\'');
         }
     }

@@ -4,4 +4,5 @@
 
 <ul>
     <li><a href="/vbMifare/admin/mcq/createMCQ.html">Créer une séance de QCM</a></li>
+    <li><a href="/vbMifare/admin/mcq/updateMCQs.html">Modifier une séance de QCM</a></li>
 </ul>

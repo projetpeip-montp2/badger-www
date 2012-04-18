@@ -19,7 +19,7 @@
 
         public function setFromString($time)
         {
-            if(!Time::checkTime($time))
+            if(!Time::check($time))
                 throw new InvalidArgumentException('Invalid time format in Time setFromString');
 
             $timeArray = explode(':', $time);
@@ -115,7 +115,7 @@
             return $output;
         }
 
-        static public function checkTime($time)
+        static public function check($time)
         {
             return preg_match('#[0-9]{2}:[0-9]{2}:[0-9]{2}#', $time);
         }

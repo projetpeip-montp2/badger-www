@@ -16,6 +16,7 @@
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
     <route url="/admin/mcq/createMCQ\.html" module="mcq" action="createMCQ"/>
+    <route url="/admin/mcq/updateMCQs\.html" module="mcq" action="updateMCQs"/>
 
     <route url="/admin/statistics/index\.html" module="statistics" action="index"/>
 

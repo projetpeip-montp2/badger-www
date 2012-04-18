@@ -5,7 +5,6 @@
     $form = new Form('', 'post');
 
     // TODO: Trouver une meilleure manière de faire
-    $departments = array('ERII' => 'ERII','MAT' => 'MAT', 'MI' => 'MI', 'STE' => 'STE', 'STIA' => 'STIA');
     $schoolYears = array('3' => '3','4' => '4', '5' => '5');
 
     $form->add('select', 'Department')

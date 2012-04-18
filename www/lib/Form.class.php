@@ -385,6 +385,7 @@
     abstract class FormComponentWithLabelAndChoices extends FormComponentWithLabel
     {
         private $m_choices = null;
+        private $m_selected = null;
 
         public function choices($choices)
         {
@@ -396,6 +397,18 @@
         public function getChoices()
         {
             return $this->m_choices;
+        }
+
+        public function selected($selected)
+        {
+            $this->m_selected = $selected;
+
+            return $this;
+        }
+
+        public function getSelected()
+        {
+            return $this->m_selected;
         }
 
     }
@@ -446,10 +459,15 @@
             if($this->getLabel())
                 $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label><br />';
 
-            $output .= '<select name="' . $this->getName() . '" id="' . $this->getName() . '">';
+            $output .= '<select name="' . $this->getName() . '" id="' . $this->getName() . '">' . "\n";
 
             foreach($this->getChoices() as $key => $value)
-                $output .= '<option value="' . $key . '">' . $value . '</option>';
+            {
+                $output .= '<option value="' . $key . '"';
+                if($value == $this->getSelected())
+                    $output .= '" selected';
+                $output .= '>' . $value . '</option>' . "\n";
+            }
 
             $output .= '</select>';
 
@@ -624,7 +642,7 @@
             $output .= '<tr>';
 
             foreach($this->m_formComponents as $component)
-                $output .= "\n" . '<td class="FormTd">' . $component->getOutput() . '</td>';
+                $output .= "\n" . '<td>' . $component->getOutput() . '</td>';
 
             $output .= "\n" . '</tr></form>';
 

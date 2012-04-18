@@ -1,7 +1,7 @@
 <?php
     class McqManager extends Manager
     {
-        public function get($department, $schoolYear)
+        public function get($department = null, $schoolYear = null)
         {
             $requestSQL = 'SELECT Department,
                                   SchoolYear,
@@ -54,6 +54,23 @@
                                 $mcq->getDate()->toStringMySQL(),
                                 $mcq->getStartTime()->toStringMySQL(),
                                 $mcq->getEndTime()->toStringMySQL()));
+        }
+
+        public function update($mcq)
+        {
+            $req = $this->m_dao->prepare('UPDATE MCQs SET Department = ?,
+                                                          SchoolYear = ?,
+                                                          Date = ?,
+                                                          StartTime = ?,
+                                                          EndTime = ? WHERE Department = ? AND SchoolYear = ?');
+
+            $req->execute(array($mcq->getDepartment(),
+                                $mcq->getSchoolYear(),
+                                $mcq->getDate()->toStringMySQL(),
+                                $mcq->getStartTime()->toStringMySQL(),
+                                $mcq->getEndTime()->toStringMySQL(),
+                                $mcq->getDepartment(),
+                                $mcq->getSchoolYear()));
         }
 
         public function getQuestionsFromPackage($idPackage, $status = NULL)

@@ -99,7 +99,8 @@ a, a:visited
     border-collapse: collapse;
 }
 
-.FormTd
+.FormTable th, .FormTable td
 {
     border: 1px solid black;
+    text-align: center;
 }
