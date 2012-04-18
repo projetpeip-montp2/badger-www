@@ -5,11 +5,14 @@
     <route url="/admin/classrooms/index\.html" module="classrooms" action="index"/>
     <route url="/admin/classrooms/addClassrooms\.html" module="classrooms" action="addClassrooms"/>
     <route url="/admin/classrooms/addAvailabilities\.html" module="classrooms" action="addAvailabilities"/>
+    <route url="/admin/classrooms/updateAvailabilities\.html" module="classrooms" action="updateAvailabilities"/>
+    <route url="/admin/classrooms/updateClassrooms\.html" module="classrooms" action="updateClassrooms"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
     <route url="/admin/lectures/addLecturesAndQuestionsAnswers\.html" module="lectures" action="addLecturesAndQuestionsAnswers"/>
     <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
-    <route url="/admin/lectures/modifyPackages\.html" module="lectures" action="modifyPackages"/>
+    <route url="/admin/lectures/updatePackages\.html" module="lectures" action="updatePackages"/>
+    <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
 

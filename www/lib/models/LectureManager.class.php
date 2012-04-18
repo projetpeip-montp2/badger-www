@@ -73,5 +73,25 @@
                                     $lecture->getStartTime()->toStringMySQL(),
                                     $lecture->getEndTime()->toStringMySQL()));
         }
+
+        public function update($lecture)
+        {
+            $req = $this->m_dao->prepare('UPDATE Lectures SET Name_fr = ?, 
+                                                              Name_en = ?,
+                                                              Description_fr = ?,
+                                                              Description_en = ?,
+                                                              Date = ?,
+                                                              StartTime = ?,
+                                                              EndTime = ? WHERE Id_lecture = ?');
+
+            $req->execute(array($lecture->getName('fr'),
+                                $lecture->getName('en'),
+                                $lecture->getDescription('fr'),
+                                $lecture->getDescription('en'),
+                                $lecture->getDate()->toStringMySQL(),
+                                $lecture->getStartTime()->toStringMySQL(),
+                                $lecture->getEndTime()->toStringMySQL(),
+                                $lecture->getId()));
+        }
     }
 ?>

@@ -100,7 +100,19 @@
 
         public function __toString()
         {
-            return $this->m_hours.':'.$this->m_minutes.':'.$this->m_seconds;
+            $output = '';
+
+            if($this->m_hours < 10)
+                $output .= '0';
+            $output .= $this->m_hours . ':';
+            if($this->m_minutes < 10)
+                $output .= '0';
+            $output .= $this->m_minutes . ':';
+            if($this->m_seconds < 10)
+                $output .= '0';
+            $output .= $this->m_seconds;
+
+            return $output;
         }
     }
 ?>

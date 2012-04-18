@@ -210,7 +210,7 @@
             $this->page()->addVar('packages', $packages);
         }
 
-        public function executeModifyPackages(HTTPRequest $request)
+        public function executeUpdatePackages(HTTPRequest $request)
         {
             // Handle POST data
             if($request->postExists('packageId'))
@@ -229,7 +229,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlash('Modifications prises en compte');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/modifyPackages.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
             }
 
             // Else display the form
@@ -243,6 +243,53 @@
             }
 
             $this->page()->addVar('packages', $packages);
+        }
+
+        public function executeUpdateLectures(HTTPRequest $request)
+        {
+            // Handle POST data
+            if($request->postExists('lectureId'))
+            {
+                $lecture = new Lecture();
+
+                $lecture->setId($request->postData('lectureId'));
+                $lecture->setName('fr', $request->postData('NameFr'));
+                $lecture->setName('en', $request->postData('NameEn'));
+                $lecture->setDescription('fr', $request->postData('DescFr'));
+                $lecture->setDescription('en', $request->postData('DescEn'));
+
+                $date = new Date;
+                $date->setFromString($request->postData('Date'));
+
+                $startTime = new Time;
+                $startTime->setFromString($request->postData('StartTime'));
+
+                $endTime = new Time;
+                $endTime->setFromString($request->postData('EndTime'));
+
+                $lecture->setDate($date);
+                $lecture->setStartTime($startTime);
+                $lecture->setEndTime($endTime);
+
+                $managerLectures = $this->m_managers->getManagerOf('lecture');
+                $managerLectures->update($lecture);
+
+                // Redirection
+                $this->app()->user()->setFlash('Modifications prises en compte');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+            }
+
+            // Else display the form
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
+            $lectures = $managerLectures->get();
+
+            if(count($lectures) == 0)
+            {
+                $this->app()->user()->setFlash('Il n\'y a pas de conférences dans la base de données.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+            }
+
+            $this->page()->addVar('lectures', $lectures);
         }
     }
 ?>

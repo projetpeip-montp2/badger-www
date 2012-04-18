@@ -121,7 +121,16 @@
 
         public function __toString()
         {
-            return $this->m_day.'-'.$this->m_month.'-'.$this->m_year;
+            $output = '';
+
+            if($this->m_day < 10)
+                $output .= '0';
+            $output .= $this->m_day . '-';
+            if($this->m_month < 10)
+                $output .= '0';
+            $output .= $this->m_month . '-' . $this->m_year;
+
+            return $output;
         }
 
 

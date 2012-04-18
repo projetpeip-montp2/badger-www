@@ -201,6 +201,7 @@
     {
         private $m_placeHolder;
         private $m_value;
+        private $m_size;
 
         public function __construct($name)
         {
@@ -210,6 +211,7 @@
 
             $this->m_placeHolder = '';
             $this->m_value = '';
+            $this->m_value = '50';
         }
 
         public function placeHolder($placeHolder)
@@ -236,6 +238,18 @@
             return $this->m_value;
         }
 
+        public function size($size)
+        {
+            $this->m_size = $size;
+
+            return $this;
+        }
+
+        public function getSize()
+        {
+            return $this->m_size;
+        }
+
         public function getOutput()
         {
             $output = '';
@@ -246,7 +260,8 @@
             $output .= '<input type="text" name="' . $this->getName() . 
                                         '" id="' . $this->getName() . 
                                         '" placeholder="' . $this->getPlaceHolder() . 
-                                        '" value="' . $this->getValue() . '"/>';
+                                        '" value="' . $this->getValue() .
+                                        '" size="' . $this->getSize() .  '"/>';
 
             return $output;
         }

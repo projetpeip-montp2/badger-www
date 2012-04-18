@@ -37,5 +37,15 @@
                 $req->execute(array($classroom->getName(),
                                     $classroom->getSize()));
         }
+
+        public function update($classroom)
+        {
+            $req = $this->m_dao->prepare('UPDATE Classrooms SET Name = ?, 
+                                                                Size = ? WHERE Id_classroom = ?');
+
+            $req->execute(array($classroom->getName(),
+                                $classroom->getSize(),
+                                $classroom->getId()));
+        }
     }
 ?>

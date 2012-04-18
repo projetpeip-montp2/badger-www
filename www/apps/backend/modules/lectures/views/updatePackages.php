@@ -7,11 +7,14 @@
         $form = new Form('', 'post');
 
         $form->add('text', 'Lecturer')
-             ->value($package->getLecturer());
+             ->value($package->getLecturer())
+             ->size(strlen($package->getLecturer()));
         $form->add('text', 'NameFr')
-             ->value($package->getName('fr'));
+             ->value($package->getName('fr'))
+             ->size(strlen($package->getName('fr')));
         $form->add('text', 'NameEn')
-             ->value($package->getName('en'));
+             ->value($package->getName('en'))
+             ->size(strlen($package->getName('en')));
         $form->add('textarea', 'DescFr')
              ->text($package->getDescription('fr'));
         $form->add('textarea', 'DescEn')
