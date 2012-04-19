@@ -109,8 +109,8 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('canSubscribe', '1'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
-('reportSizeLimitFrontend', '10000000')
-('documentSizeLimitBackend', '10000000');
+('reportSizeLimitFrontend', '10000000'),
+('documentSizeLimitBackend', '10000000'),
 ('zipFileSizeLimitBackend', '10000000');
 
 -- --------------------------------------------------------
