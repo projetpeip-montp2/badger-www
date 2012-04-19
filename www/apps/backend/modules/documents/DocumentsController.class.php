@@ -159,7 +159,33 @@
 
         public function executeDeletePDF(HTTPRequest $request)
         {
+            // Handle POST data
+            // Delete availability
+            if($request->postData('Supprimer'))
+            {
+                $this->m_managers->getManagerOf('documentofpackage')->delete($request->postData('documentId'));
 
+                // Redirection
+                $this->app()->user()->setFlashInfo('Le document "' . $request->postData('DocumentName') . '" du package "' . $request->postData('PackageName') . '" a été supprimé.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/deletePDF.html');
+            }
+            // Else display the form
+            $packages = $this->m_managers->getManagerOf('package')->get();
+            $documents = $this->m_managers->getManagerOf('documentofpackage')->get();
+
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlashError('Il n\'y a pas de packages dans la base de données.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
+            }
+            if(count($documents) == 0)
+            {
+                $this->app()->user()->setFlashError('Il n\'y a pas de document dans la base de données.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
+            }
+
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('documents', $documents);
         }
 
         public function executeDeleteImages(HTTPRequest $request)

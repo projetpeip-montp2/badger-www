@@ -26,7 +26,7 @@
                     {
                         if(count($lineDatas) != 2)
                         {
-                            $this->app()->user()->setFlashError('Classroom in ' . $doc->setIdPackage($idPackage); . 'csv has not got 2 rows.');
+                            $this->app()->user()->setFlashError('Classroom in ' . $doc->setIdPackage($idPackage) . 'csv has not got 2 rows.');
                             $this->app()->httpResponse()->redirect($request->requestURI());
                             break;
                         }
@@ -178,6 +178,11 @@
             $availabilities = $this->m_managers->getManagerOf('availability')->get();
             $classrooms = $this->m_managers->getManagerOf('classroom')->get();
 
+            if(count($classrooms) == 0)
+            {
+                $this->app()->user()->setFlashError('Il n\'y a pas de salle dans la base de données.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
+            }
             if(count($availabilities) == 0)
             {
                 $this->app()->user()->setFlashError('Il n\'y a pas de disponibilités de salle dans la base de données.');

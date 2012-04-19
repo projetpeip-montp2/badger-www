@@ -1,22 +1,43 @@
 <h1>Documents</h1>
-<p>Depuis cette page, vous pouvez uploader les fichiers PDF pour un package.</p>
+<p>Depuis cette page, vous pouvez supprimer les fichiers PDF pour un package.</p>
 
 <?php
-    $form = new Form('', 'post');
+    $forms = array();
+    foreach($documents as $document)
+    {
+        $form = new Form('', 'post');
 
-    $choices = array();
+        // Get packages' name
+        foreach($packages as $package)
+        {
+            if($package->getId() == $document->getIdPackage())
+            {
+                $form->add('label', 'Package')
+                     ->label($package->getName('fr'));
+                $form->add('hidden', 'PackageName')
+                     ->value($package->getName('fr'));
+            }
+        }
+        $form->add('label', 'Name')
+             ->label($document->getFilename());
+        $form->add('hidden', 'DocumentName')
+             ->value($document->getFilename());
+        $form->add('hidden', 'documentId')
+             ->value($document->getId());
 
-    foreach($packages as $package)
-        $choices[$package->getId()] = $package->getName('fr');
+        $form->add('submit', 'Supprimer');
 
-    $form->add('select', 'PackageList')
-         ->label('Sélection du package : ')
-         ->choices($choices);
-
-    $form->add('file', 'PDFFile')
-         ->label('Chemin du fichier PDF : ');
-
-    $form->add('submit', 'Envoyer');
-
-    echo $form->toString();
+        $forms[] = $form;
+    }
 ?>
+
+<table class="FormTable">
+    <tr>
+        <th>Nom du package</th>
+        <th>Nom du document</th>
+    </tr>
+<?php
+    foreach($forms as $form)
+        echo $form->toTr();
+?>
+</table>

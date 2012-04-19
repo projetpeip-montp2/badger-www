@@ -7,6 +7,8 @@
                                   Id_package,
                                   Filename FROM DocumentsOfPackages';
 
+            $paramsSQL = array();
+
             if($idPackage != -1)
             {
                 $requestSQL .= ' WHERE Id_package = ?';
@@ -21,7 +23,8 @@
             }
 
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute($paramsSQL); 
+
+            $req->execute($paramsSQL);
 
             $documents = array();
 

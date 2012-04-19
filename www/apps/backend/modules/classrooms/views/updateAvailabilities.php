@@ -30,6 +30,7 @@
 
         $form->add('hidden', 'availabilityId')
              ->value($availability->getId());
+
         $form->add('submit', 'Modifier');
         $form->add('submit', 'Supprimer');
 

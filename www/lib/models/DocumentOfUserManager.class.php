@@ -3,11 +3,11 @@
     {
         public function get($idPackage = -1, $idUser = -1)
         {
-            $paramsSQL = array();
-
             $requestSQL = 'SELECT Id_package,
                                   Id_user,
                                   Filename FROM DocumentsOfUsers';
+
+            $paramsSQL = array();
 
             if($idPackage != -1)
             {
