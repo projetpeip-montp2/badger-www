@@ -14,4 +14,8 @@
 
     <route url="/mcq/index\.html" module="mcq" action="index"/>
     <route url="/mcq/takeMCQ\.html" module="mcq" action="takeMCQ"/>
+
+    <route url="/reports/index\.html" module="reports" action="index"/>
+    <route url="/reports/upload\.html" module="reports" action="upload"/>
+    <route url="/reports/showAll\.html" module="reports" action="showAll"/>
 </routes>

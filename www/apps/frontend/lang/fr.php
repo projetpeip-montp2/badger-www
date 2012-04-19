@@ -7,6 +7,7 @@
     $TEXT['Menu_Guide'] = "Guide d'utilisation";
     $TEXT['Menu_Lectures'] = "Conférences";
     $TEXT['Menu_MCQ'] = "Q.C.M";
+    $TEXT['Menu_Reports'] = "Rapports";
 
     $TEXT['Flash_SubscribeVisitor'] = 'Vous ne pouvez pas vous inscrire car vous êtes un visiteur.';
     $TEXT['Flash_SubscribeGenerated'] = 'Vous ne pouvez pas vous inscrire car votre QCM est déjà généré.';
@@ -18,6 +19,10 @@
     $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
     $TEXT['Flash_MCQTaken'] = 'Vous avez validé vos réponses au QCM.';
     $TEXT['Flash_PackageUnknown'] = "Le package demandé n'existe pas!";
+    $TEXT['Flash_NoPackage'] = "Pas de package.";
+    $TEXT['Flash_UploadError'] = "Erreur durant l'upload du rapport";
+    $TEXT['Flash_Uploaded'] = "Fichier uploadé.";
+    $TEXT['Flash_AlreadyAReportForAPackage'] = "Vous avez déjà un rapport pour ce package.";
 
     $TEXT['Package_ListOf'] = "Liste des packages :";
     $TEXT['Package_ListOfSubscribed'] = "Liste des packages enregistrés:";
@@ -38,6 +43,10 @@
     $TEXT['Lecture_Date'] = "Date";
     $TEXT['Lecture_StartTime'] = "Horaire de début";
     $TEXT['Lecture_EndTime'] = "Horaire de fin";
+
+    $TEXT['Reports_Index'] = "Rapport";
+    $TEXT['Reports_Upload'] = "Ajouter un rapport";
+    $TEXT['Reports_ShowAll'] = "Voir mes rapports";
 
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 16 Avril 2012 à 16:35
+-- Généré le: Jeu 19 Avril 2012 à 21:29
 -- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `vbMifare`;
 USE `vbMifare`;
-
 
 -- --------------------------------------------------------
 
@@ -109,8 +108,8 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '3'),
 ('canSubscribe', '1'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
-('departmentsList', 'PEIP;ENR;ERII;FQSC;IG;MAT;MI;STE;STIA'),
-('availablesLanguagesList', 'fr;en');
+('availablesLanguagesList', 'fr;en'),
+('reportSizeLimitFrontend', '10000000');
 
 -- --------------------------------------------------------
 
@@ -123,7 +122,8 @@ CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
   `Id_package` smallint(5) unsigned NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Path` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `Downloadable` tinyint(1) DEFAULT NULL
+  `Downloadable` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`Id_document`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
 
 CREATE TABLE IF NOT EXISTS `DocumentsOfUsers` (
   `Id_package` smallint(5) unsigned NOT NULL,
-  `Id_user` smallint(5) unsigned NOT NULL,
+  `Id_user` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Path` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
