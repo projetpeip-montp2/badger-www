@@ -36,7 +36,7 @@
     $TEXT['Package_Subscribe'] = "Subscribe";
     $TEXT['Package_Unsubscribe'] = "Unsubscribe";
     $TEXT['Package_ListOfLecture'] = "List of lectures in the package:";
-    $TEXT['Package_DocumentsLink'] = "See associated files";
+    $TEXT['Package_DocumentsLink'] = "Browse associated files";
 
     $TEXT['Lecture_Index'] = "From this page, you can do some operations, like subscribe to a package, or view you schedule.";
     $TEXT['Lecture_Schedule'] = "Schedule";

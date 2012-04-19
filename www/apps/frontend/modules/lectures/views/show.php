@@ -11,8 +11,6 @@
     <li><?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?></li>
 </ul>
 
-<br/>
-
 <?php
     echo '<p>' . $TEXT['Package_ListOfLecture'] . '</p>';
 

@@ -26,6 +26,8 @@
   'resetmanager' => 'lib/models/ResetManager.class.php',
   'configmanager' => 'lib/models/ConfigManager.class.php',
   'lecture' => 'lib/models/Lecture.class.php',
+  'imageofpackage' => 'lib/models/ImageOfPackage.class.php',
+  'imageofpackagemanager' => 'lib/models/ImageOfPackageManager.class.php',
   'availabilitymanager' => 'lib/models/AvailabilityManager.class.php',
   'registration' => 'lib/models/Registration.class.php',
   'student' => 'lib/models/Student.class.php',

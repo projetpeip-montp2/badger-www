@@ -111,6 +111,7 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('availablesLanguagesList', 'fr;en'),
 ('reportSizeLimitFrontend', '10000000')
 ('documentSizeLimitBackend', '10000000');
+('zipFileSizeLimitBackend', '10000000');
 
 -- --------------------------------------------------------
 
@@ -136,6 +137,19 @@ CREATE TABLE IF NOT EXISTS `DocumentsOfUsers` (
   `Id_user` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ImagesOfPackages`
+--
+
+CREATE TABLE IF NOT EXISTS `ImagesOfPackages` (
+  `Id_image` smallint(5) NOT NULL AUTO_INCREMENT,
+  `Id_package` smallint(5) NOT NULL,
+  `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`Id_image`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

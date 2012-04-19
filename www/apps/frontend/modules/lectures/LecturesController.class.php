@@ -72,6 +72,7 @@
 
             if(count($package) == 0)
             {
+                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
                 $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
             }
