@@ -5,6 +5,14 @@
         protected $m_contentFile;
         protected $m_vars = array();
 
+        public function __construct(Application $app)
+        {
+            parent::__construct($app);
+            
+            if($app->name() == 'frontend')
+                $this->addFileToInclude(dirname(__FILE__).'/../apps/frontend/lang/'.$app->user()->getAttribute('vbmifareLang').'.php');
+        }
+
         public function addVar($var, $value)
         {
             if (!is_string($var) || is_numeric($var) || empty($var))
