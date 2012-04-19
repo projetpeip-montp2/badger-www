@@ -21,7 +21,7 @@
             }
 
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute(); 
+            $req->execute($paramsSQL); 
 
             $documents = array();
 

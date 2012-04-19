@@ -26,7 +26,7 @@
                     {
                         if(count($lineDatas) != 2)
                         {
-                            $this->app()->user()->setFlashError('Classroom in csv has not got 2 rows');
+                            $this->app()->user()->setFlashError('Classroom in ' . $doc->setIdPackage($idPackage); . 'csv has not got 2 rows.');
                             $this->app()->httpResponse()->redirect($request->requestURI());
                             break;
                         }

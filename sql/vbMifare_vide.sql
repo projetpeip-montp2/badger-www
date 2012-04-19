@@ -109,7 +109,8 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('canSubscribe', '1'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
-('reportSizeLimitFrontend', '10000000');
+('reportSizeLimitFrontend', '10000000')
+('documentSizeLimitBackend', '10000000');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
-  `Id_document` smallint(5) unsigned NOT NULL,
+  `Id_document` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Id_package` smallint(5) unsigned NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`Id_document`)
