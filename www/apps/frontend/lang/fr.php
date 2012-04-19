@@ -31,6 +31,7 @@
     $TEXT['Package_Subscribe'] = "S'inscrire";
     $TEXT['Package_Unsubscribe'] = "Se désinscrire";
     $TEXT['Package_ListOfLecture'] = "Liste des conférences dans le package:";
+    $TEXT['Package_DocumentsLink'] = "Voir les documents associés";
 
     $TEXT['Lecture_Index'] = "Cette page vous permet d'effectuer des opérations sur les packages, comme l'inscription, où voir votre planning.";
     $TEXT['Lecture_Schedule'] = "Planning";

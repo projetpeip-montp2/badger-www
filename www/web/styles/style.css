@@ -114,9 +114,12 @@ a, a:visited
     text-align: center; 
 }
 
-.lectureDescription
+.documentsFrame
 {
-    padding-left: 3%;
+    border: 1px solid black;
+    float: right;
+    padding: 0.5%;
+    color: blue;
 }
 
 .FormTable

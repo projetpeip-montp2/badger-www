@@ -1,12 +1,17 @@
-    <h1><?php echo $package->getName($lang); ?></h1>
-    <ul>
-        <li><?php echo $TEXT['Package_Lecturer'] . ': ' . $package->getLecturer(); ?></li>
-        <li><?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?></li>
-    </ul>
+<div class="documentsFrame">
+    <?php
+        $documentsLink = '/vbMifare/lectures/showDocuments-' . $package->getId() . '.html';
+    ?>
+    <a href="<?php echo $documentsLink; ?>"><?php echo $TEXT['Package_DocumentsLink']; ?></a>
+</div>
 
+<h1><?php echo $package->getName($lang); ?></h1>
+<ul>
+    <li><?php echo $TEXT['Package_Lecturer'] . ': ' . $package->getLecturer(); ?></li>
+    <li><?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?></li>
+</ul>
 
-    <br/>
-    <br/>
+<br/>
 
 <?php
     echo '<p>' . $TEXT['Package_ListOfLecture'] . '</p>';

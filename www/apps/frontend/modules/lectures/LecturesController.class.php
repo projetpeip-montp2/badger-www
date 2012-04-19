@@ -17,8 +17,7 @@
             $registrationsOfUser = $managerRegistration->getResgistrationsFromUser($username);
 
             // Retrieve the package given by id in URL
-            $managerPackage = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackage->get($request->getData('idPackage'));
+            $packages = $this->m_managers->getManagerOf('package')->get($request->getData('idPackage'));
 
             // Check that the package exists
             if(count($packages) != 1)
@@ -60,8 +59,26 @@
             $this->page()->addVar('package', $package);
             $this->page()->addVar('lang', $lang);
 
-            $managerLecture = $this->m_managers->getManagerOf('lecture');
-            $this->page()->addVar('lectures', $managerLecture->get($request->getData('idPackage')));
+            $this->page()->addVar('lectures', $this->m_managers->getManagerOf('lecture')->get($request->getData('idPackage')));
+        }
+
+        public function executeShowDocuments(HTTPRequest $request)
+        {
+            $idPackage = $request->getData('idPackage');
+
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $package = $this->m_managers->getManagerOf('package')->get($idPackage);
+
+            if(count($package) == 0)
+            {
+                $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
+                $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
+            }
+
+            // Send package name if it exists
+            $this->page()->addVar('packageName', $package[0]->getName($lang));
+            $this->page()->addVar('documents', $this->m_managers->getManagerOf('documentofpackage')->get($idPackage));
         }
 
         public function executeShowAll(HTTPRequest $request)
@@ -103,13 +120,6 @@
         {
             // Display schedule
         }
-
-
-
-
-
-
-
 
         private function checkSubscribe(HTTPRequest $request)
         {

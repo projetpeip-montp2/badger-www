@@ -119,6 +119,7 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
+  `Id_document` smallint(5) unsigned NOT NULL,
   `Id_package` smallint(5) unsigned NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Path` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,

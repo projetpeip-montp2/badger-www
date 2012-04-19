@@ -20,6 +20,10 @@
 
     <route url="/admin/statistics/index\.html" module="statistics" action="index"/>
 
+    <route url="/admin/documents/index\.html" module="documents" action="index"/>
+    <route url="/admin/documents/uploadPDF\.html" module="documents" action="uploadPDF"/>
+    <route url="/admin/documents/uploadImages\.html" module="documents" action="uploadImages"/>
+
     <route url="/admin/reset/index\.html" module="reset" action="index"/>
     <route url="/admin/reset/truncate\.html" module="reset" action="truncate" vars="tablesSelected"/>
 

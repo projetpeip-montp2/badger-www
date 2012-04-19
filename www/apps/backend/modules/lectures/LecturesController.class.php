@@ -211,19 +211,16 @@
 
 
             // Else display the form
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $managerPackages = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackages->get();
+            $packages = $this->m_managers->getManagerOf('package')->get();
 
             if(count($packages) == 0)
             {
-                $this->app()->user()->setFlashError('Il faut au moin un package pour pouvoir uploader des conférences ou des questions/réponses.');
+                $this->app()->user()->setFlashError('Il faut au moins un package pour pouvoir uploader des conférences ou des questions/réponses.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
-            $this->app()->user()->setFlashError($flashMessage); 
-
+            $this->app()->user()->setFlashInfo($flashMessage);
             $this->page()->addVar('packages', $packages);
         }
 

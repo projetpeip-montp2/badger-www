@@ -20,18 +20,9 @@
         <div id="Header">
             <a href="/vbMifare/admin/home/index.html"><img src="/vbMifare/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
         </div>
-        
+
         <div id="Menu">
-            Menu
-            <ul>
-                <li><a href="/vbMifare/admin/home/index.html">Accueil</a></li>
-                <li><a href="/vbMifare/admin/lectures/index.html">Conférences</a></li>
-                <li><a href="/vbMifare/admin/mcq/index.html">QCMs</a></li>
-                <li><a href="/vbMifare/admin/reset/index.html">Reset</a></li>
-                <li><a href="/vbMifare/admin/classrooms/index.html">Salles</a></li>
-                <li><a href="/vbMifare/admin/statistics/index.html">Statistiques</a></li>
-                <li><a href="/vbMifare/admin/settings/index.html">Configurations</a></li>
-            </ul>
+            <?php require dirname(__FILE__).'/menu.php'; ?>
         </div>
         
         <?php 
