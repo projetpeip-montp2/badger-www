@@ -75,6 +75,30 @@
             $this->page()->addVar('lang', $lang);
         }
 
+        public function executeShowSubscribed(HTTPRequest $request)
+        {
+            // Display all packages subscribed
+            $username = $this->app()->user()->getAttribute('logon');
+
+            // Retrieve registration id of the users
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
+            $registrationsOfUser = $managerRegistration->getResgistrationsFromUser($username);
+
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $managerPackage = $this->m_managers->getManagerOf('package');
+
+            $packages = array();
+
+            foreach($registrationsOfUser as $reg)
+                $packages = array_merge($packages, $managerPackage->get($reg->getIdPackage()));
+
+
+
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('lang', $lang);
+        }
+
         public function executeSchedule()
         {
             // Display schedule

@@ -20,7 +20,11 @@
     $TEXT['Flash_PackageUnknown'] = "The package doesn't exist!";
 
     $TEXT['Package_ListOf'] = "List of packages :";
+    $TEXT['Package_ListOfSubscribed'] = "List of packages subscribed:";
     $TEXT['Package_ShowAll'] = "Show all packages";
+    $TEXT['Package_ShowSubscribed'] = "Show subscribed packages";
+    $TEXT['Package_NoSubscribtion'] = "No subscribtion.";
+    $TEXT['Package_NoPackage'] = "No package.";
     $TEXT['Package_Description'] = "Description";
     $TEXT['Package_Lecturer'] = "Lecturer";
     $TEXT['Package_Tags'] = "Tags";

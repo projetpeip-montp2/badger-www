@@ -9,19 +9,25 @@
     <br/>
 
 <?php
-    echo $TEXT['Package_ListOfLecture'];
+    echo '<p>' . $TEXT['Package_ListOfLecture'] . '</p>';
 
-    foreach($lectures as $lecture)
+    if(count($lectures) == 0)
+    echo '<p>' . $TEXT['Package_NoPackage'] . '</p>';
+
+    else
     {
+        foreach($lectures as $lecture)
+        {
 ?>
-    <h1><?php echo $lecture->getName($lang); ?></h1>
-    <ul>
-        <li><?php echo $TEXT['Package_Description'] . ': ' . $lecture->getDescription($lang); ?></li>
-        <li><?php echo $TEXT['Lecture_Date'] . ': ' . $lecture->getDate(); ?></li>
-        <li><?php echo $TEXT['Lecture_StartTime'] . ': ' . $lecture->getStartTime(); ?></li>
-        <li><?php echo $TEXT['Lecture_EndTime'] . ': ' . $lecture->getEndTime(); ?></li>
-    </ul>
+        <h1><?php echo $lecture->getName($lang); ?></h1>
+        <ul>
+            <li><?php echo $TEXT['Package_Description'] . ': ' . $lecture->getDescription($lang); ?></li>
+            <li><?php echo $TEXT['Lecture_Date'] . ': ' . $lecture->getDate(); ?></li>
+            <li><?php echo $TEXT['Lecture_StartTime'] . ': ' . $lecture->getStartTime(); ?></li>
+            <li><?php echo $TEXT['Lecture_EndTime'] . ': ' . $lecture->getEndTime(); ?></li>
+        </ul>
 <?php
+        }
     }
 ?>
 
