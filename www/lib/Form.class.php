@@ -338,6 +338,8 @@
 
     class FormComponentCheckbox extends FormComponentWithLabel
     {
+        private $m_selected = array();
+
         public function __construct($name)
         {
             parent::__construct($name);
@@ -345,11 +347,26 @@
             $this->m_isInParagraph = true;
         }
 
+        public function selected($selected)
+        {
+            $this->m_selected = $selected;
+
+            return $this;
+        }
+
+        private function isSelected($selected)
+        {
+            return in_array($selected, $this->m_selected);
+        }
+
         public function getOutput()
         {
             $output = '';
 
-            $output .= "\t" . '<input type="checkbox" name="' . $this->getName() . '" id="' . $this->getName() . '"/>';
+            $output .= "\t" . '<input type="checkbox" name="' . $this->getName() . '" id="' . $this->getName() . '" ';
+            if($this->isSelected($this->getLabel()))
+                $output .= 'checked';
+            $output .= '/>';
             $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
 
             return $output;
@@ -415,7 +432,7 @@
 
 
 
-    class FormComponentRadiobox extends FormComponentWithLabelAndChoices
+    class FormComponentRadioButton extends FormComponentWithLabelAndChoices
     {
         public function __construct($name)
         {
@@ -433,7 +450,10 @@
 
             foreach($this->getChoices() as $key => $value)
             {
-                $output .= '<input type="radio" name="' . $this->getName() . '" id="' . $key . '" value="' . $key . '"/>';
+                $output .= "\t" . '<input type="radio" name="' . $this->getName() . '" id="' . $key . '" value="' . $key . '" ';
+                if($value == $this->getSelected())
+                    $output .= 'checked';
+                $output .= '/>';
                 $output .= '<label for="' . $key . '">' . $value . '</label><br />';
             }
 
@@ -463,7 +483,7 @@
 
             foreach($this->getChoices() as $key => $value)
             {
-                $output .= '<option value="' . $key . '"';
+                $output .= "\t" . '<option value="' . $key . '"';
                 if($value == $this->getSelected())
                     $output .= '" selected';
                 $output .= '>' . $value . '</option>' . "\n";
@@ -559,8 +579,8 @@
                     $component = new FormComponentLabel($name);
                     break;
 
-                case 'radiobox':
-                    $component = new FormComponentRadioBox($name);
+                case 'radio':
+                    $component = new FormComponentRadioButton($name);
                     break;
 
                 case 'select':
