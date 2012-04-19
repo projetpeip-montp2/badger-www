@@ -1,10 +1,19 @@
 <?php
     class DocumentOfPackage extends Record
     {
+        private $m_idDocument;
         private $m_idPackage;
         private $m_filename;
-        private $m_path;
-        private $m_downloadable;
+
+        public function setId($idDocument)
+        {
+            $this->m_idDocument = $idDocument;
+        }
+
+        public function getId()
+        {
+            return $this->m_idDocument;
+        }
 
         public function setIdPackage($idPackage)
         {
@@ -24,26 +33,6 @@
         public function getFilename()
         {
             return $this->m_filename;
-        }
-
-        public function setPath($path)
-        {
-            $this->m_path = $path;
-        }
-
-        public function getPath()
-        {
-            return $this->m_path;
-        }
-
-        public function setDownloadable($downloadable)
-        {
-            $this->m_downloadable = $downloadable;
-        }
-
-        public function getDownloadable()
-        {
-            return $this->m_downloadable;
         }
     }
 ?>

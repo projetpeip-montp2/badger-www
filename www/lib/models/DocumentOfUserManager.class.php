@@ -7,8 +7,7 @@
 
             $requestSQL = 'SELECT Id_package,
                                   Id_user,
-                                  Filename, 
-                                  Path FROM DocumentsOfUsers';
+                                  Filename FROM DocumentsOfUsers';
 
             if($idPackage != -1)
             {
@@ -34,7 +33,6 @@
                 $doc->setIdPackage($idPackage);
                 $doc->setIdUser($idUser);
                 $doc->setFilename($data['Filename']);
-                $doc->setPath($data['Path']);
 
                 $docs[] = $doc;
             }
@@ -46,13 +44,11 @@
         {
             $req = $this->m_dao->prepare('INSERT INTO DocumentsOfUsers(Id_package,
                                                                        Id_user, 
-                                                                       Filename, 
-                                                                       Path) VALUES(?, ?, ?, ?)');
+                                                                       Filename) VALUES(?, ?, ?)');
 
             $req->execute(array($doc->getIdPackage(),
                                 $doc->getIdUser(),
-                                $doc->getFilename(),
-                                $doc->getPath()));
+                                $doc->getFilename()));
         }
     }
 ?>

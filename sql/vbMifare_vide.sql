@@ -121,8 +121,6 @@ CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
   `Id_document` smallint(5) unsigned NOT NULL,
   `Id_package` smallint(5) unsigned NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `Path` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `Downloadable` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Id_document`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -135,8 +133,7 @@ CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
 CREATE TABLE IF NOT EXISTS `DocumentsOfUsers` (
   `Id_package` smallint(5) unsigned NOT NULL,
   `Id_user` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `Path` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
+  `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

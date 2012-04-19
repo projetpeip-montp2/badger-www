@@ -4,7 +4,6 @@
         private $m_idPackage;
         private $m_idUser;
         private $m_filename;
-        private $m_path;
 
         public function setIdPackage($idPackage)
         {
@@ -34,16 +33,6 @@
         public function getFilename()
         {
             return $this->m_filename;
-        }
-
-        public function setPath($path)
-        {
-            $this->m_path = $path;
-        }
-
-        public function getPath()
-        {
-            return $this->m_path;
         }
     }
 ?>

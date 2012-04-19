@@ -49,7 +49,6 @@
                     $doc->setIdPackage($idPackage);
                     $doc->setIdUser($username);
                     $doc->setFilename($filename);
-                    $doc->setPath($path);
 
                     $managerDoc->save($doc);
 

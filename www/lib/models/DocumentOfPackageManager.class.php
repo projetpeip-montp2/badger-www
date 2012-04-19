@@ -1,15 +1,24 @@
 <?php
     class DocumentOfPackageManager extends Manager
     {
-        public function get($idPackage = -1)
+        public function get($idPackage = -1, $idDocument = -1)
         {
-            $requestSQL = 'SELECT Id_package,
-                                  Filename,
-                                  Path,
-                                  Downloadable FROM DocumentsOfPackages';
+            $requestSQL = 'SELECT Id_document,
+                                  Id_package,
+                                  Filename FROM DocumentsOfPackages';
 
             if($idPackage != -1)
-                $requestSQL .= ' WHERE Id_package = ' . $idPackage;
+            {
+                $requestSQL .= ' WHERE Id_package = ?';
+                $paramsSQL[] = $idPackage;
+            }
+
+            if($idDocument != -1)
+            {
+                $connect = ($idPackage != -1) ? 'AND' : 'WHERE';
+                $requestSQL .= ' ' . $connect .' Id_document = ?';
+                $paramsSQL[] = $idDocument;
+            }
 
             $req = $this->m_dao->prepare($requestSQL);
             $req->execute(); 
@@ -19,10 +28,9 @@
             while($data = $req->fetch())
             {
                 $document = new DocumentOfPackage;
+                $document->setId($data['Id_document']);
                 $document->setIdPackage($data['Id_package']);
                 $document->setFilename($data['Filename']);
-                $document->setPath($data['Path']);
-                $document->setDownloadable($data['Downloadable']);
 
                 $documents[] = $document;
             }
@@ -33,23 +41,17 @@
         public function save($document)
         {
             $req = $this->m_dao->prepare('INSERT INTO DocumentsOfPackages(Id_package,
-                                                                         Filename, 
-                                                                         Path, 
-                                                                         Downloadable) VALUES(?, ?, ?, ?)');
+                                                                         Filename) VALUES(?, ?)');
 
             $req->execute(array($document->getIdPackage(),
-                                $document->getFilename(),
-                                $document->getPath(),
-                                $document->getDownloadable()));
+                                $document->getFilename(),));
         }
 
-// TODO: DELETE à réfléchir
         public function delete($documentId)
         {
-            $req = $this->m_dao->prepare('DELETE FROM Lectures WHERE Id_lecture = ?');
+            $req = $this->m_dao->prepare('DELETE FROM DocumentsOfPackages WHERE Id_document = ?');
 
-            foreach($lectureIds as $lectureId)
-                $req->execute(array($lectureId));
+            $req->execute(array($documentId));
         }
     } 
 ?>
