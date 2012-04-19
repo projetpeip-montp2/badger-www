@@ -47,9 +47,13 @@ body
 
 #Flash
 {
-    color: red;
-	font-size: 28px;
-    text-align: center;	
+	background-color: white;
+	width: 80%;
+	margin-left: 14%;
+	border: 2px solid black;
+	padding: 0.5% 1%;
+	padding-bottom: 0.5%;
+	margin-bottom: 1%;
 }
 
 #Footer
@@ -87,6 +91,27 @@ a, a:visited
 #StartMCQ
 {
 
+}
+
+#flashError
+{
+    color: red;
+    font-size: 22px;
+    text-align: center; 
+}
+
+#flashWarning
+{
+    color: orange;
+    font-size: 22px;
+    text-align: center; 
+}
+
+#flashInfo
+{
+    color: green;
+    font-size: 22px;
+    text-align: center; 
 }
 
 .lectureDescription

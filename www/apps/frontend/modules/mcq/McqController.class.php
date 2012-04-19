@@ -21,7 +21,7 @@
                 // Inclusion of the langage file
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
 
-                $this->app()->user()->setFlash($TEXT['Flash_NoTakeMCQ']);
+                $this->app()->user()->setFlashError($TEXT['Flash_NoTakeMCQ']);
                 $this->page()->addVar('showMCQLink', false);
                 $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
             }
@@ -56,7 +56,7 @@
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
 
                 // Redirection
-                $this->app()->user()->setFlash($TEXT['Flash_MCQTaken']);
+                $this->app()->user()->setFlashInfo($TEXT['Flash_MCQTaken']);
                 $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
             }
 

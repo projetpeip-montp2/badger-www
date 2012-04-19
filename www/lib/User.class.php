@@ -50,9 +50,22 @@
             return $this->existsAttribute('logon');
         }
 
-        public function setFlash($value)
+        public function setFlashError($value)
         {
             $this->setAttribute('vbmifareFlash', $value);
+            $this->setAttribute('vbmifareFlashType', 'flashError');
+        }
+
+        public function setFlashWarning($value)
+        {
+            $this->setAttribute('vbmifareFlash', $value);
+            $this->setAttribute('vbmifareFlashType', 'flashWarning');
+        }
+
+        public function setFlashInfo($value)
+        {
+            $this->setAttribute('vbmifareFlash', $value);
+            $this->setAttribute('vbmifareFlashType', 'flashInfo');
         }
 
         public function getFlash()
@@ -61,6 +74,13 @@
             $this->unsetAttribute('vbmifareFlash');
             
             return $flash;
+        }
+
+        public function getFlashType()
+        {
+            $flashType = $this->getAttribute('vbmifareFlashType');
+            
+            return $flashType;
         }
         
         public function hasFlash()

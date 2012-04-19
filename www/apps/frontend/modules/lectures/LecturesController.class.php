@@ -25,7 +25,7 @@
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
-                $this->app()->user()->setFlash($TEXT['Flash_PackageUnknown']);
+                $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/vbMifare/lectures/showAll.html');
             }
 
@@ -50,7 +50,7 @@
 
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
-                $this->app()->user()->setFlash($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
+                $this->app()->user()->setFlashInfo($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -142,7 +142,7 @@
                     break;
                 }
 
-                $this->app()->user()->setFlash($flashMessage);
+                $this->app()->user()->setFlashError($flashMessage);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -150,7 +150,7 @@
             // Check if registrations are allowed
             if($this->m_managers->getManagerOf('config')->get('canSubscribe') == '0')
             {
-                $this->app()->user()->setFlash($TEXT['Flash_SubscribeImpossible']);
+                $this->app()->user()->setFlashError($TEXT['Flash_SubscribeImpossible']);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
         }
@@ -190,7 +190,7 @@
                     {
                         $messageFlash = $TEXT['Flash_SubscribeConflict'];
 
-                        $this->app()->user()->setFlash($messageFlash);
+                        $this->app()->user()->setFlashError($messageFlash);
                         $this->app()->httpResponse()->redirect($request->requestURI());
                     }
                 }
