@@ -65,5 +65,13 @@
                                 $package->getDescription('en'),
                                 $package->getId()));
         }
+
+        public function delete($packageIds)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Packages WHERE Id_package = ?');
+
+            foreach($packageIds as $packageId)
+                $req->execute(array($packageId));
+        }
     }
 ?>

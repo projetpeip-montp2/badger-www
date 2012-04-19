@@ -81,6 +81,15 @@
                             $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                         }
 
+                        // Check Date and Time formats
+                        if(!(Date::check($lineDatas[4]) &&
+                             Time::check($lineDatas[5]) &&
+                             Time::check($lineDatas[6])))
+                        {
+                            $this->app()->user()->setFlash('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
+                            $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
+                        }
+
                         $date = new Date;
                         $date->setFromString($lineDatas[4]);
 
@@ -89,6 +98,12 @@
 
                         $endTime = new Time;
                         $endTime->setFromString($lineDatas[6]);
+
+                        if(Time::compare($startTime, $endTime) > 0)
+                        {
+                            $this->app()->user()->setFlash('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
+                            $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
+                        }
         
                         $lecture = new Lecture;
                         $lecture->setIdPackage($request->postData('vbmifarePackage'));
@@ -215,7 +230,8 @@
         public function executeUpdatePackages(HTTPRequest $request)
         {
             // Handle POST data
-            if($request->postExists('packageId'))
+            // Update package
+            if($request->postExists('Modifier'))
             {
                 $package = new Package();
 
@@ -230,7 +246,17 @@
                 $managerPackages->update($package);
 
                 // Redirection
-                $this->app()->user()->setFlash('Modifications prises en compte');
+                $this->app()->user()->setFlash('Package "' . $request->postData('NameFr') . '" modifié.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
+            }
+
+            // Delete lecture
+            if($request->postData('Supprimer'))
+            {
+                $this->m_managers->getManagerOf('package')->delete(array($request->postData('packageId')));
+
+                // Redirection
+                $this->app()->user()->setFlash('Package "' . $request->postData('NameFr') . '" supprimé.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
             }
 
@@ -250,15 +276,17 @@
         public function executeUpdateLectures(HTTPRequest $request)
         {
             // Handle POST data
-            if($request->postExists('lectureId'))
+            // Update lecture
+            if($request->postExists('Modifier'))
             {
-                $lecture = new Lecture();
-
-                $lecture->setId($request->postData('lectureId'));
-                $lecture->setName('fr', $request->postData('NameFr'));
-                $lecture->setName('en', $request->postData('NameEn'));
-                $lecture->setDescription('fr', $request->postData('DescFr'));
-                $lecture->setDescription('en', $request->postData('DescEn'));
+                // Check Date and Time formats
+                if(!(Date::check($request->postData('Date')) &&
+                     Time::check($request->postData('StartTime')) &&
+                     Time::check($request->postData('EndTime'))))
+                {
+                    $this->app()->user()->setFlash('Erreur dans le format de date ou d\'horaire.');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                }
 
                 $date = new Date;
                 $date->setFromString($request->postData('Date'));
@@ -269,6 +297,20 @@
                 $endTime = new Time;
                 $endTime->setFromString($request->postData('EndTime'));
 
+                $lecture = new Lecture();
+
+                $lecture->setId($request->postData('lectureId'));
+                $lecture->setName('fr', $request->postData('NameFr'));
+                $lecture->setName('en', $request->postData('NameEn'));
+                $lecture->setDescription('fr', $request->postData('DescFr'));
+                $lecture->setDescription('en', $request->postData('DescEn'));
+
+                if(Time::compare($startTime, $endTime) > 0)
+                {
+                    $this->app()->user()->setFlash('Horaire de début > Horaire de fin');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                }
+
                 $lecture->setDate($date);
                 $lecture->setStartTime($startTime);
                 $lecture->setEndTime($endTime);
@@ -277,8 +319,19 @@
                 $managerLectures->update($lecture);
 
                 // Redirection
-                $this->app()->user()->setFlash('Modifications prises en compte');
+                $this->app()->user()->setFlash('Conférence "' . $request->postData('NameFr') . '" modifiée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+            }
+
+            // Delete lecture
+            if($request->postData('Supprimer'))
+            {
+                $this->m_managers->getManagerOf('lecture')->delete(array($request->postData('lectureId')));
+
+                // Redirection
+                $this->app()->user()->setFlash('Conférence "' . $request->postData('NameFr') . '" supprimée.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                // TODO: Supprimer les dépendances
             }
 
             // Else display the form

@@ -16,12 +16,19 @@
         $form->add('hidden', 'classroomId')
              ->value($classroom->getId());
         $form->add('submit', 'Modifier');
+        $form->add('submit', 'Supprimer');
 
         $forms[] = $form;
     }
-
-    echo '<table class="FormTable">';
+?>
+<table class="FormTable">
+    <tr>
+        <th>Nom</th>
+        <th>Contenance</th>
+    </tr>
+<?php
     foreach($forms as $form)
         echo $form->toTr();
-    echo '</table>';
 ?>
+</table>
+

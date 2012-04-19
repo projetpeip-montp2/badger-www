@@ -41,8 +41,7 @@
                     fclose($file);
 
                     // Save all packages parsed
-                    $manager = $this->m_managers->getManagerOf('classroom');
-                    $manager->save($classrooms);
+                    $this->m_managers->getManagerOf('classroom')->save($classrooms);
 
                     $this->app()->user()->setFlash('File uploaded');
                 }
@@ -98,42 +97,43 @@
                     fclose($file);
 
                     // Save all lectures parsed
-                    $managerAvailabilities = $this->m_managers->getManagerOf('availability');
-                    $managerAvailabilities->save($availabilities);
+                    $this->m_managers->getManagerOf('availability')->save($availabilities);
 
-                    $flashMessage = 'Availabilities uploaded.';
+                    $flashMessage = 'Disponibilités uploadées.';
                 }
 
                 else
-                    $flashMessage = 'Cannot upload availabilities.';
+                    $flashMessage = 'Impossible d\'uploader les disponibilités.';
             }
 
-
             // Else display the form
-            $managerAvailabilities = $this->m_managers->getManagerOf('availability');
-            $availabilities = $managerAvailabilities->get();
+            $classrooms = $this->m_managers->getManagerOf('classroom')->get();
 
-            if( count($availabilities) == 0)
+            if(count($classrooms) == 0)
             {
-                $this->app()->user()->setFlash('You need at least a classroom to upload availabilities');
+                $this->app()->user()->setFlash('Il faut au moins une salle pour uploader des disponibilités.');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
             $this->app()->user()->setFlash($flashMessage); 
 
-            $this->page()->addVar('availabilities', $availabilities);
+            $this->page()->addVar('classrooms', $classrooms);
         }
 
         public function executeUpdateAvailabilities(HTTPRequest $request)
         {
             // Handle POST data
-            if($request->postExists('availabilityId'))
+            // Update availability
+            if($request->postExists('Modifier'))
             {
-                $availability = new Availability();
-
-                $availability->setId($request->postData('availabilityId'));
-
-// TODO: Vérifier les formats (Voir createMCQ)
+                // Check Date and Time formats
+                if(!(Date::check($request->postData('Date')) &&
+                     Time::check($request->postData('StartTime')) &&
+                     Time::check($request->postData('EndTime'))))
+                {
+                    $this->app()->user()->setFlash('Erreur dans le format de date ou d\'horaire.');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
+                }
 
                 $date = new Date;
                 $date->setFromString($request->postData('Date'));
@@ -144,57 +144,94 @@
                 $endTime = new Time;
                 $endTime->setFromString($request->postData('EndTime'));
 
+                if(Time::compare($startTime, $endTime) > 0)
+                {
+                    $this->app()->user()->setFlash('Horaire de début > Horaire de fin');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
+                }
+
+                $availability = new Availability();
+
+                $availability->setId($request->postData('availabilityId'));
+
                 $availability->setDate($date);
                 $availability->setStartTime($startTime);
                 $availability->setEndTime($endTime);
 
-                $managerAvailabilities = $this->m_managers->getManagerOf('availability');
-                $managerAvailabilities->update($availability);
+
+                $this->m_managers->getManagerOf('availability')->update($availability);
 
                 // Redirection
-                $this->app()->user()->setFlash('Modifications prises en compte');
+                $this->app()->user()->setFlash('Disponibilité de la salle ' . $request->postExists('classroomName') . ' modifiée.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
+            }
+
+            // Delete availability
+            if($request->postData('Supprimer'))
+            {
+                $this->m_managers->getManagerOf('availability')->delete(array($request->postData('availabilityId')));
+
+                // Redirection
+                $this->app()->user()->setFlash('Disponibilité de la salle ' . $request->postData('classroomName') . ' supprimée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
             }
 
             // Else display the form
-            $managerAvailabilities = $this->m_managers->getManagerOf('availability');
-            $availabilities = $managerAvailabilities->get();
+            $availabilities = $this->m_managers->getManagerOf('availability')->get();
+            $classrooms = $this->m_managers->getManagerOf('classroom')->get();
 
             if(count($availabilities) == 0)
             {
-                $this->app()->user()->setFlash('Il n\'y a pas de disponibilités de salles dans la base de données.');
+                $this->app()->user()->setFlash('Il n\'y a pas de disponibilités de salle dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
             $this->page()->addVar('availabilities', $availabilities);
+            $this->page()->addVar('classrooms', $classrooms);
         }
 
         public function executeUpdateClassrooms(HTTPRequest $request)
         {
             // Handle POST data
-            if($request->postExists('classroomId'))
+            // Update classroom
+            if($request->postExists('Modifier'))
             {
+                $size = $request->postData('Size');
+                if(!is_int($size) && $size <= 0)
+                {
+                    $this->app()->user()->setFlash('Contenance incorrecte : ' . $size);
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateClassrooms.html');
+                }
+
                 $classroom = new Classroom();
 
                 $classroom->setId($request->postData('classroomId'));
                 $classroom->setName($request->postData('Name'));
-                $classroom->setSize($request->postData('Size'));
+                $classroom->setSize($size);
 
                 $managerClassrooms = $this->m_managers->getManagerOf('classroom');
                 $managerClassrooms->update($classroom);
 
                 // Redirection
-                $this->app()->user()->setFlash('Modifications prises en compte');
+                $this->app()->user()->setFlash('Salle ' . $request->postData('Name') . ' modifiée.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateClassrooms.html');
+            }
+
+            if($request->postExists('Supprimer'))
+            {
+                $this->m_managers->getManagerOf('classroom')->delete(array($request->postData('classroomId')));
+
+                // Redirection
+                $this->app()->user()->setFlash('Salle "' . $request->postData('Name') . '" supprimée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateClassrooms.html');
             }
 
             // Else display the form
-            $managerClassrooms = $this->m_managers->getManagerOf('classroom');
-            $classrooms = $managerClassrooms->get();
+            $classrooms = $this->m_managers->getManagerOf('classroom')->get();
 
             if(count($classrooms) == 0)
             {
-                $this->app()->user()->setFlash('Il n\'y a pas de disponibilités de salles dans la base de données.');
+                $this->app()->user()->setFlash('Il n\'y a pas de salles dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 

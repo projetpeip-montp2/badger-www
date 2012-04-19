@@ -67,6 +67,14 @@
                                 $availability->getStartTime()->toStringMySQL(),
                                 $availability->getEndTime()->toStringMySQL(),
                                 $availability->getId()));
-        } 
+        }
+
+        public function delete($availabilityIds)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Availabilities WHERE Id_availability = ?');
+
+            foreach($availabilityIds as $availabilityId)
+                $req->execute(array($availabilityId));
+        }
     }
 ?>

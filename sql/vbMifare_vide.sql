@@ -109,6 +109,7 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '3'),
 ('canSubscribe', '1'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
+('departmentsList', 'PEIP;ENR;ERII;FQSC;IG;MAT;MI;STE;STIA'),
 ('availablesLanguagesList', 'fr;en');
 
 -- --------------------------------------------------------

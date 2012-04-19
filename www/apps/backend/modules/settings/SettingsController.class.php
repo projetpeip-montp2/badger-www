@@ -39,5 +39,42 @@
             // Else we display the form
             $this->page()->addVar('authorized', $authorized);
         }
+
+        public function executeAddDepartments(HTTPRequest $request)
+        {
+            // Handle POST data
+            if($request->postExists('Ajouter'))
+            {
+                $managerConfigs = $this->m_managers->getManagerOf('config');
+                $newDepartments = $managerConfigs->get('departmentsList') . ';' . $request->postData('Name');
+                $managerConfigs->replace('departmentsList', $newDepartments);
+
+                $this->app()->user()->setFlash('Liste des départements: "' . $newDepartments . '".');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            // Else we display the form
+        }
+
+        public function executeDeleteDepartments(HTTPRequest $request)
+        {
+            $managerConfigs = $this->m_managers->getManagerOf('config');
+            $departments = explode(';', $managerConfigs->get('departmentsList'));
+
+            // Handle POST data
+            // Update Departments
+            if($request->postExists('Supprimer'))
+            {
+                $index = array_search($request->postData('DepartmentName'), $departments);
+                unset($departments[$index]);
+                $managerConfigs->replace('departmentsList', implode(';', $departments));
+
+                $this->app()->user()->setFlash('Département "' . $request->postData('DepartmentName') . '" supprimé.');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            // Else we display the form
+            $this->page()->addVar('departments', $departments);
+        }
     }
 ?>

@@ -23,12 +23,20 @@
         $form->add('hidden', 'packageId')
              ->value($package->getId());
         $form->add('submit', 'Modifier');
+        $form->add('submit', 'Supprimer');
 
         $forms[] = $form;
     }
+?>
 
-    echo '<table class="FormTable">';
+<table class="FormTable">
+    <th>Conférencier</th>
+    <th>Nom Fr</th>
+    <th>Nom En</th>
+    <th>Description Fr</th>
+    <th>Description En</th>
+<?php
     foreach($forms as $form)
         echo $form->toTr();
-    echo '</table>';
 ?>
+</table>

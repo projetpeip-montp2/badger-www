@@ -47,5 +47,13 @@
                                 $classroom->getSize(),
                                 $classroom->getId()));
         }
+
+        public function delete($classroomIds)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Classrooms WHERE Id_classroom = ?');
+
+            foreach($classroomIds as $classroomId)
+                $req->execute(array($classroomId));
+        }
     }
 ?>

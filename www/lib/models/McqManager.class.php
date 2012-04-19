@@ -73,6 +73,14 @@
                                 $mcq->getSchoolYear()));
         }
 
+        public function delete($mcqs)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM MCQs WHERE Department = ? AND SchoolYear = ?');
+
+            foreach($mcqs as $mcq)
+                $req->execute(array($mcq['Department'],$mcq['SchoolYear']));
+        }
+
         public function getQuestionsFromPackage($idPackage, $status = NULL)
         {
             $SQLreq = 'SELECT Id_question,

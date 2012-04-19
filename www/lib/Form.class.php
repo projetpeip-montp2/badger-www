@@ -66,7 +66,7 @@
 
         public function getOutput()
         {
-            $output = '<input type="submit" value="' . $this->getName() . '"';
+            $output = '<input type="submit" name="' . $this->getName() .'" value="' . $this->getName() . '"';
 
             if($this->m_onClick)
                 $output .= ' onclick="' . $this->m_onClick . '"';
@@ -209,21 +209,8 @@
 
             $this->m_isInParagraph = true;
 
-            $this->m_placeHolder = '';
             $this->m_value = '';
-            $this->m_value = '50';
-        }
-
-        public function placeHolder($placeHolder)
-        {
-            $this->m_placeHolder = $placeHolder;
-
-            return $this;
-        }
-
-        public function getPlaceHolder()
-        {
-            return $this->m_placeHolder;
+            $this->m_size = '20';
         }
 
         public function value($value)
@@ -258,8 +245,7 @@
                 $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
 
             $output .= '<input type="text" name="' . $this->getName() . 
-                                        '" id="' . $this->getName() . 
-                                        '" placeholder="' . $this->getPlaceHolder() . 
+                                        '" class="' . $this->getName() . 
                                         '" value="' . $this->getValue() .
                                         '" size="' . $this->getSize() .  '"/>';
 
@@ -328,7 +314,7 @@
                 $output .= '<label for="' . $this->getName() . '">' . $this->getLabel() . '</label>';
 
             $output .= '<textarea name="' . $this->getName() . 
-                               '" id="' . $this->getName() . 
+                               '" class="' . $this->getName() . 
                                '" rows="' . $this->getRows() . 
                                '" cols="' . $this->getCols() . '">' . $this->getText() .'</textarea>';
 
@@ -485,7 +471,7 @@
             {
                 $output .= "\t" . '<option value="' . $key . '"';
                 if($value == $this->getSelected())
-                    $output .= '" selected';
+                    $output .= ' selected';
                 $output .= '>' . $value . '</option>' . "\n";
             }
 
@@ -589,9 +575,6 @@
 
                 case 'submit':
                     $component = new FormComponentSubmit($name);
-                    if($this->m_hasSubmit)
-                        throw new RuntimeException('The form have already a submit input');
-
                     $this->m_hasSubmit = true;
                     break;
 
@@ -658,13 +641,21 @@
                 throw new RuntimeException('No submit input in the form');
 
             $output = '';
-            $output .= '<form action="' .  $this->m_action . '" method="' . $this->m_method . '">';
             $output .= '<tr>';
+            $output .= '<form action="' .  $this->m_action . '" method="' . $this->m_method . '">';
 
             foreach($this->m_formComponents as $component)
-                $output .= "\n" . '<td>' . $component->getOutput() . '</td>';
+            {
+                if(get_class($component) != 'FormComponentHidden')
+                    $output .= "\n" . '<td>' . $component->getOutput() . '</td>';
+            }
+            foreach($this->m_formComponents as $component)
+            {
+                if(get_class($component) == 'FormComponentHidden')
+                    $output .= "\n" . $component->getOutput();
+            }
 
-            $output .= "\n" . '</tr></form>';
+            $output .= "\n" . '</form></tr>';
 
             return $output;
         }

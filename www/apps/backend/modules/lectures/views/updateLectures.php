@@ -29,12 +29,22 @@
         $form->add('hidden', 'lectureId')
              ->value($lecture->getId());
         $form->add('submit', 'Modifier');
+        $form->add('submit', 'Supprimer');
 
         $forms[] = $form;
     }
+?>
 
-    echo '<table class="FormTable">';
+<table class="FormTable">
+    <th>Nom Fr</th>
+    <th>Nom En</th>
+    <th>Description Fr</th>
+    <th>Description En</th>
+    <th>Date</th>
+    <th>Horaire de début</th>
+    <th>Horaire de fin</th>
+<?php
     foreach($forms as $form)
         echo $form->toTr();
-    echo '</table>';
 ?>
+</table>

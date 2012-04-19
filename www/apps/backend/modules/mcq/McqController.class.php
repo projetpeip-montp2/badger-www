@@ -29,6 +29,12 @@
                 $endTime = new Time;
                 $endTime->setFromString($request->postData('EndTime'));
 
+                if(Time::compare($startTime, $endTime) > 0)
+                {
+                    $this->app()->user()->setFlash('Horaire de début > Horaire de fin');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/createMCQ.html');
+                }
+
                 $mcq = new MCQ;
 
                 $mcq->setDepartment($request->postData('Department'));
@@ -41,7 +47,10 @@
                 $managerMCQs->save($mcq);
 
                 // Redirection
-                $this->app()->user()->setFlash('Séance de QCM créée.');
+                $flashMessage = 'Séance de QCM pour le département ' .
+                                $request->postData('Department') . ' ' .
+                                $request->postData('Schoolyear') . ' créée.';
+                $this->app()->user()->setFlash($flashMessage);
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
             }
 
@@ -55,7 +64,8 @@
         public function executeUpdateMCQs(HTTPRequest $request)
         {
             // Handle POST data
-            if($request->postExists('Department'))
+            // Update MCQ
+            if($request->postExists('Modifier'))
             {
             // Check Date and Time formats
                 if(!(Date::check($request->postData('Date')) &&
@@ -75,6 +85,12 @@
                 $endTime = new Time;
                 $endTime->setFromString($request->postData('EndTime'));
 
+                if(Time::compare($startTime, $endTime) > 0)
+                {
+                    $this->app()->user()->setFlash('Horaire de début > Horaire de fin');
+                    $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
+                }
+
                 $mcq = new MCQ;
 
                 $mcq->setDepartment($request->postData('Department'));
@@ -87,7 +103,25 @@
                 $managerMCQs->update($mcq);
 
                 // Redirection
-                $this->app()->user()->setFlash('Modifications prises en compte.');
+                $flashMessage = 'Séance de QCM pour le département ' .
+                                $request->postData('Department') . ' ' .
+                                $request->postData('Schoolyear') . ' modifiée.';
+                $this->app()->user()->setFlash($flashMessage);
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
+            }
+
+            // Delete MCQ
+            if($request->postExists('Supprimer'))
+            {
+                // MCQ identificated by Department & Schoolyear ==> Send an array containing both information to manager
+                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' =>$request->postData('SchoolYear'));
+                $this->m_managers->getManagerOf('mcq')->delete(array($mcqId));
+
+                // Redirection
+                $flashMessage = 'Séance de QCM pour le département ' .
+                                $request->postData('Department') . ' ' .
+                                $request->postData('Schoolyear') . ' supprimée.';
+                $this->app()->user()->setFlash($flashMessage);
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
             }
 

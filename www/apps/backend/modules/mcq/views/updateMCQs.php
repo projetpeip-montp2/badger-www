@@ -26,6 +26,7 @@
              ->value($mcq->getEndTime())
              ->size(8);
         $form->add('submit', 'Modifier');
+        $form->add('submit', 'Supprimer');
 
         $forms[] = $form;
     }
@@ -33,11 +34,13 @@
 ?>
 
 <table class="FormTable">
-    <th>Département</th>
-    <th>Année</th>
-    <th>Date</th>
-    <th>Horaire de début</th>
-    <th>Horaire de fin</th>
+    <tr>
+        <th>Département</th>
+        <th>Année</th>
+        <th>Date</th>
+        <th>Horaire de début</th>
+        <th>Horaire de fin</th>
+    </tr>
 <?php
     foreach($forms as $form)
         echo $form->toTr();

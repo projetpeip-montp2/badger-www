@@ -27,6 +27,9 @@
 
         public function setSize($size)
         {
+            if(!is_int($size) && $size <= 0)
+                throw new InvalidArgumentException('Invalid argument in Classroom::setSize');
+
             $this->m_size = $size;
         }
 

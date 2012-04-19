@@ -15,8 +15,8 @@
          ->choices($schoolYears);
     $form->add('text', 'Date')
          ->label('Date : ')
-         ->value('JJ-MM-AA')
-         ->size(8);
+         ->value('JJ-MM-AAAA')
+         ->size(10);
     $form->add('text', 'StartTime')
          ->label('Horaire de début : ')
          ->value('HH:MM:SS')
