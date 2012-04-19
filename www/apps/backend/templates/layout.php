@@ -34,11 +34,17 @@
             </ul>
         </div>
         
+        <?php 
+            if($user->hasFlash())
+            { 
+                echo '<div id="Flash">';
+                echo '<p id="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
+                echo '</div>';
+            }
+        ?>
+
         <div id="Body">
             <?php 
-                if($user->hasFlash()) 
-                    echo '<p id="Flash">', $user->getFlash(), '</p>'; 
-
                 echo $content;
             ?>
         </div>

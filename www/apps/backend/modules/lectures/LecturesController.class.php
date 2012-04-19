@@ -26,7 +26,7 @@
                     {
                         if(count($lineDatas) != 5)
                         {
-                            $this->app()->user()->setFlash('Le fichier n\'a pas 5 colonnes');
+                            $this->app()->user()->setFlashError('Le fichier n\'a pas 5 colonnes');
                             $this->app()->httpResponse()->redirect('./addPackages.html');
                             break;
                         }
@@ -47,11 +47,11 @@
                     $manager = $this->m_managers->getManagerOf('package');
                     $manager->save($packages);
 
-                    $this->app()->user()->setFlash('Fichier uploadé');
+                    $this->app()->user()->setFlashInfo('Fichier uploadé');
                 }
 
                 else
-                    $this->app()->user()->setFlash('Erreur durant l\'upload du fichier');
+                    $this->app()->user()->setFlashError('Erreur durant l\'upload du fichier');
             }
         }
 
@@ -77,7 +77,7 @@
                     {
                         if(count($lineDatas) != 7)
                         {
-                            $this->app()->user()->setFlash('Le fichier n\'a pas 7 colonnes');
+                            $this->app()->user()->setFlashError('Le fichier n\'a pas 7 colonnes');
                             $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                         }
 
@@ -86,7 +86,7 @@
                              Time::check($lineDatas[5]) &&
                              Time::check($lineDatas[6])))
                         {
-                            $this->app()->user()->setFlash('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
+                            $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
                             $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
                         }
 
@@ -101,7 +101,7 @@
 
                         if(Time::compare($startTime, $endTime) > 0)
                         {
-                            $this->app()->user()->setFlash('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
+                            $this->app()->user()->setFlashError('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
                             $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
                         }
         
@@ -161,7 +161,7 @@
                             {
                                 if(count($datas) != 3)
                                 {
-                                    $this->app()->user()->setFlash('Le fichier n\'a pas 3 colonnes.');
+                                    $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes.');
                                     $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                                 }
 
@@ -180,7 +180,7 @@
                             {
                                 if(count($datas) != 3)
                                 {
-                                    $this->app()->user()->setFlash('Le fichier n\'a pas 3 colonnes.');
+                                    $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes.');
                                     $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                                 }
 
@@ -218,11 +218,11 @@
 
             if(count($packages) == 0)
             {
-                $this->app()->user()->setFlash('Il faut au moin un package pour pouvoir uploader des conférences ou des questions/réponses.');
+                $this->app()->user()->setFlashError('Il faut au moin un package pour pouvoir uploader des conférences ou des questions/réponses.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
-            $this->app()->user()->setFlash($flashMessage); 
+            $this->app()->user()->setFlashError($flashMessage); 
 
             $this->page()->addVar('packages', $packages);
         }
@@ -246,7 +246,7 @@
                 $managerPackages->update($package);
 
                 // Redirection
-                $this->app()->user()->setFlash('Package "' . $request->postData('NameFr') . '" modifié.');
+                $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" modifié.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
             }
 
@@ -256,7 +256,7 @@
                 $this->m_managers->getManagerOf('package')->delete(array($request->postData('packageId')));
 
                 // Redirection
-                $this->app()->user()->setFlash('Package "' . $request->postData('NameFr') . '" supprimé.');
+                $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" supprimé.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
             }
 
@@ -266,7 +266,7 @@
 
             if(count($packages) == 0)
             {
-                $this->app()->user()->setFlash('Il n\'y a pas de packages dans la base de données.');
+                $this->app()->user()->setFlashError('Il n\'y a pas de packages dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
@@ -284,7 +284,7 @@
                      Time::check($request->postData('StartTime')) &&
                      Time::check($request->postData('EndTime'))))
                 {
-                    $this->app()->user()->setFlash('Erreur dans le format de date ou d\'horaire.');
+                    $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
                 }
 
@@ -307,7 +307,7 @@
 
                 if(Time::compare($startTime, $endTime) > 0)
                 {
-                    $this->app()->user()->setFlash('Horaire de début > Horaire de fin');
+                    $this->app()->user()->setFlashError('Horaire de début > Horaire de fin');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
                 }
 
@@ -319,7 +319,7 @@
                 $managerLectures->update($lecture);
 
                 // Redirection
-                $this->app()->user()->setFlash('Conférence "' . $request->postData('NameFr') . '" modifiée.');
+                $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" modifiée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
             }
 
@@ -329,7 +329,7 @@
                 $this->m_managers->getManagerOf('lecture')->delete(array($request->postData('lectureId')));
 
                 // Redirection
-                $this->app()->user()->setFlash('Conférence "' . $request->postData('NameFr') . '" supprimée.');
+                $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
                 // TODO: Supprimer les dépendances
             }
@@ -340,7 +340,7 @@
 
             if(count($lectures) == 0)
             {
-                $this->app()->user()->setFlash('Il n\'y a pas de conférences dans la base de données.');
+                $this->app()->user()->setFlashError('Il n\'y a pas de conférences dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 

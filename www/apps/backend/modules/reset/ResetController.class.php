@@ -48,7 +48,7 @@
                 // Check that there is at least one table selected
                 if(count($tablesSelectedArray) == 0)
                 {
-                    $this->app()->user()->setFlash('Aucune table sélectionnée.');
+                    $this->app()->user()->setFlashError('Aucune table sélectionnée.');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
                 }
 
@@ -63,7 +63,7 @@
                 foreach($emptyTables as $emptyTable)
                     $flashMessage .= '<br/>' . $emptyTable;
 
-                $this->app()->user()->setFlash($flashMessage);
+                $this->app()->user()->setFlashInfo($flashMessage);
                 //$this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
             }
 

@@ -16,7 +16,7 @@
 
                 $this->m_managers->getManagerOf('config')->replace('adminsList', $newAdminList);
 
-                $this->app()->user()->setFlash('Liste d\'Admin changée: "' . $newAdminList . '".');
+                $this->app()->user()->setFlashInfo('Liste d\'Admin changée: "' . $newAdminList . '".');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -49,7 +49,7 @@
                 $newDepartments = $managerConfigs->get('departmentsList') . ';' . $request->postData('Name');
                 $managerConfigs->replace('departmentsList', $newDepartments);
 
-                $this->app()->user()->setFlash('Liste des départements: "' . $newDepartments . '".');
+                $this->app()->user()->setFlashInfo('Liste des départements: "' . $newDepartments . '".');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -69,7 +69,7 @@
                 unset($departments[$index]);
                 $managerConfigs->replace('departmentsList', implode(';', $departments));
 
-                $this->app()->user()->setFlash('Département "' . $request->postData('DepartmentName') . '" supprimé.');
+                $this->app()->user()->setFlashInfo('Département "' . $request->postData('DepartmentName') . '" supprimé.');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
