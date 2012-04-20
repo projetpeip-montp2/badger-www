@@ -1,22 +1,56 @@
 <h1>Documents</h1>
-<p>Depuis cette page, vous pouvez uploader les fichiers PDF pour un package.</p>
+<p>Depuis cette page, vous pouvez supprimer les images associéees à un package.</p>
 
 <?php
-    $form = new Form('', 'post');
+    $forms = array();
 
-    $choices = array();
+    // There is at least one element in images (checked in Controller)
+    $i = 1;
 
-    foreach($packages as $package)
-        $choices[$package->getId()] = $package->getName('fr');
+    // Loop on every images
+    while($i < count($images))
+    {
+        // Count how many images there are for each packages
+        $counter = 0;
+        while($i < count($images) && ($images[$i - 1]->getIdPackage() == $images[$i]->getIdPackage()))
+        {
+            $counter++;
+            $i++;
+        }
+        $counter++;
 
-    $form->add('select', 'PackageList')
-         ->label('Sélection du package : ')
-         ->choices($choices);
+        $form = new Form('', 'post');
 
-    $form->add('file', 'PDFFile')
-         ->label('Chemin du fichier PDF : ');
+        // Get packages' name
+        foreach($packages as $package)
+        {
+            if($package->getId() == $images[$i - 1]->getIdPackage())
+            {
+                $form->add('label', 'Package')
+                     ->label($package->getName('fr'));
+                $form->add('hidden', 'PackageName')
+                     ->value($package->getName('fr'));
+                $form->add('hidden', 'packageId')
+                     ->value($package->getId());
+            }
+        }
 
-    $form->add('submit', 'Envoyer');
+        $form->add('label', 'Count')
+             ->label($counter);
 
-    echo $form->toString();
+        $form->add('submit', 'Supprimer');
+
+        $forms[] = $form;
+    }
 ?>
+
+<table class="FormTable">
+    <tr>
+        <th>Nom du package</th>
+        <th>Nombre d'images associées</th>
+    </tr>
+<?php
+    foreach($forms as $form)
+        echo $form->toTr();
+?>
+</table>

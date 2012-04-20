@@ -67,7 +67,7 @@
             if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError('Il faut au moins un package pour pouvoir uploader des fichiers PDF.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/uploadPDF.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
             }
 
             $this->page()->addVar('packages', $packages);
@@ -151,7 +151,7 @@
             if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError('Il faut au moins un package pour pouvoir uploader un fichier zip.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/uploadImages.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
             }
 
             $this->page()->addVar('packages', $packages);
@@ -160,7 +160,7 @@
         public function executeDeletePDF(HTTPRequest $request)
         {
             // Handle POST data
-            // Delete availability
+            // Delete document
             if($request->postData('Supprimer'))
             {
                 $this->m_managers->getManagerOf('documentofpackage')->delete($request->postData('documentId'));
@@ -190,7 +190,49 @@
 
         public function executeDeleteImages(HTTPRequest $request)
         {
+            // Handle POST data
+            // Delete images
+            if($request->postData('Supprimer'))
+            {
+                $packageId = $request->postData('packageId');
 
+                $managerImages = $this->m_managers->getManagerOf('imageofpackage');
+                $count = $managerImages->count($packageId);
+
+                // Delete in database
+                $managerImages->delete($packageId);
+
+                $path = dirname(__FILE__).'/../../../../uploads/admin/images/';
+
+                // Delete on server
+                for($i = 1; $i <= $count; $i++)
+                {
+                    $filename = $packageId . '_' . $i . '.jpg';
+                    unlink($path . $filename);
+                }
+
+                // Redirection
+                $this->app()->user()->setFlashInfo('Les ' . $count . ' images du package "' . $request->postData('PackageName') . '" ont été supprimées.');
+                //$this->app()->httpResponse()->redirect('/vbMifare/admin/documents/deleteImages.html');
+            }
+            // Else display the form
+
+            $packages = $this->m_managers->getManagerOf('package')->get();
+            $images = $this->m_managers->getManagerOf('imageofpackage')->get();
+            
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlashError('Il faut au moins un package pour pouvoir uploader un fichier zip.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
+            }
+            if(count($images) == 0)
+            {
+                $this->app()->user()->setFlashError('Il n\'y a pas d\'images dans la base de données.');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
+            }
+
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('images', $images);
         }
     }
 ?>

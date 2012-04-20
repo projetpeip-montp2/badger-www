@@ -49,12 +49,30 @@
                                 $image->getFilename()));
         }
 
-        public function delete($imageIds)
+        public function delete($idPackage)
         {
-            $req = $this->m_dao->prepare('DELETE FROM ImagesOfPackages WHERE Id_image = ?');
+            $req = $this->m_dao->prepare('DELETE FROM ImagesOfPackages WHERE Id_package = ?');
 
-            foreach($imageIds as $imageId)
-                $req->execute(array($imageId));
+            $req->execute(array($idPackage));
+        }
+
+        public function count($idPackage = -1)
+        {
+            $requestSQL = 'SELECT COUNT(*) FROM ImagesOfPackages';
+
+            $paramsSQL = array();
+
+            if($idPackage != -1)
+            {
+                $requestSQL .= ' WHERE Id_package = ?';
+                $paramsSQL[] = $idPackage;
+            }
+
+            $req = $this->m_dao->prepare($requestSQL);
+            $req->execute($paramsSQL);
+
+            $count = $req->fetch();
+            return $count['COUNT(*)'];
         }
     } 
 ?>
