@@ -244,7 +244,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" modifié.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
             // Delete lecture
@@ -254,7 +254,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" supprimé.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updatePackages.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
             // Else display the form
@@ -317,7 +317,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" modifiée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
             // Delete lecture
@@ -327,7 +327,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
                 // TODO: Supprimer les dépendances
             }
 

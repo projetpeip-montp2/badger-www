@@ -57,7 +57,7 @@
                 }
 
                 $this->app()->user()->setFlashInfo('Le document "' . $fileData['name'] . '" a été uploadé.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/uploadPDF.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
             }
 
             // Else display the form
@@ -141,7 +141,7 @@
                 }
 
                 $this->app()->user()->setFlashInfo('Les images contenues dans "' . $fileData['name'] . '" ont été uploadées.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/uploadImages.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
             }
             
             // Else display the form
@@ -213,7 +213,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Les ' . $count . ' images du package "' . $request->postData('PackageName') . '" ont été supprimées.');
-                //$this->app()->httpResponse()->redirect('/vbMifare/admin/documents/deleteImages.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/documents/index.html');
             }
             // Else display the form
 

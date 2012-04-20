@@ -107,7 +107,7 @@
                                 $request->postData('Department') . ' ' .
                                 $request->postData('Schoolyear') . ' modifiée.';
                 $this->app()->user()->setFlashInfo($flashMessage);
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
             }
 
             // Delete MCQ
@@ -122,7 +122,7 @@
                                 $request->postData('Department') . ' ' .
                                 $request->postData('Schoolyear') . ' supprimée.';
                 $this->app()->user()->setFlashInfo($flashMessage);
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
             }
 
             // Else display the form

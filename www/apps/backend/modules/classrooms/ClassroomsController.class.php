@@ -161,7 +161,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Disponibilité de la salle ' . $request->postExists('classroomName') . ' modifiée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
             // Delete availability
@@ -171,7 +171,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Disponibilité de la salle ' . $request->postData('classroomName') . ' supprimée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
             // Else display the form
@@ -217,7 +217,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Salle ' . $request->postData('Name') . ' modifiée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateClassrooms.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
             if($request->postExists('Supprimer'))
@@ -226,7 +226,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Salle "' . $request->postData('Name') . '" supprimée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateClassrooms.html');
+                $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
             // Else display the form
