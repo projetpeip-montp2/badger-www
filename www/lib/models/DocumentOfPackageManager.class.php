@@ -56,5 +56,24 @@
 
             $req->execute(array($documentId));
         }
+
+        public function count($idPackage = -1)
+        {
+            $requestSQL = 'SELECT COUNT(*) FROM DocumentsOfPackages';
+
+            $paramsSQL = array();
+
+            if($idPackage != -1)
+            {
+                $requestSQL .= ' WHERE Id_package = ?';
+                $paramsSQL[] = $idPackage;
+            }
+
+            $req = $this->m_dao->prepare($requestSQL);
+            $req->execute($paramsSQL);
+
+            $count = $req->fetch();
+            return $count['COUNT(*)'];
+        }
     } 
 ?>

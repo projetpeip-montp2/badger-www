@@ -12,6 +12,9 @@
     <route url="/lectures/schedule.html" module="lectures" action="schedule"/>
     <route url="/lectures/showDocuments-([0-9]+)\.html" module="lectures" action="showDocuments" vars="idPackage"/>
 
+    <route url="/viewer/index\.html" module="viewer" action="index"/>
+    <route url="/viewer/viewImage-([0-9]+)-([0-9]+)\.html" module="viewer" action="viewImage" vars="idPackage,imageNumber"/>
+
     <route url="/mcq/index\.html" module="mcq" action="index"/>
     <route url="/mcq/takeMCQ\.html" module="mcq" action="takeMCQ"/>
 

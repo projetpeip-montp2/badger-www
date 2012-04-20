@@ -60,6 +60,11 @@
             $this->page()->addVar('lang', $lang);
 
             $this->page()->addVar('lectures', $this->m_managers->getManagerOf('lecture')->get($request->getData('idPackage')));
+
+            $counter = $this->m_managers->getManagerOf('documentofpackage')->count($request->getData('idPackage'));
+            $this->page()->addVar('showDocuments', $counter != 0);
+            $counter = $this->m_managers->getManagerOf('imageofpackage')->count($request->getData('idPackage'));
+            $this->page()->addVar('showImages', $counter != 0);
         }
 
         public function executeShowDocuments(HTTPRequest $request)

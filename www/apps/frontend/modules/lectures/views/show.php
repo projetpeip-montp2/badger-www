@@ -1,8 +1,38 @@
 <div class="documentsFrame">
+    <ul>
     <?php
         $documentsLink = '/vbMifare/lectures/showDocuments-' . $package->getId() . '.html';
+        $imagesLink = '/vbMifare/viewer/viewImage-' . $package->getId() . '-' . '1.html';
+
+        $noDisplay = true;
     ?>
-    <a href="<?php echo $documentsLink; ?>"><?php echo $TEXT['Package_DocumentsLink']; ?></a>
+    
+    <?php
+        // Display ShowDocument link
+        if($showDocuments)
+        {
+    ?>
+        <li><a href="<?php echo $documentsLink; ?>"><?php echo $TEXT['Package_DocumentsLink']; ?></a></li>
+    <?php
+        $noDisplay = false;
+        }
+    ?>
+
+    <?php
+        // Display viewImage link
+        if($showImages)
+        {
+    ?>
+        <li><a href="<?php echo $imagesLink; ?>"><?php echo $TEXT['Package_ImagesLink']; ?></a></li>
+    <?php
+        $noDisplay = false;
+        }
+
+        // No documents nor images available online
+        if($noDisplay)
+            echo '<li>' .$TEXT['Package_NoDisplay'] . '</li>';
+    ?>
+    </ul>
 </div>
 
 <h1><?php echo $package->getName($lang); ?></h1>
@@ -15,7 +45,7 @@
     echo '<p>' . $TEXT['Package_ListOfLecture'] . '</p>';
 
     if(count($lectures) == 0)
-    echo '<p>' . $TEXT['Package_NoPackage'] . '</p>';
+    echo '<p>' . $TEXT['Lecture_NoLecture'] . '</p>';
 
     else
     {

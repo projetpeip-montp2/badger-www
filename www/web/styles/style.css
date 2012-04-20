@@ -118,8 +118,14 @@ a, a:visited
 {
     border: 1px solid black;
     float: right;
-    padding: 0.5%;
+    text-align: center;
     color: blue;
+}
+
+// TODO: Modifier
+.documentsFrame ul
+{
+    clear: right;
 }
 
 .FormTable
@@ -131,4 +137,22 @@ a, a:visited
 {
     border: 1px solid black;
     text-align: center;
+}
+
+.viewer
+{
+    text-align: center;
+}
+
+.viewer a
+{
+    font-size: 22px;
+    border: 1px solid red;
+}
+
+.viewer img
+{
+    margin: auto;
+    padding: 1%;
+    border: 3px solid black;
 }
