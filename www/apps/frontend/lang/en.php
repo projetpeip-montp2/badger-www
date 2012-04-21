@@ -10,6 +10,8 @@
     $TEXT['Menu_MCQ'] = "M.C.Q";
     $TEXT['Menu_Reports'] = "Reports";
 
+    $TEXT['Form_Delete'] = "Delete";
+
     $TEXT['Flash_SubscribeVisitor'] = 'Your can\'t subscribe because you are a visitor.';
     $TEXT['Flash_SubscribeGenerated'] = 'Your can\'t subscribe because your MCQ is already generated.';
     $TEXT['Flash_SubscribeTaken'] = 'Your can\'t subscribe because your MCQ is already taken.';
@@ -25,6 +27,7 @@
     $TEXT['Flash_Uploaded'] = "File uploaded.";
     $TEXT['Flash_AlreadyAReportForAPackage'] = "There is already a report for this package.";
     $TEXT['Flash_ImageUnknown'] = "The image you are looking for doesn't exist."
+    $TEXT['Flash_NoReport'] = "You have not uploaded any report."
 
     $TEXT['Package_ListOf'] = "List of packages :";
     $TEXT['Package_ListOfSubscribed'] = "List of packages subscribed:";
@@ -50,7 +53,8 @@
 
     $TEXT['Reports_Index'] = "Reports";
     $TEXT['Reports_Upload'] = "Add a report";
-    $TEXT['Reports_ShowAll'] = "Show my reports";
+    $TEXT['Reports_Delete'] = "View my reports";
+    $TEXT['Reports_Filename'] = "Filename";
 
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";

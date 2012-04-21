@@ -1,7 +1,7 @@
 <?php
     class DocumentOfUserManager extends Manager
     {
-        public function get($idPackage = -1, $idUser = -1)
+        public function get($idPackage = -1, $idUser = null)
         {
             $requestSQL = 'SELECT Id_package,
                                   Id_user,
@@ -15,7 +15,7 @@
                 $paramsSQL[] = $idPackage;
             }
 
-            if($idUser != -1)
+            if($idUser != null)
             {
                 $connect = ($idPackage != -1) ? 'AND' : 'WHERE';
                 $requestSQL .= ' ' . $connect .' Id_user = ?';
@@ -49,6 +49,15 @@
             $req->execute(array($doc->getIdPackage(),
                                 $doc->getIdUser(),
                                 $doc->getFilename()));
+        }
+
+        public function delete($idPackage, $idUser)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM DocumentsOfUsers WHERE Id_package = ? AND Id_user = ?');
+            var_dump($idPackage);
+            var_dump($idUser); die();
+
+            $req->execute(array($idPackage, $idUser));
         }
     }
 ?>

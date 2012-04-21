@@ -1,15 +1,11 @@
     TODO list
 
-- 
-
 - Général:
     - Faire un design plus aléchant
     - Commenter le code!!
     - Optimiser les requêtes SQL
-    - Flash Warning et Flash Information
     - Inclure la langue à chaque entête de controlleur Frontend (à tester)
     - Système de log
-    - Résoudre erreur 404 route inconnue
     - Fil d'ariane
 
 
@@ -22,7 +18,7 @@ Production:
     - Ecrire le planning
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
 
-
 - Backend
     - Permettre dans le module reset certaines actions comme 'Supprimer les notes', etc
 
+- Entrée dans le test du FORM: PostExists à la place de PostData

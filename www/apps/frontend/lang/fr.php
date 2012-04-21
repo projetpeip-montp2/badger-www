@@ -10,6 +10,8 @@
     $TEXT['Menu_MCQ'] = "Q.C.M";
     $TEXT['Menu_Reports'] = "Rapports";
 
+    $TEXT['Form_Delete'] = "Supprimer";
+
     $TEXT['Flash_SubscribeVisitor'] = 'Vous ne pouvez pas vous inscrire car vous êtes un visiteur.';
     $TEXT['Flash_SubscribeGenerated'] = 'Vous ne pouvez pas vous inscrire car votre QCM est déjà généré.';
     $TEXT['Flash_SubscribeTaken'] = 'Vous ne pouvez pas vous inscrire car vous avez déjà passé le QCM.';
@@ -25,6 +27,7 @@
     $TEXT['Flash_Uploaded'] = "Fichier uploadé.";
     $TEXT['Flash_AlreadyAReportForAPackage'] = "Vous avez déjà un rapport pour ce package.";
     $TEXT['Flash_ImageUnknown'] = "Cette image n'existe pas.";
+    $TEXT['Flash_NoReport'] = "Vous n'avez uploadé aucune rapport.";
 
     $TEXT['Package_ListOf'] = "Liste des packages :";
     $TEXT['Package_ListOfSubscribed'] = "Liste des packages enregistrés:";
@@ -50,7 +53,8 @@
 
     $TEXT['Reports_Index'] = "Rapport";
     $TEXT['Reports_Upload'] = "Ajouter un rapport";
-    $TEXT['Reports_ShowAll'] = "Voir mes rapports";
+    $TEXT['Reports_Delete'] = "Voir mes rapports";
+    $TEXT['Reports_Filename'] = "Nom du fichier";
 
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";

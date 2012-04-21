@@ -84,9 +84,37 @@
             $this->page()->addVar('packages', $packages);
         }
 
-        public function executeShowAll(HTTPRequest $request)
+        public function executeDeleteReport(HTTPRequest $request)
         {
+            // Handle POST data
+            // Delete report of user
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+            $username = $this->app()->user()->getAttribute('logon');
 
+            if($request->postExists('Supprimer'))
+            {
+                $this->m_managers->getManagerOf('documentofuser')->delete($request->postData('packageId'), $username);
+
+                // Redirection
+                // TODO: Message en anglais
+                $this->app()->user()->setFlashInfo('Le rapport "' . $request->postData('ReportName') . '" du package "' . $request->postData('PackageName') . '" a été supprimé.');
+                $this->app()->httpResponse()->redirect('/vbMifare/reports/deleteReport.html');
+            }
+
+            // Else display the form
+
+            $reports = $this->m_managers->getManagerOf('documentofuser')->get(-1, $username);
+
+            if(count($reports) == 0)
+            {
+                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
+                $this->app()->user()->setFlashError($TEXT['Flash_NoReport']);
+                $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+            }
+
+            $this->page()->addVar('lang', $lang);
+            $this->page()->addVar('reports', $reports);
+            $this->page()->addVar('packages', $this->m_managers->getManagerOf('package')->get());
         }
     }
 ?>

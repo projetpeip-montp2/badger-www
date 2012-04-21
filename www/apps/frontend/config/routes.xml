@@ -20,5 +20,5 @@
 
     <route url="/reports/index\.html" module="reports" action="index"/>
     <route url="/reports/upload\.html" module="reports" action="upload"/>
-    <route url="/reports/showAll\.html" module="reports" action="showAll"/>
+    <route url="/reports/deleteReport\.html" module="reports" action="deleteReport"/>
 </routes>

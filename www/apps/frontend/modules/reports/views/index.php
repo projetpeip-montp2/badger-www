@@ -2,5 +2,5 @@
 
 <ul>
     <li><a href="/vbMifare/reports/upload.html"><?php echo $TEXT['Reports_Upload']; ?></a></li>
-    <li><a href="/vbMifare/reports/showAll.html"><?php echo $TEXT['Reports_ShowAll']; ?></a></li>
+    <li><a href="/vbMifare/reports/deleteReport.html"><?php echo $TEXT['Reports_Delete']; ?></a></li>
 </ul>

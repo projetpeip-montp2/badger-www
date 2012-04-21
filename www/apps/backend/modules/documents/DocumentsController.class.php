@@ -161,7 +161,7 @@
         {
             // Handle POST data
             // Delete document
-            if($request->postData('Supprimer'))
+            if($request->postExists('Supprimer'))
             {
                 $this->m_managers->getManagerOf('documentofpackage')->delete($request->postData('documentId'));
 
