@@ -2,6 +2,7 @@
     class Registration extends Record
     {
         private $m_idPackage;
+        private $m_idLecture;
         private $m_idUser;
         private $m_status;
 
@@ -13,6 +14,16 @@
         public function getIdPackage()
         {
             return $this->m_idPackage;
+        }
+
+        public function setIdLecture($idLecture)
+        {
+            $this->m_idLecture = $idLecture;
+        }
+
+        public function getIdLecture()
+        {
+            return $this->m_idLecture;
         }
 
         public function setIdUser($idUser)

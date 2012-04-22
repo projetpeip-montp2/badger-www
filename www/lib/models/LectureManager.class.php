@@ -1,7 +1,7 @@
 <?php
     class LectureManager extends Manager
     {
-        public function get($idPackage = -1)
+        public function get($idPackage = -1, $idLecture = -1)
         {
             $requestSQL = 'SELECT Id_lecture,
                                   Id_package,
@@ -13,12 +13,23 @@
                                   Date,
                                   StartTime,
                                   EndTime FROM Lectures';
+            $paramsSQL = array();
 
             if($idPackage != -1)
-                $requestSQL .= ' WHERE Id_package = ' . $idPackage;
+            {
+                $requestSQL .= ' WHERE Id_package = ?';
+                $paramsSQL[] = $idPackage;
+            }
+
+            if($idLecture != -1)
+            {
+                $connect = ($idPackage != -1) ? 'AND' : 'WHERE';
+                $requestSQL .= ' ' . $connect .' Id_lecture = ?';
+                $paramsSQL[] = $idLecture;
+            }
 
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute(); 
+            $req->execute($paramsSQL); 
 
             $lectures = array();
 

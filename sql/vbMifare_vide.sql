@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 19 Avril 2012 à 21:29
+-- Généré le: Dim 22 Avril 2012 à 20:58
 -- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `Config` (
 --
 
 INSERT INTO `Config` (`Name`, `Value`) VALUES
-('MCQMaxQuestions', '3'),
+('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `DocumentsOfPackages` (
   `Id_package` smallint(5) unsigned NOT NULL,
   `Filename` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   PRIMARY KEY (`Id_document`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -235,6 +235,7 @@ CREATE TABLE IF NOT EXISTS `QuestionsOfUsers` (
 --
 
 CREATE TABLE IF NOT EXISTS `Registrations` (
+  `Id_lecture` smallint(5) unsigned NOT NULL,
   `Id_package` smallint(5) unsigned NOT NULL,
   `Id_user` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Status` enum('Coming','Absent','Present') CHARACTER SET latin1 COLLATE latin1_bin NOT NULL

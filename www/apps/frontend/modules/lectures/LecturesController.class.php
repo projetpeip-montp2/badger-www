@@ -29,12 +29,17 @@
             }
 
             $package = $packages[0];
+            $managerLecture = $this->m_managers->getManagerOf('lecture');
+            $lectures = $managerLecture->get( $package->getId() );
 
             $wantSubscribe = true;
             foreach($registrationsOfUser as $reg)
             {
-                if($reg->getIdPackage() == $package->getId() )
-                    $wantSubscribe = false;
+                foreach($lectures as $lec)
+                {
+                    if($reg->getIdLecture() == $lec->getId() )
+                        $wantSubscribe = false;
+                }
             }
 
             // If the form is submitted, do the registration
@@ -45,7 +50,8 @@
                 if($wantSubscribe)
                     $this->checkConflict($lang, $request, $registrationsOfUser, $package);
 
-                $managerRegistration->subscribe($request->getData('idPackage'), $username, $wantSubscribe ? 1 : 0);
+                foreach($lectures as $lecture)
+                    $managerRegistration->subscribe($request->getData('idPackage'), $lecture->getId(), $username, $wantSubscribe ? 1 : 0);
 
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
@@ -59,7 +65,7 @@
             $this->page()->addVar('package', $package);
             $this->page()->addVar('lang', $lang);
 
-            $this->page()->addVar('lectures', $this->m_managers->getManagerOf('lecture')->get($request->getData('idPackage')));
+            $this->page()->addVar('lectures', $lectures);
 
             $counter = $this->m_managers->getManagerOf('documentofpackage')->count($request->getData('idPackage'));
             $this->page()->addVar('showDocuments', $counter != 0);
@@ -112,11 +118,10 @@
             $managerPackage = $this->m_managers->getManagerOf('package');
 
             $packages = array();
-
             foreach($registrationsOfUser as $reg)
-                $packages = array_merge($packages, $managerPackage->get($reg->getIdPackage()));
+                $packages = array_merge($packages, $managerPackage->get($reg->getIdPackage(), -1));
 
-
+            $packages = array_unique($packages, SORT_REGULAR);
 
             $this->page()->addVar('packages', $packages);
             $this->page()->addVar('lang', $lang);
@@ -185,9 +190,9 @@
             $lectures = array();
             foreach($registrationsOfUser as $reg)
             {
-                $lecturesOfPackages = $managerLecture->get($reg->getIdPackage());
+                $lecturesOfRegistration = $managerLecture->get(-1, $reg->getIdLecture());
 
-                foreach($lecturesOfPackages as $l)
+                foreach($lecturesOfRegistration as $l)
                     array_push($lectures, $l);
             }
 
@@ -195,7 +200,6 @@
 
             foreach($lecturesOfPackageNeeded as $l)
                 array_push($lectures, $l);
-
 
             // Check all possible conflit
             for($i=0; $i<count($lectures); $i++)

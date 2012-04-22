@@ -23,6 +23,7 @@
             {
                 $reg = new Registration;
                 $reg->setIdPackage($data['Id_package']);
+                $reg->setIdLecture($data['Id_lecture']);
                 $reg->setIdUser($data['Id_user']);
                 $reg->setStatus($data['Status']);
 
@@ -32,23 +33,23 @@
             return $result;
         }
 
-        public function subscribe($idPackage, $username, $yesOrNo)
+        public function subscribe($idPackage, $idLecture, $username, $yesOrNo)
         {
-            $req = $this->m_dao->prepare('SELECT Id_package FROM Registrations WHERE Id_package = ? AND Id_user = ?');
-            $req->execute(array($idPackage, $username));
+            $req = $this->m_dao->prepare('SELECT Id_lecture FROM Registrations WHERE Id_lecture = ? AND Id_user = ?');
+            $req->execute(array($idLecture, $username));
 
             $data = $req->fetch();
 
             if(!$data && $yesOrNo == 1)
             {
-                $req = $this->m_dao->prepare('INSERT INTO Registrations(Id_package, Id_user, Status) VALUES(?, ?, "Coming")');
-                $req->execute(array($idPackage, $username));
+                $req = $this->m_dao->prepare('INSERT INTO Registrations(Id_package, Id_lecture, Id_user, Status) VALUES(?, ?, ?, "Coming")');
+                $req->execute(array($idPackage, $idLecture, $username));
             }
             
             if($data && $yesOrNo == 0)
             {
-                $req = $this->m_dao->prepare('DELETE FROM Registrations WHERE Id_package = ? AND Id_user = ?');
-                $req->execute(array($idPackage, $username));
+                $req = $this->m_dao->prepare('DELETE FROM Registrations WHERE Id_lecture = ? AND Id_user = ?');
+                $req->execute(array($idLecture, $username));
             }
         }
     }

@@ -115,16 +115,24 @@
 
             $managerRegistration = $this->m_managers->getManagerOf('registration');
 
-            $registrations = $managerRegistration->getResgistrationsFromUser($username, 'Present');
+            $registrations = $managerRegistration->getResgistrationsFromUser($username);
 
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
             // Get obligatory questions
             $questions = array();
+            $packagesIdDo = array();
             foreach($registrations as $reg)
             {
-                $questionOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), 'Obligatory');
-                $questions = array_merge($questions, $questionOneLecture);
+                $id = $reg->getIdPackage();
+
+                if(! in_array($id, $packagesIdDo) )
+                {
+                    $packagesIdDo[] = $id;      
+
+                    $questionOneLecture = $managerMCQ->getQuestionsFromPackage($id, 'Obligatory');
+                    $questions = array_merge($questions, $questionOneLecture);
+                }
             }
 
             // Enough obligatory questions
@@ -142,10 +150,18 @@
 
             // Get possible questions
             $questions = array();
+            $packagesIdDo = array();
             foreach($registrations as $reg)
             {
-                $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($reg->getIdPackage(), 'Possible');
-                $questions = array_merge($questions, $questionsOneLecture);
+                $id = $reg->getIdPackage();
+
+                if(! in_array($id, $packagesIdDo) )
+                {
+                    $packagesIdDo[] = $id;      
+
+                    $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($id, 'Possible');
+                    $questions = array_merge($questions, $questionsOneLecture);
+                }
             }
             shuffle($questions);
             array_splice($questions, $remaining);

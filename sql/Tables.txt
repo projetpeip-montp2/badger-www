@@ -94,6 +94,7 @@ QuestionsOfUsers:
 
 Registations:
     Id_package
+    Id_lecture
     Id_user
     Status(Coming, Absent, Present)
 
