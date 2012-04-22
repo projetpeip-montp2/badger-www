@@ -111,7 +111,8 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('availablesLanguagesList', 'fr;en'),
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
-('zipFileSizeLimitBackend', '10000000');
+('zipFileSizeLimitBackend', '10000000'),
+('departmentsList', 'PEIP;ERII;FQSC;IG;MAT;MI;STE;STIA');
 
 -- --------------------------------------------------------
 
