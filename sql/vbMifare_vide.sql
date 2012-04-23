@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 22 Avril 2012 à 20:58
+-- Généré le: Lun 23 Avril 2012 à 18:04
 -- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
@@ -250,6 +250,6 @@ CREATE TABLE IF NOT EXISTS `Registrations` (
 CREATE TABLE IF NOT EXISTS `Users` (
   `Id_user` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `MCQStatus` set('Visitor','CanTakeMCQ','Generated','Taken') NOT NULL,
-  `Mark` tinyint(3) unsigned NOT NULL,
+  `Mark` float unsigned NOT NULL,
   PRIMARY KEY (`Id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
