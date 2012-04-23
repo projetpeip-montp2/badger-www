@@ -32,6 +32,4 @@
     <route url="/admin/settings/index\.html" module="settings" action="index"/>
     <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
     <route url="/admin/settings/changeSubscribesStatus\.html" module="settings" action="changeSubscribesStatus"/>
-    <route url="/admin/settings/addDepartments\.html" module="settings" action="addDepartments"/>
-    <route url="/admin/settings/deleteDepartments\.html" module="settings" action="deleteDepartments"/>
 </routes>

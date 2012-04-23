@@ -112,7 +112,6 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
 ('zipFileSizeLimitBackend', '10000000'),
-('departmentsList', 'PEIP;ERII;FQSC;IG;MAT;MI;STE;STIA');
 
 -- --------------------------------------------------------
 
