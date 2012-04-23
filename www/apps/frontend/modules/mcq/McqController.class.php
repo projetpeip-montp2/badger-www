@@ -46,11 +46,15 @@
             // If the user has validated the mcq
             if($request->postExists('isSubmitted'))
             {
-                $this->saveUserAnswers($request, $logon, $answers);
+                $answersOfUser = $this->computeAndSaveUserAnswers($request, $logon, $answers);
 
                 // Update the user status
-                $managerUser->updateStatus($this->app()->user()->getAttribute('logon'), 'Taken');
+                $managerUser->updateStatus($logon, 'Taken');
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Taken');
+
+                $mark = $this->computeMark($logon, $answers, $answersOfUser);
+                $managerUser->updateMark($logon, $mark);
+                $this->app()->user()->getAttribute('vbmifareStudent')->setMark($mark);
 
                 // Inclusion of the langage file
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
@@ -180,7 +184,7 @@
             return $managerMCQ->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername());
         }
 
-        private function saveUserAnswers(HTTPRequest $request, $logon, $answersInForm)
+        private function computeAndSaveUserAnswers(HTTPRequest $request, $logon, $answersInForm)
         {
             $answersOfUser = array();
 
@@ -201,6 +205,8 @@
             // Save them
             $managerMcq = $this->m_managers->getManagerOf('mcq');
             $managerMcq->saveAnswersOfUser($answersOfUser);
+
+            return $answersOfUser;
         }
 
         private function getAssociatedAnswers($questions)
@@ -216,7 +222,58 @@
                 $answers = array_merge($answers, $answersOneQuestion);
             }
 
+            shuffle($answers);
             return $answers;
+        }
+
+        public function computeMark($logon, $answers, $answersOfUser)
+        {
+            $mark = 0;
+    
+            $presentMark = $this->m_managers->getManagerOf('config')->get('presentMark');
+
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
+            $registrations = $managerRegistration->getResgistrationsFromUser($logon);
+
+            foreach($registrations as $reg)
+            {
+                if($reg->getStatus() == 'Present')
+                    $mark += $presentMark / count($registrations);
+            }
+
+            $remainingPoints = 20 - $presentMark;
+            $goodAnswersCount = 0;
+            $badAnswersCount = 0;
+
+            foreach($answers as $answer)
+            {
+                if($answer->getTrueOrFalse() == 'T')
+                    $goodAnswersCount++;
+
+                else
+                    $badAnswersCount++;
+            }
+
+            foreach($answersOfUser as $answerOfUser)
+            {
+                $goodAnswer;
+
+                foreach($answers as $answer)
+                {
+                    if($answerOfUser->getIdAnswer() == $answer->getId())
+                    {
+                        $goodAnswer = ($answer->getTrueOrFalse() == 'T') ? true : false;
+                    }
+                }
+
+                if($goodAnswer)
+                    $mark += $remainingPoints / $goodAnswersCount;
+
+                else
+                    $mark -= $remainingPoints / $badAnswersCount;
+            }
+
+            return $mark;
         }
     }
 ?>

@@ -120,7 +120,8 @@
             $SQLreq = 'SELECT Id_answer,
                               Id_question,
                               Label_fr,
-                              Label_en FROM Answers WHERE Id_question = ?';
+                              Label_en,
+                              TrueOrFalse FROM Answers WHERE Id_question = ?';
             $req = $this->m_dao->prepare($SQLreq);
             $req->execute(array($idQuestion));
 
@@ -132,6 +133,7 @@
                 $answer->setIdQuestion($data['Id_question']);
                 $answer->setLabel('fr', $data['Label_fr']);
                 $answer->setLabel('en', $data['Label_en']);
+                $answer->setTrueOrFalse($data['TrueOrFalse']);
 
                 $result[] = $answer;
             }

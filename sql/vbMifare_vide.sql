@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `Config` (
 INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
+('presentMark', '5'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
 ('reportSizeLimitFrontend', '10000000'),

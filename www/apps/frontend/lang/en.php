@@ -26,8 +26,8 @@
     $TEXT['Flash_UploadError'] = "Error during file uploading";
     $TEXT['Flash_Uploaded'] = "File uploaded.";
     $TEXT['Flash_AlreadyAReportForAPackage'] = "There is already a report for this package.";
-    $TEXT['Flash_ImageUnknown'] = "The image you are looking for doesn't exist."
-    $TEXT['Flash_NoReport'] = "You have not uploaded any report."
+    $TEXT['Flash_ImageUnknown'] = "The image you are looking for doesn't exist.";
+    $TEXT['Flash_NoReport'] = "You have not uploaded any report.";
 
     $TEXT['Package_ListOf'] = "List of packages :";
     $TEXT['Package_ListOfSubscribed'] = "List of packages subscribed:";
