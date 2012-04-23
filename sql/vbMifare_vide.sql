@@ -112,7 +112,7 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('availablesLanguagesList', 'fr;en'),
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
-('zipFileSizeLimitBackend', '10000000'),
+('zipFileSizeLimitBackend', '10000000');
 
 -- --------------------------------------------------------
 
