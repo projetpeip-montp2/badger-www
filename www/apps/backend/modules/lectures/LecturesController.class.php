@@ -32,7 +32,8 @@
                         }
         
                         $package = new Package;
-                        $package->setLecturer($lineDatas[0]);
+                        $package->setCapacity($lineDatas[0]);
+                        $package->setRegistrationsCount(0);
                         $package->setName('fr', $lineDatas[1]);
                         $package->setName('en', $lineDatas[2]);
                         $package->setDescription('fr', $lineDatas[3]);
@@ -75,29 +76,29 @@
 
                     while (($lineDatas = fgetcsv($file)) !== FALSE) 
                     {
-                        if(count($lineDatas) != 7)
+                        if(count($lineDatas) != 8)
                         {
                             $this->app()->user()->setFlashError('Le fichier n\'a pas 7 colonnes');
                             $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
                         }
 
                         // Check Date and Time formats
-                        if(!(Date::check($lineDatas[4]) &&
-                             Time::check($lineDatas[5]) &&
-                             Time::check($lineDatas[6])))
+                        if(!(Date::check($lineDatas[5]) &&
+                             Time::check($lineDatas[6]) &&
+                             Time::check($lineDatas[7])))
                         {
                             $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
                             $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
                         }
 
                         $date = new Date;
-                        $date->setFromString($lineDatas[4]);
+                        $date->setFromString($lineDatas[5]);
 
                         $startTime = new Time;
-                        $startTime->setFromString($lineDatas[5]);
+                        $startTime->setFromString($lineDatas[6]);
 
                         $endTime = new Time;
-                        $endTime->setFromString($lineDatas[6]);
+                        $endTime->setFromString($lineDatas[7]);
 
                         if(Time::compare($startTime, $endTime) > 0)
                         {
@@ -107,10 +108,11 @@
         
                         $lecture = new Lecture;
                         $lecture->setIdPackage($request->postData('vbmifarePackage'));
-                        $lecture->setName('fr', $lineDatas[0]);
-                        $lecture->setName('en', $lineDatas[1]);
-                        $lecture->setDescription('fr', $lineDatas[2]);
-                        $lecture->setDescription('en', $lineDatas[3]);
+                        $lecture->setLecturer($lineDatas[0]);
+                        $lecture->setName('fr', $lineDatas[1]);
+                        $lecture->setName('en', $lineDatas[2]);
+                        $lecture->setDescription('fr', $lineDatas[3]);
+                        $lecture->setDescription('en', $lineDatas[4]);
                         $lecture->setDate($date);
                         $lecture->setStartTime($startTime);
                         $lecture->setEndTime($endTime);
@@ -200,7 +202,7 @@
                     // Save all questions/answers parsed
                     $managerMCQ->saveAnswers($answers);
 
-                    if(!$flashMessage == '')
+                    if($flashMessage != '')
                         $flashMessage .= '<br/>';
                     $flashMessage .= 'Questions/Réponses uploadées.';
                 }
@@ -220,7 +222,9 @@
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
             }
 
-            $this->app()->user()->setFlashInfo($flashMessage);
+            if($flashMessage != '')
+                $this->app()->user()->setFlashInfo($flashMessage);
+
             $this->page()->addVar('packages', $packages);
         }
 
@@ -233,7 +237,7 @@
                 $package = new Package();
 
                 $package->setId($request->postData('packageId'));
-                $package->setLecturer($request->postData('Lecturer'));
+                $package->setCapacity($request->postData('Capacity'));
                 $package->setName('fr', $request->postData('NameFr'));
                 $package->setName('en', $request->postData('NameEn'));
                 $package->setDescription('fr', $request->postData('DescFr'));
@@ -297,6 +301,7 @@
                 $lecture = new Lecture();
 
                 $lecture->setId($request->postData('lectureId'));
+                $lecture->setLecturer($request->postData('Lecturer'));
                 $lecture->setName('fr', $request->postData('NameFr'));
                 $lecture->setName('en', $request->postData('NameEn'));
                 $lecture->setDescription('fr', $request->postData('DescFr'));

@@ -55,6 +55,7 @@ Lectures:
     Id_lecture
     Id_package
     Id_availability
+    Lecturer
     Name_fr
     Name_en
     Lecturer
@@ -75,6 +76,8 @@ MCQs:
 
 Package:
     Id_package
+    Capacity
+    RegistrationsCount
     Name_fr
     Name_en
 

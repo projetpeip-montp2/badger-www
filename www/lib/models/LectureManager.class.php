@@ -5,7 +5,8 @@
         {
             $requestSQL = 'SELECT Id_lecture,
                                   Id_package,
-                                  Id_availability, 
+                                  Id_availability,
+                                  Lecturer, 
                                   Name_fr, 
                                   Name_en, 
                                   Description_fr,
@@ -48,6 +49,7 @@
                 $lecture->setId($data['Id_lecture']);
                 $lecture->setIdPackage($data['Id_package']);
                 $lecture->setIdAvailability($data['Id_availability']);
+                $lecture->setLecturer($data['Lecturer']);
                 $lecture->setName('fr', $data['Name_fr']);
                 $lecture->setName('en', $data['Name_en']);
                 $lecture->setDescription('fr', $data['Description_fr']);
@@ -66,16 +68,18 @@
         {
             $req = $this->m_dao->prepare('INSERT INTO Lectures(Id_package,
                                                                Id_availability, 
+                                                               Lecturer, 
                                                                Name_fr, 
                                                                Name_en, 
                                                                Description_fr,
                                                                Description_en,
                                                                Date,
                                                                StartTime,
-                                                               EndTime) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?)');
+                                                               EndTime) VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?, ?)');
 
             foreach($lectures as $lecture)
                 $req->execute(array($lecture->getIdPackage(),
+                                    $lecture->getLecturer(),
                                     $lecture->getName('fr'),
                                     $lecture->getName('en'),
                                     $lecture->getDescription('fr'),
@@ -87,7 +91,8 @@
 
         public function update($lecture)
         {
-            $req = $this->m_dao->prepare('UPDATE Lectures SET Name_fr = ?, 
+            $req = $this->m_dao->prepare('UPDATE Lectures SET Lecturer = ?, 
+                                                              Name_fr = ?, 
                                                               Name_en = ?,
                                                               Description_fr = ?,
                                                               Description_en = ?,
@@ -95,7 +100,8 @@
                                                               StartTime = ?,
                                                               EndTime = ? WHERE Id_lecture = ?');
 
-            $req->execute(array($lecture->getName('fr'),
+            $req->execute(array($lecture->getLecturer(),
+                                $lecture->getName('fr'),
                                 $lecture->getName('en'),
                                 $lecture->getDescription('fr'),
                                 $lecture->getDescription('en'),

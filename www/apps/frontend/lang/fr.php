@@ -35,7 +35,6 @@
     $TEXT['Package_ShowSubscribed'] = "Afficher les packages enregistrés";
     $TEXT['Package_NoSubscribtion'] = "Aucune inscription.";
     $TEXT['Package_Description'] = "Description";
-    $TEXT['Package_Lecturer'] = "Conférencier";
     $TEXT['Package_Tags'] = "Tags";
     $TEXT['Package_Subscribe'] = "S'inscrire";
     $TEXT['Package_Unsubscribe'] = "Se désinscrire";
@@ -50,6 +49,7 @@
     $TEXT['Lecture_StartTime'] = "Horaire de début";
     $TEXT['Lecture_EndTime'] = "Horaire de fin";
     $TEXT['Lecture_NoLecture'] = "Aucune conférence.";
+    $TEXT['Lecture_Lecturer'] = "Conférencier";
 
     $TEXT['Reports_Index'] = "Rapport";
     $TEXT['Reports_Upload'] = "Ajouter un rapport";

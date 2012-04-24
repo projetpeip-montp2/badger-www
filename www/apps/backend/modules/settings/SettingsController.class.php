@@ -17,7 +17,7 @@
                 $this->m_managers->getManagerOf('config')->replace('adminsList', $newAdminList);
 
                 $this->app()->user()->setFlashInfo('Liste d\'Admin changée: "' . $newAdminList . '".');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/settings/index.html');
+                $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
             // Else we display the form
@@ -33,7 +33,7 @@
             if($request->postExists('isSubmitted'))
             {
                 $this->m_managers->getManagerOf('config')->replace('canSubscribe', $authorized ? 0 : 1);
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/settings/index.html');
+                $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
             // Else we display the form
