@@ -4,7 +4,8 @@
         public function get($id = -1)
         {
             $requestSQL = 'SELECT Id_package,
-                                  Lecturer,
+                                  Capacity,
+                                  RegistrationsCount,
                                   Name_fr, 
                                   Name_en,
                                   Description_fr,
@@ -22,7 +23,8 @@
             {
                 $package = new Package;
                 $package->setId($data['Id_package']);
-                $package->setLecturer($data['Lecturer']);
+                $package->setCapacity($data['Capacity']);
+                $package->setRegistrationsCount($data['RegistrationsCount']);
                 $package->setName('fr', $data['Name_fr']);
                 $package->setName('en', $data['Name_en']);
                 $package->setDescription('fr', $data['Description_fr']);
@@ -36,14 +38,16 @@
 
         public function save($packages)
         {
-            $req = $this->m_dao->prepare('INSERT INTO Packages(Lecturer,
+            $req = $this->m_dao->prepare('INSERT INTO Packages(Capacity,
+                                                               RegistrationsCount,
                                                                Name_fr, 
                                                                Name_en,
                                                                Description_fr,
-                                                               Description_en) VALUES(?, ?, ?, ?, ?)');
+                                                               Description_en) VALUES(?, ?, ?, ?, ?, ?)');
 
             foreach($packages as $package)
-                $req->execute(array($package->getLecturer(),
+                $req->execute(array($package->getCapacity(),
+                                    $package->getRegistrationsCount(),
                                     $package->getName('fr'),
                                     $package->getName('en'),
                                     $package->getDescription('fr'),
@@ -52,13 +56,15 @@
 
         public function update($package)
         {
-            $req = $this->m_dao->prepare('UPDATE Packages SET Lecturer = ?,
+            $req = $this->m_dao->prepare('UPDATE Packages SET Capacity = ?,
+                                                              RegistrationsCount = ?,
                                                               Name_fr = ?, 
                                                               Name_en = ?,
                                                               Description_fr = ?,
                                                               Description_en = ? WHERE Id_Package = ?');
 
-            $req->execute(array($package->getLecturer(),
+            $req->execute(array($package->getCapacity(),
+                                $package->getRegistrationsCount(),
                                 $package->getName('fr'),
                                 $package->getName('en'),
                                 $package->getDescription('fr'),

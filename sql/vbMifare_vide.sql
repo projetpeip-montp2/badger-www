@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 23 Avril 2012 à 18:04
+-- Généré le: Mar 24 Avril 2012 à 17:25
 -- Version du serveur: 5.5.23-log
 -- Version de PHP: 5.3.10
 
@@ -162,6 +162,7 @@ CREATE TABLE IF NOT EXISTS `Lectures` (
   `Id_lecture` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Id_package` smallint(5) unsigned NOT NULL,
   `Id_availability` smallint(5) unsigned NOT NULL,
+  `Lecturer` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Description_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -194,7 +195,8 @@ CREATE TABLE IF NOT EXISTS `MCQs` (
 
 CREATE TABLE IF NOT EXISTS `Packages` (
   `Id_package` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `Lecturer` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `Capacity` smallint(5) unsigned NOT NULL,
+  `RegistrationsCount` smallint(5) unsigned NOT NULL,
   `Name_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Name_en` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `Description_fr` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,

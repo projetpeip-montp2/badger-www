@@ -17,12 +17,12 @@ Classroom
 
 Package
 -------
-    "Lecturer","Name_fr","Name_en","Description_fr","Description_en"
+    "Capacity","Name_fr","Name_en","Description_fr","Description_en"
 
 
 Lecture
 -------
-    "Name_fr","Name_en","Description_fr","Description_en","Date","StartTime","EndTime"
+    "Lecturer","Name_fr","Name_en","Description_fr","Description_en","Date","StartTime","EndTime"
 
 
 Questions/Answers

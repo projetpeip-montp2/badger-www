@@ -35,7 +35,6 @@
     $TEXT['Package_ShowSubscribed'] = "Show subscribed packages";
     $TEXT['Package_NoSubscribtion'] = "No subscribtion.";
     $TEXT['Package_Description'] = "Description";
-    $TEXT['Package_Lecturer'] = "Lecturer";
     $TEXT['Package_Tags'] = "Tags";
     $TEXT['Package_Subscribe'] = "Subscribe";
     $TEXT['Package_Unsubscribe'] = "Unsubscribe";
@@ -50,6 +49,7 @@
     $TEXT['Lecture_StartTime'] = "Start time";
     $TEXT['Lecture_EndTime'] = "End time";
     $TEXT['Package_NoLecture'] = "No lecture.";
+    $TEXT['Lecture_Lecturer'] = "Lecturer";
 
     $TEXT['Reports_Index'] = "Reports";
     $TEXT['Reports_Upload'] = "Add a report";

@@ -2,7 +2,8 @@
     class Package extends Record
     {
         private $m_idPackage;
-        private $m_lecturer;
+        private $m_capacity;
+        private $m_registrationsCount;
         private $m_name;
         private $m_description;
 
@@ -16,14 +17,24 @@
             return $this->m_idPackage;
         }
 
-        public function setLecturer($lecturer)
+        public function setCapacity($capacity)
         {
-            $this->m_lecturer = $lecturer;
+            $this->m_capacity = $capacity;
         }
 
-        public function getLecturer()
+        public function getCapacity()
         {
-            return $this->m_lecturer;
+            return $this->m_capacity;
+        }
+
+        public function setRegistrationsCount($registrationsCount)
+        {
+            $this->m_registrationsCount = $registrationsCount;
+        }
+
+        public function getRegistrationsCount()
+        {
+            return $this->m_registrationsCount;
         }
 
         public function setName($lang, $name)

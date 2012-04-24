@@ -6,6 +6,9 @@
     {
         $form = new Form('', 'post');
 
+        $form->add('text', 'Lecturer')
+             ->value($lecture->getLecturer())
+             ->size(strlen($lecture->getLecturer()));
         $form->add('text', 'NameFr')
              ->value($lecture->getName('fr'))
              ->size(strlen($lecture->getName('fr')));
@@ -36,6 +39,7 @@
 ?>
 
 <table class="FormTable">
+    <th>Conférencier</th>
     <th>Nom Fr</th>
     <th>Nom En</th>
     <th>Description Fr</th>

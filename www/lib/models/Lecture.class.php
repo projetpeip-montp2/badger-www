@@ -4,6 +4,7 @@
         private $m_idLecture;
         private $m_idPackage;
         private $m_idAvailability;
+        private $m_lecturer;
         private $m_name;
         private $m_description;
         private $m_date;
@@ -38,6 +39,16 @@
         public function getIdAvailability()
         {
             return $this->m_idAvailability;
+        }
+
+        public function setLecturer($lecturer)
+        {
+            $this->m_lecturer = $lecturer;
+        }
+
+        public function getLecturer()
+        {
+            return $this->m_lecturer;
         }
 
         public function setName($lang, $name)
