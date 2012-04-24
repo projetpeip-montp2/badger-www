@@ -6,7 +6,7 @@
     $TEXT['Menu_Home'] = "Accueil";
     $TEXT['Menu_Guide'] = "Guide d'utilisation";
     $TEXT['Menu_Lectures'] = "Conférences";
-    $TEXT['Menu_Viewer'] = "Visionneuse de documents en ligne";
+    $TEXT['Menu_Viewer'] = "Documents en ligne";
     $TEXT['Menu_MCQ'] = "Q.C.M";
     $TEXT['Menu_Reports'] = "Rapports";
 

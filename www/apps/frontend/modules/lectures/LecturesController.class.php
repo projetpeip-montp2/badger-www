@@ -110,8 +110,7 @@
             $username = $this->app()->user()->getAttribute('logon');
 
             // Retrieve registration id of the users
-            $managerRegistration = $this->m_managers->getManagerOf('registration');
-            $registrationsOfUser = $managerRegistration->getResgistrationsFromUser($username);
+            $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getResgistrationsFromUser($username);
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
@@ -129,7 +128,26 @@
 
         public function executeSchedule()
         {
-            // Display schedule
+            $username = $this->app()->user()->getAttribute('logon');
+
+            $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getResgistrationsFromUser($username);
+
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
+
+            $result = array();
+            foreach($registrationsOfUser as $reg)
+            {
+                $lecture = $managerLectures->get($reg->getIdPackage(), $reg->getIdLecture());
+                if(!array_key_exists($lecture[0]->getDate()->__toString(), $result))
+                    $result[$lecture[0]->getDate()->__toString()] = array($lecture[0]);
+                else
+                    $result[$lecture[0]->getDate()->__toString()][] = $lecture[0];
+            }
+
+            $this->page()->addVar('lectures', $this->bubbleSort($result));
+
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+            $this->page()->addVar('lang', $lang);
         }
 
         private function checkSubscribe(HTTPRequest $request)
@@ -218,6 +236,31 @@
 
             // No conflict, continue
         }
+
+        private	function bubbleSort($array)
+        {
+    	    $keys = array_keys($array);
+	        foreach($keys as $i)
+            {
+	            foreach($keys as $j)
+                {
+                    $date1 = new Date;
+                    $date1->setFromString($i);
+                    $date2 = new Date;
+                    $date2->setFromString($j);
+	                if (Date::compare($date1, $date2) < 0)
+	                    $this->swap($array, $i, $j);
+                }
+            }
+    	    return $array;
+	    }
+
+        private function swap(&$arr, $a, $b)
+        {
+    	    $tmp = $arr[$a];
+    	    $arr[$a] = $arr[$b];
+    	    $arr[$b] = $tmp;
+    	}
     }
 ?>
 
