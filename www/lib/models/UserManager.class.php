@@ -1,6 +1,24 @@
 <?php
     class UserManager extends Manager
     {
+        public function getFromDepartmentAndSchoolYear($department, $schoolYear)
+        {
+            // The request is on Polytech database here!
+            $req = $this->m_dao->prepare('SELECT Username FROM Polytech.Users WHERE Departement = ? AND anApogee = ?');
+            $req->execute(array($department, $schoolYear));
+
+            $students = array();
+            while($data = $req->fetch())
+            {
+                $student = new Student;
+                $student->setUsername($data['Username']);
+
+                $students[] = $student;
+            }
+
+            return $students;
+        }
+
         private function checkStatus($status)
         {
             if(!in_array($status, array('Visitor', 'CanTakeMCQ', 'Generated', 'Taken')))
@@ -62,6 +80,19 @@
         {
             $req = $this->m_dao->prepare('UPDATE Users SET Mark = ? WHERE Id_user = ?');
             $req->execute(array($mark, $logon));
+        }
+
+        public function isInDatabase($logon)
+        {
+            $req = $this->m_dao->prepare('SELECT Id_User FROM Users WHERE Id_user = ?');
+            $req->execute(array($logon));
+
+            $data = $req->fetch();
+
+            if(!$data)
+                return false;
+            else
+                return true;
         }
 
         public function getDepartments()

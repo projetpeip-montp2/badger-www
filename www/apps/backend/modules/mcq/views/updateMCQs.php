@@ -1,4 +1,7 @@
 <h1>Modification/Suppression d'une inscription de promotions</h1>
+<p class="Alert">
+    Attention à la suppression d'une séance de QCM, cela aura pour effet de supprimer toutes les inscriptions aux conférences des élèves !
+</p>
 <p class="Warning">
     L'inscription ne fonctionne que pour les départements ingénieurs (MAT, ERII, etc), pas pour les PEIP (et les autres). (Problème dans la gestion des années)
 </p>
@@ -29,7 +32,8 @@
              ->value($mcq->getEndTime())
              ->size(8);
         $form->add('submit', 'Modifier');
-        $form->add('submit', 'Supprimer');
+        $form->add('submit', 'Supprimer')
+             ->onClick('return confirmation(\'Êtes vous sûr de vouloir supprimer cette séance de QCM ? Cela supprimera toutes les inscriptions des étudiants de cette promotion.\');');
 
         $forms[] = $form;
     }
@@ -49,3 +53,5 @@
         echo $form->toTr();
 ?>
 </table>
+
+<script type="text/javascript" src="/vbMifare/web/js/confirmation.js"></script>

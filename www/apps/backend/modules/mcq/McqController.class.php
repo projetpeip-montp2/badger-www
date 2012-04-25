@@ -46,6 +46,10 @@
                 $managerMCQs = $this->m_managers->getManagerOf('mcq');
                 $managerMCQs->save($mcq);
 
+                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' =>$request->postData('SchoolYear'));
+
+                $this->updateStudents($mcqId, 'CanTakeMCQ');
+
                 // Redirection
                 $flashMessage = 'Séance de QCM pour le département ' .
                                 $request->postData('Department') . ' ' .
@@ -115,6 +119,8 @@
             {
                 // MCQ identificated by Department & Schoolyear ==> Send an array containing both information to manager
                 $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' =>$request->postData('SchoolYear'));
+
+                $this->updateStudents($mcqId, 'Visitor');
                 $this->m_managers->getManagerOf('mcq')->delete(array($mcqId));
 
                 // Redirection
@@ -142,6 +148,25 @@
             $departments = $managerUsers->getDepartments();
 
             $this->page()->addVar('departments', $departments);
+        }
+
+        private function updateStudents($mcqId, $status)
+        {
+            $managerUsers = $this->m_managers->getManagerOf('user');
+            $students = $managerUsers->getFromDepartmentAndSchoolYear($mcqId['Department'], $mcqId['SchoolYear']);
+
+            foreach($students as $student)
+            {
+                $username = $student->getUsername();
+                if($managerUsers->isInDatabase($username))
+                {
+                    // Update his status
+                    $managerUsers->updateStatus($username, $status);
+
+                    // Delete his registrations
+                    $this->m_managers->getManagerOf('registration')->deleteFromUser($username);
+                }
+            }
         }
     }
 ?>

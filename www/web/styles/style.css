@@ -156,3 +156,18 @@ a, a:visited
     padding: 1%;
     border: 3px solid black;
 }
+
+.Alert
+{
+    color: red;
+}
+
+.Warning
+{
+    color: orange;
+}
+
+.Info
+{
+    color: green;
+}
