@@ -1,10 +1,22 @@
-<h1>Création d'une séance de QCM</h1>
-<p>Depuis cette page, il est possible de créer une séance de QCM pour une promotion.</p>
-<p>Rappel: Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".</p>
+<h1>Inscription de promotion</h1>
+<p class="Warning">
+    La promotion doit être inscrite pour pouvoir s'inscrire à des packages et passer le QCM.
+    <br/>
+    <br/>
+    Les dates peuvent être inexactes à la création, vous pouvez les modifier depuis la page d'édition.
+    <br/>
+    <br/>
+    Ne pas hésiter à mettre des dates "lointaines".
+    <br/>
+    <br/>
+    L'inscription ne fonctionne que pour les départements ingénieurs (MAT, ERII, etc), pas pour les PEIP (et les autres). (Problème dans la gestion des années)
+</p>
+<p class="Info">
+    Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".
+</p>
 <?php
     $form = new Form('', 'post');
 
-    // TODO: Trouver une meilleure manière de faire
     $schoolYears = array('3' => '3','4' => '4', '5' => '5');
 
     $form->add('select', 'Department')

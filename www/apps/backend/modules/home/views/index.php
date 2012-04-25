@@ -4,7 +4,11 @@
     Page admin de configuration:
     <ul>
         <li>Conférences: Packages - Conférences - Questions/Réponses</li>
-        <li>Documents: PDF à télécharger - Archive zip d'image pour la visionneuse</li>
-        <li>Inscription de promotions: PDF à télécharger - Archive zip d'image pour la visionneuse</li>
+        <li>Documents: Fichiers PDF - Images pour la visionneuse</li>
+        <li>Inscription de promotions</li>
+        <li>Salles: Salles - Disponibilités</li>
+        <li>Statistiques</li>
+        <li>Configuration</li>
+        <li>Remise à zéro</li>
     </ul>
 <p>

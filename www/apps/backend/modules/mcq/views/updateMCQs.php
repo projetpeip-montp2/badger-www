@@ -1,8 +1,11 @@
-<h1>Modification d'une séance de QCM</h1>
-<p>Depuis cette page, il est possible de modifier une séance de QCM pour une promotion.</p>
-<p>Rappel: Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".</p>
+<h1>Modification/Suppression d'une inscription de promotions</h1>
+<p class="Warning">
+    L'inscription ne fonctionne que pour les départements ingénieurs (MAT, ERII, etc), pas pour les PEIP (et les autres). (Problème dans la gestion des années)
+</p>
+<p class="Info">
+    Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".
+</p>
 <?php
-    // TODO: Trouver une meilleure manière de faire
     $schoolYears = array('3' => '3','4' => '4', '5' => '5');
 
     $forms = array();

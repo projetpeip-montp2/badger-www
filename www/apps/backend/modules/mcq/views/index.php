@@ -1,8 +1,6 @@
-<h1>QCM</h1>
-
-<p>Depuis cette page il est possible de créer des qcm et de les configurer</p>
+<h1>Inscription de promotions</h1>
 
 <ul>
-    <li><a href="/vbMifare/admin/mcq/createMCQ.html">Créer une séance de QCM</a></li>
-    <li><a href="/vbMifare/admin/mcq/updateMCQs.html">Modifier une séance de QCM</a></li>
+    <li><a href="/vbMifare/admin/mcq/createMCQ.html">Inscrire une promotion</a></li>
+    <li><a href="/vbMifare/admin/mcq/updateMCQs.html">Modifier/Supprimer une inscription</a></li>
 </ul>
