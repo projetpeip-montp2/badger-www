@@ -335,7 +335,6 @@
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
-                // TODO: Supprimer les dépendances
             }
 
             // Else display the form
@@ -357,7 +356,7 @@
             foreach($lectures as $lecture)
             {
                 $this->deleteLectureDependancies($lecture->getId());
-                // Delete lectures of a package
+                // Delete associated lectures
                 $this->m_managers->getManagerOf('lecture')->delete($lecture->getId());
             }
 
@@ -365,8 +364,33 @@
             foreach($questions as $question)
                 $this->deleteQuestionDependancies($question->getId());
 
-            // Delete questions of a package
+            // Delete associated questions
              $this->m_managers->getManagerOf('mcq')->deleteQuestions($packageId);
+
+            // Delete associated documents and images
+            $path = dirname(__FILE__).'/../../../../uploads/admin/';
+            
+            $managerDocuments = $this->m_managers->getManagerOf('documentofpackage');
+            $documents = $managerDocuments->get($packageId);
+
+            // Delete documents database
+            $managerDocuments->delete($packageId);
+
+            foreach($documents as $document)
+                unlink($path . 'pdf/' . $document->getFilename());
+
+            $managerImages = $this->m_managers->getManagerOf('imageofpackage');
+            $count = $managerImages->count($packageId);
+
+            // Delete images database
+            $managerImages->delete($packageId);
+
+            // Delete images on server
+            for($i = 1; $i <= $count; $i++)
+            {
+                $filename = 'images/' . $packageId . '_' . $i . '.jpg';
+                unlink($path . $filename);
+            }
         }
 
         private function deleteLectureDependancies($lectureId)

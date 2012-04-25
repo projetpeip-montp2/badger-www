@@ -86,6 +86,8 @@
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
             $mcqs = $managerMCQ->get($department, $schoolYear);
 
+            print_r($mcqs);
+
             $goodDate = false;
             $goodTime = false;
 

@@ -223,6 +223,7 @@
             if($request->postExists('Supprimer'))
             {
                 $this->m_managers->getManagerOf('classroom')->delete(array($request->postData('classroomId')));
+                $this->deleteClassroomDependancies($request->postData('classroomId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Salle "' . $request->postData('Name') . '" supprimée.');
@@ -239,6 +240,11 @@
             }
 
             $this->page()->addVar('classrooms', $classrooms);
+        }
+
+        private function deleteClassroomDependancies($idClassroom)
+        {
+            $this->m_managers->getManagerOf('availability')->deleteFromClassroom($idClassroom);
         }
     }
 ?>

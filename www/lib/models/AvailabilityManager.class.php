@@ -76,5 +76,11 @@
             foreach($availabilityIds as $availabilityId)
                 $req->execute(array($availabilityId));
         }
+
+        public function deleteFromClassroom($idClassroom)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Availabilities WHERE Id_classroom = ?');
+            $req->execute(array($idClassroom));
+        }
     }
 ?>
