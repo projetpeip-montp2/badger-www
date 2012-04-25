@@ -111,12 +111,10 @@
                                 $lecture->getId()));
         }
 
-        public function delete($lectureIds)
+        public function delete($lectureId)
         {
             $req = $this->m_dao->prepare('DELETE FROM Lectures WHERE Id_lecture = ?');
-
-            foreach($lectureIds as $lectureId)
-                $req->execute(array($lectureId));
+            $req->execute(array($lectureId));
         }
     }
 ?>

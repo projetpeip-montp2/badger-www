@@ -33,6 +33,12 @@
             return $result;
         }
 
+        public function delete($idLecture)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Registrations WHERE Id_lecture = ?');
+            $req->execute(array($idLecture));
+        }
+
         public function subscribe($idPackage, $idLecture, $username, $yesOrNo)
         {
             $req = $this->m_dao->prepare('SELECT Id_lecture FROM Registrations WHERE Id_lecture = ? AND Id_user = ?');

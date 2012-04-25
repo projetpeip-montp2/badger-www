@@ -255,6 +255,7 @@
             if($request->postData('Supprimer'))
             {
                 $this->m_managers->getManagerOf('package')->delete(array($request->postData('packageId')));
+                $this->deletePackageDependancies($request->postData('packageId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" supprimé.');
@@ -328,7 +329,8 @@
             // Delete lecture
             if($request->postData('Supprimer'))
             {
-                $this->m_managers->getManagerOf('lecture')->delete(array($request->postData('lectureId')));
+                $this->m_managers->getManagerOf('lecture')->delete($request->postData('lectureId'));
+                $this->deleteLectureDependancies($request->postData('lectureId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
@@ -347,6 +349,38 @@
             }
 
             $this->page()->addVar('lectures', $lectures);
+        }
+
+        private function deletePackageDependancies($packageId)
+        {
+            $lectures = $this->m_managers->getManagerOf('lecture')->get($packageId);
+            foreach($lectures as $lecture)
+            {
+                $this->deleteLectureDependancies($lecture->getId());
+                // Delete lectures of a package
+                $this->m_managers->getManagerOf('lecture')->delete($lecture->getId());
+            }
+
+            $questions = $this->m_managers->getManagerOf('mcq')->getQuestionsFromPackage($packageId);
+            foreach($questions as $question)
+                $this->deleteQuestionDependancies($question->getId());
+
+            // Delete questions of a package
+             $this->m_managers->getManagerOf('mcq')->deleteQuestions($packageId);
+        }
+
+        private function deleteLectureDependancies($lectureId)
+        {
+            // Delete registrations to a lecture
+            $this->m_managers->getManagerOf('registration')->delete($lectureId);
+        }
+
+        private function deleteQuestionDependancies($questionId)
+        {
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $managerMCQ->deleteAnswers($questionId);
+            $managerMCQ->deleteQuestionsOfUsers($questionId);
+            $managerMCQ->deleteAnswersOfUsers($questionId);
         }
     }
 ?>

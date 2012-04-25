@@ -81,6 +81,30 @@
                 $req->execute(array($mcq['Department'],$mcq['SchoolYear']));
         }
 
+        public function deleteQuestions($idPackage)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Questions WHERE Id_package = ?');
+            $req->execute(array($idPackage));
+        }
+
+        public function deleteAnswers($idQuestion)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM Answers WHERE Id_question = ?');
+            $req->execute(array($idQuestion));
+        }
+
+        public function deleteQuestionsOfUsers($idQuestion)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM QuestionsOfUsers WHERE Id_question = ?');
+            $req->execute(array($idQuestion));
+        }
+
+        public function deleteAnswersOfUsers($idQuestion)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM AnswersOfUsers WHERE Id_question = ?');
+            $req->execute(array($idQuestion));
+        }
+
         public function getQuestionsFromPackage($idPackage, $status = NULL)
         {
             $SQLreq = 'SELECT Id_question,
