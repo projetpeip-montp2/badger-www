@@ -7,4 +7,5 @@
     <li><a href="/vbMifare/viewer/index.html"><?php echo $TEXT['Menu_Viewer'] ?></a></li>
     <li><a href="/vbMifare/mcq/index.html"><?php echo $TEXT['Menu_MCQ'] ?></a></li>
     <li><a href="/vbMifare/reports/index.html"><?php echo $TEXT['Menu_Reports'] ?></a></li>
+    <li><a href="/vbMifare/admin/home/index.html">Administration</a></li>
 </ul>

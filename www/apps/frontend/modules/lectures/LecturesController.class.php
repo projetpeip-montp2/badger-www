@@ -144,10 +144,8 @@
                     $result[$lecture[0]->getDate()->__toString()][] = $lecture[0];
             }
 
-            $this->page()->addVar('lectures', $this->bubbleSort($result));
-
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
-            $this->page()->addVar('lang', $lang);
+            $this->page()->addVar('lectures', $this->sort($result));
+            $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
         }
 
         private function checkSubscribe(HTTPRequest $request)
@@ -237,30 +235,20 @@
             // No conflict, continue
         }
 
-        private	function bubbleSort($array)
+        private	function sort($array)
         {
-    	    $keys = array_keys($array);
-	        foreach($keys as $i)
-            {
-	            foreach($keys as $j)
-                {
-                    $date1 = new Date;
-                    $date1->setFromString($i);
-                    $date2 = new Date;
-                    $date2->setFromString($j);
-	                if (Date::compare($date1, $date2) < 0)
-	                    $this->swap($array, $i, $j);
-                }
-            }
-    	    return $array;
+    	    uksort($array, "dateCompare");
+            return $array;
 	    }
-
-        private function swap(&$arr, $a, $b)
-        {
-    	    $tmp = $arr[$a];
-    	    $arr[$a] = $arr[$b];
-    	    $arr[$b] = $tmp;
-    	}
     }
+
+function dateCompare($string1, $string2)
+{
+    $date1 = new Date;
+    $date2 = new Date;
+    $date1->setFromString($string1);
+    $date2->setFromString($string2);
+    return Date::compare($date1, $date2);
+}
 ?>
 

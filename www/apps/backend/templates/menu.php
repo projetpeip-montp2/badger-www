@@ -1,6 +1,7 @@
 Menu
 <ul>
     <li><a href="/vbMifare/admin/home/index.html">Accueil</a></li>
+    <li><a href="/vbMifare/home/index.html">Frontend</a></li>
     <li><a href="/vbMifare/admin/lectures/index.html">Conférences</a></li>
     <li><a href="/vbMifare/admin/documents/index.html">Documents</a></li>
     <li><a href="/vbMifare/admin/mcq/index.html">Inscription de promotions</a></li>
