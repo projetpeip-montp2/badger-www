@@ -7,7 +7,6 @@
                                          'Availabilities', 
                                          'BadgingInformations', 
                                          'Classrooms', 
-                                         'Config', 
                                          'DocumentsOfPackages', 
                                          'DocumentsOfUsers',
                                          'ImagesOfPackages', 
