@@ -59,20 +59,27 @@
                 $this->m_hours = $hours;
         }
 
-        public function seconds()
+        public function seconds($addZero = FALSE)
         {
+			if ($addZero)
+				return str_pad($this->m_seconds, 2, '0', STR_PAD_LEFT);
             return $this->m_seconds;
         }
 
-        public function minutes()
+        public function minutes($addZero = FALSE)
         {
+			if ($addZero)
+				return str_pad($this->m_minutes, 2, '0', STR_PAD_LEFT);
             return $this->m_minutes;
         }
 
-        public function hours()
+        public function hours($addZero = FALSE)
         {
+			if ($addZero)
+				return str_pad($this->m_hours, 2, '0', STR_PAD_LEFT);
             return $this->m_hours;
         }
+		
         
         ////////////////////////////////////////////////////////////
         /// \brief Compare two times

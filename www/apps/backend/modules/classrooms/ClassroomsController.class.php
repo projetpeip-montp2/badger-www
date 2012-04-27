@@ -3,7 +3,9 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+			$classrooms = $this->m_managers->getManagerOf('classroom')->getWithAvailabilities();
+			
+			$this->Page()->addVar('classrooms', $classrooms);
         }
 
         public function executeAddClassrooms(HTTPRequest $request)
@@ -14,7 +16,7 @@
             {
                 $fileData = $request->fileData('vbmifareClassroomsCSV');
 
-                // Check if the file is sucefully uploaded
+                // Check if the file is sucessfully uploaded
                 if($fileData['error'] == 0)
                 {
                     $file = fopen($fileData['tmp_name'], 'r');
