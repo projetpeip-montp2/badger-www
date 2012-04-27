@@ -1,8 +1,3 @@
-function trim (myString)
-{
-	return myString.replace(/^\s+/g,'').replace(/\s+$/g,'')
-} 
-
 function onError()
 {
 	alert('Erreur: Connexion au site échouée, les modifications faites n\'ont pas été prises en compte. La page va se recharger.');
@@ -20,7 +15,7 @@ function hasError(data)
 function addAvailabilityHTML(element, data)
 {
 	if (hasError(data))
-		alert(trim(data));
+		alert(data);
 	else
 	{
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Day" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
@@ -82,7 +77,7 @@ function finishSendTextForm(element, data, tagName)
 	if (hasError(data))
 	{
 		$(newElem).html($(element).attr('oldValue'));
-		alert(trim(data));
+		alert(data);
 	}
 	else
 	{
