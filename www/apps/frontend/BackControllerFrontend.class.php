@@ -5,6 +5,8 @@
         {
             $limitDate = new Date;
             $limitDate->setFromString($this->m_managers->getManagerOf('config')->get('registrationsDateLimit'));
+
+            date_default_timezone_set('Europe/Paris');
             $currentDate = new Date;
             $currentDate->setFromString(date('d-m-Y'));
 

@@ -110,6 +110,8 @@ INSERT INTO `Config` (`Name`, `Value`) VALUES
 ('presentMark', '5'),
 ('adminsList', 'vbmifare;victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
+('packageRegistrationsCount', '5'),
+('registrationsDateLimit', '23-05-2012'),
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
 ('zipFileSizeLimitBackend', '10000000');
