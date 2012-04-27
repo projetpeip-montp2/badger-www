@@ -100,6 +100,16 @@
 	    {
 		    return new MySQLIterator($this->m_req);
 	    }
+		
+		public function getNumRows()
+		{
+			$num_rows = mysqli_num_rows($this->m_req);
+			
+			if ($num_rows === FALSE)
+				throw new RuntimeException("Cannot retrieve number of rows");
+				
+			return ($num_rows);
+		}
     }
 
 

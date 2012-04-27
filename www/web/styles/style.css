@@ -122,7 +122,6 @@ a, a:visited
     color: blue;
 }
 
-// TODO: Modifier
 .documentsFrame ul
 {
     clear: right;
@@ -155,4 +154,57 @@ a, a:visited
     margin: auto;
     padding: 1%;
     border: 3px solid black;
+}
+
+table#classroom
+{
+	width: 100%;
+	border-width: 1px;
+	border-spacing: 2px;
+	border-style: outset;
+	border-color: gray;
+	background-color: white;
+}
+
+table#classroom th
+{
+	text-align: left;
+	border-width: 1px;
+	padding: 5px;
+	border-style: none;
+	border-color: gray;
+	background-color: white;
+}
+
+table#classroom td
+{
+	vertical-align: top;
+	border-width: 1px;
+	font-size: 14px;
+	padding: 5px;
+	border-style: none;
+	border-color: gray;
+	background-color: white;
+}
+
+table#classroom .editable:hover
+{
+	background-color: #F2F2F2;
+}
+
+table#classroom .editable:hover
+{
+	background-color: #F2F2F2;
+}
+
+p.editable, p.addable, p.ajaxInput, p.separator
+{
+	cursor: pointer;
+	display: inline;
+}
+
+a.addable
+{
+	font-size: 12px;
+	cursor: pointer;
 }

@@ -41,6 +41,8 @@
   'documentofuser' => 'lib/models/DocumentOfUser.class.php',
   'classroommanager' => 'lib/models/ClassroomManager.class.php',
   'classroom' => 'lib/models/Classroom.class.php',
+  'ajaxmanager' => 'lib/models/AjaxManager.class.php',
+  'ajaxinput' => 'lib/models/AjaxInput.class.php',
   'database' => 'lib/Database.class.php',
   'manager' => 'lib/Manager.class.php',
 );

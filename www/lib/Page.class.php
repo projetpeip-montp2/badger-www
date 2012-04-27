@@ -4,7 +4,8 @@
         protected $m_filesToInclude = array();
         protected $m_contentFile;
         protected $m_vars = array();
-
+		private	  $m_isAjaxPage = FALSE;
+		
         public function __construct(Application $app)
         {
             parent::__construct($app);
@@ -42,11 +43,14 @@
             extract($this->m_vars);
             
             ob_start();
-                require $this->m_contentFile;
+				require $this->m_contentFile;
             $content = ob_get_clean();
-            
+
             ob_start();
-                require dirname(__FILE__).'/../apps/'.$this->app()->name().'/templates/layout.php';
+			if (!$this->m_isAjaxPage)
+				require dirname(__FILE__).'/../apps/'.$this->app()->name().'/templates/layout.php';
+			else
+				echo $content;
             return ob_get_clean();
         }
         
@@ -57,5 +61,10 @@
             
             $this->m_contentFile = $contentFile;
         }
+		
+		public function setIsAjaxPage($value)
+		{
+			$this->m_isAjaxPage = $value;
+		}
     } 
 ?>

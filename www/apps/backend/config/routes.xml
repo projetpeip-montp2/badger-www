@@ -32,4 +32,9 @@
     <route url="/admin/settings/index\.html" module="settings" action="index"/>
     <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
     <route url="/admin/settings/changeSubscribesStatus\.html" module="settings" action="changeSubscribesStatus"/>
+	
+	<route url="/admin/ajax/index\.html" module="ajax" action="index" />
+	<route url="/admin/ajax/modifyText\.html" module="ajax" action="modifyText" />
+	<route url="/admin/ajax/addEntry\.html" module="ajax" action="addEntry" />
+
 </routes>

@@ -4,7 +4,8 @@
         private $m_idClassroom;
         private $m_name;
         private $m_size;
-
+		private	$m_availabilities;
+		
         public function setId($idClassroom)
         {
             $this->m_idClassroom = $idClassroom;
@@ -37,5 +38,15 @@
         {
             return $this->m_size;
         }
-    }
+		
+		public function setAvailabilities($availabilities)
+		{
+			$this->m_availabilities = $availabilities;
+		}
+		
+		public function getAvailabilities()
+		{
+			return $this->m_availabilities;
+		}
+   }
 ?>

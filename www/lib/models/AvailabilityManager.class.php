@@ -14,7 +14,7 @@
 
             $req = $this->m_dao->prepare($requestSQL);
             $req->execute(); 
-
+			
             $availabilities = array();
 
             while($data = $req->fetch())

@@ -53,7 +53,7 @@
         public function setMonth($month)
         {
             if(!(is_int($month)))
-                throw new InvalidArgumentException('Invalid argument in Date setDay');
+                throw new InvalidArgumentException('Invalid argument in Date setMonth');
 
             if($month <= 0 || $month > 12)
                 throw new InvalidArgumentException('Invalid argument in Date month setter');
@@ -64,7 +64,7 @@
         public function setYear($year)
         {
             if(!(is_int($year)))
-                throw new InvalidArgumentException('Invalid argument in Date setDay');
+                throw new InvalidArgumentException('Invalid argument in Date setYear');
 
             if($year < 0)
                 throw new InvalidArgumentException('Negative argument in Date year setter');
@@ -72,13 +72,17 @@
                 $this->m_year = $year;
         }
 
-        public function day()
+        public function day($addZero = FALSE)
         {
+			if ($addZero)
+				return str_pad($this->m_day, 2, '0', STR_PAD_LEFT);
             return $this->m_day;
         }
 
-        public function month()
+        public function month($addZero = FALSE)
         {
+			if ($addZero)
+				return str_pad($this->m_month, 2, '0', STR_PAD_LEFT);
             return $this->m_month;
         }
 
