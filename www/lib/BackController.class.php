@@ -10,9 +10,9 @@
         public function __construct(Application $app, $module, $action)
         {
             parent::__construct($app);
-            
+
             $this->m_page = new Page($app);
-            
+
             $this->m_managers = new Managers;
             $this->setModule($module);
             $this->setAction($action);
@@ -22,11 +22,10 @@
         public function execute()
         {
             $method = 'execute'.ucfirst($this->m_action);
-            
             if (!is_callable(array($this, $method)))
                 throw new RuntimeException('The action "'. $this->m_action . '" does not exist in the module : ' . $this->m_module);
-            
-            $this->$method($this->app()->httpRequest());
+
+			$this->$method($this->app()->httpRequest());
         }
         
         public function page()

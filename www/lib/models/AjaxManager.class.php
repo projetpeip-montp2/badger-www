@@ -7,7 +7,7 @@
 			$statement->execute(array($id));
 			
 			if ($statement->getNumRows() == 0)
-				throw new RuntimeException('Erreur: ProblÃ¨me d\'ID');
+				throw new RuntimeException('Erreur: Problème d\'ID');
 				
 			$result = $statement->fetch();
 			$date = new Date;
@@ -24,7 +24,7 @@
 					$date->setYear(intval($value));
 					break;
 				default:
-					throw new RuntimeException('Erreur: ProblÃ¨me de sous champ');
+					throw new RuntimeException('Erreur: Problème de sous champ');
 			}
 			
 			$statement = $this->m_dao->prepare("UPDATE $tableName SET $fieldName = ? WHERE $idName = ?");
@@ -37,7 +37,7 @@
 			$statement->execute(array($id));
 			
 			if ($statement->getNumRows() == 0)
-				throw new RuntimeException('Erreur: ProblÃ¨me d\'ID');
+				throw new RuntimeException('Erreur: Problème d\'ID');
 				
 			$result = $statement->fetch();
 			$time = new Time;
@@ -54,7 +54,7 @@
 					$time->setSeconds(intval($value));
 					break;
 				default:
-					throw new RuntimeException('Erreur: ProblÃ¨me de sous champ');
+					throw new RuntimeException('Erreur: Problème de sous champ');
 			}
 			
 			$statement = $this->m_dao->prepare("UPDATE $tableName SET $fieldName = ? WHERE $idName = ?");
@@ -87,7 +87,7 @@
 						$startTime->setSeconds(intval($value));
 						break;
 					default:
-						throw new RuntimeException('Erreur: ProblÃ¨me de sous champ');
+						throw new RuntimeException('Erreur: Problème de sous champ');
 				}
 			else
 				switch ($subField)
@@ -102,10 +102,10 @@
 						$endTime->setSeconds(intval($value));
 						break;
 					default:
-						throw new RuntimeException('Erreur: ProblÃ¨me de sous champ');
+						throw new RuntimeException('Erreur: Problème de sous champ');
 				}
 			if (Time::compare($startTime, $endTime) == 1)
-				throw new RuntimeException('Erreur: Vous avez rentrÃ© une heure de dÃ©but plus tardive que l\'heure de fin');
+				throw new RuntimeException('Erreur: Vous avez rentré une heure de début plus tardive que l\'heure de fin');
 		}
 		
 		private function updateSubText($ajaxInput)
@@ -118,7 +118,7 @@
 			$subField = $ajaxInput->getData('subfield-name');
 			$value = $ajaxInput->getValue();
 			
-			// Cas spÃ©cifique pour availabilities
+			// Cas spécifique pour availabilities
 			if ($fieldName == 'StartTime' || $fieldName == 'EndTime')
 				$this->checkAvailabilityCoherency($fieldName, $subField, $id, $value);
 			
@@ -132,7 +132,7 @@
 					$newValue = $this->updateTime($tableName, $fieldName, $id, $idName, $idSub, $subField, $value);
 					break;
 				default:
-					throw new Exception('Erreur cas spÃ©cial non gÃ©rÃ©');
+					throw new Exception('Erreur cas spécial non géré');
 			}
 		}
 		
@@ -159,7 +159,7 @@
 			$statement = $this->m_dao->prepare('SELECT Id_classroom FROM Classrooms WHERE Id_classroom = ?');
 			$statement->execute(array($id_classroom));
 			if ($statement->getNumRows() == 0)
-				throw new RuntimeException('Erreur: ProblÃ¨me d\'ID');
+				throw new RuntimeException('Erreur: Problème d\'ID');
 			
 			$date = new Date(01, 01, (int)date('Y'));
 			$dateString = $date->toStringMySQL();

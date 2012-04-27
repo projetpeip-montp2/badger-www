@@ -5,7 +5,6 @@
         {
             $dom = new DOMDocument;
             $dom->load(dirname(__FILE__).'/../apps/'.$this->app()->name().'/config/routes.xml');
-            
             foreach ($dom->getElementsByTagName('route') as $route)
             {
                 if (preg_match('`^'.'/vbMifare'.$route->getAttribute('url').'$`', $this->app()->httpRequest()->requestURI(), $matches))                
@@ -18,11 +17,11 @@
                     
                     if (!file_exists($file))
                        throw new RuntimeException('The module use by the route "' . $route->getAttribute('url') . '" does not exist');
-                    
+       
                     require $file;
-                    
+					
                     $controller = new $classname($this->app(), $module, $action);
-                    
+
                     if ($route->hasAttribute('vars'))
                     {
                         $vars = explode(',', $route->getAttribute('vars'));
@@ -37,10 +36,8 @@
                     break;
                 }
             }
-            
             if (!isset($controller))
                 $this->app()->httpResponse()->redirect404();
-            
             return $controller;
         }
     } 

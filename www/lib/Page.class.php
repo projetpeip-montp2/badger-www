@@ -29,19 +29,18 @@
         
         public function getGeneratedPage()
         {
-            if (!file_exists($this->m_contentFile))
+			if (!file_exists($this->m_contentFile))
                 throw new RuntimeException('The needed view does not exist');
             
             $user = $this->app()->user();
             
             foreach($this->m_filesToInclude as $filename)
             {
-                if(!empty($filename))
+				if(!empty($filename))
                     require_once $filename;
             }
 
             extract($this->m_vars);
-            
             ob_start();
 				require $this->m_contentFile;
             $content = ob_get_clean();

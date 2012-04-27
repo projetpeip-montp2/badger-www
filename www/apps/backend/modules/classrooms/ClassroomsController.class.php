@@ -101,11 +101,11 @@
                     // Save all lectures parsed
                     $this->m_managers->getManagerOf('availability')->save($availabilities);
 
-                    $this->app()->user()->setFlashInfo('DisponibilitÃ©s uploadÃ©es.');
+                    $this->app()->user()->setFlashInfo('Disponibilités uploadées.');
                 }
 
                 else
-                    $this->app()->user()->setFlashError('Impossible d\'uploader les disponibilitÃ©s.');
+                    $this->app()->user()->setFlashError('Impossible d\'uploader les disponibilités.');
             }
 
             // Else display the form
@@ -113,7 +113,7 @@
 
             if(count($classrooms) == 0)
             {
-                $this->app()->user()->setFlashError('Il faut au moins une salle pour uploader des disponibilitÃ©s.');
+                $this->app()->user()->setFlashError('Il faut au moins une salle pour uploader des disponibilités.');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -146,7 +146,7 @@
 
                 if(Time::compare($startTime, $endTime) > 0)
                 {
-                    $this->app()->user()->setFlashError('Horaire de dÃ©but > Horaire de fin');
+                    $this->app()->user()->setFlashError('Horaire de début > Horaire de fin');
                     $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/updateAvailabilities.html');
                 }
 
@@ -162,7 +162,7 @@
                 $this->m_managers->getManagerOf('availability')->update($availability);
 
                 // Redirection
-                $this->app()->user()->setFlashInfo('DisponibilitÃ© de la salle ' . $request->postExists('classroomName') . ' modifiÃ©e.');
+                $this->app()->user()->setFlashInfo('Disponibilité de la salle ' . $request->postExists('classroomName') . ' modifiée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
@@ -172,7 +172,7 @@
                 $this->m_managers->getManagerOf('availability')->delete(array($request->postData('availabilityId')));
 
                 // Redirection
-                $this->app()->user()->setFlashInfo('DisponibilitÃ© de la salle ' . $request->postData('classroomName') . ' supprimÃ©e.');
+                $this->app()->user()->setFlashInfo('Disponibilité de la salle ' . $request->postData('classroomName') . ' supprimée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
@@ -182,12 +182,12 @@
 
             if(count($classrooms) == 0)
             {
-                $this->app()->user()->setFlashError('Il n\'y a pas de salle dans la base de donnÃ©es.');
+                $this->app()->user()->setFlashError('Il n\'y a pas de salle dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
             if(count($availabilities) == 0)
             {
-                $this->app()->user()->setFlashError('Il n\'y a pas de disponibilitÃ©s de salle dans la base de donnÃ©es.');
+                $this->app()->user()->setFlashError('Il n\'y a pas de disponibilités de salle dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
@@ -218,7 +218,7 @@
                 $managerClassrooms->update($classroom);
 
                 // Redirection
-                $this->app()->user()->setFlashInfo('Salle ' . $request->postData('Name') . ' modifiÃ©e.');
+                $this->app()->user()->setFlashInfo('Salle ' . $request->postData('Name') . ' modifiée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
@@ -228,7 +228,7 @@
                 $this->deleteClassroomDependancies($request->postData('classroomId'));
 
                 // Redirection
-                $this->app()->user()->setFlashInfo('Salle "' . $request->postData('Name') . '" supprimÃ©e.');
+                $this->app()->user()->setFlashInfo('Salle "' . $request->postData('Name') . '" supprimée.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
@@ -237,7 +237,7 @@
 
             if(count($classrooms) == 0)
             {
-                $this->app()->user()->setFlashError('Il n\'y a pas de salles dans la base de donnÃ©es.');
+                $this->app()->user()->setFlashError('Il n\'y a pas de salles dans la base de données.');
                 $this->app()->httpResponse()->redirect('/vbMifare/admin/classrooms/index.html');
             }
 
