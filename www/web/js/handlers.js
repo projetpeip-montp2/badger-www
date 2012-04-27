@@ -20,18 +20,18 @@ function hasError(data)
 function addAvailabilityHTML(element, data)
 {
 	if (hasError(data))
-		alert(trim(data.substring(4)));
+		alert(trim(data));
 	else
 	{
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="Date" data-subfield-name="Day" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="Date" data-subfield-name="Month" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="Date" data-subfield-name="Year" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">2012</p><p class="separator"> | </p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="StartTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="StartTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="StartTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> -> </p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="EndTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">23</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="EndTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">59</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">59</p><br />').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Day" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Month" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Year" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">2012</p><p class="separator"> | </p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> -> </p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">23</p><p class="separator">:</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">59</p><p class="separator">:</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">59</p><br />').insertBefore(element);
 	}
 }
 
@@ -42,7 +42,7 @@ function addAvailabilityEntry(element)
 	'data-entry-name': $(element).attr('data-entry-name')
 	}).error(onError).complete(function(data)
 	{
-		addAvailabilityHTML(element, data.responseText.substring(4));
+		addAvailabilityHTML(element, data.responseText);
 	});
 }
 
@@ -52,7 +52,7 @@ function addClassroomHTML(element, data)
 		alert(data);
 	else
 	{
-		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="availabilities" class="addable">Insérer une nouvelle disponibilité</a></td></tr>';
+		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="Availabilities" class="addable">Insérer une nouvelle disponibilité</a></td></tr>';
 		$('#classroom').append(object);
 	}
 }
@@ -64,13 +64,13 @@ function addClassroomEntry(element)
 	'data-id': -1
 	}).error(onError).complete(function(data)
 	{
-		addClassroomHTML(element, data.responseText.substring(4));
+		addClassroomHTML(element, data.responseText);
 	});
 }
 
 function finishSendTextForm(element, data, tagName)
 {
-	// To Fix
+	// TODO: To Fix
 	newElem = $('<' + tagName + '/>');
 	$(newElem).attr('class', 'editable');
 	$(newElem).attr('data-entry-name', $(element).attr('data-entry-name'));
@@ -102,6 +102,6 @@ function sendTextForm(element, tagName)
 	'data-subfield-name': $(element).attr('data-subfield-name'),
 	'value': $(element).val()}).error(onError).complete(function(data, textStatus)
 	{
-		finishSendTextForm(element, data.responseText.substring(4), tagName);
+		finishSendTextForm(element, data.responseText, tagName);
 	});
 }

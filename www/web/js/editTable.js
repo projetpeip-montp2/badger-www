@@ -53,10 +53,10 @@ function addForm(element)
 {	
 	switch ($(element).attr('data-entry-name'))
 	{
-		case "availabilities":
+		case "Availabilities":
 			addAvailabilityEntry(element);
 			break;
-		case "classrooms":
+		case "Classrooms":
 			addClassroomEntry(element);
 			break;
 	}

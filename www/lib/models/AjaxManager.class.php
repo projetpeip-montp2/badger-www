@@ -64,7 +64,7 @@
 		private function checkAvailabilityCoherency($fieldName, $subField, $id, $value)
 		{
 			$otherFieldName = ($fieldName == 'StartTime') ? 'EndTime' : 'StartTime';
-			$statement = $this->m_dao->prepare("SELECT $fieldName, $otherFieldName FROM availabilities WHERE Id_availability = ?");
+			$statement = $this->m_dao->prepare("SELECT $fieldName, $otherFieldName FROM Availabilities WHERE Id_availability = ?");
 			$statement->execute(array($id));
 			$results = $statement->fetch();
 			
@@ -156,7 +156,7 @@
 		public function addAvailability($ajaxInput)
 		{
 			$id_classroom = $ajaxInput->getData('id');
-			$statement = $this->m_dao->prepare('SELECT Id_classroom FROM classrooms WHERE Id_classroom = ?');
+			$statement = $this->m_dao->prepare('SELECT Id_classroom FROM Classrooms WHERE Id_classroom = ?');
 			$statement->execute(array($id_classroom));
 			if ($statement->getNumRows() == 0)
 				throw new RuntimeException('Erreur: Problème d\'ID');
@@ -164,7 +164,7 @@
 			$date = new Date(01, 01, (int)date('Y'));
 			$dateString = $date->toStringMySQL();
 			
-			$statement = $this->m_dao->prepare("INSERT INTO availabilities(Id_classroom, Date, StartTime, EndTime) VALUES(?, ?, ?, ?)");
+			$statement = $this->m_dao->prepare("INSERT INTO Availabilities(Id_classroom, Date, StartTime, EndTime) VALUES(?, ?, ?, ?)");
 			$statement->execute(array($id_classroom, $dateString, '00:00:00', '23:59:59'));
 			
 			return ($this->m_dao->lastInsertId());
@@ -172,7 +172,7 @@
 		
 		public function addClassroom($ajaxInput)
 		{
-			$statement = $this->m_dao->prepare("INSERT INTO classrooms(Name, Size) VALUES(?, ?)");
+			$statement = $this->m_dao->prepare("INSERT INTO Classrooms(Name, Size) VALUES(?, ?)");
 			$statement->execute(array('Nouvelle salle', 30));
 						
 			return ($this->m_dao->lastInsertId());

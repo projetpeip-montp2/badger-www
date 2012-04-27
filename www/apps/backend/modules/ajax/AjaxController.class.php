@@ -10,10 +10,10 @@
 		
 		public function executeModifyText(HTTPRequest $request)
 		{
-			$allowedFields = array('classrooms' => array('Name', 'Size'),
-								   'availabilities' => array('Date', 'StartTime', 'EndTime'));
-			$idFields = array('classrooms' => 'Id_classroom',
-							  'availabilities' => 'Id_availability');
+			$allowedFields = array('Classrooms' => array('Name', 'Size'),
+								   'Availabilities' => array('Date', 'StartTime', 'EndTime'));
+			$idFields = array('Classrooms' => 'Id_classroom',
+							  'Availabilities' => 'Id_availability');
 			
 			$this->page()->setIsAjaxPage(TRUE);
 			if ($request->postExists('data-entry-name') && $request->postExists('data-field-name') && $request->postExists('data-form-type') 
@@ -63,10 +63,10 @@
 				{
 					switch ($ajaxInput->getData('entry-name'))
 					{
-							case 'availabilities':
+							case 'Availabilities':
 								$this->addToAjaxContent($this->m_managers->getManagerOf('ajax')->addAvailability($ajaxInput));
 								break;
-							case 'classrooms':
+							case 'Classrooms':
 								$this->addToAjaxContent($this->m_managers->getManagerOf('ajax')->addClassroom($ajaxInput));
 								break;
 							default:

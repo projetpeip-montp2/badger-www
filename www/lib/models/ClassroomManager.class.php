@@ -30,20 +30,20 @@
 		
 		public function getWithAvailabilities($id = -1)
 		{
-			$requestSQL = 'SELECT	 classrooms.Id_classroom,
-									 classrooms.Name,
-									 classrooms.Size,
-									 availabilities.Id_availability,
-									 availabilities.Date,
-									 availabilities.StartTime,
-									 availabilities.EndTime
-						   FROM   	 classrooms
-						   LEFT JOIN availabilities ON classrooms.Id_classroom = availabilities.Id_classroom' . 
+			$requestSQL = 'SELECT	 Classrooms.Id_classroom,
+									 Classrooms.Name,
+									 Classrooms.Size,
+									 Availabilities.Id_availability,
+									 Availabilities.Date,
+									 Availabilities.StartTime,
+									 Availabilities.EndTime
+						   FROM   	 Classrooms
+						   LEFT JOIN Availabilities ON Classrooms.Id_classroom = Availabilities.Id_classroom' . 
    						   (($id != -1) ? ' WHERE classrooms.Id_classroom = '.$id : '') . '
-						   ORDER BY  classrooms.Name,
-						   			 classrooms.Id_classroom,
-									 availabilities.Date,
-									 availabilities.StartTime';
+						   ORDER BY  Classrooms.Name,
+						   			 Classrooms.Id_classroom,
+									 Availabilities.Date,
+									 Availabilities.StartTime';
 									 
 			$req = $this->m_dao->prepare($requestSQL);
 			$req->execute();
