@@ -1,5 +1,7 @@
 <?php
-    class LecturesController extends BackController
+    require_once dirname(__FILE__).'../../BackControllerFrontend.class.php';
+
+    class LecturesController extends BackControllerFrontend
     {
         public function executeIndex(HTTPRequest $request)
         {
@@ -14,7 +16,7 @@
 
             // Retrieve registration id of the users
             $managerRegistration = $this->m_managers->getManagerOf('registration');
-            $registrationsOfUser = $managerRegistration->getResgistrationsFromUser($username);
+            $registrationsOfUser = $managerRegistration->getRegistrationsFromUser($username);
 
             // Retrieve the package given by id in URL
             $packages = $this->m_managers->getManagerOf('package')->get($request->getData('idPackage'));
@@ -110,7 +112,7 @@
             $username = $this->app()->user()->getAttribute('logon');
 
             // Retrieve registration id of the users
-            $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getResgistrationsFromUser($username);
+            $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
@@ -130,7 +132,7 @@
         {
             $username = $this->app()->user()->getAttribute('logon');
 
-            $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getResgistrationsFromUser($username);
+            $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
             $managerLectures = $this->m_managers->getManagerOf('lecture');
 

@@ -1,5 +1,7 @@
 <?php
-    class ViewerController extends BackController
+    require_once dirname(__FILE__).'/../../BackControllerFrontend.class.php';
+
+    class ViewerController extends BackControllerFrontend
     {
         public function ExecuteIndex(HTTPRequest $request)
         {

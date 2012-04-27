@@ -1,5 +1,7 @@
 <?php
-    class ReportsController extends BackController
+    require_once dirname(__FILE__).'/../../BackControllerFrontend.class.php';
+
+    class ReportsController extends BackControllerFrontend
     {
         public function executeIndex(HTTPRequest $request)
         {

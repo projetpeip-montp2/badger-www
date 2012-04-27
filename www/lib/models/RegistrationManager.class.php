@@ -1,14 +1,14 @@
 <?php
     class RegistrationManager extends Manager
     {
-        public function getResgistrationsFromUser($idUsername, $status = NULL)
+        public function getRegistrationsFromUser($idUsername, $status = NULL)
         {
             $SQLreq = 'SELECT * FROM Registrations WHERE Id_user = ?';
             $SQLparams = array($idUsername);
             if($status)
             {
                 if(!in_array($status, array('Absent', 'Present', 'Coming')))
-                    throw new InvalidArgumentException('Invalid status in RegistrationManager::getResgistrationsFromUser');
+                    throw new InvalidArgumentException('Invalid status in RegistrationManager::getRegistrationsFromUser');
 
                 $SQLreq .= ' AND Status = ?';
                 $SQLparams[] = $status;

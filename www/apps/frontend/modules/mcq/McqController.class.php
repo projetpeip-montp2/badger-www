@@ -1,5 +1,7 @@
 <?php
-    class McqController extends BackController
+    require_once dirname(__FILE__).'../../BackControllerFrontend.class.php';
+
+    class McqController extends BackControllerFrontend
     {
         ////////////////////////////////////////////////////////////
         /// \brief Execute action Index
@@ -121,7 +123,7 @@
 
             $managerRegistration = $this->m_managers->getManagerOf('registration');
 
-            $registrations = $managerRegistration->getResgistrationsFromUser($username);
+            $registrations = $managerRegistration->getRegistrationsFromUser($username);
 
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
@@ -235,7 +237,7 @@
             $presentMark = $this->m_managers->getManagerOf('config')->get('presentMark');
 
             $managerRegistration = $this->m_managers->getManagerOf('registration');
-            $registrations = $managerRegistration->getResgistrationsFromUser($logon);
+            $registrations = $managerRegistration->getRegistrationsFromUser($logon);
 
             foreach($registrations as $reg)
             {

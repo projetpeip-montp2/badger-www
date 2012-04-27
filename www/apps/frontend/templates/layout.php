@@ -30,10 +30,27 @@
         <div id="Header">
             <a href="/vbMifare/home/index.html"><img src="/vbMifare/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
         </div>
+
+        
         
         <div id="Menu">
             <?php require dirname(__FILE__).'/menu.php'; ?>
         </div>
+
+        <?php
+            if($displayInfos)
+            {
+        ?>
+
+        <div id="RegistrationInfos">
+            Date de fin des inscriptions: <?php echo $limitDate; ?>
+            <br/>
+            Inscriptions: <?php echo $packagesChosen . '/' . $packagesToChoose; ?>
+        </div>
+
+        <?php
+            }
+        ?>
 
         <?php 
             if($user->hasFlash())

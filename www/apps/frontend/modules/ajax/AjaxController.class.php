@@ -1,5 +1,7 @@
 <?php
-    class AjaxController extends BackController
+    require_once dirname(__FILE__).'/../../BackControllerFrontend.class.php';
+
+    class AjaxController extends BackControllerFrontend
     {
         public function executeIndex(HTTPRequest $request)
         {

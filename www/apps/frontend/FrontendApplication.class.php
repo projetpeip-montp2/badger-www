@@ -23,6 +23,9 @@
                 $controller = $router->getController();
             }
 
+            require_once dirname(__FILE__).'/BackControllerFrontend.class.php';
+
+            $controller->getInfos();
             $controller->execute();
             
             $this->httpResponse()->setPage($controller->page());

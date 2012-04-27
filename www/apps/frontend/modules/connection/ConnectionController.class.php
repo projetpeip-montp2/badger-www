@@ -1,5 +1,7 @@
 <?php
-    class ConnectionController extends BackController
+    require_once dirname(__FILE__).'/../../BackControllerFrontend.class.php';
+
+    class ConnectionController extends BackControllerFrontend
     {
         public function executeIndex(HTTPRequest $request)
         {
