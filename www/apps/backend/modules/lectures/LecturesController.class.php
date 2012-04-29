@@ -406,5 +406,50 @@
             $managerMCQ->deleteQuestionsOfUsers($questionId);
             $managerMCQ->deleteAnswersOfUsers($questionId);
         }
+
+
+
+
+
+        public function executeAddBadgingInformation(HTTPRequest $request)
+        {
+            if($request->postExists('Envoyer'))
+            {
+                $username = $request->postData('vbmifareUsername');
+                $strDate = $request->postData('vbmifareDate');
+                $strTime = $request->postData('vbmifareTime');
+
+                $mifares = $this->m_managers->getManagerOf('user')->retrieveMifare($username);
+
+                if(count($mifares) == 0)
+                {
+                    $this->app()->user()->setFlashError('Le username donné n\'existe pas: ' . $username . '.');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                // Check Date and Time formats
+                if(! (Date::check($strDate) && Time::check($strTime)) )
+                {
+                    $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                $date = new Date;
+                $date->setFromString($strDate);
+
+                $time = new Time;
+                $time->setFromString($strTime);
+
+                $mifare = $mifares[0];
+
+                $this->m_managers->getManagerOf('badginginformation')->insert($mifare, $date, $time);
+
+                // TODO: Maintenant doit-on mettre à jour le status des ses inscriptions?
+                // En effet, si personne ne rapelle le badger ensuite ça se fera pas tout seul..
+                
+                $this->app()->user()->setFlashInfo('Infos de badging ajouté pour ' . $username . '.');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+        }
     }
 ?>

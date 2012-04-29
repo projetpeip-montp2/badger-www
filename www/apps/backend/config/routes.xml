@@ -13,6 +13,7 @@
     <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
     <route url="/admin/lectures/updatePackages\.html" module="lectures" action="updatePackages"/>
     <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
+    <route url="/admin/lectures/addBadgingInformation\.html" module="lectures" action="addBadgingInformation"/>
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
     <route url="/admin/mcq/createMCQ\.html" module="mcq" action="createMCQ"/>
@@ -36,5 +37,6 @@
 	<route url="/admin/ajax/index\.html" module="ajax" action="index" />
 	<route url="/admin/ajax/modifyText\.html" module="ajax" action="modifyText" />
 	<route url="/admin/ajax/addEntry\.html" module="ajax" action="addEntry" />
+	<route url="/admin/ajax/autocompleteUsername\.html" module="ajax" action="autocompleteUsername" />
 
 </routes>
