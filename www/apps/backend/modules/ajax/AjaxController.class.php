@@ -96,5 +96,29 @@
 		{
 			$this->m_ajaxContent .= $value;
 		}
+
+
+
+        public function executeAutocompleteUsername(HTTPRequest $request)
+        {
+			$this->page()->setIsAjaxPage(TRUE);
+			if($request->postExists('text'))
+			{
+                $usernames = $this->m_managers->getManagerOf('ajax')->getUsername( $request->postData('text') );
+
+                $result = '';
+                for($i = 0; $i<count($usernames); $i++)
+                {
+                    $result .= $usernames[$i];
+
+                    if($i != count($usernames)-1)
+                        $result .= ';';
+                }
+
+				$this->addToAjaxContent($result);
+			}
+
+			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
+        }
 	}
 ?>

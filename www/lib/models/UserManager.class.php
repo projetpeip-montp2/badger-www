@@ -82,6 +82,18 @@
             $req->execute(array($mark, $logon));
         }
 
+        public function retrieveMifare($logon)
+        {
+            $req = $this->m_dao->prepare('SELECT Mifare FROM Polytech.Users WHERE Username = ?');
+            $req->execute(array($logon));
+
+            $mifares = array();
+            while($data = $req->fetch())
+                $mifares[] = $data['Mifare'];
+
+            return $mifares;
+        }
+
         public function isInDatabase($logon)
         {
             $req = $this->m_dao->prepare('SELECT Id_User FROM Users WHERE Id_user = ?');
@@ -89,6 +101,7 @@
 
             $data = $req->fetch();
 
+            // TODO: Greg quand tu liras ça, factorise le return en return $data; non? :D
             if(!$data)
                 return false;
             else

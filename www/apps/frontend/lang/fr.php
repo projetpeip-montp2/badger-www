@@ -28,6 +28,7 @@
     $TEXT['Flash_AlreadyAReportForAPackage'] = "Vous avez déjà un rapport pour ce package.";
     $TEXT['Flash_ImageUnknown'] = "Cette image n'existe pas.";
     $TEXT['Flash_NoReport'] = "Vous n'avez uploadé aucune rapport.";
+    $TEXT['Flash_NoPlace'] = "Plus de place disponible.";
 
     $TEXT['Package_ListOf'] = "Liste des packages :";
     $TEXT['Package_ListOfSubscribed'] = "Liste des packages enregistrés:";
@@ -42,13 +43,13 @@
     $TEXT['Package_DocumentsLink'] = "Voir les documents associés";
     $TEXT['Package_ImagesLink'] = "Visionneuse en ligne";
     $TEXT['Package_NoDisplay'] = "Pas de documents disponibles";
+    $TEXT['Package_NoLecture'] = "Aucune conférence.";
 
     $TEXT['Lecture_Index'] = "Cette page vous permet d'effectuer des opérations sur les packages, comme l'inscription, où voir votre planning.";
     $TEXT['Lecture_Schedule'] = "Planning";
     $TEXT['Lecture_Date'] = "Date";
     $TEXT['Lecture_StartTime'] = "Horaire de début";
     $TEXT['Lecture_EndTime'] = "Horaire de fin";
-    $TEXT['Lecture_NoLecture'] = "Aucune conférence.";
     $TEXT['Lecture_Lecturer'] = "Conférencier";
 
     $TEXT['Reports_Index'] = "Rapport";

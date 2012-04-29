@@ -28,6 +28,7 @@
     $TEXT['Flash_AlreadyAReportForAPackage'] = "There is already a report for this package.";
     $TEXT['Flash_ImageUnknown'] = "The image you are looking for doesn't exist.";
     $TEXT['Flash_NoReport'] = "You have not uploaded any report.";
+    $TEXT['Flash_NoPlace'] = "No place.";
 
     $TEXT['Package_ListOf'] = "List of packages :";
     $TEXT['Package_ListOfSubscribed'] = "List of packages subscribed:";
@@ -42,13 +43,13 @@
     $TEXT['Package_DocumentsLink'] = "Browse associated files";
     $TEXT['Package_ImagesLink'] = "Online images viewer";
     $TEXT['Package_NoDisplay'] = "No online documents available";
+    $TEXT['Package_NoLecture'] = "No lecture.";
 
     $TEXT['Lecture_Index'] = "From this page, you can do some operations, like subscribe to a package, or view you schedule.";
     $TEXT['Lecture_Schedule'] = "Schedule";
     $TEXT['Lecture_Date'] = "Date";
     $TEXT['Lecture_StartTime'] = "Start time";
     $TEXT['Lecture_EndTime'] = "End time";
-    $TEXT['Package_NoLecture'] = "No lecture.";
     $TEXT['Lecture_Lecturer'] = "Lecturer";
 
     $TEXT['Reports_Index'] = "Reports";

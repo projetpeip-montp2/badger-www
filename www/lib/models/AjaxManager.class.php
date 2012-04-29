@@ -1,6 +1,19 @@
 <?php
     class AjaxManager extends Manager
     {
+        public function getUsername($begin)
+        {
+            $req = $this->m_dao->prepare("SELECT Id_user FROM Users WHERE Id_user LIKE \'" . $begin . "%\'");
+            $req->execute();
+
+            $usernames = array();
+
+            while($data = $req->fetch())
+                $usernames[] = $data["Id_user"];
+
+            return $usernames;
+        }
+
 		private function updateDate($tableName, $fieldName, $id, $idName, $idSub, $subField, $value)
 		{
 			$statement = $this->m_dao->prepare("SELECT $fieldName FROM $tableName WHERE $idName = ?");

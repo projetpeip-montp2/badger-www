@@ -1,5 +1,5 @@
 <?php
-    require_once dirname(__FILE__).'../../BackControllerFrontend.class.php';
+    require_once dirname(__FILE__).'/../../BackControllerFrontend.class.php';
 
     class LecturesController extends BackControllerFrontend
     {
@@ -19,7 +19,8 @@
             $registrationsOfUser = $managerRegistration->getRegistrationsFromUser($username);
 
             // Retrieve the package given by id in URL
-            $packages = $this->m_managers->getManagerOf('package')->get($request->getData('idPackage'));
+            $managerPackage = $this->m_managers->getManagerOf('package');
+            $packages = $managerPackage->get($request->getData('idPackage'));
 
             // Check that the package exists
             if(count($packages) != 1)
@@ -50,10 +51,16 @@
                 $this->checkSubscribe($request);
 
                 if($wantSubscribe)
+                {
+                    $this->checkRegistrationsCount($lang, $request, $package);
                     $this->checkConflict($lang, $request, $registrationsOfUser, $package);
+                }
 
                 foreach($lectures as $lecture)
                     $managerRegistration->subscribe($request->getData('idPackage'), $lecture->getId(), $username, $wantSubscribe ? 1 : 0);
+
+                $package->setRegistrationsCount($package->getRegistrationsCount() + ($wantSubscribe ? 1 : -1));
+                $managerPackage->updateRegistrationsCount($request->getData('idPackage'), $package->getRegistrationsCount());
 
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
@@ -194,6 +201,17 @@
             }
         }
 
+        private function checkRegistrationsCount($lang, HTTPRequest $request, $packageNeeded)
+        {
+            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
+
+            if($packageNeeded->getRegistrationsCount() + 1 > $packageNeeded->getCapacity())
+            {
+                $this->app()->user()->setFlashError($TEXT['Flash_NoPlace']);
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+        }
+
         private function checkConflict($lang, HTTPRequest $request, $registrationsOfUser, $packageNeeded)
         {
             require dirname(__FILE__).'/../../lang/' . $lang . '.php';
@@ -226,6 +244,7 @@
                 {
                     if(Lecture::conflict($lectures[$i], $lectures[$j]))
                     {
+                        // TODO: Ajouter dans le message flash avec qui y a conflit.
                         $messageFlash = $TEXT['Flash_SubscribeConflict'];
 
                         $this->app()->user()->setFlashError($messageFlash);
