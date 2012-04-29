@@ -1,5 +1,5 @@
 <?php
-    require_once dirname(__FILE__).'../../BackControllerFrontend.class.php';
+    require_once dirname(__FILE__).'/../../BackControllerFrontend.class.php';
 
     class McqController extends BackControllerFrontend
     {

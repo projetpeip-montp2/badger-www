@@ -35,7 +35,7 @@
     </ul>
 </div>
 
-<h1><?php echo $package->getName($lang); ?></h1>
+<h1><?php echo $package->getName($lang) . ' ' . $package->getRegistrationsCount() . '/' . $package->getCapacity()  . ' inscrits.' ?></h1>
 <ul>
     <li><?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?></li>
 </ul>
@@ -44,7 +44,7 @@
     echo '<p>' . $TEXT['Package_ListOfLecture'] . '</p>';
 
     if(count($lectures) == 0)
-    echo '<p>' . $TEXT['Lecture_NoLecture'] . '</p>';
+    echo '<p>' . $TEXT['Package_NoLecture'] . '</p>';
 
     else
     {

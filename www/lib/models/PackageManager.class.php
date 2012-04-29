@@ -72,6 +72,13 @@
                                 $package->getId()));
         }
 
+        public function updateRegistrationsCount($packageId, $newRegistrationsCount)
+        {
+            $req = $this->m_dao->prepare('UPDATE Packages SET RegistrationsCount = ? WHERE Id_Package = ?');
+
+            $req->execute(array($newRegistrationsCount, $packageId));
+        }
+
         public function delete($packageIds)
         {
             $req = $this->m_dao->prepare('DELETE FROM Packages WHERE Id_package = ?');
