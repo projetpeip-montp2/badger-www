@@ -88,17 +88,11 @@
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
             $mcqs = $managerMCQ->get($department, $schoolYear);
 
-            print_r($mcqs);
-
             $goodDate = false;
             $goodTime = false;
 
-            date_default_timezone_set('Europe/Paris');
-            $currentDate = new Date;
-            $currentDate->setFromString(date('d-m-Y'));
-
-            $currentTime = new Time;
-            $currentTime->setFromString(date('H:i:s'));
+            $currentDate = Date::current();
+            $currentTime = Time::current();
 
             foreach($mcqs as $mcq)
             {

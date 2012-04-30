@@ -137,7 +137,14 @@
             return $output;
         }
 
+        static public function current()
+        {
+            date_default_timezone_set('Europe/Paris');
+            $currentDate = new Date;
+            $currentDate->setFromString(date('d-m-Y'));
 
+            return $currentDate;
+        }
 
 
 

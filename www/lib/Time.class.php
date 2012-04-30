@@ -122,6 +122,17 @@
             return $output;
         }
 
+
+        static public function current()
+        {
+            date_default_timezone_set('Europe/Paris');
+            $currentTime = new Time;
+            $currentTime->setFromString(date('H:i:s'));
+
+            return $currentTime;
+        }
+
+
         static public function check($time)
         {
             return preg_match('#[0-9]{2}:[0-9]{2}:[0-9]{2}#', $time);
