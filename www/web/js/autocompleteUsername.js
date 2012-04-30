@@ -9,24 +9,33 @@ var results = $('#results');
 
 function displayResults(response) 
 {
-    results.css('display',response.length ? 'block' : 'none');
+    response = response.split('#');
 
-    if (response.length) 
+    var found = (response[0] == "T");
+    var autocompleteResults = response[1];
+
+    if(autocompleteResults.length)
     {
-        response = response.split(';');
-
+        results.css('display', 'block');
         results.empty();
 
-        for (var i=0; i<response.length ; i++) 
+        results.append('<img src="/vbMifare/web/images/icon' + (found ? 'Ok' : 'Error') + '.png"/>');
+
+        autocompleteResults = autocompleteResults.split(';');
+
+        for (var i=0; i<autocompleteResults.length ; i++) 
         {
-            results.append('<div>' + response[i] + '</div>');
-/*
+            results.append('<div>' + autocompleteResults[i] + '</div>');
+        /*
             div.bind('click',function(){
                 chooseResult( $(this) );
             });
-*/
+        */
         }
     }
+
+    else
+        results.css('display', 'none');
 }
 
 
