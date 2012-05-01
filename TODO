@@ -10,6 +10,7 @@
     - Suppression d'une élément => Suppression des dépendances
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Avec les clés étrangères bien spécifiées, il est possible de supprimé les dépendances automatiquements
+    - Trouver pourquoi des horaires d'un même package peuvent se croiser
 
 
 Production:
@@ -19,7 +20,6 @@ Production:
 
 - Frontend:
     - Refaire le planning en tableau (priorité faible)
-    - Afficher sur le planning Present, Absent ou Coming pour chaque conf.
     - Afficher des salles pour la conf si Id_availability != 0.
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
