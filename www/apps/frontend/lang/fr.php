@@ -52,6 +52,13 @@
     $TEXT['Lecture_EndTime'] = "Horaire de fin";
     $TEXT['Lecture_Lecturer'] = "Conférencier";
 
+    // Note: Don't change name of keys for planning text
+    $TEXT['Planning_Classroom'] = "Salle";
+    $TEXT['Planning_RegistrationStatus'] = "Status";
+    $TEXT['Planning_Coming'] = "A venir";
+    $TEXT['Planning_Present'] = "Présent";
+    $TEXT['Planning_Absent'] = "Absent";
+
     $TEXT['Reports_Index'] = "Rapport";
     $TEXT['Reports_Upload'] = "Ajouter un rapport";
     $TEXT['Reports_Delete'] = "Voir mes rapports";

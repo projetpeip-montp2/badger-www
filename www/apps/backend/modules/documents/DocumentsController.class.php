@@ -163,7 +163,13 @@
             // Delete document
             if($request->postExists('Supprimer'))
             {
-                $this->m_managers->getManagerOf('documentofpackage')->delete($request->postData('documentId'));
+                // Server
+                $document = $this->m_managers->getManagerOf('documentofpackage')->get($request->postData('documentId'));
+                $path = dirname(__FILE__).'/../../../../uploads/admin/pdf/';
+                unlink($path . $document->getFilename());
+
+                // Database
+                $filename = $this->m_managers->getManagerOf('documentofpackage')->get($request->postData('documentId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Le document "' . $request->postData('DocumentName') . '" du package "' . $request->postData('PackageName') . '" a été supprimé.');

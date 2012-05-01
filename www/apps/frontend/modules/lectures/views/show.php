@@ -65,14 +65,18 @@
 ?>
 
 <?php
-    $buttonName = $wantSubscribe ? $TEXT['Package_Subscribe'] : $TEXT['Package_Unsubscribe'];
+    // Display the button only if registration is allowed
+    if($registrationsAllowed)
+    {
+        $buttonName = $wantSubscribe ? $TEXT['Package_Subscribe'] : $TEXT['Package_Unsubscribe'];
 
-    $form = new Form('', 'post');
+        $form = new Form('', 'post');
 
-    $form->add('hidden', 'isSubmitted')
-         ->value('on');
+        $form->add('hidden', 'isSubmitted')
+             ->value('on');
 
-    $form->add('submit', $buttonName);
+        $form->add('submit', $buttonName);
 
-    echo $form->toString();
+        echo $form->toString();
+    }
 ?>

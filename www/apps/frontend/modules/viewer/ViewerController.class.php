@@ -38,5 +38,13 @@
             $this->page()->addVar('imageNumber', $imageNumber);
             $this->page()->addVar('count', $count);
         }
+
+        public function ExecuteRedirectToImage(HTTPRequest $request)
+        {
+            $idPackage = $request->postData('idPackage');
+            $imageNumber = $request->postData('imageNumber');
+
+            $this->app()->httpResponse()->redirect('/vbMifare/viewer/viewImage-' . $idPackage . '-' . $imageNumber . '.html'); 
+        }
     }
 ?>

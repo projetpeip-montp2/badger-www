@@ -7,7 +7,11 @@
     - Inclure la langue à chaque entête de controlleur Frontend (à tester)
     - Système de log
     - Fil d'ariane
-    - Suppression d'une élément ==> Suppression des dépendances
+    - Suppression d'une élément => Suppression des dépendances
+    - Entrée dans le test du FORM: PostExists à la place de PostData
+    - Avec les clés étrangères bien spécifiées, il est possible de supprimé les dépendances automatiquements
+    - Trouver pourquoi des horaires d'un même package peuvent se croiser
+
 
 Production:
     - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
@@ -15,12 +19,21 @@ Production:
 
 
 - Frontend:
-    - Ecrire le planning
-    - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
+    - Refaire le planning en tableau (priorité faible)
+    - Afficher des salles pour la conf si Id_availability != 0.
+    - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
 
 - Backend
+    - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
     - Permettre dans le module reset certaines actions comme 'Supprimer les notes', etc
+    - Envoie de mails contenant questions-réponses.
+    - Statistiques
+    - Gestion des pertes de cartes (voir si on peut faire mieux, en montrant les conf de l'élèves en Ajax)
+    - Editage en ligne à refaire avec Ajax (priorité faible)
+    - Attribution des salles
+    - Attribution des packages aux des élèves non inscrits
+    - Changer le status des élèves
+    - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
 
-- Entrée dans le test du FORM: PostExists à la place de PostData

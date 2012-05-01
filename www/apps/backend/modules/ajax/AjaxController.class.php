@@ -101,21 +101,36 @@
 
         public function executeAutocompleteUsername(HTTPRequest $request)
         {
+            $minLenghtForAutocomplete = 1;
+
 			$this->page()->setIsAjaxPage(TRUE);
 			if($request->postExists('text'))
 			{
-                $usernames = $this->m_managers->getManagerOf('ajax')->getUsername( $request->postData('text') );
-
+                $input = $request->postData('text');
                 $result = '';
-                for($i = 0; $i<count($usernames); $i++)
-                {
-                    $result .= $usernames[$i];
 
-                    if($i != count($usernames)-1)
-                        $result .= ';';
+                if( strlen($input) < $minLenghtForAutocomplete)
+                    $result = 'F#';
+    
+                else
+                {
+                    $usernames = $this->m_managers->getManagerOf('ajax')->getUsername($input);
+
+                    $autocomplete = '';
+                    for($i = 0; $i<count($usernames); $i++)
+                    {
+                        $autocomplete .= $usernames[$i];
+
+                        if($i != count($usernames)-1)
+                            $autocomplete .= ';';
+                    }
+
+                    $result = in_array($input, $usernames) ? 'T' : 'F';
+                    $result .= '#' . $autocomplete;
+
                 }
 
-				$this->addToAjaxContent($result);
+			    $this->addToAjaxContent($result);
 			}
 
 			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
