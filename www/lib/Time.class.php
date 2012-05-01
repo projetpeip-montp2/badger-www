@@ -125,7 +125,6 @@
 
         static public function current()
         {
-            date_default_timezone_set('Europe/Paris');
             $currentTime = new Time;
             $currentTime->setFromString(date('H:i:s'));
 
