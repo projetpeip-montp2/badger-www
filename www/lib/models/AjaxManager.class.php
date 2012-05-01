@@ -178,7 +178,7 @@
 			$dateString = $date->toStringMySQL();
 			
 			$statement = $this->m_dao->prepare("INSERT INTO Availabilities(Id_classroom, Date, StartTime, EndTime) VALUES(?, ?, ?, ?)");
-			$statement->execute(array($id_classroom, $dateString, '00:00:00', '23:59:59'));
+			$statement->execute(array($id_classroom, $dateString, '00:00:00', '23:00:00'));
 			
 			return ($this->m_dao->lastInsertId());
 		}

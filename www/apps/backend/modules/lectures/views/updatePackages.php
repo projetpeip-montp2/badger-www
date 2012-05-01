@@ -1,42 +1,32 @@
 <h1>Modification des packages</h1>
 <p>Depuis cette page, il est possible de modifier les packages enregistrés dans la base de données.</p>
-<?php
-    $forms = array();
-    foreach($packages as $package)
-    {
-        $form = new Form('', 'post');
+<script src="../../web/js/jquery-1.7.1.min.js"></script>
+<script src="../../web/js/handlers.js"></script>
+<script src="../../web/js/editTable.js"></script>
 
-        $form->add('text', 'Capacity')
-             ->value($package->getCapacity())
-             ->size(strlen($package->getCapacity()));
-        $form->add('text', 'NameFr')
-             ->value($package->getName('fr'))
-             ->size(strlen($package->getName('fr')));
-        $form->add('text', 'NameEn')
-             ->value($package->getName('en'))
-             ->size(strlen($package->getName('en')));
-        $form->add('textarea', 'DescFr')
-             ->text($package->getDescription('fr'));
-        $form->add('textarea', 'DescEn')
-             ->text($package->getDescription('en'));
-
-        $form->add('hidden', 'packageId')
-             ->value($package->getId());
-        $form->add('submit', 'Modifier');
-        $form->add('submit', 'Supprimer');
-
-        $forms[] = $form;
-    }
-?>
-
-<table class="FormTable">
+<!--
+TODO: Faire un style générique pour les tables
+-->
+<table id="classroom">
     <th>Capacity</th>
     <th>Nom Fr</th>
     <th>Nom En</th>
     <th>Description Fr</th>
     <th>Description En</th>
 <?php
-    foreach($forms as $form)
-        echo $form->toTr();
+	foreach ($packages as $package)
+	{
+		$sizeCapacity = strlen($package->getCapacity());
+		$sizeNameFR = strlen($package->getName('fr'));
+		$sizeNameEN = strlen($package->getName('en'));
+
+		echo '<tr>';
+		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Capacity' data-form-type='number' data-form-size='{$sizeCapacity}'>{$package->getCapacity()}</p></td>";
+		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Name_fr' data-form-type='text' data-form-size='{$sizeNameFR}'>{$package->getName('fr')}</p></td>";
+		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Name_en' data-form-type='text' data-form-size='{$sizeNameEN}'>{$package->getName('en')}</p></td>";
+		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Description_fr' data-form-type='textbox'>{$package->getDescription('fr')}</p></td>";
+		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Description_en' data-form-type='textbox'>{$package->getDescription('en')}</p></td>";
+		echo '</tr>';
+	}
 ?>
 </table>

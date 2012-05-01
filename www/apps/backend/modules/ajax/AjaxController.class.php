@@ -11,20 +11,22 @@
 		public function executeModifyText(HTTPRequest $request)
 		{
 			$allowedFields = array('Classrooms' => array('Name', 'Size'),
-								   'Availabilities' => array('Date', 'StartTime', 'EndTime'));
+								   'Availabilities' => array('Date', 'StartTime', 'EndTime'),
+								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'));
 			$idFields = array('Classrooms' => 'Id_classroom',
-							  'Availabilities' => 'Id_availability');
+							  'Availabilities' => 'Id_availability',
+							  'Packages' => 'Id_package');
+			$allowedFormType = array('text', 'number', 'textbox');
 			
 			$this->page()->setIsAjaxPage(TRUE);
 			if ($request->postExists('data-entry-name') && $request->postExists('data-field-name') && $request->postExists('data-form-type') 
-				&& $request->postExists('data-id') && $request->postExists('value') && ($request->postData('data-form-type') == 'text' || $request->postData('data-form-type') == 'number'))
+				&& $request->postExists('data-id') && $request->postExists('value') && (in_array($request->postData('data-form-type'), $allowedFormType)))
 			{
 				$ajaxInput = new AjaxInput;
 				$ajaxInput->setData('entry-name', $request->postData('data-entry-name'));
 				$ajaxInput->setData('field-name', $request->postData('data-field-name'));
 				$ajaxInput->setData('id', $request->postData('data-id'));
 				$ajaxInput->setData('id-sub', $request->postExists('data-id-sub') ? $request->postData('data-id-sub') : '');
-				$ajaxInput->setData('id-name', $idFields[$request->postData('data-entry-name')]);
 				$ajaxInput->setData('subfield-name', $request->postExists('data-subfield-name') ? $request->postData('data-subfield-name') : '');
 				$ajaxInput->setValue($request->postData('value'));
 
@@ -32,12 +34,13 @@
                     $this->addToAjaxContent('Erreur dans le formulaire.');
 				else
 				{
+					$ajaxInput->setData('id-name', $idFields[$request->postData('data-entry-name')]);
 					if ($request->postData('data-form-type') == 'number' && ($ajaxInput->getValue() == '' || !ctype_digit($ajaxInput->getValue()) || intval($ajaxInput->getValue()) < 0))
 						$this->addToAjaxContent('Erreur de nombre dans le formulaire.');
 					else
 					{
 						try
-						{
+						{	
 							$this->m_managers->getManagerOf('ajax')->updateText($ajaxInput);
 						}
 						catch (Exception $e)
