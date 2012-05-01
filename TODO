@@ -20,7 +20,6 @@ Production:
 
 - Frontend:
     - Refaire le planning en tableau (priorité faible)
-    - Afficher des salles pour la conf si Id_availability != 0.
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
 

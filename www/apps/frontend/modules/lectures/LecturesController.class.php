@@ -154,6 +154,9 @@
                     $result[$lecture[0]->getDate()->__toString()][] = $lecture[0];
             }
 
+            $this->page()->addVar('classrooms', $this->m_managers->getManagerOf('classroom')->get());
+            $this->page()->addVar('availabilities', $this->m_managers->getManagerOf('availability')->get());
+
             $this->page()->addVar('registrations', $registrationsOfUser);
             $this->page()->addVar('lectures', $this->sort($result));
             $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
