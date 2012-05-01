@@ -2,6 +2,26 @@
 <p>Depuis cette page, vous pouvez voir le planning pour les conférences auxquelles vous êtes inscrit(e).</p>
 
 <?php
+    // TODO: Do better..
+    function getClassroomName($classrooms, $availabilities, $idAvailability)
+    {
+        $result = 'Unknown classroom';
+
+        foreach($availabilities as $avail)
+        {
+            if($avail->getId() == $idAvailability)
+            {
+                foreach($classrooms as $room)
+                {
+                    if($room->getId() == $avail->getIdClassroom())
+                        $result = $room->getName();
+                }
+            }
+        }
+
+        return $result;
+    }
+
     echo '<ul>';
     // Display all day with lecture
     foreach($lectures as $key => $lecture)
@@ -19,7 +39,11 @@
                 if($lect->getId() == $reg->getIdLecture())
                     echo '<li>' . $TEXT['Planning_RegistrationStatus'] . ': ' . $TEXT['Planning_' . $reg->getStatus()] . '</li>';
             }
-            echo '<li>' . $TEXT['Planning_Classroom'] . ': ' . '</li>';
+            
+            $idAvailability = $lect->getIdAvailability();
+            $room = ($idAvailability == 0) ? $TEXT['Planning_NoClassroom'] : getClassroomName($classrooms, $availabilities, $idAvailability);
+
+            echo '<li>' . $TEXT['Planning_Classroom'] . ': ' . $room . '</li>';
             echo '<li>' . $TEXT['Lecture_StartTime'] . ': ' . $lect->getStartTime() . '</li>';
             echo '<li>' . $TEXT['Lecture_EndTime'] . ': ' . $lect->getEndTime() . '</li>';
             echo '</ul>';

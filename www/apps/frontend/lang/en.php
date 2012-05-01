@@ -54,6 +54,7 @@
 
     // Note: Don't change name of keys for planning text
     $TEXT['Planning_Classroom'] = "Classroom";
+    $TEXT['Planning_NoClassroom'] = "No classroom yet";
     $TEXT['Planning_RegistrationStatus'] = "Status";
     $TEXT['Planning_Coming'] = "Coming";
     $TEXT['Planning_Present'] = "Present";
