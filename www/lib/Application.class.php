@@ -8,6 +8,8 @@
         
         public function __construct()
         {
+            date_default_timezone_set('Europe/Paris');
+
             $this->m_httpRequest = new HTTPRequest($this);
             $this->m_httpResponse = new HTTPResponse($this);
             $this->m_user = new User($this);
