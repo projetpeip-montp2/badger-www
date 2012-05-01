@@ -74,6 +74,7 @@
             $this->page()->addVar('package', $package);
             $this->page()->addVar('lang', $lang);
 
+            $this->page()->addVar('registrationsAllowed', $this->m_managers->getManagerOf('config')->get('canSubscribe') == '1');
             $this->page()->addVar('lectures', $lectures);
 
             $counter = $this->m_managers->getManagerOf('documentofpackage')->count($request->getData('idPackage'));
@@ -153,6 +154,7 @@
                     $result[$lecture[0]->getDate()->__toString()][] = $lecture[0];
             }
 
+            $this->page()->addVar('registrations', $registrationsOfUser);
             $this->page()->addVar('lectures', $this->sort($result));
             $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
         }

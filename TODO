@@ -8,6 +8,8 @@
     - Système de log
     - Fil d'ariane
     - Entrée dans le test du FORM: PostExists à la place de PostData
+    - Avec les clés étrangères bien spécifiées, il est possible de supprimé les dépendances automatiquements
+    - Trouver pourquoi des horaires d'un même package peuvent se croiser
 
 
 Production:
@@ -17,9 +19,7 @@ Production:
 
 - Frontend:
     - Refaire le planning en tableau (priorité faible)
-    - Afficher sur le planning Present, Absent ou Coming pour chaque conf.
     - Afficher des salles pour la conf si Id_availability != 0.
-    - Effacer le boutton s'inscrire si les inscriptions sont fermées.
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
 
@@ -27,7 +27,6 @@ Production:
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
     - Permettre dans le module reset certaines actions comme 'Supprimer les notes', etc
     - Envoie de mails contenant questions-réponses.
-    - Récupération des notes
     - Statistiques
     - Gestion des pertes de cartes (voir si on peut faire mieux, en montrant les conf de l'élèves en Ajax)
     - Editage en ligne à refaire avec Ajax (priorité faible)
