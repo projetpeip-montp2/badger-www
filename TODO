@@ -9,6 +9,7 @@
     - Fil d'ariane
     - Suppression d'une élément => Suppression des dépendances
     - Entrée dans le test du FORM: PostExists à la place de PostData
+    - Avec les clés étrangères bien spécifiées, il est possible de supprimé les dépendances automatiquements
 
 
 Production:
@@ -28,7 +29,6 @@ Production:
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
     - Permettre dans le module reset certaines actions comme 'Supprimer les notes', etc
     - Envoie de mails contenant questions-réponses.
-    - Récupération des notes
     - Statistiques
     - Gestion des pertes de cartes (voir si on peut faire mieux, en montrant les conf de l'élèves en Ajax)
     - Editage en ligne à refaire avec Ajax (priorité faible)
