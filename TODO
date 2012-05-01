@@ -7,7 +7,6 @@
     - Inclure la langue à chaque entête de controlleur Frontend (à tester)
     - Système de log
     - Fil d'ariane
-    - Suppression d'une élément => Suppression des dépendances
     - Entrée dans le test du FORM: PostExists à la place de PostData
 
 
