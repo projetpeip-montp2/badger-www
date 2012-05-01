@@ -21,7 +21,6 @@ Production:
     - Refaire le planning en tableau (priorité faible)
     - Afficher sur le planning Present, Absent ou Coming pour chaque conf.
     - Afficher des salles pour la conf si Id_availability != 0.
-    - Effacer le boutton s'inscrire si les inscriptions sont fermées.
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
 
