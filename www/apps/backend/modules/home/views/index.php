@@ -5,7 +5,7 @@
     <ul>
         <li>Conférences: Packages - Conférences - Questions/Réponses</li>
         <li>Documents: Fichiers PDF - Images pour la visionneuse</li>
-        <li>Inscription de promotions</li>
+        <li>QCMs et Inscriptions</li>
         <li>Salles: Salles - Disponibilités</li>
         <li>Statistiques</li>
         <li>Configuration</li>

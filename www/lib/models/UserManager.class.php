@@ -1,6 +1,32 @@
 <?php
     class UserManager extends Manager
     {
+        public function getAllFromvbMifare()
+        {
+            $req = $this->m_dao->prepare('SELECT * FROM Users');
+            $req->execute();
+
+            $reqNext = $this->m_dao->prepare('SELECT Departement, anApogee FROM Polytech.Users WHERE Username = ?');
+
+            $students = array();
+            while($data = $req->fetch())
+            {
+                $reqNext->execute(array($data['Id_user']));
+                $dataNext = $reqNext->fetch();
+
+                $student = new Student;
+                $student->setUsername($data['Id_user']);
+                $student->setMark($data['Mark']);
+                $student->setMCQStatus($data['MCQStatus']);
+                $student->setDepartment($dataNext['Departement']);
+                $student->setSchoolYear($dataNext['anApogee']);
+
+                $students[] = $student;
+            }
+
+            return $students;
+        }
+
         public function getFromDepartmentAndSchoolYear($department, $schoolYear)
         {
             // The request is on Polytech database here!
