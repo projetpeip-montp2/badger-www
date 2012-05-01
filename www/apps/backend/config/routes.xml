@@ -38,6 +38,7 @@
 	<route url="/admin/ajax/index\.html" module="ajax" action="index" />
 	<route url="/admin/ajax/modifyText\.html" module="ajax" action="modifyText" />
 	<route url="/admin/ajax/addEntry\.html" module="ajax" action="addEntry" />
+	<route url="/admin/ajax/deleteEntry\.html" module="ajax" action="deleteEntry" />
 	<route url="/admin/ajax/autocompleteUsername\.html" module="ajax" action="autocompleteUsername" />
 
 </routes>

@@ -212,6 +212,11 @@ table#classroom .editable:hover
 	background-color: #F2F2F2;
 }
 
+.deletable
+{
+	cursor:	pointer;
+}
+
 p.editable, p.addable, p.ajaxInput, p.separator
 {
 	cursor: pointer;

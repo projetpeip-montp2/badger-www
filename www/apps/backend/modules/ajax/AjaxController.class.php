@@ -56,6 +56,7 @@
 		public function executeAddEntry(HTTPRequest $request)
 		{
 			$this->page()->setIsAjaxPage(TRUE);
+			
 			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
 			{
 				$ajaxInput = new AjaxInput;
@@ -79,7 +80,40 @@
 				}
 				catch (Exception $e)
 				{
-					$this->addToAjaxContent('Erreur d\'ajout '.$e);
+					$this->addToAjaxContent('Erreur d\'ajout');
+				}
+			}
+			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
+		}
+		
+		public function executeDeleteEntry(HTTPRequest $request)
+		{
+			$this->page()->setIsAjaxPage(TRUE);
+			
+			$allowedEntries = array('Classrooms', 'Packages');
+			$idFields = array('Classrooms' => 'Id_classroom',
+									   'Packages' => 'Id_package');
+			
+			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
+			{
+				$ajaxInput = new AjaxInput;
+				$ajaxInput->setData('entry-name', $request->postData('data-entry-name'));
+				$ajaxInput->setData('id', $request->postData('data-id'));
+
+				if (!in_array($ajaxInput->getData('entry-name'), $allowedEntries))
+                    $this->addToAjaxContent('Erreur dans le formulaire.');
+				else
+				{
+					$ajaxInput->setData('id-name', $idFields[$request->postData('data-entry-name')]);
+					
+					try
+					{
+						$this->m_managers->getManagerOf('ajax')->deleteEntry($ajaxInput);
+					}
+					catch (Exception $e)
+					{
+						$this->addToAjaxContent('Erreur de suppression');
+					}
 				}
 			}
 			$this->page()->addVar('ajaxContent', $this->getAjaxContent());

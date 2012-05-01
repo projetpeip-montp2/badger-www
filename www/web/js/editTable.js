@@ -47,6 +47,10 @@ $(document).ready(function()
 	{
 			addForm(e.target);
 	});
+	$(".deletable").live("click", function(e)
+	{
+			deleteEntry(e.target);
+	});
 });
 
 function addForm(element)
@@ -58,6 +62,9 @@ function addForm(element)
 			break;
 		case "Classrooms":
 			addClassroomEntry(element);
+			break;
+		default:
+			alert("Error on addForm data-entry-name value");
 			break;
 	}
 }

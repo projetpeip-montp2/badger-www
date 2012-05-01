@@ -47,7 +47,7 @@ function addClassroomHTML(element, data)
 		alert(data);
 	else
 	{
-		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="Availabilities" class="addable">Insérer une nouvelle disponibilité</a></td></tr>';
+		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="Availabilities" class="addable">Insérer une nouvelle disponibilité</a></td><td><img class="deletable" data-id="' + data + '" data-entry-name="Classrooms" src="../../web/images/delete.png" /></td></tr>';
 		$('#classroom').append(object);
 	}
 }
@@ -99,4 +99,25 @@ function sendTextForm(element, tagName)
 	{
 		finishSendTextForm(element, data.responseText, tagName);
 	});
+}
+
+function finishDeleteEntry(element, data)
+{
+	if (hasError(data))
+		alert(data);
+	else
+	{
+		$(element).parent().parent().remove();
+	}
+}
+
+function deleteEntry(element)
+{
+	if (window.confirm("Etes-vous sûr de vouloir supprimer cet élément ?"))
+		$.post("/vbMifare/admin/ajax/deleteEntry.html", {
+		'data-entry-name': $(element).attr('data-entry-name'),
+		'data-id': $(element).attr('data-id')}).error(onError).complete(function(data, textStatus)
+		{
+			finishDeleteEntry(element, data.responseText);
+		});
 }
