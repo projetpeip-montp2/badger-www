@@ -1,8 +1,7 @@
 <div class="viewer">
     <h1><?php echo $packageName; ?></h1>
 <?php
-    // TODO: CORRIGER LE FORM EN POST
-    $form = new Form('', 'get');
+    $form = new Form('redirectToImage.html', 'post');
 
     $form->add('hidden', 'idPackage')
          ->value($idPackage);
@@ -55,6 +54,6 @@
     $filePath = '/vbMifare/uploads/admin/images/' . $idPackage . '_' . $imageNumber . '.jpg';
     $fileName = basename($filePath);
 ?>
-
+    <br/>
     <img src="<?php echo $filePath; ?>" alt="<?php echo $filename; ?>"/>
 </div>
