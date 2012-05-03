@@ -33,5 +33,6 @@ Production:
     - Attribution des packages aux des élèves non inscrits
     - Changer le status des élèves
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
+    - Ajouter un bouton supprimé dans l'éditeur AJAX, un classroom, l'autre availability
 
 

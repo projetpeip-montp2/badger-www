@@ -1,8 +1,3 @@
-function trim (myString)
-{
-	return myString.replace(/^\s+/g,'').replace(/\s+$/g,'')
-} 
-
 function onError()
 {
 	alert('Erreur: Connexion au site échouée, les modifications faites n\'ont pas été prises en compte. La page va se recharger.');
@@ -20,7 +15,7 @@ function hasError(data)
 function addAvailabilityHTML(element, data)
 {
 	if (hasError(data))
-		alert(trim(data));
+		alert(data);
 	else
 	{
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Day" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
@@ -30,8 +25,8 @@ function addAvailabilityHTML(element, data)
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> -> </p>').insertBefore(element);
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">23</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">59</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">59</p><br />').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><br />').insertBefore(element);
 	}
 }
 
@@ -52,7 +47,7 @@ function addClassroomHTML(element, data)
 		alert(data);
 	else
 	{
-		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="Availabilities" class="addable">Insérer une nouvelle disponibilité</a></td></tr>';
+		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="Availabilities" class="addable">Insérer une nouvelle disponibilité</a></td><td><img class="deletable" data-id="' + data + '" data-entry-name="Classrooms" src="../../web/images/delete.png" /></td></tr>';
 		$('#classroom').append(object);
 	}
 }
@@ -82,7 +77,7 @@ function finishSendTextForm(element, data, tagName)
 	if (hasError(data))
 	{
 		$(newElem).html($(element).attr('oldValue'));
-		alert(trim(data));
+		alert(data);
 	}
 	else
 	{
@@ -104,4 +99,25 @@ function sendTextForm(element, tagName)
 	{
 		finishSendTextForm(element, data.responseText, tagName);
 	});
+}
+
+function finishDeleteEntry(element, data)
+{
+	if (hasError(data))
+		alert(data);
+	else
+	{
+		$(element).parent().parent().remove();
+	}
+}
+
+function deleteEntry(element)
+{
+	if (window.confirm("Etes-vous sûr de vouloir supprimer cet élément ?"))
+		$.post("/vbMifare/admin/ajax/deleteEntry.html", {
+		'data-entry-name': $(element).attr('data-entry-name'),
+		'data-id': $(element).attr('data-id')}).error(onError).complete(function(data, textStatus)
+		{
+			finishDeleteEntry(element, data.responseText);
+		});
 }

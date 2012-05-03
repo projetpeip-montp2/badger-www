@@ -20,6 +20,7 @@
 		<th>Nom</th>
 		<th>Contenance</th>
 		<th>Disponibilités</th>
+		<th>Action</th>
 	</tr>
 <?php
 	function hasAvailabilities($availabilities)
@@ -63,6 +64,7 @@
 				}
 		echo "<a class='addable' data-entry-name='Availabilities' data-id='$idClassroom'>Insérer une nouvelle disponibilité</a>";
 		echo "</td>";
+		echo "<td><img class='deletable' data-entry-name='Classrooms' data-id='$idClassroom' src='../../web/images/delete.png' /></a></td>";
 		echo "</tr>";
 	}
 ?>

@@ -178,7 +178,7 @@
 			$dateString = $date->toStringMySQL();
 			
 			$statement = $this->m_dao->prepare("INSERT INTO Availabilities(Id_classroom, Date, StartTime, EndTime) VALUES(?, ?, ?, ?)");
-			$statement->execute(array($id_classroom, $dateString, '00:00:00', '23:59:59'));
+			$statement->execute(array($id_classroom, $dateString, '00:00:00', '23:00:00'));
 			
 			return ($this->m_dao->lastInsertId());
 		}
@@ -189,6 +189,16 @@
 			$statement->execute(array('Nouvelle salle', 30));
 						
 			return ($this->m_dao->lastInsertId());
+		}
+		
+		public function deleteEntry($ajaxInput)
+		{
+			$tableName = $ajaxInput->getData('entry-name');
+			$id = $ajaxInput->getData('id');
+			$idName = $ajaxInput->getData('id-name');
+			
+			$statement = $this->m_dao->prepare("DELETE FROM $tableName WHERE $idName = ?");
+			$statement->execute(array($id));
 		}
 	}
 	

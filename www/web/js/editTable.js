@@ -47,6 +47,10 @@ $(document).ready(function()
 	{
 			addForm(e.target);
 	});
+	$(".deletable").live("click", function(e)
+	{
+			deleteEntry(e.target);
+	});
 });
 
 function addForm(element)
@@ -58,6 +62,9 @@ function addForm(element)
 			break;
 		case "Classrooms":
 			addClassroomEntry(element);
+			break;
+		default:
+			alert("Error on addForm data-entry-name value");
 			break;
 	}
 }
@@ -75,10 +82,14 @@ function modifyCell(element)
 	{
 		case 'text':
 		case 'number':
+		case 'textbox':
 			previousValue = $(element).html();
 
 			// To Fix
-			newElem = $('<input />');
+			if ($(element).attr('data-form-type') == 'textbox')
+				newElem = $('<textarea />');
+			else
+				newElem = $('<input />');
 			tagName = $(element).get(0).tagName;
 			$(newElem).attr('value', previousValue);
 			$(newElem).attr('oldValue', previousValue);
@@ -91,17 +102,21 @@ function modifyCell(element)
 
 			if ($(element).attr('data-form-size'))
 				$(newElem).attr('size', $(element).attr('data-form-size'));
-			$(newElem).keydown(function(e)
-			{
-				if (e.keyCode == 13)
-					sendTextForm(this, tagName);
-			});
+			if ($(element).attr('data-form-type') != 'textbox')
+				$(newElem).keydown(function(e)
+				{
+					if (e.keyCode == 13)
+						sendTextForm(this, tagName);
+				});
 			$(newElem).blur(function()
 			{
 				sendTextForm(this, tagName);
 			});
 			$(element).replaceWith(newElem);
-			$("input").focus().putCursorAtEnd();
+			if ($(element).attr('data-form-type') == 'textbox')
+				$("textarea").focus().putCursorAtEnd();
+			else
+				$("input").focus().putCursorAtEnd();
 			break;
 		default:
 			alert('Error');
