@@ -1,5 +1,4 @@
-<div class="documentsFrame">
-    <ul>
+<div class="doc-dispo">
     <?php
         $documentsLink = '/vbMifare/lectures/showDocuments-' . $package->getId() . '.html';
         $imagesLink = '/vbMifare/viewer/viewImage-' . $package->getId() . '-' . '1.html';
@@ -12,7 +11,7 @@
         if($showDocuments)
         {
     ?>
-        <li><a href="<?php echo $documentsLink; ?>"><?php echo $TEXT['Package_DocumentsLink']; ?></a></li>
+        <a href="<?php echo $documentsLink; ?>"><?php echo $TEXT['Package_DocumentsLink']; ?></a>
     <?php
         $noDisplay = false;
         }
@@ -22,23 +21,22 @@
         // Display viewImage link
         if($showImages)
         {
+            if($showDocuments)
+                echo '<br/>';
     ?>
-        <li><a href="<?php echo $imagesLink; ?>"><?php echo $TEXT['Package_ImagesLink']; ?></a></li>
+        <a href="<?php echo $imagesLink; ?>"><?php echo $TEXT['Package_ImagesLink']; ?></a>
     <?php
         $noDisplay = false;
         }
 
         // No documents nor images available online
         if($noDisplay)
-            echo '<li>' .$TEXT['Package_NoDisplay'] . '</li>';
+            echo $TEXT['Package_NoDisplay'];
     ?>
-    </ul>
 </div>
 
-<h1><?php echo $package->getName($lang) . ' ' . $package->getRegistrationsCount() . '/' . $package->getCapacity()  . ' inscrits.' ?></h1>
-<ul>
-    <li><?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?></li>
-</ul>
+<h3><?php echo $package->getName($lang) . ' ' . $package->getRegistrationsCount() . '/' . $package->getCapacity()  . ' inscrits.' ?></h3>
+    <?php echo $TEXT['Package_Description'] . ': ' . $package->getDescription($lang); ?>
 
 <?php
     echo '<p>' . $TEXT['Package_ListOfLecture'] . '</p>';
@@ -51,14 +49,14 @@
         foreach($lectures as $lecture)
         {
 ?>
-        <h1><?php echo $lecture->getName($lang); ?></h1>
-        <ul>
-            <li><?php echo $TEXT['Package_Description'] . ': ' . $lecture->getDescription($lang); ?></li>
-            <li><?php echo $TEXT['Lecture_Lecturer'] . ': ' . $lecture->getLecturer(); ?></li>
-            <li><?php echo $TEXT['Lecture_Date'] . ': ' . $lecture->getDate(); ?></li>
-            <li><?php echo $TEXT['Lecture_StartTime'] . ': ' . $lecture->getStartTime(); ?></li>
-            <li><?php echo $TEXT['Lecture_EndTime'] . ': ' . $lecture->getEndTime(); ?></li>
-        </ul>
+        <div class="lecture">
+            <div class="title"><?php echo $lecture->getName($lang); ?></div>
+            <div class="description"><?php echo $TEXT['Package_Description'] . ': ' . $lecture->getDescription($lang); ?></div>
+            <div class="lecturer"><?php echo $TEXT['Lecture_Lecturer'] . ': ' . $lecture->getLecturer(); ?></div>
+            <div class="date"><?php echo $TEXT['Lecture_Date'] . ': ' . $lecture->getDate(); ?></div>
+            <div class="hour"><?php echo $TEXT['Lecture_StartTime'] . ': ' . $lecture->getStartTime(); ?></div>
+            <div class="hour"><?php echo $TEXT['Lecture_EndTime'] . ': ' . $lecture->getEndTime(); ?></div>
+        </div>
 <?php
         }
     }

@@ -13,62 +13,81 @@
     </head>
     
     <body>
-        <div id="UserBar">
-            <span id="Flags">
-            <a href="/vbMifare/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/vbMifare/web/images/french_flag.jpg" alt="Français"/></a>
-            <a href="/vbMifare/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html"><img src="/vbMifare/web/images/english_flag.jpg" alt="Anglais"/></a>
-            </span>
-
-            <?php echo $user->getAttribute('logon'); ?> |
-            <?php 
-                $student = $user->getAttribute('vbmifareStudent');
-                echo $student->getDepartment(); 
-                echo $student->getSchoolYear();
-            ?>
+        <div id="top">
+	        <div id="top-content" align="right">
+                <a href="/vbMifare/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
+                    <img src="/vbMifare/web/images/tools/french_flag.jpg" alt="Français" /> Français
+                </a>
+                <a href="/vbMifare/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
+                    <img src="/vbMifare/web/images/tools/english_flag.jpg" alt="Anglais"/> Anglais
+                </a>
         </div>
 
-        <div id="Header">
-            <a href="/vbMifare/home/index.html"><img src="/vbMifare/web/images/logo_polytech.png" alt="Logo Polytech Montpellier"/></a>
-        </div>
+        <div id="wrapper">
+            <div id="wrapper-body">
+                <div id="header">
+                    <a href="/vbMifare/home/index.html"><div id="header-logo"><img src="/vbMifare/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
+                    <div id="header-content">
+                        <div id="header-info">
+                        	<?php echo $user->getAttribute('logon'); ?>
+                            <br/>
+                            <?php 
+                                $student = $user->getAttribute('vbmifareStudent');
+                                echo $student->getDepartment() . ' ' . $student->getSchoolYear();
+                            ?>
+                        </div>
+                    </div>
+                </div>
 
-        
-        
-        <div id="Menu">
-            <?php require dirname(__FILE__).'/menu.php'; ?>
-        </div>
+                <div id="content">
 
-        <?php
-            if($displayInfos)
-            {
-        ?>
+                    <div id="menu">
+                        <?php require dirname(__FILE__).'/menu.php'; ?>
+                    </div>
 
-        <div id="RegistrationInfos">
-            Date de fin des inscriptions: <?php echo $limitDate; ?>
-            <br/>
-            Inscriptions: <?php echo $packagesChosen . '/' . $packagesToChoose; ?>
-        </div>
+                    <?php 
+                        if($user->hasFlash())
+                        { 
+                            echo '<div id="flash">';
+                            echo '<p class="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
+                            echo '</div>';
+                        }
+                    ?>
 
-        <?php
-            }
-        ?>
+                    <?php
+                        if($displayInfos)
+                        {
+                    ?>
 
-        <?php 
-            if($user->hasFlash())
-            { 
-                echo '<div id="Flash">';
-                echo '<p id="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
-                echo '</div>';
-            }
-        ?>
-        
-        <div id="Body">
-            <?php 
-                echo $content;
-            ?>
-        </div>
+                    <div id="registrations-infos">
+                        Date de fin des inscriptions: <?php echo $limitDate; ?>
+                        <br/>
+                        Inscriptions: <?php echo $packagesChosen . '/' . $packagesToChoose; ?>
+                    </div>
+
+                    <?php
+                        }
+                    ?>
+
+                    <div class="module-text">
+                    	<div class="module-text-content">
+                    		<div class="module-text-header">
+                                <?php 
+                                    echo $TEXT['Page_Title'];
+                                ?>
+                            </div>
+                    <div class="module-text-info">
+                            <?php 
+                                echo $content;
+                            ?>
+                </div>
+
+            </div>
     
-        <div id="Footer">
-            Footer
+                <div id="footer">
+                    <p>Droits réservés &copy; 2011 - 2012 Polytech'Montpellier</p>
+                </div>
+            </div>
         </div>
     </body>
 </html> 

@@ -1,11 +1,11 @@
 <h1>Modification/Suppression d'une inscription de promotions</h1>
-<p class="Alert">
+<p class="error">
     Attention à la suppression d'une séance de QCM, cela aura pour effet de supprimer toutes les inscriptions aux conférences des élèves !
 </p>
-<p class="Warning">
+<p class="warning">
     L'inscription ne fonctionne que pour les départements ingénieurs (MAT, ERII, etc), pas pour les PEIP (et les autres). (Problème dans la gestion des années)
 </p>
-<p class="Info">
+<p class="info">
     Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".
 </p>
 <?php

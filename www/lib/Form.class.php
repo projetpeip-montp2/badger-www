@@ -161,6 +161,37 @@
 
 
 
+    class FormComponentHTML extends FormComponent
+    {
+        private $m_value;
+
+        public function __construct($name)
+        {
+            parent::__construct($name);
+
+            $this->m_isInParagraph = false;
+        }
+
+        public function value($value)
+        {
+            $this->m_value = $value;
+
+            return $this;
+        }
+
+        public function getValue()
+        {
+            return $this->m_value;
+        }
+
+        public function getOutput()
+        {
+            return $this->m_value;
+        }
+    }
+
+
+
     abstract class FormComponentWithLabel extends FormComponentWithParagraph
     {
         private $m_label = null;
@@ -584,6 +615,9 @@
 
                 case 'textarea':
                     $component = new FormComponentTextArea($name);
+                    break;
+                case 'HTML':
+                    $component = new FormComponentHTML($name);
                     break;
 
                 default:

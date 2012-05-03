@@ -3,10 +3,13 @@
 
     for($i=0; $i<count($questions); $i++)
     {
-        $form->beginFieldset('Question ' . ($i + 1));
+        $form->add('HTML', 'block')
+             ->value('<div class="block-question">');
+        $form->add('HTML', 'num-question')
+             ->value('<div class="num-question">Question ' . ($i + 1) . '</div>');
 
-        $form->add('label', '')
-             ->label($questions[$i]->getLabel($lang));
+        $form->add('HTML', 'title')
+             ->value('<div class="title-question">' . $questions[$i]->getLabel($lang) . '</div>');
 
         foreach($answers as $answer)
         {
@@ -19,7 +22,8 @@
             }
         }
 
-        $form->endFieldset();
+        $form->add('HTML', 'endblock')
+             ->value('</div>');
     }
 
     $form->add('hidden', 'isSubmitted')
