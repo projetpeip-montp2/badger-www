@@ -53,19 +53,19 @@
         public function setFlashError($value)
         {
             $this->setAttribute('vbmifareFlash', $value);
-            $this->setAttribute('vbmifareFlashType', 'flashError');
+            $this->setAttribute('vbmifareFlashType', 'error');
         }
 
         public function setFlashWarning($value)
         {
             $this->setAttribute('vbmifareFlash', $value);
-            $this->setAttribute('vbmifareFlashType', 'flashWarning');
+            $this->setAttribute('vbmifareFlashType', 'warning');
         }
 
         public function setFlashInfo($value)
         {
             $this->setAttribute('vbmifareFlash', $value);
-            $this->setAttribute('vbmifareFlashType', 'flashInfo');
+            $this->setAttribute('vbmifareFlashType', 'info');
         }
 
         public function getFlash()

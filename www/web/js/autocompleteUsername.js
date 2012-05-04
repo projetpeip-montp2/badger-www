@@ -16,16 +16,16 @@ function displayResults(response)
 
     if(autocompleteResults.length)
     {
-        results.css('display', 'block');
+        results.css('display', 'inline');
         results.empty();
 
-        results.append('<img src="/vbMifare/web/images/icon' + (found ? 'Ok' : 'Error') + '.png"/>');
+        results.append('<img src="/vbMifare/web/images/tools/icon' + (found ? 'Ok' : 'Error') + '.png"/>');
 
         autocompleteResults = autocompleteResults.split(';');
 
         for (var i=0; i<autocompleteResults.length ; i++) 
         {
-            results.append('<div>' + autocompleteResults[i] + '</div>');
+            results.append('<span>' + autocompleteResults[i] + '</span>');
         /*
             div.bind('click',function(){
                 chooseResult( $(this) );

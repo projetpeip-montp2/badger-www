@@ -1,9 +1,10 @@
 <!-- Here we use our form because we need a div between two inputs -->
 
 <form action="" method="post">
-    <p><label for="vbmifareUsername">Username : </label><input type="text" name="vbmifareUsername" class="vbmifareUsername"/></p>
+    <p><label for="vbmifareUsername">Username : </label><input type="text" name="vbmifareUsername" class="vbmifareUsername"/>
     <!-- Use for autocomplete system -->
-    <div id="results"></div>
+    <span id="results"></span>
+    </p>
 
 
     <p><label for="vbmifareDate">Date : </label><input type="text" name="vbmifareDate" class="vbmifareDate" value="" size="20"/></p>

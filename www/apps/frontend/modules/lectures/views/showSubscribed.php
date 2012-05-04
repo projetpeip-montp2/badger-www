@@ -14,7 +14,6 @@
 ?>
             <li>
                 <a href="<?php echo $link; ?>"><?php echo $package->getName($lang); ?></a>
-                <p class="lectureDescription"><?php echo $package->getLecturer(); ?></p>
                 <p class="lectureDescription"><?php echo $package->getDescription($lang); ?></p>
             </li>
 <?php

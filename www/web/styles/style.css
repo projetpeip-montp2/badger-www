@@ -1,131 +1,301 @@
-body
-{
-	background-color: #E0E0E0;
-	font-family: Verdana, serif;
+body {
+	margin:0;
+	background:url(/vbMifare/web/images/design/background.png) repeat-x top;
+	background-attachment:fixed;
+}
+	
+/* ------------------------ Header ------------------------  */
+
+#top {
+	background:#1F3B62;
+	width:100%;
+	height:20px;
+	margin-bottom:10px;
 }
 
-#Flags
-{
-    padding-left: 0.5%;
-    float: left;
+#top-content {
+	margin:auto;
+	width:1000px;
 }
 
-#UserBar
-{
-	background-color: #999999;
-	text-align: right;
-	padding-right: 0.5%;
+#top-content a {
+	color:#FFF;
+	font-size:13px;
+	font-family: "Tiraille";
+	font-weight:bold;
+	text-decoration:none;
+	padding-left:5px;
+	padding-right:5px;
 }
 
-#Header
+#top-content a:hover {
+	color:#09F;
+}
+
+#header {
+	width:100%;
+	height:130px;
+	background:url(/vbMifare/web/images/design/bg-header.png) no-repeat;
+    -moz-border-radius: 10px 10px 0 0px;
+    border-radius: 10px 10px 0 0;
+}
+
+#header-logo {
+	padding: 10px 0 0 20px;
+	float:left;
+}
+
+#header-content {
+	float:right;
+	padding: 10px 10px 0 0;
+}
+
+#header-info {
+	background:url(/vbMifare/web/images/tools/bg-info-etud.png) no-repeat;
+	width:300px;
+	height:75px;
+	padding:15px 0 0 15px;
+	font-size:22px;
+	font-weight:bold;
+	font-family:"Tiraille";
+    text-align:center;
+	color:#FFF;
+}
+
+/* ------------------------ Header ------------------------  */
+
+/* ------------------------ Wrapper ------------------------  */
+
+#wrapper {
+	margin:auto;
+	width:1048px;
+	background-attachment:fixed;
+}
+
+#wrapper-body {
+	margin:auto;
+	width:1000px;
+	background:url(/vbMifare/web/images/design/bg-wrapper-body.png) repeat-x top;
+	background-attachment:fixed;
+	border:4px solid #FFF;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+a {
+	text-decoration:none;
+	color:#06F;
+}
+
+a:hover {
+	font-weight:bold;
+	color:#0E3463;
+}
+
+/* ------------------------ Wrapper ------------------------  */
+
+/* ------------------------ Content ------------------------ */
+
+#content {
+	background:url(/vbMifare/web/images/design/bg-content.png) no-repeat top center;
+	width:100%;
+	border-top:1px solid #0166BF;
+}
+
+ul {
+	list-style:none;
+}
+
+li {
+	padding-left:30px;
+	background:url(/vbMifare/web/images/tools/puce-li.png) no-repeat;
+}
+
+#registrations-infos {
+	background:#1F3B62;
+    width:300px;
+    margin: 30px 0 30px 10px;
+	padding:15px 15px 15px 15px;
+	font-weight:bold;
+	color:#FFF;
+}
+
+/* ------------------------ Menu ------------------------ */
+
+#menu {
+	text-align:right;
+	margin-bottom:100px;
+	margin-top:10px;
+}
+
+#menu a {
+	color: white;
+    font-weight:normal;
+}
+
+#menu .itemmenu {
+	display:block;
+	float:right;
+	height:25px;
+    background-color:#1F3B62;
+	padding:0 10px 0 10px;
+}
+
+#menu .overitemmenu {
+	display:block;
+	float:right;
+	height:25px;
+    background-color:#0E56DB;
+	padding:0 10px 0 10px;
+}
+
+/* ------------------------ Menu ------------------------ */
+
+/* ------------------------ Message Flash ------------------------ */
+
+#flash
 {
+	background:#1F3B62;
+	width: 50%;
 	margin: auto;
 	border: 2px solid black;
-	margin-bottom: 1%;
-	padding-top: 0.5%;
-	padding-bottom: 0.5%;
-	padding-left: 0.5%;
-	background-color: #E0E0E0;
+    font-size: 22px;
+    text-align: center; 
 }
 
-#Menu
-{
-	width: 13%;
-	float: left;
-	border: 2px solid black;
-	background-color: #E0E0E0;
+/* ------------------------ Message Flash ------------------------ */
+
+/* ------------------------ Module Textuel ------------------------ */
+
+.module-text {
+	margin:auto;
+	width:900px;
+	background:url(/vbMifare/web/images/design/module-text/bg-module-text.png) no-repeat top center;
+	padding: 5px 0 0 0;
 }
 
-#Body
-{
-	background-color: white;
-	width: 80%;
-	margin-left: 14%;
-	border: 2px solid black;
-	padding: 0.5% 1%;
+.module-text-content {
+	margin: 5px 20px 15px 20px;
 }
 
-#Flash
-{
-	background-color: white;
-	width: 80%;
-	margin-left: 14%;
-	border: 2px solid black;
-	padding: 0.5% 1%;
-	padding-bottom: 0.5%;
-	margin-bottom: 1%;
+.module-text-header {
+	background:url(/vbMifare/web/images/design/module-text/bg-title.png) repeat-x bottom right;
+    -moz-border-radius: 0 10px 0 10px;
+    border-radius: 10px 10px 0 0;
+	color:#FFF;
+	font-family:"Tiraille";
+	font-weight:bold;
+	font-size:18px;
+	padding-right:10px;
+	padding-left:10px;
+	height:30px;
 }
 
-#Footer
-{
-	margin: auto;
-	margin-top: 1%;
-	padding: 0.5%;
-	/*width: 92%;*/
-	clear: both;
-	border: 2px solid black;
+.module-text-info {
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	padding:10px;
+	background:#FFF;
+	
 }
 
-a, a:visited
-{
-    text-decoration: none;
-    color: blue;
-}
+/* ------------------------ Module Textuel ------------------------ */
 
-#Body h
-{
-	color: black;
-	font-size: 18px;
-}
+/* ------------------------ Message typé ------------------------ */
 
-#Body h1
-{
-	font-size: 18px;
-}
-
-#Body h2
-{
-	font-size: 14px;
-}
-
-#StartMCQ
-{
-
-}
-
-#flashError
+.error
 {
     color: red;
-    font-size: 22px;
-    text-align: center; 
 }
 
-#flashWarning
+.warning
 {
     color: orange;
-    font-size: 22px;
-    text-align: center; 
 }
 
-#flashInfo
+.info
 {
     color: green;
-    font-size: 22px;
-    text-align: center; 
 }
 
-.documentsFrame
-{
-    border: 1px solid black;
-    float: right;
-    text-align: center;
-    color: blue;
+/* ------------------------ Message typé ------------------------ */
+
+/* ------------------------ QCM ------------------------ */
+
+.block-question {
+	border:1px solid #999;
+	background:url(/vbMifare/web/images/design/bg-qcm.png) repeat-x bottom;
+	padding: 0 8px 8px 0;
+	margin-bottom:20px;
 }
 
-.documentsFrame ul
-{
-    clear: right;
+.title-question {
+	margin-bottom:15px;
+	padding-left:8px;
+	color:#0F3360;
 }
+
+.num-question {
+	background:url(/vbMifare/web/images/design/bg_num-question.png) no-repeat;
+	height:35px;
+	width:285px;
+	color:#0C64A5;
+	padding-left:8px;
+	padding-top:3px;
+}
+
+.block-question form {
+	padding-left:8px;
+}
+
+/* ------------------------ QCM ------------------------ */
+
+/* ------------------------ Package ------------------------ */
+
+.doc-dispo {
+	float:right;
+	border:1px solid #000;
+	padding-left:5px;
+	padding-right:10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.lecture {
+	width:450px;
+	margin:5px 0 5px 0;
+	border:1px solid #999;
+	background:url(/vbMifare/web/images/design/bg-conf.png) repeat-x bottom;
+	padding:10px 10px 10px 20px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.lecture .title {
+	font-weight:bold;
+	font-size:24px;
+}
+
+.lecture .description {
+	font-size:14px;
+	color:#999;
+}
+
+.lecture .lecturer {
+	margin:5px 0 5px 0;
+}
+
+.lecture .date, .hour{
+	font-style:italic;
+	font-size:16px;
+}
+
+
+
+/* ------------------------ Package ------------------------ */
+
+/* ------------------------ Edit ------------------------ */
 
 .FormTable
 {
@@ -136,39 +306,6 @@ a, a:visited
 {
     border: 1px solid black;
     text-align: center;
-}
-
-.viewer
-{
-    text-align: center;
-}
-
-.viewer a
-{
-    font-size: 22px;
-    border: 1px solid red;
-}
-
-.viewer img
-{
-    margin: auto;
-    padding: 1%;
-    border: 3px solid black;
-}
-
-.Alert
-{
-    color: red;
-}
-
-.Warning
-{
-    color: orange;
-}
-
-.Info
-{
-    color: green;
 }
 
 table#classroom
@@ -228,3 +365,36 @@ a.addable
 	font-size: 12px;
 	cursor: pointer;
 }
+
+/* ------------------------ Edit ------------------------ */
+
+/* ------------------------ Viewer ------------------------ */
+
+.viewer
+{
+    text-align: center;
+}
+
+.viewer img
+{
+    margin: auto;
+    padding: 1%;
+    border: 3px solid black;
+}
+
+/* ------------------------ Viewer ------------------------ */
+
+/* ------------------------ Content ------------------------ */
+
+/* ------------------------ Footer ------------------------ */
+
+#footer {
+	margin-top:100px;
+	padding:5px;
+	color:#FFF;
+	text-align:center;
+    -moz-border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+/* ------------------------ Footer ------------------------ */
