@@ -9,7 +9,7 @@
     - Fil d'ariane
     - Suppression d'une élément => Suppression des dépendances
     - Entrée dans le test du FORM: PostExists à la place de PostData
-    - Avec les clés étrangères bien spécifiées, il est possible de supprimé les dépendances automatiquements
+    - Avec les clés étrangères bien spécifiées, il est possible de supprimer les dépendances automatiquements
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
 
 
@@ -32,7 +32,6 @@ Production:
     - Editage en ligne à refaire avec Ajax (priorité faible)
     - Attribution des salles
     - Attribution des packages aux des élèves non inscrits
-    - Changer le status des élèves
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
     - Ajouter un bouton supprimé dans l'éditeur AJAX, un classroom, l'autre availability
 
