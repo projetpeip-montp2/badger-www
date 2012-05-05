@@ -9,10 +9,10 @@ var results = $('#results');
 
 function displayResults(response) 
 {
-    response = response.split('#');
+    response = jQuery.parseJSON(response);
 
-    var found = (response[0] == "T");
-    var autocompleteResults = response[1];
+    var found = (response.Found == "T");
+    var autocompleteResults = response.Autocomplete;
 
     if(autocompleteResults.length)
     {
@@ -25,7 +25,7 @@ function displayResults(response)
 
         for (var i=0; i<autocompleteResults.length ; i++) 
         {
-            results.append('<span>' + autocompleteResults[i] + '</span>');
+            results.append('<div>' + autocompleteResults[i] + '</div>');
         /*
             div.bind('click',function(){
                 chooseResult( $(this) );

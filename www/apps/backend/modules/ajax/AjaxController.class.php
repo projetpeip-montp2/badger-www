@@ -144,11 +144,14 @@
 			if($request->postExists('text'))
 			{
                 $input = $request->postData('text');
-                $result = '';
+                $result = array();
 
                 if( strlen($input) < $minLenghtForAutocomplete)
-                    $result = 'F#';
-    
+                {
+                    $result['Found'] = 'F';
+                    $result['Autocomplete'] = '';
+                }    
+
                 else
                 {
                     $usernames = $this->m_managers->getManagerOf('ajax')->getUsername($input);
@@ -162,10 +165,14 @@
                             $autocomplete .= ';';
                     }
 
-                    $result = in_array($input, $usernames) ? 'T' : 'F';
-                    $result .= '#' . $autocomplete;
+                    $result['Found'] = in_array($input, $usernames) ? 'T' : 'F';
+                    $result['Autocomplete'] = $autocomplete;
 
                 }
+
+                $result = json_encode($result);
+                if($result === FALSE)
+                    throw new RuntimeException('Error during json_encode in AjaxController::executeAutocompleteUsername');
 
 			    $this->addToAjaxContent($result);
 			}
