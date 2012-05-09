@@ -28,10 +28,19 @@ Production:
     - Envoie de mails contenant questions-réponses.
     - Statistiques
     - Gestion des pertes de cartes (voir si on peut faire mieux, en montrant les conf de l'élèves en Ajax)
-    - Editage en ligne à refaire avec Ajax (priorité faible)
-    - Attribution des salles
-    - Attribution des packages aux des élèves non inscrits
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
-    - Ajouter un bouton supprimé dans l'éditeur AJAX, un classroom, l'autre availability
+    - Rajouter le numero étudiant dans le csv des notes
+    - Voir pourquoi supprimer un PDF fonctionne pas
+
+    - Gros coup de Polish
+    - Empecher de reduire la capacité si on à déjà trop d'élèves
+
+
+- William
+    - Confirmation pour l'attribution des salles (à finir)
+    - Ajouter un bouton supprimer dans l'éditeur AJAX pour les dispos
+    - Attribution des packages aux élèves pas inscrits totalement
+    - Editage en ligne à refaire avec Ajax-JQuery pour conférences (priorité faible)
+    - Ajouter un éditage en ligne pour questions/réponses (permet de changer énoncés, si la réponse est vrai ou fausse et status des questions)
 
 

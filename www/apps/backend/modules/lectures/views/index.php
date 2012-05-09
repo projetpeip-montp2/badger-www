@@ -9,5 +9,7 @@
     <li><a href="/vbMifare/admin/lectures/updatePackages.html">Modifier un package de conférences</a></li>
     <li><a href="/vbMifare/admin/lectures/updateLectures.html">Modifier les conférences</a></li>
     <br/>
+    <li><a href="/vbMifare/admin/lectures/assignLectures.html">Assigner les salles aux conférences</a></li>
+    <br/>
     <li><a href="/vbMifare/admin/lectures/addBadgingInformation.html">Ajouter la présence d'un élève à une conférence</a></li>
 </ul>

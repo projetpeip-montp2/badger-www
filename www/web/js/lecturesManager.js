@@ -180,7 +180,6 @@ function sendAvailabilities()
 			packet.push({"id": $(this).attr('data-id'), "idAvailability": $(this).children('td').children('select').val(), "idPackage": $(this).attr('data-id-package')});
 		}
 	});
-		alert(jQuery.stringify(packet));
 
 	if (packet.length != 0)
 		$.post("/vbMifare/admin/lectures/assignLectures.html", {
