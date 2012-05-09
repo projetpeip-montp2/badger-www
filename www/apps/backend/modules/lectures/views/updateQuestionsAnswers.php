@@ -35,12 +35,15 @@
         if($questions[$i]->getIdPackage() != $packageIdRequested)
             continue;
 
+        $idQuestion = $questions[$i]->getId();
+
         echo'
         <table id="editableTable">
 	        <tr>
 		        <th>Label Fr</th>
 		        <th>Label En</th>
 		        <th>Status</th>
+		        <th>Action</th>
 	        </tr>';
 
 	        $sizeLabelFR = strlen($questions[$i]->getLabel('fr'));
@@ -51,6 +54,7 @@
 	        echo "<td><p class='editable' data-id='{$questions[$i]->getId()}'  data-entry-name='Questions' data-field-name='Label_fr' data-form-type='text' data-form-size='{$sizeLabelFR}'>{$questions[$i]->getLabel('fr')}</p></td>";
 	        echo "<td><p class='editable' data-id='{$questions[$i]->getId()}'  data-entry-name='Questions' data-field-name='Label_en' data-form-type='text' data-form-size='{$sizeLabelEN}'>{$questions[$i]->getLabel('en')}</p></td>";
 	        echo "<td><p class='editable' data-id='{$questions[$i]->getId()}'  data-entry-name='Questions' data-field-name='Status' data-form-type='text' data-form-size='{$sizeStatus}'>{$questions[$i]->getStatus()}</p></td>";
+    		echo "<td><img class='deletable' data-entry-name='Questions' data-id='$idQuestion' src='../../web/images/delete.png' /></a></td>";
 	        echo '</tr>';
 
         echo '</table>';
@@ -62,6 +66,7 @@
 		        <th>Label Fr</th>
 		        <th>Label En</th>
 		        <th>True or False</th>
+		        <th>Action</th>
 	        </tr>';
 
             // Display associated answers
@@ -70,10 +75,13 @@
                 if($answers[$j]->getIdQuestion() != $questions[$i]->getId())
                     continue;
 
+                $idAnswer = $answers[$j]->getId();
+
 		        echo '<tr>';
 		        echo "<td><p class='editable' data-id='{$answers[$j]->getId()}'  data-entry-name='Answers' data-field-name='Label_fr' data-form-type='text' data-form-size='{$sizeLabelFR}'>{$answers[$j]->getLabel('fr')}</p></td>";
 		        echo "<td><p class='editable' data-id='{$answers[$j]->getId()}'  data-entry-name='Answers' data-field-name='Label_en' data-form-type='text' data-form-size='{$sizeLabelEN}'>{$answers[$j]->getLabel('en')}</p></td>";
 		        echo "<td><p class='editable' data-id='{$answers[$j]->getId()}'  data-entry-name='Answers' data-field-name='TrueOrFalse' data-form-type='text' data-form-size='{$sizeStatus}'>{$answers[$j]->getTrueOrFalse()}</p></td>";
+        		echo "<td><img class='deletable' data-entry-name='Answers' data-id='$idAnswer' src='../../web/images/delete.png' /></a></td>";
 		        echo '</tr>'; 
 	        }
         echo '</table>';

@@ -8,7 +8,7 @@
     - Système de log
     - Fil d'ariane
     - Entrée dans le test du FORM: PostExists à la place de PostData
-    - Avec les clés étrangères bien spécifiées, il est possible de supprimer les dépendances automatiquements
+    - Avec les clés étrangères bien spécifiées, il est possible de supprimer les dépendances automatiquement
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
 
 

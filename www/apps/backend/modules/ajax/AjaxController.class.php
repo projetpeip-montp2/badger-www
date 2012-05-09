@@ -100,9 +100,12 @@
 		{
 			$this->page()->setIsAjaxPage(TRUE);
 			
-			$allowedEntries = array('Classrooms', 'Packages');
+			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers');
+
 			$idFields = array('Classrooms' => 'Id_classroom',
-									   'Packages' => 'Id_package');
+                              'Questions' => 'Id_question',
+                              'Answers' => 'Id_answer',
+							  'Packages' => 'Id_package');
 			
 			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
 			{
