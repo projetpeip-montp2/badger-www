@@ -19,39 +19,41 @@
                     <a href="/vbMifare/admin/home/index.html"><div id="header-logo"><img src="/vbMifare/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
                 </div>
 
-        <div id="content">
+                <div id="content">
 
-            <div id="menu">
-                <?php require dirname(__FILE__).'/menu.php'; ?>
-            </div>
-
-            <?php 
-                if($user->hasFlash())
-                { 
-                    echo '<div id="flash">';
-                    echo '<p id="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
-                    echo '</div>';
-                }
-            ?>
-
-            <div class="module-text">
-            	<div class="module-text-content">
-            		<div class="module-text-header">
-                        <?php 
-                            echo 'Semaine du numérique';
-                        ?>
+                    <div id="menu">
+                        <?php require dirname(__FILE__).'/menu.php'; ?>
                     </div>
-                    <div class="module-text-info">
-                        <?php 
-                            echo $content;
-                        ?>
+
+                    <?php 
+                        if($user->hasFlash())
+                        { 
+                            echo '<div id="flash">';
+                            echo '<p id="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
+                            echo '</div>';
+                        }
+                    ?>
+
+                    <div class="module-text">
+                    	<div class="module-text-content">
+                    		<div class="module-text-header">
+                                <?php 
+                                    echo 'Semaine du numérique';
+                                ?>
+                            </div>
+                            <div class="module-text-info">
+                                <?php 
+                                    echo $content;
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            
+                <div id="footer">
+                    <p>Droits réservés &copy; 2011 - 2012 Polytech'Montpellier</p>
+                </div>
             </div>
-        </div>
-    
-        <div id="footer">
-            <p>Droits réservés &copy; 2011 - 2012 Polytech'Montpellier</p>
         </div>
     </body>
 </html> 
