@@ -108,6 +108,7 @@
         public function getQuestionsFromPackage($idPackage, $status = NULL)
         {
             $SQLreq = 'SELECT Id_question,
+                              Id_package,
                               Label_fr,
                               Label_en,
                               Status FROM Questions WHERE Id_package = ?';
@@ -129,6 +130,7 @@
             {
                 $question = new Question;
                 $question->setId($data['Id_question']);
+                $question->setIdPackage($data['Id_package']);
                 $question->setLabel('fr', $data['Label_fr']);
                 $question->setLabel('en', $data['Label_en']);
                 $question->setStatus($data['Status']);

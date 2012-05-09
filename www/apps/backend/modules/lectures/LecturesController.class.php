@@ -6,6 +6,7 @@
 
         }
 
+
 		private function validatePacket($packet)
 		{
 			if ($packet == null || !is_array($packet))
@@ -18,6 +19,7 @@
 			return (TRUE);
 		}
 		
+
 		public function executeAssignLectures(HTTPRequest $request)
 		{
 		
@@ -95,6 +97,7 @@
 			}
 		}
 		
+
         public function executeAddPackages(HTTPRequest $request)
         {
             // If the form containing the filepath exist (aka the form is
@@ -317,41 +320,10 @@
             $this->page()->addVar('packages', $packages);
         }
 
+
         public function executeUpdatePackages(HTTPRequest $request)
         {
-            // Handle POST data
-            // Update package
-            if($request->postExists('Modifier'))
-            {
-                $package = new Package();
-
-                $package->setId($request->postData('packageId'));
-                $package->setCapacity($request->postData('Capacity'));
-                $package->setName('fr', $request->postData('NameFr'));
-                $package->setName('en', $request->postData('NameEn'));
-                $package->setDescription('fr', $request->postData('DescFr'));
-                $package->setDescription('en', $request->postData('DescEn'));
-
-                $managerPackages = $this->m_managers->getManagerOf('package');
-                $managerPackages->update($package);
-
-                // Redirection
-                $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" modifié.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
-            }
-
-            // Delete lecture
-            if($request->postData('Supprimer'))
-            {
-                $this->m_managers->getManagerOf('package')->delete(array($request->postData('packageId')));
-                $this->deletePackageDependancies($request->postData('packageId'));
-
-                // Redirection
-                $this->app()->user()->setFlashInfo('Package "' . $request->postData('NameFr') . '" supprimé.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
-            }
-
-            // Else display the form
+            // Ddisplay the form
             $managerPackages = $this->m_managers->getManagerOf('package');
             $packages = $managerPackages->get();
 
@@ -363,6 +335,7 @@
 
             $this->page()->addVar('packages', $packages);
         }
+
 
         public function executeUpdateLectures(HTTPRequest $request)
         {
@@ -439,6 +412,7 @@
             $this->page()->addVar('lectures', $lectures);
         }
 
+
         private function deletePackageDependancies($packageId)
         {
             $lectures = $this->m_managers->getManagerOf('lecture')->get($packageId);
@@ -482,11 +456,13 @@
             }
         }
 
+
         private function deleteLectureDependancies($lectureId)
         {
             // Delete registrations to a lecture
             $this->m_managers->getManagerOf('registration')->delete($lectureId);
         }
+
 
         private function deleteQuestionDependancies($questionId)
         {
@@ -497,7 +473,56 @@
         }
 
 
+        public function executeUpdateQuestionsAnswers(HTTPRequest $request)
+        {
+            $packages = $this->m_managers->getManagerOf('package')->get();
 
+            $questions = array();
+            $answers = array();
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+
+            $packageRequested = false;
+            if($request->postExists('packageIdRequested'))
+            {
+                $packageRequested = true;
+                $packageIdRequested = $request->postData('packageIdRequested');
+            }
+
+            $found = false;
+
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlashError('Besoin d\'avoir au moins un package!');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            foreach($packages as $package)
+            {
+                if($packageRequested && $packageIdRequested == $package->getId())
+                    $found = true;
+
+                $questionOnePackage = $managerMCQ->getQuestionsFromPackage($package->getId());
+                $questions = array_merge($questions, $questionOnePackage);
+
+                foreach($questionOnePackage as $question)
+                {
+                    $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId());
+                    $answers = array_merge($answers, $answersOneQuestion);
+                }
+            }
+
+            if($packageRequested && !$found)
+            {
+                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas!');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            $this->page()->addVar('packageIdRequested', ($packageRequested ? $packageIdRequested : $packages[0]->getId()) );
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('questions', $questions);
+            $this->page()->addVar('answers', $answers);
+        }
 
 
         public function executeAddBadgingInformation(HTTPRequest $request)

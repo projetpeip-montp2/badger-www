@@ -8,6 +8,7 @@
     <br/>
     <li><a href="/vbMifare/admin/lectures/updatePackages.html">Modifier un package de conférences</a></li>
     <li><a href="/vbMifare/admin/lectures/updateLectures.html">Modifier les conférences</a></li>
+    <li><a href="/vbMifare/admin/lectures/updateQuestionsAnswers.html">Modifier les questions/réponses</a></li>
     <br/>
     <li><a href="/vbMifare/admin/lectures/assignLectures.html">Assigner les salles aux conférences</a></li>
     <br/>

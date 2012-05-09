@@ -12,15 +12,25 @@
 		{
 			$allowedFields = array('Classrooms' => array('Name', 'Size'),
 								   'Availabilities' => array('Date', 'StartTime', 'EndTime'),
-								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'));
+								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'),
+								   'Questions' => array('Label_fr', 'Label_en', 'Status'),
+								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'));
+
 			$idFields = array('Classrooms' => 'Id_classroom',
 							  'Availabilities' => 'Id_availability',
+							  'Questions' => 'Id_question',
+							  'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package');
+
 			$allowedFormType = array('text', 'number', 'textbox');
 			
 			$this->page()->setIsAjaxPage(TRUE);
-			if ($request->postExists('data-entry-name') && $request->postExists('data-field-name') && $request->postExists('data-form-type') 
-				&& $request->postExists('data-id') && $request->postExists('value') && (in_array($request->postData('data-form-type'), $allowedFormType)))
+			if($request->postExists('data-entry-name') &&
+               $request->postExists('data-field-name') &&
+               $request->postExists('data-form-type') &&
+               $request->postExists('data-id') && $request->postExists('value') &&
+               (in_array($request->postData('data-form-type'), $allowedFormType))
+              )
 			{
 				$ajaxInput = new AjaxInput;
 				$ajaxInput->setData('entry-name', $request->postData('data-entry-name'));

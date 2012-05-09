@@ -13,6 +13,7 @@
     <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
     <route url="/admin/lectures/updatePackages\.html" module="lectures" action="updatePackages"/>
     <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
+    <route url="/admin/lectures/updateQuestionsAnswers\.html" module="lectures" action="updateQuestionsAnswers"/>
     <route url="/admin/lectures/addBadgingInformation\.html" module="lectures" action="addBadgingInformation"/>
     <route url="/admin/lectures/assignLectures\.html" module="lectures" action="assignLectures"/>
 

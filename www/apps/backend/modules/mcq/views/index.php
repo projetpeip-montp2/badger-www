@@ -2,7 +2,7 @@
 
 <ul>
     <li><a href="/vbMifare/admin/mcq/createMCQ.html">Inscrire une promotion</a></li>
-    <li><a href="/vbMifare/admin/mcq/updateMCQs.html">Modifier/Supprimer une inscription</a></li>
+    <li><a href="/vbMifare/admin/mcq/updateMCQs.html">Modifier/Supprimer une inscription de promotion</a></li>
 
     <br/>
 
