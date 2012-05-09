@@ -14,6 +14,7 @@
     <route url="/admin/lectures/updatePackages\.html" module="lectures" action="updatePackages"/>
     <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
     <route url="/admin/lectures/addBadgingInformation\.html" module="lectures" action="addBadgingInformation"/>
+    <route url="/admin/lectures/assignLectures\.html" module="lectures" action="assignLectures"/>
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
     <route url="/admin/mcq/createMCQ\.html" module="mcq" action="createMCQ"/>

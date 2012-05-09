@@ -6,6 +6,20 @@
 
         }
 
+		public function executeAssignLectures(HTTPRequest $request)
+		{
+			$packages = $this->m_managers->getManagerOf('package')->get();
+			$lectures = array();
+			
+			foreach ($packages as $package)
+			{
+				$lectures[$package->getId()] = $this->m_managers->getManagerOf('lecture')->get($package->getId());
+			}
+
+			$this->page()->addVar('packages', $packages);
+			$this->page()->addVar('lectures', $lectures);
+		}
+		
         public function executeAddPackages(HTTPRequest $request)
         {
             // If the form containing the filepath exist (aka the form is
