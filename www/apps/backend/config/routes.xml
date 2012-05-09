@@ -5,8 +5,6 @@
     <route url="/admin/classrooms/index\.html" module="classrooms" action="index"/>
     <route url="/admin/classrooms/addClassrooms\.html" module="classrooms" action="addClassrooms"/>
     <route url="/admin/classrooms/addAvailabilities\.html" module="classrooms" action="addAvailabilities"/>
-    <route url="/admin/classrooms/updateAvailabilities\.html" module="classrooms" action="updateAvailabilities"/>
-    <route url="/admin/classrooms/updateClassrooms\.html" module="classrooms" action="updateClassrooms"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
     <route url="/admin/lectures/addLecturesAndQuestionsAnswers\.html" module="lectures" action="addLecturesAndQuestionsAnswers"/>
