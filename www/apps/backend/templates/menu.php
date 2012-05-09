@@ -20,7 +20,7 @@
     <a href="/vbMifare/admin/lectures/index.html">Conférences</a>
 </div>
 <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-    <a href="/vbMifare/home/index.html">Frontend</a>
+    <a href="/vbMifare/home/index.html">Partie utilisateur</a>
 </div>
 <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
     <a href="/vbMifare/admin/home/index.html">Accueil</a>
