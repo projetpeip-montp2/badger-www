@@ -21,6 +21,14 @@ Production:
     - Refaire le planning en tableau (priorité faible)
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
+    - Notation QCM
+    - Eviter que les étudiants puisse cliquer ailleurs que sur Valider dans le QCM
+    - Mettre Instruction QCM
+
+    - Permettre le download de tout les fichiers .pdf par un fichier zip
+
+    - Visionneuse avec une ancre
+
 
 - Backend
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
