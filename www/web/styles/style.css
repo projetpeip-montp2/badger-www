@@ -3,7 +3,19 @@ body {
 	background:url(/vbMifare/web/images/design/background.png) repeat-x top;
 	background-attachment:fixed;
 }
-	
+
+*
+{
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+h1
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+}
+
 /* ------------------------ Header ------------------------  */
 
 #top {
@@ -308,7 +320,7 @@ li {
     text-align: center;
 }
 
-table#classroom
+table#editableTable
 {
 	width: 100%;
 	border-width: 1px;
@@ -318,7 +330,7 @@ table#classroom
 	background-color: white;
 }
 
-table#classroom th
+table#editableTable th
 {
 	text-align: left;
 	border-width: 1px;
@@ -328,7 +340,7 @@ table#classroom th
 	background-color: white;
 }
 
-table#classroom td
+table#editableTable td
 {
 	vertical-align: top;
 	border-width: 1px;
@@ -339,12 +351,7 @@ table#classroom td
 	background-color: white;
 }
 
-table#classroom .editable:hover
-{
-	background-color: #F2F2F2;
-}
-
-table#classroom .editable:hover
+table#editableTable .editable:hover
 {
 	background-color: #F2F2F2;
 }
@@ -364,6 +371,13 @@ a.addable
 {
 	font-size: 12px;
 	cursor: pointer;
+}
+
+p.packageTitle
+{
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 /* ------------------------ Edit ------------------------ */
@@ -399,9 +413,99 @@ a.addable
 
 /* ------------------------ Footer ------------------------ */
 
-p.packageTitle
+.buttons a, .buttons button
 {
-	text-align: center;
-	font-size: 18px;
-	font-weight: bold;
+    display:block;
+	margin: auto;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee; 
+	font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:100%;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    color:#565656;
+    cursor:pointer;
+    padding:5px 10px 6px 7px;
+}
+
+.buttons button
+{
+    width:auto;
+    overflow:visible;
+    padding:4px 10px 3px 7px;
+}
+
+.buttons button[type]
+{
+    padding:5px 10px 5px 7px;
+    line-height:17px;
+}
+
+*:first-child+html button[type]
+{
+    padding:4px 10px 3px 7px;
+}
+
+.buttons button img, .buttons a img
+{
+    margin:0 3px -3px 0 !important;
+    padding:0;
+    border:none;
+    width:16px;
+    height:16px;
+}
+
+button:hover, .buttons a:hover
+{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#336699;
+}
+
+.buttons a:active
+{
+    background-color:#6299c5;
+    border:1px solid #6299c5;
+    color:#fff;
+}
+
+button.positive, .buttons a.positive
+{
+    color:#529214;
+}
+
+.buttons a.positive:hover, button.positive:hover
+{
+    background-color:#E6EFC2;
+    border:1px solid #C6D880;
+    color:#529214;
+}
+
+.buttons a.positive:active
+{
+    background-color:#529214;
+    border:1px solid #529214;
+    color:#fff;
+}
+
+.buttons a.negative, button.negative
+{
+    color:#d12f19;
+}
+
+.buttons a.negative:hover, button.negative:hover
+{
+    background:#fbe3e4;
+    border:1px solid #fbc2c4;
+    color:#d12f19;
+}
+
+.buttons a.negative:active
+{
+    background-color:#d12f19;
+    border:1px solid #d12f19;
+    color:#fff;
 }

@@ -15,7 +15,7 @@
 -->
 </ul>
 
-<table id="classroom">
+<table id="editableTable">
 	<tr>
 		<th>Nom</th>
 		<th>Contenance</th>

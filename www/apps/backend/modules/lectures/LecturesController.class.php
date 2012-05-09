@@ -6,18 +6,93 @@
 
         }
 
+		private function validatePacket($packet)
+		{
+			if ($packet == null || !is_array($packet))
+				return (FALSE);
+			foreach ($packet as $new)
+			{
+  				if (!isset($new->id) || !isset($new->idAvailability) || !isset($new->idPackage))
+					return (FALSE);
+			}
+			return (TRUE);
+		}
+		
 		public function executeAssignLectures(HTTPRequest $request)
 		{
-			$packages = $this->m_managers->getManagerOf('package')->get();
-			$lectures = array();
-			
-			foreach ($packages as $package)
+		
+			if ($request->postExists('jsonPacket'))
 			{
-				$lectures[$package->getId()] = $this->m_managers->getManagerOf('lecture')->get($package->getId());
+				$this->page()->setIsAjaxPage(TRUE);
+				
+				$packet = json_decode($request->postData('jsonPacket'));
+				if (!$this->validatePacket($packet))
+					throw new Exception("Erreur JSON");
+				foreach ($packet as $new)
+				{
+					$this->m_managers->getManagerOf('lecture')->assignAvailability($new);
+				}
 			}
-
-			$this->page()->addVar('packages', $packages);
-			$this->page()->addVar('lectures', $lectures);
+			else
+			{
+				$classroomsClasses = $this->m_managers->getManagerOf('classroom')->getWithAvailabilities();
+				$packagesClasses = $this->m_managers->getManagerOf('package')->get();
+				$i = 0;
+				
+				$packages = array();
+				foreach ($packagesClasses as $packageClass)
+				{
+					$lecturesClasses = $this->m_managers->getManagerOf('lecture')->get($packageClass->getId());
+					$lectures = array();
+					
+					$j = 0;
+					foreach ($lecturesClasses as $lectureClass)
+					{
+						$lectures[$j]['id'] = $lectureClass->getId();
+						$lectures[$j]['idAvailability'] = $lectureClass->getIdAvailability();
+						$lectures[$j]['name'] = $lectureClass->getName('fr');
+						$lectures[$j]['date'] = $lectureClass->getDate()->__toString();
+						$lectures[$j]['startTime'] = $lectureClass->getStartTime()->__toString();
+						$lectures[$j]['endTime'] = $lectureClass->getEndTime()->__toString();
+						++$j;
+					}
+					
+					$packages[$i] = array();
+					$packages[$i]['id'] = $packageClass->getId();
+					$packages[$i]['name'] = $packageClass->getName('fr');
+					$packages[$i]['capacity'] = $packageClass->getCapacity();
+					$packages[$i]['lectures'] = $lectures;
+					++$i;
+				}
+				
+				$i = 0;
+				$classrooms = array();
+				foreach ($classroomsClasses as $classroomClass)
+				{
+					$availabilitiesClasses = $classroomClass->getAvailabilities();
+					$availabilities = array();
+					
+					$j = 0;
+					foreach ($availabilitiesClasses as $availabilityClass)
+					{
+						$availabilities[$j]['id'] = $availabilityClass->getId();
+						$availabilities[$j]['date'] = $availabilityClass->getDate()->__toString();
+						$availabilities[$j]['startTime'] = $availabilityClass->getStartTime()->__toString();
+						$availabilities[$j]['endTime'] = $availabilityClass->getEndTime()->__toString();
+						++$j;
+					}
+					
+					$classrooms[$i] = array();
+					$classrooms[$i]['id'] = $classroomClass->getId();
+					$classrooms[$i]['name'] = $classroomClass->getName();
+					$classrooms[$i]['capacity'] = $classroomClass->getSize();
+					$classrooms[$i]['availabilities'] = $availabilities;
+					++$i;
+				}
+							
+				$this->page()->addVar('classrooms', $classrooms);
+				$this->page()->addVar('packages', $packages);
+			}
 		}
 		
         public function executeAddPackages(HTTPRequest $request)

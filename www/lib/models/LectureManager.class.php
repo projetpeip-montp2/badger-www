@@ -28,6 +28,8 @@
                 $requestSQL .= ' ' . $connect .' Id_lecture = ?';
                 $paramsSQL[] = $idLecture;
             }
+			
+			$requestSQL .= ' ORDER BY Id_package, Id_lecture';
 
             $req = $this->m_dao->prepare($requestSQL);
             $req->execute($paramsSQL); 
@@ -116,5 +118,11 @@
             $req = $this->m_dao->prepare('DELETE FROM Lectures WHERE Id_lecture = ?');
             $req->execute(array($lectureId));
         }
+		
+		public function assignAvailability($array)
+		{
+			$req = $this->m_dao->prepare('UPDATE Lectures SET Id_availability = ? WHERE Id_lecture = ? AND Id_package = ?');
+			$req->execute(array($array->idAvailability, $array->id, $array->idPackage));
+		}
     }
 ?>

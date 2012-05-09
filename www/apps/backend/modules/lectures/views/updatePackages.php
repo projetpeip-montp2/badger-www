@@ -7,7 +7,7 @@
 <!--
 TODO: Faire un style générique pour les tables
 -->
-<table id="classroom">
+<table id="editableTable">
 	<tr>
 		<th>Capacity</th>
 		<th>Nom Fr</th>

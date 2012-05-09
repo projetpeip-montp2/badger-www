@@ -39,14 +39,16 @@
 ?>
 
 <table class="FormTable">
-    <th>Conférencier</th>
-    <th>Nom Fr</th>
-    <th>Nom En</th>
-    <th>Description Fr</th>
-    <th>Description En</th>
-    <th>Date</th>
-    <th>Horaire de début</th>
-    <th>Horaire de fin</th>
+	<tr>
+	    <th>Conférencier</th>
+	    <th>Nom Fr</th>
+	    <th>Nom En</th>
+	    <th>Description Fr</th>
+	    <th>Description En</th>
+	    <th>Date</th>
+	    <th>Horaire de début</th>
+	    <th>Horaire de fin</th>
+    </tr>
 <?php
     foreach($forms as $form)
         echo $form->toTr();
