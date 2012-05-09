@@ -21,6 +21,7 @@
                 <a href="/vbMifare/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
                     <img src="/vbMifare/web/images/tools/english_flag.jpg" alt="Anglais"/> Anglais
                 </a>
+            </div>
         </div>
 
         <div id="wrapper">

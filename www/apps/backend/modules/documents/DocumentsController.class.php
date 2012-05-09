@@ -164,12 +164,12 @@
             if($request->postExists('Supprimer'))
             {
                 // Server
-                $document = $this->m_managers->getManagerOf('documentofpackage')->get($request->postData('documentId'));
+                $documents = $this->m_managers->getManagerOf('documentofpackage')->get(-1, $request->postData('documentId'));
                 $path = dirname(__FILE__).'/../../../../uploads/admin/pdf/';
-                unlink($path . $document->getFilename());
+                unlink($path . $documents[0]->getFilename());
 
                 // Database
-                $filename = $this->m_managers->getManagerOf('documentofpackage')->get($request->postData('documentId'));
+                $filename = $this->m_managers->getManagerOf('documentofpackage')->delete($request->postData('documentId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Le document "' . $request->postData('DocumentName') . '" du package "' . $request->postData('PackageName') . '" a été supprimé.');
