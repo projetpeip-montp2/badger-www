@@ -190,6 +190,7 @@
 
                     $csv .= '"' . $student->getDepartment() . '","' . 
                                   $shoolYear . '","' . 
+                                  $student->getStudentNumber() . '","' . 
                                   $student->getUsername() . '","' . 
                                   $student->getMark() . '"';
 

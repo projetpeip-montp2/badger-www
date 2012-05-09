@@ -7,6 +7,7 @@
         private $m_statut;
         private $m_schoolYear;
         private $m_mifare;
+        private $m_studentNumber;
 
         private $m_mcqStatus;
         private $m_mark;
@@ -64,6 +65,21 @@
         public function setMifare($mifare)
         {
             $this->m_mifare = $mifare;
+        }
+
+        public function getMifare()
+        {
+            return $this->m_mifare;
+        }
+
+        public function setStudentNumber($studentNumber)
+        {
+            $this->m_studentNumber = $studentNumber;
+        }
+
+        public function getStudentNumber()
+        {
+            return $this->m_studentNumber;
         }
 
         public function setMark($mark)

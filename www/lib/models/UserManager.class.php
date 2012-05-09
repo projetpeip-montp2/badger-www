@@ -6,7 +6,7 @@
             $req = $this->m_dao->prepare('SELECT * FROM Users');
             $req->execute();
 
-            $reqNext = $this->m_dao->prepare('SELECT Departement, anApogee FROM Polytech.Users WHERE Username = ?');
+            $reqNext = $this->m_dao->prepare('SELECT Departement, anApogee, Num_Etudiant FROM Polytech.Users WHERE Username = ?');
 
             $students = array();
             while($data = $req->fetch())
@@ -20,6 +20,7 @@
                 $student->setMCQStatus($data['MCQStatus']);
                 $student->setDepartment($dataNext['Departement']);
                 $student->setSchoolYear($dataNext['anApogee']);
+                $student->setStudentNumber($dataNext['Num_Etudiant']);
 
                 $students[] = $student;
             }
