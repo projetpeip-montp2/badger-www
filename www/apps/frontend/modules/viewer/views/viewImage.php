@@ -1,6 +1,8 @@
 <div class="viewer">
     <h1><?php echo $packageName; ?></h1>
 <?php
+    $anchor = '#anchor';
+
     $form = new Form('redirectToImage.html', 'post');
 
     $form->add('hidden', 'idPackage')
@@ -14,6 +16,8 @@
 
     echo $form->toString();
 
+    echo '<hidden id="anchor"/>';
+
     // Generate links to navigate
 
     $baseLink = '/vbMifare/viewer/viewImage-';
@@ -23,13 +27,13 @@
         $first = $baseLink . $idPackage . '-1.html';
 ?>
 
-    <a href="<?php echo $first; ?>"><<</a>
+    <a href="<?php echo $first . $anchor; ?>"><<</a>
 
 <?php
        $previous = $baseLink . $idPackage . '-' . ($imageNumber - 1) .'.html';
 ?>
 
-    <a href="<?php echo $previous; ?>"><</a>
+    <a href="<?php echo $previous . $anchor; ?>"><</a>
 
 <?php
     }
@@ -39,13 +43,13 @@
         $next = $baseLink . $idPackage . '-' . ($imageNumber + 1) .'.html';
 ?>
 
-    <a href="<?php echo $next; ?>">></a>
+    <a href="<?php echo $next . $anchor; ?>">></a>
 
 <?php
         $last = $baseLink . $idPackage . '-' . $count . '.html';
 ?>
 
-    <a href="<?php echo $last; ?>">>></a>
+    <a href="<?php echo $last . $anchor; ?>">>></a>
 
 <?php
     }

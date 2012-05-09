@@ -27,8 +27,6 @@ Production:
 
     - Permettre le download de tout les fichiers .pdf par un fichier zip
 
-    - Visionneuse avec une ancre
-
 
 - Backend
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
