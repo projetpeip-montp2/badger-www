@@ -41,12 +41,11 @@ function displayResults(response)
 
             for (var i=0; i<autocompleteResults.length ; i++) 
             {
-                results.append('<div>' + autocompleteResults[i] + '</div>');
-            /*
-                div.bind('click',function(){
+                results.append('<div class="autocompleteResults'+ i +'">' + autocompleteResults[i] + '</div>');
+
+                $('.autocompleteResults' + i).bind('click',function(){
                     chooseResult( $(this) );
                 });
-            */
             }
         }
     }
@@ -68,13 +67,16 @@ function getResults(keywords)
 }
 
 
-function chooseResult(result) 
+function chooseResult(choice) 
 {
-    searchElement.val(results.text());
-    previousValue = results.text();
+    previousValue = searchElement.val();
+    searchElement.val(choice.text());
     results.css('display', 'none');
     selectedResult = -1;
     searchElement.focus();
+
+    // Simulate a keyup
+    $(".vbmifareUsername").keyup();
 }
 
 
@@ -96,3 +98,4 @@ $('.vbmifareUsername').keyup(function(e)
 
 
 })();
+
