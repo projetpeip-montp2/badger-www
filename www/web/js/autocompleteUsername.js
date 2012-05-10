@@ -19,18 +19,35 @@ function displayResults(response)
         results.css('display', 'inline');
         results.empty();
 
-        results.append('<img src="/vbMifare/web/images/tools/icon' + (found ? 'Ok' : 'Error') + '.png"/>');
-
-        autocompleteResults = autocompleteResults.split(';');
-
-        for (var i=0; i<autocompleteResults.length ; i++) 
+        if(found)
         {
-            results.append('<div>' + autocompleteResults[i] + '</div>');
-        /*
-            div.bind('click',function(){
-                chooseResult( $(this) );
-            });
-        */
+            results.append('<img src="/vbMifare/web/images/tools/iconOk.png"/>');
+    
+            results.append('<select name="vbmifareSelectedLecture" id="vbmifareSelectedLecture">');
+
+            for (var index in response.Lectures)
+                $('#vbmifareSelectedLecture').append('<option value="' + index + '">' + response.Lectures[index] + '</option>');
+
+            results.append('</select>');
+
+            results.append('<input type="submit" name="Envoyer" value="Envoyer"/>');
+        }
+
+        else
+        {
+            results.append('<img src="/vbMifare/web/images/tools/iconError.png"/>');
+
+            autocompleteResults = autocompleteResults.split(';');
+
+            for (var i=0; i<autocompleteResults.length ; i++) 
+            {
+                results.append('<div>' + autocompleteResults[i] + '</div>');
+            /*
+                div.bind('click',function(){
+                    chooseResult( $(this) );
+                });
+            */
+            }
         }
     }
 

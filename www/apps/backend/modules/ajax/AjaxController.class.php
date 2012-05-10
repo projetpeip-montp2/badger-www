@@ -178,7 +178,25 @@
                             $autocomplete .= ';';
                     }
 
-                    $result['Found'] = in_array($input, $usernames) ? 'T' : 'F';
+                    if(in_array($input, $usernames))
+                    {
+                        $result['Found'] = 'T';
+                        $result['Lectures'] = array(); 
+                        $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($input);
+
+                        foreach($registrations as $reg)
+                        {
+                            $lectures = $this->m_managers->getManagerOf('lecture')->get($reg->getIdPackage());
+
+                            foreach($lectures as $lec)
+                                $result['Lectures'][$lec->getId()] = $lec->getName('fr');
+                        }
+
+                    }
+
+                    else
+                        $result['Found'] = 'F';
+
                     $result['Autocomplete'] = $autocomplete;
 
                 }

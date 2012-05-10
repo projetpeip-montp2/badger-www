@@ -10,7 +10,7 @@
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
 
 
-Production:
+- Production:
     - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
     - Retirer les fonctions inutiles comme celle dans la classe User
 

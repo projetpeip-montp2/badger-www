@@ -527,43 +527,46 @@
 
         public function executeAddBadgingInformation(HTTPRequest $request)
         {
+            // If form is submitted
             if($request->postExists('Envoyer'))
             {
                 $username = $request->postData('vbmifareUsername');
-                $strDate = $request->postData('vbmifareDate');
-                $strTime = $request->postData('vbmifareTime');
 
                 $mifares = $this->m_managers->getManagerOf('user')->retrieveMifare($username);
 
-                if(count($mifares) == 0)
+                if(count($mifares) != 1)
                 {
-                    $this->app()->user()->setFlashError('Le username donné n\'existe pas: ' . $username . '.');
+                    $this->app()->user()->setFlashError('Le username envoyé n\'existe pas: ' . $username . '.');
                     $this->app()->httpResponse()->redirect($request->requestURI());
                 }
 
-                // Check Date and Time formats
-                if(! (Date::check($strDate) && Time::check($strTime)) )
+
+                $idLecture = $request->postData('vbmifareSelectedLecture');
+                $lectures = $this->m_managers->getManagerOf('lecture')->get(-1, $idLecture);
+
+                if(count($lectures) != 1)
                 {
-                    $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
+                    $this->app()->user()->setFlashError('L\'id de conférence envoyé ne correspond à rien!');
                     $this->app()->httpResponse()->redirect($request->requestURI());
                 }
 
-                $date = new Date;
-                $date->setFromString($strDate);
 
-                $time = new Time;
-                $time->setFromString($strTime);
+                // TODO: Vérifier que la requête à William pour mettre à jour prenne >= pour l'heure
 
-                $mifare = $mifares[0];
-
-                $this->m_managers->getManagerOf('badginginformation')->insert($mifare, $date, $time);
+                $this->m_managers->getManagerOf('badginginformation')->insert($mifares[0],
+                                                                              $lectures[0]->getDate(),
+                                                                              $lectures[0]->getStartTime());
 
                 // TODO: Maintenant doit-on mettre à jour le status des ses inscriptions?
                 // En effet, si personne ne rapelle le badger ensuite ça se fera pas tout seul..
                 
                 $this->app()->user()->setFlashInfo('Infos de badging ajouté pour ' . $username . '.');
-                $this->app()->httpResponse()->redirect($request->requestURI());
+
+                // TODO: La redirection empêche de l'affichage du flash...
+                //$this->app()->httpResponse()->redirect($request->requestURI());
             }
+
+            // Else display the form
         }
     }
 ?>
