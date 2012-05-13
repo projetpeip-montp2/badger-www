@@ -34,6 +34,9 @@
             
             $user = $this->app()->user();
             
+			if ($this->m_isAjaxPage)
+				return '';
+			
             // TODO: William: Si on est en ajax, on doit pas inclure ça non?
             foreach($this->m_filesToInclude as $filename)
             {
@@ -47,10 +50,7 @@
             $content = ob_get_clean();
 
             ob_start();
-			if (!$this->m_isAjaxPage)
 				require dirname(__FILE__).'/../apps/'.$this->app()->name().'/templates/layout.php';
-			else
-				echo $content;
             return ob_get_clean();
         }
         

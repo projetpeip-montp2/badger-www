@@ -26,10 +26,3 @@
 		echo "</table>";
 	}
 ?>
-<br />
-<div class="buttons">
-	<button class="positive" type="submit">
-		<img alt="" src="../../web/images/tick.png" />
-		Enregistrer
-	</button>
-</div>

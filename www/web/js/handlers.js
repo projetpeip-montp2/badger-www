@@ -26,7 +26,8 @@ function addAvailabilityHTML(element, data)
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> -> </p>').insertBefore(element);
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">23</p><p class="separator">:</p>').insertBefore(element);
 		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><br />').insertBefore(element);
+		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> </p>').insertBefore(element);
+		$('<img src="../../web/images/delete_small.png" class="deletable" data-entry-name="Availabilities" data-id="' + data + '" /><br />').insertBefore(element);
 	}
 }
 
@@ -107,7 +108,15 @@ function finishDeleteEntry(element, data)
 		alert(data);
 	else
 	{
-		$(element).parent().parent().remove();
+		if ($(element).attr('data-entry-name') == 'Availabilities')
+		{
+			$(element).next().remove();
+			for (i = 0; i < 18; ++i)
+				$(element).prev().remove();
+			$(element).remove();
+		}
+		else
+			$(element).parent().parent().remove();
 	}
 }
 

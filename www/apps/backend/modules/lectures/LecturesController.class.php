@@ -22,7 +22,6 @@
 
 		public function executeAssignLectures(HTTPRequest $request)
 		{
-		
 			if ($request->postExists('jsonPacket'))
 			{
 				$this->page()->setIsAjaxPage(TRUE);

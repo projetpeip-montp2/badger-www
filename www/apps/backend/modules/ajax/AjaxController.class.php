@@ -60,7 +60,7 @@
 					}
 				}
 			}
-			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
+			echo $this->getAjaxContent();
 		}
 		
 		public function executeAddEntry(HTTPRequest $request)
@@ -93,19 +93,20 @@
 					$this->addToAjaxContent('Erreur d\'ajout');
 				}
 			}
-			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
+			echo $this->getAjaxContent();
 		}
 		
 		public function executeDeleteEntry(HTTPRequest $request)
 		{
 			$this->page()->setIsAjaxPage(TRUE);
 			
-			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers');
+			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities');
 
 			$idFields = array('Classrooms' => 'Id_classroom',
                               'Questions' => 'Id_question',
                               'Answers' => 'Id_answer',
-							  'Packages' => 'Id_package');
+							  'Packages' => 'Id_package',
+							  'Availabilities' => 'Id_availability');
 			
 			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
 			{
@@ -129,7 +130,7 @@
 					}
 				}
 			}
-			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
+			echo $this->getAjaxContent();
 		}
 		
 		public function getAjaxContent()
@@ -208,7 +209,7 @@
 			    $this->addToAjaxContent($result);
 			}
 
-			$this->page()->addVar('ajaxContent', $this->getAjaxContent());
+			echo $this->getAjaxContent();
         }
 	}
 ?>

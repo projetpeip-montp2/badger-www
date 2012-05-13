@@ -1,5 +1,4 @@
 var chosenAvailabilities = new Array();
-var conflicts = new Array();
 
 Array.prototype.remove = function(from, to)
 {
@@ -56,6 +55,14 @@ jQuery.extend({
     }
 });
 
+function hasError(data)
+{
+	var regexp = new RegExp('Erreur');
+	if (regexp.exec(data))
+		return (true);
+	return (false);
+}
+
 function convertDate(strDate)
 { 
 	day = strDate.substring(0,2);
@@ -82,9 +89,10 @@ function generateOptionsHTML(lecture, size)
 			{
 				if (jsonClassrooms[k].availabilities[l].id == lecture.idAvailability)
 					html += '<option selected="selected" value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + '</option>';
-				else
+				else if (jQuery.inArray(jsonClassrooms[k].availabilities[l].id, chosenAvailabilities) == -1)
 					html += '<option value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + '</option>';
-
+				else
+					html +=  '<option disabled="disabled" value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + '</option>';
 			}
 		}
 	}
@@ -94,102 +102,58 @@ function generateOptionsHTML(lecture, size)
 		if ($(this).attr('data-id') == lecture.id)
 		{
 			$(this).children('td').children('select').html(html);
-			$(this).children('td').children('select').data('oldValue', $(this).children('td').children('select').val());
 			return (false);
 		}
 	});
 }
 
-function solveConflict(id)
+function setDisabledStatus(dataId, idDisable, idEnable)
 {
-	$('.trLecture td select').each(function()
+	$('.trLecture').each(function()
 	{
-		if ($(this).val() == id)
-			$(this).css('backgroundColor', '');
+		if ($(this).attr('data-id') != dataId)
+		{
+			$(this).children('td').children('select').children('option').each(function()
+			{
+				if ($(this).attr('disabled') == 'disabled' && $(this).val() == idEnable)
+					$(this).removeAttr('disabled');
+				else if ($(this).attr('disabled') == undefined && $(this).val() == idDisable && $(this).val() != 0)
+					$(this).attr('disabled', 'disabled');
+			});
+		}
 	});
-	
-	conflicts.remove(jQuery.inArray(id, conflicts));
-}
-
-function makeConflict(id)
-{
-	if (jQuery.inArray(id, conflicts) == -1)
- 		conflicts.push(id);
-		
-	$('.trLecture td select').each(function()
-	{
-		if ($(this).val() == id)
-			$(this).css('backgroundColor', 'red');	
-	});
-
 }
 
 function changedAvailability(element)
 {
 	$element = $(element);
-
-	if ($element.data('oldValue') != 0)
-	{
-		if (jQuery.inArray($element.data('oldValue'), chosenAvailabilities) == -1)
+	$parentTr = $element.parent().parent();
+	var packet = new Array();
+	
+	packet.push({"id": $parentTr.attr('data-id'), "idAvailability": $element.val(), "idPackage": $parentTr.attr('data-id-package')});
+	$.post("/vbMifare/admin/lectures/assignLectures.html", {
+		'jsonPacket': jQuery.stringify(packet)
+		}).error(onError).complete(function(data)
 		{
-			// Ca ne devrait pas arriver.
-			alert('Erreur dans la gestion DOM du Javascript');
-			return ;
-		}
-		
-		// On enlève dans le tableau des disponibilités choisies cette disponibilité
-		chosenAvailabilities.remove(jQuery.inArray($element.data('oldValue'), chosenAvailabilities));
-		
-		// La lecture est obligatoirement sortie de son conflit de disponibilités, on remet le select en blanc (pour l'instant)
-		$element.css('backgroundColor', '');
-		
-		// Est-ce que ce changement à permis de résoudre entièrement le conflit de disponibilités dans laquelle la lecture était engagée ?
-		if (chosenAvailabilities.countOccurrences($element.data('oldValue')) == 1)
-			solveConflict($element.data('oldValue'));
-	}
-	
-	if ($element.val() != 0)
-	{
-		if (jQuery.inArray($element.val(), chosenAvailabilities) != -1)
-			makeConflict($element.val());
-		chosenAvailabilities.push($element.val());
-	}
-	
-	$element.data('oldValue', $element.val());
+			if (hasError(data))
+				onError();
+			else
+			{
+				var oldValue = $parentTr.attr('data-id-availability');
+				if (oldValue != 0)
+					chosenAvailabilities.remove(jQuery.inArray(oldValue, chosenAvailabilities));
+				if ($element.val() != 0)
+					chosenAvailabilities.push($element.val());
+				$parentTr.attr('data-id-availability', $element.val());
+				setDisabledStatus($parentTr.attr('data-id'), $element.val(), oldValue);
+			}
+		});
 }
 
 function onError()
 {
-	alert('Erreur: Connexion au site échouée, les modifications faites n\'ont pas encore été prises en compte. Réessayez dès que la connexion est rétablie');
-}
-
-function sendAvailabilities()
-{
-	var packet = new Array();
-	
-	if (conflicts.length != 0)
-	{
-		alert('Erreur: Vous devez résoudre les conflits d\'horaires avant de pouvoir enregistrer');
-		return ;
-	}
-	
-	$('.trLecture').each(function()
-	{
-		if ($(this).children('td').children('select').val() != $(this).attr('data-id-availability'))
-		{
-			packet.push({"id": $(this).attr('data-id'), "idAvailability": $(this).children('td').children('select').val(), "idPackage": $(this).attr('data-id-package')});
-		}
-	});
-
-	if (packet.length != 0)
-		$.post("/vbMifare/admin/lectures/assignLectures.html", {
-		'jsonPacket': jQuery.stringify(packet)
-		}).error(onError).complete(function()
-		{
-		//	location.href = '/vbMifare/admin';
-		});
-//	else
-	//	location.href = '/vbMifare/admin';
+	alert('Erreur: Connexion au site échouée, les modifications faites n\'ont pas encore été prises en compte. La page va être rechargée');
+	location.reload();
 }
 
 $(document).ready(function()
@@ -199,19 +163,20 @@ $(document).ready(function()
 		changedAvailability(e.target);
 	});
 	
-	$('.positive').bind('click', function(e)
-	{
-		sendAvailabilities();
-	});
-	
 	for (i = 0; i < jsonPackages.length; ++i)
 	{
 		for (j = 0; j < jsonPackages[i].lectures.length; ++j)
 		{
 			if (jsonPackages[i].lectures[j].idAvailability != 0)
 				chosenAvailabilities.push(jsonPackages[i].lectures[j].idAvailability);
-			generateOptionsHTML(jsonPackages[i].lectures[j], jsonPackages[i].capacity);
 		}
 	}
 
+	for (i = 0; i < jsonPackages.length; ++i)
+	{
+		for (j = 0; j < jsonPackages[i].lectures.length; ++j)
+		{
+			generateOptionsHTML(jsonPackages[i].lectures[j], jsonPackages[i].capacity);
+		}
+	}
 });
