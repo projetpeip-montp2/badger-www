@@ -362,7 +362,7 @@ table#editableTable .editable:hover
 	vertical-align: middle;
 }
 
-p.editable, p.addable, p.ajaxInput, p.separator
+p.editable, p.addable, p.ajaxInput, p.separator, p.selectable
 {
 	cursor: pointer;
 	display: inline;

@@ -15,6 +15,10 @@
     - Retirer les fonctions inutiles comme celle dans la classe User
 
 
+- AJAX:
+    - Mettre un attribut dans le back-controller permettant de ne pas inclure les views
+
+
 - Frontend:
     - Refaire le planning en tableau (priorité faible)
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
@@ -26,7 +30,7 @@
     - Permettre le download de tout les fichiers .pdf par un fichier zip
 
 
-- Backend
+- Backend:
     - Faire une interface contenant plein de contrôle et check points
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
     - Envoie de mails contenant questions-réponses.
@@ -38,12 +42,10 @@
     - Empecher de reduire la capacité si on à déjà trop d'élèves
 
 
-- William
+- William:
     - Pouvoir mettre un select dans les tableaux éditables
-    - Confirmation pour l'attribution des salles (à finir)
-    - Ajouter un bouton supprimer dans l'éditeur AJAX pour les dispos
     - Attribution des packages aux élèves pas inscrits totalement
-    - Editage en ligne à refaire avec Ajax-JQuery pour conférences (priorité faible)
+    - Editage en ligne à refaire avec Ajax-JQuery pour conférences
 
     - Ajouter un éditage en ligne pour questions/réponses (quasiment finis)
 
