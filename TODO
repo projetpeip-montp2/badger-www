@@ -8,7 +8,7 @@
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Avec les clés étrangères bien spécifiées, il est possible de supprimer les dépendances automatiquement
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
-
+    - Quand pas d'inscriptions aux conférences, le dire lors de l'affichage de planning.
 
 - Production:
     - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
@@ -40,6 +40,8 @@
 
     - Gros coup de Polish
     - Empecher de reduire la capacité si on à déjà trop d'élèves
+
+    - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
 
 - William:
