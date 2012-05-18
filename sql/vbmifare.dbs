@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="vbmifare" database="MySql" >
+	<schema name="vbmifare" schemaname="vbmifare" defo="y" >
+		<table name="Answers" >
+			<column name="Id_answer" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_question" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Label_fr" type="TEXT" jt="-1" />
+			<column name="Label_en" type="TEXT" jt="-1" />
+			<column name="TrueOrFalse" type="CHAR" length="1" jt="1" />
+			<index name="pk_answers" unique="PRIMARY_KEY" >
+				<column name="Id_answer" />
+			</index>
+			<index name="idx_answers" unique="NORMAL" >
+				<column name="Id_question" />
+			</index>
+			<fk name="fk_answers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
+				<fk_column name="Id_question" pk="Id_questions" />
+			</fk>
+		</table>
+		<table name="Polytech.Users" >
+			<column name="Username" type="VARCHAR" length="60" jt="12" mandatory="y" />
+			<column name="Num_Etudiant" type="CHAR" length="8" jt="1" />
+			<column name="Mifare" type="CHAR" length="8" jt="1" />
+			<column name="MifareControleAcces" type="INT" jt="4" />
+			<column name="Actif" type="CHAR" length="1" jt="1" />
+			<column name="Nom" type="CHAR" length="30" jt="1" />
+			<column name="Prenom" type="CHAR" length="20" jt="1" />
+			<column name="VraiNom" type="CHAR" length="30" jt="1" />
+			<column name="VraiPrenom" type="CHAR" length="20" jt="1" />
+			<column name="Status" type="ENUM" length="1" jt="12" />
+			<column name="Departement" type="ENUM" jt="12" />
+			<column name="Complement_Departement" type="ENUM" jt="12" />
+			<column name="anApogee" type="TINYINT" jt="-6" />
+			<index name="pk_users" unique="PRIMARY_KEY" >
+				<column name="Username" />
+			</index>
+		</table>
+		<table name="AnswersOfUsers" >
+			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
+			<column name="Id_question" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Id_answer" type="SMALLINT" jt="5" unsigned="y" />
+			<index name="idx_answersofusers" unique="NORMAL" >
+				<column name="Id_user" />
+			</index>
+			<index name="idx_answersofusers_0" unique="NORMAL" >
+				<column name="Id_answer" />
+			</index>
+			<index name="idx_answersofusers_1" unique="NORMAL" >
+				<column name="Id_question" />
+			</index>
+			<fk name="fk_answersofusers_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+				<fk_column name="Id_user" pk="Id_user" />
+			</fk>
+			<fk name="fk_answersofusers_answers" to_schema="vbmifare" to_table="Answers" delete_action="CASCADE" >
+				<fk_column name="Id_answer" pk="Id_answer" />
+			</fk>
+			<fk name="fk_answersofusers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
+				<fk_column name="Id_question" pk="Id_questions" />
+			</fk>
+		</table>
+		<table name="Availabilities" >
+			<column name="Id_availability" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_classroom" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Date" type="DATE" jt="91" />
+			<column name="StartTime" type="TIME" jt="92" />
+			<column name="EndTime" type="TIME" jt="92" />
+			<index name="pk_availabilities" unique="PRIMARY_KEY" >
+				<column name="Id_availability" />
+			</index>
+			<index name="idx_availabilities" unique="NORMAL" >
+				<column name="Id_classroom" />
+			</index>
+			<fk name="fk_availabilities_classrooms" to_schema="vbmifare" to_table="Classrooms" delete_action="CASCADE" >
+				<fk_column name="Id_classroom" pk="Id_classroom" />
+			</fk>
+		</table>
+		<table name="BadgingInformations" >
+			<column name="Mifare" type="CHAR" length="8" jt="1" />
+			<column name="Date" type="DATE" jt="91" />
+			<column name="Time" type="TIME" jt="92" />
+		</table>
+		<table name="Classrooms" >
+			<column name="Id_classroom" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Name" type="TEXT" length="100" jt="-1" />
+			<column name="Size" type="SMALLINT" jt="5" unsigned="y" />
+			<index name="pk_classrooms" unique="PRIMARY_KEY" >
+				<column name="Id_classroom" />
+			</index>
+		</table>
+		<table name="Config" >
+			<column name="Name" type="TEXT" length="100" jt="-1" />
+			<column name="Value" type="TEXT" jt="-1" />
+		</table>
+		<table name="DocumentsOfPackages" >
+			<column name="Id_document" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Filename" type="TEXT" length="100" jt="-1" />
+			<index name="pk_documentsofpackages" unique="PRIMARY_KEY" >
+				<column name="Id_document" />
+			</index>
+			<index name="idx_documentsofpackages" unique="NORMAL" >
+				<column name="Id_package" />
+			</index>
+			<fk name="fk_documentsofpackages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+		</table>
+		<table name="DocumentsOfUsers" >
+			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
+			<column name="Filename" type="TEXT" length="100" jt="-1" />
+			<index name="idx_documentsofusers" unique="NORMAL" >
+				<column name="Id_package" />
+			</index>
+			<index name="idx_documentsofusers_0" unique="NORMAL" >
+				<column name="Id_user" />
+			</index>
+			<fk name="fk_documentsofusers_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+			<fk name="fk_documentsofusers_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+				<fk_column name="Id_user" pk="Id_user" />
+			</fk>
+		</table>
+		<table name="ImagesOfPackages" >
+			<column name="Id_image" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Filename" type="TEXT" length="100" jt="-1" />
+			<index name="pk_imagesofpackages" unique="PRIMARY_KEY" >
+				<column name="Id_image" />
+			</index>
+			<index name="idx_imagesofpackages" unique="NORMAL" >
+				<column name="Id_package" />
+			</index>
+			<fk name="fk_imagesofpackages_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+		</table>
+		<table name="Lectures" >
+			<column name="Id_lecture" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Id_availability" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Lecturer" type="TEXT" jt="-1" />
+			<column name="Name_fr" type="TEXT" length="100" jt="-1" />
+			<column name="Name_en" type="TEXT" length="100" jt="-1" />
+			<column name="Description_fr" type="TEXT" jt="-1" />
+			<column name="Description_en" type="TEXT" jt="-1" />
+			<column name="Date" type="DATE" jt="91" />
+			<column name="StartTime" type="TIME" jt="92" />
+			<column name="EndTime" type="TIME" jt="92" />
+			<index name="pk_lectures" unique="PRIMARY_KEY" >
+				<column name="Id_lecture" />
+			</index>
+			<index name="idx_lectures" unique="NORMAL" >
+				<column name="Id_package" />
+			</index>
+			<index name="idx_lectures_0" unique="NORMAL" >
+				<column name="Id_availability" />
+			</index>
+			<fk name="fk_lectures_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+			<fk name="fk_lectures_availabilities" to_schema="vbmifare" to_table="Availabilities" delete_action="CASCADE" >
+				<fk_column name="Id_availability" pk="Id_availability" />
+			</fk>
+		</table>
+		<table name="MCQs" >
+			<column name="Department" type="TEXT" jt="-1" />
+			<column name="SchoolYear" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Date" type="DATE" jt="91" />
+			<column name="StartTime" type="TIME" jt="92" />
+			<column name="EndTime" type="TIME" jt="92" />
+		</table>
+		<table name="Packages" >
+			<column name="Id_package" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Capacity" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="RegistrationsCount" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Name_fr" type="TEXT" length="100" jt="-1" />
+			<column name="Name_en" type="TEXT" length="100" jt="-1" />
+			<column name="Description_fr" type="TEXT" jt="-1" />
+			<column name="Description_en" type="TEXT" jt="-1" />
+			<index name="pk_packages" unique="PRIMARY_KEY" >
+				<column name="Id_package" />
+			</index>
+		</table>
+		<table name="Questions" >
+			<column name="Id_questions" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Label_fr" type="TEXT" jt="-1" />
+			<column name="Label_en" type="TEXT" jt="-1" />
+			<column name="Status" type="ENUM" length="1" jt="12" >
+				<enumeration>&#039;Possible&#039;,&#039;Impossible&#039;,&#039;Obligatory&#039;</enumeration>
+			</column>
+			<index name="pk_questions" unique="PRIMARY_KEY" >
+				<column name="Id_questions" />
+			</index>
+			<index name="idx_questions" unique="NORMAL" >
+				<column name="Id_package" />
+			</index>
+			<fk name="fk_questions_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+		</table>
+		<table name="QuestionsOfUsers" >
+			<column name="Id_user" type="VARCHAR" length="60" jt="12" unsigned="y" />
+			<column name="Id_question" type="SMALLINT" jt="5" unsigned="y" />
+			<index name="idx_questionsofusers" unique="NORMAL" >
+				<column name="Id_user" />
+			</index>
+			<index name="idx_questionsofusers_0" unique="NORMAL" >
+				<column name="Id_question" />
+			</index>
+			<fk name="fk_questionsofusers_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+				<fk_column name="Id_user" pk="Id_user" />
+			</fk>
+			<fk name="fk_questionsofusers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
+				<fk_column name="Id_question" pk="Id_questions" />
+			</fk>
+		</table>
+		<table name="Registrations" >
+			<column name="Id_lecture" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
+			<column name="Status" type="ENUM" length="1" jt="12" >
+				<enumeration>&#039;Coming&#039;,&#039;Absent&#039;,&#039;Present&#039;</enumeration>
+			</column>
+			<index name="idx_registrations" unique="NORMAL" >
+				<column name="Id_lecture" />
+			</index>
+			<index name="idx_registrations_0" unique="NORMAL" >
+				<column name="Id_package" />
+			</index>
+			<index name="idx_registrations_1" unique="NORMAL" >
+				<column name="Id_user" />
+			</index>
+			<fk name="fk_registrations_lectures" to_schema="vbmifare" to_table="Lectures" delete_action="CASCADE" >
+				<fk_column name="Id_lecture" pk="Id_lecture" />
+			</fk>
+			<fk name="fk_registrations_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+			<fk name="fk_registrations_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+				<fk_column name="Id_user" pk="Id_user" />
+			</fk>
+		</table>
+		<table name="Users" >
+			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
+			<column name="MCQStatus" type="ENUM" length="1" jt="12" >
+				<enumeration>&#039;Visitor&#039;,&#039;CanTakeMCQ&#039;,&#039;Generated&#039;,&#039;Taken&#039;</enumeration>
+			</column>
+			<column name="Mark" type="FLOAT" jt="7" />
+			<index name="pk_users_0" unique="UNIQUE" >
+				<column name="Id_user" />
+			</index>
+			<fk name="fk_users_polytech.users" to_schema="vbmifare" to_table="Polytech.Users" delete_action="CASCADE" >
+				<fk_column name="Id_user" pk="Username" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="vbmifare" >
+		<entity schema="vbmifare" name="Classrooms" x="70" y="56" />
+		<entity schema="vbmifare" name="MCQs" x="826" y="168" />
+		<entity schema="vbmifare" name="BadgingInformations" x="714" y="56" />
+		<entity schema="vbmifare" name="ImagesOfPackages" x="616" y="196" />
+		<entity schema="vbmifare" name="Questions" x="602" y="322" />
+		<entity schema="vbmifare" name="Answers" x="826" y="308" />
+		<entity schema="vbmifare" name="AnswersOfUsers" x="784" y="532" />
+		<entity schema="vbmifare" name="Availabilities" x="252" y="42" />
+		<entity schema="vbmifare" name="DocumentsOfPackages" x="420" y="84" />
+		<entity schema="vbmifare" name="Packages" x="322" y="294" />
+		<entity schema="vbmifare" name="Lectures" x="42" y="210" />
+		<entity schema="vbmifare" name="Registrations" x="56" y="630" />
+		<entity schema="vbmifare" name="Polytech.Users" x="1008" y="588" />
+		<entity schema="vbmifare" name="Config" x="364" y="728" />
+		<entity schema="vbmifare" name="DocumentsOfUsers" x="308" y="588" />
+		<entity schema="vbmifare" name="Users" x="602" y="644" />
+		<entity schema="vbmifare" name="QuestionsOfUsers" x="490" y="490" />
+		<group name="vbMifare" color="c4e0f9" >
+			<entity schema="vbmifare" name="Answers" />
+			<entity schema="vbmifare" name="AnswersOfUsers" />
+			<entity schema="vbmifare" name="Availabilities" />
+			<entity schema="vbmifare" name="BadgingInformations" />
+			<entity schema="vbmifare" name="Classrooms" />
+			<entity schema="vbmifare" name="Config" />
+			<entity schema="vbmifare" name="DocumentsOfPackages" />
+			<entity schema="vbmifare" name="DocumentsOfUsers" />
+			<entity schema="vbmifare" name="ImagesOfPackages" />
+			<entity schema="vbmifare" name="Lectures" />
+			<entity schema="vbmifare" name="MCQs" />
+			<entity schema="vbmifare" name="Packages" />
+			<entity schema="vbmifare" name="Questions" />
+			<entity schema="vbmifare" name="QuestionsOfUsers" />
+			<entity schema="vbmifare" name="Registrations" />
+			<entity schema="vbmifare" name="Users" />
+		</group>
+	</layout>
+</project>
