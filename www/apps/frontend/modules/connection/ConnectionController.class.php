@@ -31,7 +31,7 @@
 
             $this->app()->user()->setAttribute('vbmifareStudent', $student);
 
-            $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
+            $this->app()->httpResponse()->redirect('/home/index.html');
         }
     }
 ?>

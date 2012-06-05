@@ -28,7 +28,7 @@
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
                 $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
-                $this->app()->httpResponse()->redirect('/vbMifare/lectures/showAll.html');
+                $this->app()->httpResponse()->redirect('/lectures/showAll.html');
             }
 
             $package = $packages[0];
@@ -95,7 +95,7 @@
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
                 $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
-                $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
+                $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
             // Send package name if it exists

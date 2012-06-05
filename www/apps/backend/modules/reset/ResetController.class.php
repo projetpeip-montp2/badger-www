@@ -49,7 +49,7 @@
                 if(count($tablesSelectedArray) == 0)
                 {
                     $this->app()->user()->setFlashError('Aucune table sélectionnée.');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
+                    $this->app()->httpResponse()->redirect('/admin/reset/truncate.html');
                 }
 
                 // Truncate table(s) selected
@@ -64,7 +64,7 @@
                     $flashMessage .= '<br/>' . $emptyTable;
 
                 $this->app()->user()->setFlashInfo($flashMessage);
-                //$this->app()->httpResponse()->redirect('/vbMifare/admin/reset/truncate.html');
+                //$this->app()->httpResponse()->redirect('/admin/reset/truncate.html');
             }
 
             // Else we display the form

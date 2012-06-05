@@ -17,7 +17,7 @@
                      Time::check($request->postData('EndTime'))))
                 {
                     $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/createMCQ.html');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
                 }
 
                 $date = new Date;
@@ -32,7 +32,7 @@
                 if(Time::compare($startTime, $endTime) > 0)
                 {
                     $this->app()->user()->setFlashError('Horaire de début > Horaire de fin');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/createMCQ.html');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
                 }
 
                 $mcq = new MCQ;
@@ -55,7 +55,7 @@
                                 $request->postData('Department') . ' ' .
                                 $request->postData('Schoolyear') . ' créée.';
                 $this->app()->user()->setFlashInfo($flashMessage);
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
+                $this->app()->httpResponse()->redirect('/admin/mcq/index.html');
             }
 
             // Send existing departments to the view
@@ -77,7 +77,7 @@
                      Time::check($request->postData('EndTime'))))
                 {
                     $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/updateMCQs.html');
                 }
 
                 $date = new Date;
@@ -92,7 +92,7 @@
                 if(Time::compare($startTime, $endTime) > 0)
                 {
                     $this->app()->user()->setFlashError('Horaire de début > Horaire de fin');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/updateMCQs.html');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/updateMCQs.html');
                 }
 
                 $mcq = new MCQ;
@@ -111,7 +111,7 @@
                                 $request->postData('Department') . ' ' .
                                 $request->postData('Schoolyear') . ' modifiée.';
                 $this->app()->user()->setFlashInfo($flashMessage);
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
+                $this->app()->httpResponse()->redirect('/admin/mcq/index.html');
             }
 
             // Delete MCQ
@@ -128,7 +128,7 @@
                                 $request->postData('Department') . ' ' .
                                 $request->postData('Schoolyear') . ' supprimée.';
                 $this->app()->user()->setFlashInfo($flashMessage);
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
+                $this->app()->httpResponse()->redirect('/admin/mcq/index.html');
             }
 
             // Else display the form
@@ -138,7 +138,7 @@
             if(count($mcqs) == 0)
             {
                 $this->app()->user()->setFlashError('Il n\'y a pas de séances de QCMs dans la base de données.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/mcq/index.html');
+                $this->app()->httpResponse()->redirect('/admin/mcq/index.html');
             }
 
             $this->page()->addVar('mcqs', $mcqs);

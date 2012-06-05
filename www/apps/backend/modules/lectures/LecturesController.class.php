@@ -179,7 +179,7 @@
                              Time::check($lineDatas[7])))
                         {
                             $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
-                            $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
+                            $this->app()->httpResponse()->redirect('/admin/lectures/addLecturesAndQuestionsAnswers.html');
                         }
 
                         $date = new Date;
@@ -194,7 +194,7 @@
                         if(Time::compare($startTime, $endTime) > 0)
                         {
                             $this->app()->user()->setFlashError('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
-                            $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/addLecturesAndQuestionsAnswers.html');
+                            $this->app()->httpResponse()->redirect('/admin/lectures/addLecturesAndQuestionsAnswers.html');
                         }
         
                         $lecture = new Lecture;
@@ -310,7 +310,7 @@
             if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError('Il faut au moins un package pour pouvoir uploader des conférences ou des questions/réponses.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
             }
 
             if($flashMessage != '')
@@ -329,7 +329,7 @@
             if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError('Il n\'y a pas de packages dans la base de données.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
             }
 
             $this->page()->addVar('packages', $packages);
@@ -348,7 +348,7 @@
                      Time::check($request->postData('EndTime'))))
                 {
                     $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                    $this->app()->httpResponse()->redirect('/admin/lectures/updateLectures.html');
                 }
 
                 $date = new Date;
@@ -372,7 +372,7 @@
                 if(Time::compare($startTime, $endTime) > 0)
                 {
                     $this->app()->user()->setFlashError('Horaire de début > Horaire de fin');
-                    $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/updateLectures.html');
+                    $this->app()->httpResponse()->redirect('/admin/lectures/updateLectures.html');
                 }
 
                 $lecture->setDate($date);
@@ -384,7 +384,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" modifiée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
             }
 
             // Delete lecture
@@ -395,7 +395,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
             }
 
             // Else display the form
@@ -405,7 +405,7 @@
             if(count($lectures) == 0)
             {
                 $this->app()->user()->setFlashError('Il n\'y a pas de conférences dans la base de données.');
-                $this->app()->httpResponse()->redirect('/vbMifare/admin/lectures/index.html');
+                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
             }
 
             $this->page()->addVar('lectures', $lectures);

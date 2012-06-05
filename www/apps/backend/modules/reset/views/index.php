@@ -6,5 +6,5 @@
 </p>
 
 <ul>
-    <li><a href="/vbMifare/admin/reset/truncate.html">Vider les tables</a></li>
+    <li><a href="/admin/reset/truncate.html">Vider les tables</a></li>
 </ul>

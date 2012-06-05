@@ -1,4 +1,5 @@
 RewriteEngine On
+Options FollowSymLinks
 
 RewriteRule ^admin web/backend.php [QSA,L]
 

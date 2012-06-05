@@ -25,7 +25,7 @@
 
                 $this->app()->user()->setFlashError($TEXT['Flash_NoTakeMCQ']);
                 $this->page()->addVar('showMCQLink', false);
-                $this->app()->httpResponse()->redirect('/vbMifare/mcq/index.html');
+                $this->app()->httpResponse()->redirect('/mcq/index.html');
             }
 
             $managerUser = $this->m_managers->getManagerOf('user');
@@ -63,7 +63,7 @@
 
                 // Redirection
                 $this->app()->user()->setFlashInfo($TEXT['Flash_MCQTaken']);
-                $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
+                $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
             // Else display the form

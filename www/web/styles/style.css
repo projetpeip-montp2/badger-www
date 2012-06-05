@@ -1,6 +1,6 @@
 body {
 	margin:0;
-	background:url(/vbMifare/web/images/design/background.png) repeat-x top;
+	background:url(/web/images/design/background.png) repeat-x top;
 	background-attachment:fixed;
 }
 
@@ -47,7 +47,7 @@ h1
 #header {
 	width:100%;
 	height:130px;
-	background:url(/vbMifare/web/images/design/bg-header.png) no-repeat;
+	background:url(/web/images/design/bg-header.png) no-repeat;
     -moz-border-radius: 10px 10px 0 0px;
     border-radius: 10px 10px 0 0;
 }
@@ -63,7 +63,7 @@ h1
 }
 
 #header-info {
-	background:url(/vbMifare/web/images/tools/bg-info-etud.png) no-repeat;
+	background:url(/web/images/tools/bg-info-etud.png) no-repeat;
 	width:300px;
 	height:75px;
 	padding:15px 0 0 15px;
@@ -87,7 +87,7 @@ h1
 #wrapper-body {
 	margin:auto;
 	width:1000px;
-	background:url(/vbMifare/web/images/design/bg-wrapper-body.png) repeat-x top;
+	background:url(/web/images/design/bg-wrapper-body.png) repeat-x top;
 	background-attachment:fixed;
 	border:4px solid #FFF;
     -moz-border-radius: 10px 10px 10px 10px;
@@ -109,7 +109,7 @@ a:hover {
 /* ------------------------ Content ------------------------ */
 
 #content {
-	background:url(/vbMifare/web/images/design/bg-content.png) no-repeat top center;
+	background:url(/web/images/design/bg-content.png) no-repeat top center;
 	width:100%;
 	border-top:1px solid #0166BF;
 }
@@ -120,7 +120,7 @@ ul {
 
 li {
 	padding-left:30px;
-	background:url(/vbMifare/web/images/tools/puce-li.png) no-repeat;
+	background:url(/web/images/tools/puce-li.png) no-repeat;
 }
 
 #registrations-infos {
@@ -181,7 +181,7 @@ li {
 .module-text {
 	margin:auto;
 	width:900px;
-	background:url(/vbMifare/web/images/design/module-text/bg-module-text.png) no-repeat top center;
+	background:url(/web/images/design/module-text/bg-module-text.png) no-repeat top center;
 	padding: 5px 0 0 0;
 }
 
@@ -190,7 +190,7 @@ li {
 }
 
 .module-text-header {
-	background:url(/vbMifare/web/images/design/module-text/bg-title.png) repeat-x bottom right;
+	background:url(/web/images/design/module-text/bg-title.png) repeat-x bottom right;
     -moz-border-radius: 0 10px 0 10px;
     border-radius: 10px 10px 0 0;
 	color:#FFF;
@@ -239,7 +239,7 @@ li {
 
 .block-question {
 	border:1px solid #999;
-	background:url(/vbMifare/web/images/design/bg-qcm.png) repeat-x bottom;
+	background:url(/web/images/design/bg-qcm.png) repeat-x bottom;
 	padding: 0 8px 8px 0;
 	margin-bottom:20px;
 }
@@ -251,7 +251,7 @@ li {
 }
 
 .num-question {
-	background:url(/vbMifare/web/images/design/bg_num-question.png) no-repeat;
+	background:url(/web/images/design/bg_num-question.png) no-repeat;
 	height:35px;
 	width:285px;
 	color:#0C64A5;
@@ -280,7 +280,7 @@ li {
 	width:450px;
 	margin:5px 0 5px 0;
 	border:1px solid #999;
-	background:url(/vbMifare/web/images/design/bg-conf.png) repeat-x bottom;
+	background:url(/web/images/design/bg-conf.png) repeat-x bottom;
 	padding:10px 10px 10px 20px;
     -moz-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;

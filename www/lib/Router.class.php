@@ -23,7 +23,7 @@
             // Search the routes.xml file to find a route matching with the URL
             foreach ($dom->getElementsByTagName('route') as $route)
             {
-                if (preg_match('`^'.'/vbMifare'.$route->getAttribute('url').'$`', $this->app()->httpRequest()->requestURI(), $matches))                
+                if (preg_match('`^'.$route->getAttribute('url').'$`', $this->app()->httpRequest()->requestURI(), $matches))                
                 {
                     $module = $route->getAttribute('module');
                     $action = $route->getAttribute('action');

@@ -9,7 +9,7 @@
 
             $this->app()->user()->setAttribute('admin', true);
 
-            $this->app()->httpResponse()->redirect('/vbMifare/admin/home/index.html');
+            $this->app()->httpResponse()->redirect('/admin/home/index.html');
         }
     }
 ?>

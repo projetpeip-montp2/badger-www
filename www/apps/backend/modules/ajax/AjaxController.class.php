@@ -5,7 +5,7 @@
 		
         public function executeIndex(HTTPRequest $request)
         {
-			$this->app()->httpResponse()->redirect('/vbMifare/admin/home/index.html');
+			$this->app()->httpResponse()->redirect('/admin/home/index.html');
         }
 		
 		public function executeModifyText(HTTPRequest $request)

@@ -21,7 +21,7 @@
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
                 $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
-                $this->app()->httpResponse()->redirect('/vbMifare/home/index.html');
+                $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
             $count = $this->m_managers->getManagerOf('imageofpackage')->count($idPackage);
@@ -30,7 +30,7 @@
             {
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
                 $this->app()->user()->setFlashError($TEXT['Flash_ImageUnknown']);
-                $this->app()->httpResponse()->redirect('/vbMifare/home/index.html'); 
+                $this->app()->httpResponse()->redirect('/home/index.html'); 
             }
 
             $this->page()->addVar('packageName', $package[0]->getName($lang));
@@ -44,7 +44,7 @@
             $idPackage = $request->postData('idPackage');
             $imageNumber = $request->postData('imageNumber');
 
-            $this->app()->httpResponse()->redirect('/vbMifare/viewer/viewImage-' . $idPackage . '-' . $imageNumber . '.html'); 
+            $this->app()->httpResponse()->redirect('/viewer/viewImage-' . $idPackage . '-' . $imageNumber . '.html'); 
         }
     }
 ?>

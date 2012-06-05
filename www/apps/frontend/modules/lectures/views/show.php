@@ -1,7 +1,7 @@
 <div class="doc-dispo">
     <?php
-        $documentsLink = '/vbMifare/lectures/showDocuments-' . $package->getId() . '.html';
-        $imagesLink = '/vbMifare/viewer/viewImage-' . $package->getId() . '-' . '1.html';
+        $documentsLink = '/lectures/showDocuments-' . $package->getId() . '.html';
+        $imagesLink = '/viewer/viewImage-' . $package->getId() . '-' . '1.html';
 
         $noDisplay = true;
     ?>

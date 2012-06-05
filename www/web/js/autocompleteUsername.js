@@ -21,7 +21,7 @@ function displayResults(response)
 
         if(found)
         {
-            results.append('<img src="/vbMifare/web/images/tools/iconOk.png"/>');
+            results.append('<img src="/web/images/tools/iconOk.png"/>');
     
             results.append('<select name="vbmifareSelectedLecture" id="vbmifareSelectedLecture">');
 
@@ -35,7 +35,7 @@ function displayResults(response)
 
         else
         {
-            results.append('<img src="/vbMifare/web/images/tools/iconError.png"/>');
+            results.append('<img src="/web/images/tools/iconError.png"/>');
 
             autocompleteResults = autocompleteResults.split(';');
 
@@ -59,7 +59,7 @@ function getResults(keywords)
 {  
     return $.ajax({
         type: "POST",
-        url: "/vbMifare/admin/ajax/autocompleteUsername.html",
+        url: "/admin/ajax/autocompleteUsername.html",
         data: { text:searchElement.val() }
     }).done(function(msg) {
         displayResults(msg);

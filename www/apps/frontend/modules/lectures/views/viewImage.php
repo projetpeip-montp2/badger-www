@@ -2,7 +2,7 @@
     <h1><?php echo $packageName; ?></h1>
 <?php
         var_dump($idPackage); var_dump($imageNumber); var_dump($count); die();
-    $filePath = '/vbMifare/uploads/admin/images/' . $idPackage . '_' . $imageNumber . '.jpg';
+    $filePath = '/uploads/admin/images/' . $idPackage . '_' . $imageNumber . '.jpg';
     // Form creation
     $form = new Form('', 'get');
 
@@ -19,7 +19,7 @@
 
     // Generate links
 
-    $baseLink = '/vbMifare/lectures/viewImage-';
+    $baseLink = '/lectures/viewImage-';
 
     $first = $baseLink . $idPackage . '-1.html';
 ?>

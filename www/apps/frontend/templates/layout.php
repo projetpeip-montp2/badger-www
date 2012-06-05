@@ -9,17 +9,17 @@
         <meta http-equiv="Content-Language" content="<?php echo $user->getAttribute('vbmifareLang'); ?>" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         
-        <link rel="stylesheet" href="/vbMifare/web/styles/style.css" type="text/css" />
+        <link rel="stylesheet" href="/web/styles/style.css" type="text/css" />
     </head>
     
     <body>
         <div id="top">
 	        <div id="top-content" align="right">
-                <a href="/vbMifare/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
-                    <img src="/vbMifare/web/images/tools/french_flag.jpg" alt="Français" /> Français
+                <a href="/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
+                    <img src="/web/images/tools/french_flag.jpg" alt="Français" /> Français
                 </a>
-                <a href="/vbMifare/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
-                    <img src="/vbMifare/web/images/tools/english_flag.jpg" alt="Anglais"/> Anglais
+                <a href="/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
+                    <img src="/web/images/tools/english_flag.jpg" alt="Anglais"/> Anglais
                 </a>
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div id="wrapper">
             <div id="wrapper-body">
                 <div id="header">
-                    <a href="/vbMifare/home/index.html"><div id="header-logo"><img src="/vbMifare/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
+                    <a href="/home/index.html"><div id="header-logo"><img src="/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
                     <div id="header-content">
                         <div id="header-info">
                         	<?php echo $user->getAttribute('logon'); ?>

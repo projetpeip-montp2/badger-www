@@ -131,7 +131,7 @@ function changedAvailability(element)
 	var packet = new Array();
 	
 	packet.push({"id": $parentTr.attr('data-id'), "idAvailability": $element.val(), "idPackage": $parentTr.attr('data-id-package')});
-	$.post("/vbMifare/admin/lectures/assignLectures.html", {
+	$.post("/admin/lectures/assignLectures.html", {
 		'jsonPacket': jQuery.stringify(packet)
 		}).error(onError).complete(function(data)
 		{

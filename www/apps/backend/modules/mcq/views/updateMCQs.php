@@ -54,4 +54,4 @@
 ?>
 </table>
 
-<script type="text/javascript" src="/vbMifare/web/js/confirmation.js"></script>
+<script type="text/javascript" src="/web/js/confirmation.js"></script>

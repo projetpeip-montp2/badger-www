@@ -26,7 +26,7 @@
                 {
                     require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
                     $this->app()->user()->setFlashError($TEXT['Flash_AlreadyAReportForAPackage']);
-                    $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+                    $this->app()->httpResponse()->redirect('/reports/index.html');
                 }
 
                 $fileData = $request->fileData('vbmifareReport');
@@ -40,7 +40,7 @@
                     {
                         require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
                         $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
-                        $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+                        $this->app()->httpResponse()->redirect('/reports/index.html');
                     }
 
                     $path = dirname(__FILE__).'/../../../../uploads/students/';
@@ -61,12 +61,12 @@
                 {
                     require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
                     $this->app()->user()->setFlashError($TEXT['Flash_UploadError']);
-                    $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+                    $this->app()->httpResponse()->redirect('/reports/index.html');
                 }
 
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
                 $this->app()->user()->setFlashInfo($TEXT['Flash_Uploaded']);
-                $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+                $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
             // Else display the form
@@ -79,7 +79,7 @@
             {
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
                 $this->app()->user()->setFlashError($TEXT['Flash_NoPackage']);
-                $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+                $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
             $this->page()->addVar('lang', $lang);
@@ -100,7 +100,7 @@
                 // Redirection
                 // TODO: Message en anglais
                 $this->app()->user()->setFlashInfo('Le rapport "' . $request->postData('ReportName') . '" du package "' . $request->postData('PackageName') . '" a été supprimé.');
-                $this->app()->httpResponse()->redirect('/vbMifare/reports/deleteReport.html');
+                $this->app()->httpResponse()->redirect('/reports/deleteReport.html');
             }
 
             // Else display the form
@@ -111,7 +111,7 @@
             {
                 require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
                 $this->app()->user()->setFlashError($TEXT['Flash_NoReport']);
-                $this->app()->httpResponse()->redirect('/vbMifare/reports/index.html');
+                $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
             $this->page()->addVar('lang', $lang);

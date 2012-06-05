@@ -33,7 +33,7 @@ function addAvailabilityHTML(element, data)
 
 function addAvailabilityEntry(element)
 {
-	$.post("/vbMifare/admin/ajax/addEntry.html", {
+	$.post("/admin/ajax/addEntry.html", {
 	'data-id': $(element).attr('data-id'),
 	'data-entry-name': $(element).attr('data-entry-name')
 	}).error(onError).complete(function(data)
@@ -55,7 +55,7 @@ function addClassroomHTML(element, data)
 
 function addClassroomEntry(element)
 {
-	$.post("/vbMifare/admin/ajax/addEntry.html", {
+	$.post("/admin/ajax/addEntry.html", {
 	'data-entry-name': $(element).attr('data-entry-name'),
 	'data-id': -1
 	}).error(onError).complete(function(data)
@@ -89,7 +89,7 @@ function finishSendTextForm(element, data, tagName)
 
 function sendTextForm(element, tagName)
 {
-	$.post("/vbMifare/admin/ajax/modifyText.html", {
+	$.post("/admin/ajax/modifyText.html", {
 	'data-entry-name': $(element).attr('data-entry-name'),
 	'data-field-name': $(element).attr('data-field-name'),
 	'data-form-type': $(element).attr('data-form-type'),
@@ -123,7 +123,7 @@ function finishDeleteEntry(element, data)
 function deleteEntry(element)
 {
 	if (window.confirm("Etes-vous sûr de vouloir supprimer cet élément ?"))
-		$.post("/vbMifare/admin/ajax/deleteEntry.html", {
+		$.post("/admin/ajax/deleteEntry.html", {
 		'data-entry-name': $(element).attr('data-entry-name'),
 		'data-id': $(element).attr('data-id')}).error(onError).complete(function(data, textStatus)
 		{

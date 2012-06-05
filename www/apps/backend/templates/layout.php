@@ -9,14 +9,14 @@
         <meta http-equiv="Content-Language" content="fr" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         
-        <link rel="stylesheet" href="/vbMifare/web/styles/style.css" type="text/css" />
+        <link rel="stylesheet" href="/web/styles/style.css" type="text/css" />
     </head>
     
     <body>
         <div id="wrapper">
             <div id="wrapper-body">
                 <div id="header">
-                    <a href="/vbMifare/admin/home/index.html"><div id="header-logo"><img src="/vbMifare/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
+                    <a href="/admin/home/index.html"><div id="header-logo"><img src="/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
                 </div>
 
                 <div id="content">

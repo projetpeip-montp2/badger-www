@@ -20,7 +20,7 @@
 
     // Generate links to navigate
 
-    $baseLink = '/vbMifare/viewer/viewImage-';
+    $baseLink = '/viewer/viewImage-';
 
     if($imageNumber > 1)
     {
@@ -55,7 +55,7 @@
     }
 
     // Generate image
-    $filePath = '/vbMifare/uploads/admin/images/' . $idPackage . '_' . $imageNumber . '.jpg';
+    $filePath = '/uploads/admin/images/' . $idPackage . '_' . $imageNumber . '.jpg';
     $fileName = basename($filePath);
 ?>
     <br/>

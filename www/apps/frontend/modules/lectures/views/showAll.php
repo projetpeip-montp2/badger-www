@@ -5,7 +5,7 @@
 
     foreach($packages as $package)
     {
-        $link = '/vbMifare/lectures/show-'. $package->getId() .'.html'
+        $link = '/lectures/show-'. $package->getId() .'.html'
 ?>
         <li>
             <a href="<?php echo $link; ?>"><?php echo $package->getName($lang); ?></a>

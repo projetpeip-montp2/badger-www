@@ -1,6 +1,6 @@
 function sendValue(e)
 {
-    $.post("/vbMifare/admin/ajax/modifyText.html", {
+    $.post("/admin/ajax/modifyText.html", {
 		'data-id': $(e).attr('data-id'),
         'data-entry-name': $(e).attr('data-entry-name'),
         'data-field-name': $(e).attr('data-field-name'),

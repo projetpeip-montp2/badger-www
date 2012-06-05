@@ -38,5 +38,5 @@
     echo $form->toString();
 ?>
 
-<script type="text/javascript" src="/vbMifare/web/js/changeCheckboxesStateForm.js"></script>
+<script type="text/javascript" src="/web/js/changeCheckboxesStateForm.js"></script>
 
