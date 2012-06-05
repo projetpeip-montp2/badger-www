@@ -1,10 +1,29 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \class Date
+    ///
+    /// \brief
+    /// Utility class to handle dates to generate string and
+    /// SQL formats.
+    /// Also allows to compare dates in an easier way.
+    ////////////////////////////////////////////////////////////
     class Date
     {
         private $m_year;
         private $m_month;
         private $m_day;
 
+        ////////////////////////////////////////////////////////////
+        /// \function __construct()
+        ///
+        /// \brief
+        /// Default constructor of the Date class
+        /// Initializes the variables of the class
+        ///
+        /// \param day
+        /// \param month
+        /// \param year
+        ////////////////////////////////////////////////////////////
         public function __construct($day = 1, $month = 1, $year = 2000)
         {
             $this->set($day, $month, $year);
@@ -17,6 +36,15 @@
             $this->setDay($day);
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function setFromString
+        ///
+        /// \brief
+        /// Parses a date from a string format (DD-MM-YYYY)
+        /// Throws an exception if the format is not respected
+        ///
+        /// \param date Date sent in a string
+        ////////////////////////////////////////////////////////////
         public function setFromString($date)
         {
             if(!Date::check($date))
@@ -26,9 +54,17 @@
                 $this->set(intval($dateArray[0]), intval($dateArray[1]), intval($dateArray[2]));
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function setFromMySQLResult
+        ///
+        /// \brief
+        /// Parses a date from the MySQL format (YYYY-MM-DD)
+        ///
+        /// \param date Date sent in a string
+        ////////////////////////////////////////////////////////////
         public function setFromMySQLResult($date)
         {
-            // Revert MySQL date format: YYYYMMDD -> DDMMYYYY
+            // Revert MySQL date format: YYYY-MM-DD -> DD-MM-YYYY
             $this->setFromString( implode('-', array_reverse(explode('-',$date))) );
         }
 
@@ -91,6 +127,15 @@
             return $this->m_year;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function isLeapYear
+        ///
+        /// \brief
+        /// Compare two dates
+        ///
+        /// \param 
+        /// \return -1 if date1 < date2 | 1 if date1 > date2 | 0 if equal
+        ////////////////////////////////////////////////////////////
         static public function isLeapYear($year)
         {
             if($year < 0)
@@ -150,9 +195,9 @@
 
 
         ////////////////////////////////////////////////////////////
-        /// \brief Return the day of the week for a date.
+        /// \brief Return the day of the week for a date
         ///
-        /// \warning: Work only with date greater than 1582.
+        /// \warning: Work only with date greater than 1582
         ///
         /// \params date : Date
         ///

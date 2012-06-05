@@ -1,4 +1,15 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \brief Class BackController
+    ///
+    /// A BackController is an abstract class that inherits from the
+    /// ApplicationComponent. It is meant to be derivated into
+    /// concrete controllers to handle specifically each part of
+    /// the website.
+    /// The BackController contains the page sent to the user,
+    /// information about which action of the Controller must be
+    /// executed, and the managers used during the execution
+    ////////////////////////////////////////////////////////////
     abstract class BackController extends ApplicationComponent
     {
         protected $m_action = '';
@@ -6,7 +17,17 @@
         protected $m_page = null;
         protected $m_view = '';
         protected $m_managers = null;
-        
+
+        ////////////////////////////////////////////////////////////
+        /// \brief function __construct()
+        ///
+        /// Default constructor of the BackController class
+        /// Initializes the variables of the class
+        ///
+        /// \param app Reference to the Application
+        /// \param module Name of the module
+        /// \param action Name of the action
+        ////////////////////////////////////////////////////////////
         public function __construct(Application $app, $module, $action)
         {
             parent::__construct($app);
@@ -18,7 +39,13 @@
             $this->setAction($action);
             $this->setView($action);
         }
-        
+
+        ////////////////////////////////////////////////////////////
+        /// \brief function execute()
+        ///
+        /// Executes the specific action contained in the module
+        /// Throws an exception when the action doesn't exist.
+        ////////////////////////////////////////////////////////////
         public function execute()
         {
             $method = 'execute'.ucfirst($this->m_action);

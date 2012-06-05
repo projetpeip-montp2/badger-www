@@ -1,12 +1,8 @@
     TODO list
 
 - Général:
-    - Commenter le code!!
     - Inclure la langue à chaque entête de controlleur Frontend (à tester)
-    - Système de log
-    - Fil d'ariane
     - Entrée dans le test du FORM: PostExists à la place de PostData
-    - Avec les clés étrangères bien spécifiées, il est possible de supprimer les dépendances automatiquement
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
 
 
