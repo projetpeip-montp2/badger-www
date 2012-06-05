@@ -85,17 +85,23 @@
             $schoolYear = $student->getSchoolYear();
             $mcqStatus = $student->getMCQStatus();
 
+            // TODO: Sélectionner que les bons QCMs, fonctionne pas avec PEIP 2
+
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
-            $mcqs = $managerMCQ->get($department, $schoolYear);
+            $mcqs = $managerMCQ->get();
 
             $goodDate = false;
             $goodTime = false;
+            $goodDptYear = false;
 
             $currentDate = Date::current();
             $currentTime = Time::current();
 
             foreach($mcqs as $mcq)
             {
+                if($department == $mcq->getDepartment() && $schoolYear == $mcq->getSchoolYear())
+                    $goodDptYear = true;
+
                 if(Date::compare($currentDate, $mcq->getDate()) == 0)
                     $goodDate = true;
 
@@ -104,7 +110,7 @@
                     $goodTime = true;
             }
 
-            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime);
+            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime && $goodDptYear);
         }
 
         private function selectQuestions()

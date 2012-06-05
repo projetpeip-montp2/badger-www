@@ -41,7 +41,7 @@ function displayResults(response)
 
             for (var i=0; i<autocompleteResults.length ; i++) 
             {
-                results.append('<div class="autocompleteResults'+ i +'">' + autocompleteResults[i] + '</div>');
+                results.append('<div class="autocompleteResults'+ i +'">' + '<a>' + autocompleteResults[i] + '</a>' + '</div>');
 
                 $('.autocompleteResults' + i).bind('click',function(){
                     chooseResult( $(this) );

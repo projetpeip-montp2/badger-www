@@ -61,9 +61,9 @@
                     ?>
 
                     <div id="registrations-infos">
-                        Date de fin des inscriptions: <?php echo $limitDate; ?>
+                        <?php echo $TEXT['Info_LimitDate'] .$limitDate; ?>
                         <br/>
-                        Inscriptions: <?php echo $packagesChosen . '/' . $packagesToChoose; ?>
+                        <?php echo $TEXT['Info_RegistrationsCount'] . $packagesChosen . '/' . $packagesToChoose; ?>
                     </div>
 
                     <?php

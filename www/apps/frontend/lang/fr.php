@@ -30,6 +30,9 @@
     $TEXT['Flash_NoReport'] = "Vous n'avez uploadé aucune rapport.";
     $TEXT['Flash_NoPlace'] = "Plus de place disponible.";
 
+    $TEXT['Info_LimitDate'] = "Date limite des inscriptions: ";
+    $TEXT['Info_RegistrationsCount'] = "Inscriptions: ";
+
     $TEXT['Package_ListOf'] = "Liste des packages :";
     $TEXT['Package_ListOfSubscribed'] = "Liste des packages enregistrés:";
     $TEXT['Package_ShowAll'] = "Afficher tous les packages";

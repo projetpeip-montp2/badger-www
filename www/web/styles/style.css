@@ -167,11 +167,10 @@ li {
 
 #flash
 {
-	background:#1F3B62;
+	background:#0099fc;
 	width: 50%;
 	margin: auto;
 	border: 2px solid black;
-    font-size: 22px;
     text-align: center; 
 }
 
@@ -218,17 +217,20 @@ li {
 
 .error
 {
-    color: red;
+    font-size: 22px;
+    color: white;
 }
 
 .warning
 {
-    color: orange;
+    font-size: 22px;
+    color: white;
 }
 
 .info
 {
-    color: green;
+    font-size: 22px;
+    color: white;
 }
 
 /* ------------------------ Message typé ------------------------ */
@@ -362,7 +364,7 @@ table#editableTable .editable:hover
 	vertical-align: middle;
 }
 
-p.editable, p.addable, p.ajaxInput, p.separator
+p.editable, p.addable, p.ajaxInput, p.separator, p.selectable
 {
 	cursor: pointer;
 	display: inline;
