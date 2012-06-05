@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="vbmifare" database="MySql" >
-	<schema name="vbmifare" schemaname="vbmifare" defo="y" >
+	<schema name="vbmifare" schemaname="vbmifare" >
 		<table name="Answers" >
 			<column name="Id_answer" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Id_question" type="SMALLINT" jt="5" unsigned="y" />
@@ -166,24 +166,6 @@
 				<column name="Id_package" />
 			</index>
 		</table>
-		<table name="Polytech.Users" >
-			<column name="Username" type="VARCHAR" length="60" jt="12" mandatory="y" />
-			<column name="Num_Etudiant" type="CHAR" length="8" jt="1" />
-			<column name="Mifare" type="CHAR" length="8" jt="1" />
-			<column name="MifareControleAcces" type="INT" jt="4" />
-			<column name="Actif" type="CHAR" length="1" jt="1" />
-			<column name="Nom" type="CHAR" length="30" jt="1" />
-			<column name="Prenom" type="CHAR" length="20" jt="1" />
-			<column name="VraiNom" type="CHAR" length="30" jt="1" />
-			<column name="VraiPrenom" type="CHAR" length="20" jt="1" />
-			<column name="Status" type="ENUM" length="1" jt="12" />
-			<column name="Departement" type="ENUM" jt="12" />
-			<column name="Complement_Departement" type="ENUM" jt="12" />
-			<column name="anApogee" type="TINYINT" jt="-6" />
-			<index name="pk_users" unique="PRIMARY_KEY" >
-				<column name="Username" />
-			</index>
-		</table>
 		<table name="Questions" >
 			<column name="Id_questions" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
@@ -203,7 +185,7 @@
 			</fk>
 		</table>
 		<table name="QuestionsOfUsers" >
-			<column name="Id_user" type="VARCHAR" length="60" jt="12" unsigned="y" />
+			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
 			<column name="Id_question" type="SMALLINT" jt="5" unsigned="y" />
 			<index name="idx_questionsofusers" unique="NORMAL" >
 				<column name="Id_user" />
@@ -253,9 +235,27 @@
 			<index name="pk_users_0" unique="UNIQUE" >
 				<column name="Id_user" />
 			</index>
-			<fk name="fk_users_polytech.users" to_schema="vbmifare" to_table="Polytech.Users" delete_action="CASCADE" >
+			<fk name="fk_users_userspolytech" to_schema="vbmifare" to_table="UsersPolytech" delete_action="CASCADE" >
 				<fk_column name="Id_user" pk="Username" />
 			</fk>
+		</table>
+		<table name="UsersPolytech" >
+			<column name="Username" type="VARCHAR" length="60" jt="12" mandatory="y" />
+			<column name="Num_Etudiant" type="CHAR" length="8" jt="1" />
+			<column name="Mifare" type="CHAR" length="8" jt="1" />
+			<column name="MifareControleAcces" type="INT" jt="4" />
+			<column name="Actif" type="CHAR" length="1" jt="1" />
+			<column name="Nom" type="CHAR" length="30" jt="1" />
+			<column name="Prenom" type="CHAR" length="20" jt="1" />
+			<column name="VraiNom" type="CHAR" length="30" jt="1" />
+			<column name="VraiPrenom" type="CHAR" length="20" jt="1" />
+			<column name="Status" type="ENUM" length="1" jt="12" />
+			<column name="Departement" type="ENUM" jt="12" />
+			<column name="Complement_Departement" type="ENUM" jt="12" />
+			<column name="anApogee" type="TINYINT" jt="-6" />
+			<index name="pk_users" unique="PRIMARY_KEY" >
+				<column name="Username" />
+			</index>
 		</table>
 	</schema>
 	<layout name="vbmifare" >
@@ -266,16 +266,16 @@
 		<entity schema="vbmifare" name="Answers" x="826" y="308" />
 		<entity schema="vbmifare" name="AnswersOfUsers" x="784" y="532" />
 		<entity schema="vbmifare" name="Availabilities" x="252" y="42" />
-		<entity schema="vbmifare" name="DocumentsOfPackages" x="420" y="84" />
 		<entity schema="vbmifare" name="Lectures" x="42" y="210" />
 		<entity schema="vbmifare" name="Registrations" x="56" y="630" />
-		<entity schema="vbmifare" name="Polytech.Users" x="1008" y="588" />
 		<entity schema="vbmifare" name="Config" x="364" y="728" />
 		<entity schema="vbmifare" name="DocumentsOfUsers" x="308" y="588" />
-		<entity schema="vbmifare" name="Users" x="602" y="644" />
-		<entity schema="vbmifare" name="QuestionsOfUsers" x="490" y="490" />
 		<entity schema="vbmifare" name="ImagesOfPackages" x="616" y="196" />
+		<entity schema="vbmifare" name="DocumentsOfPackages" x="420" y="84" />
+		<entity schema="vbmifare" name="QuestionsOfUsers" x="490" y="490" />
 		<entity schema="vbmifare" name="Packages" x="322" y="294" />
+		<entity schema="vbmifare" name="UsersPolytech" x="980" y="532" />
+		<entity schema="vbmifare" name="Users" x="602" y="644" />
 		<group name="vbMifare" color="c4e0f9" >
 			<entity schema="vbmifare" name="Answers" />
 			<entity schema="vbmifare" name="AnswersOfUsers" />
@@ -293,6 +293,7 @@
 			<entity schema="vbmifare" name="QuestionsOfUsers" />
 			<entity schema="vbmifare" name="Registrations" />
 			<entity schema="vbmifare" name="Users" />
+			<entity schema="vbmifare" name="UsersPolytech" />
 		</group>
 	</layout>
 </project>

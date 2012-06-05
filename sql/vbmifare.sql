@@ -48,6 +48,23 @@ CREATE TABLE vbMifare.`Questions` (
 
 CREATE INDEX idx_questions ON vbMifare.`Questions` ( `Id_package` );
 
+CREATE TABLE vbMifare.`UsersPolytech` ( 
+	`Username`           VARCHAR( 60 ) NOT NULL,
+	`Num_Etudiant`       CHAR( 8 ),
+	`Mifare`             CHAR( 8 ),
+	`MifareControleAcces` INT,
+	`Actif`              CHAR( 1 ),
+	`Nom`                CHAR( 30 ),
+	`Prenom`             CHAR( 20 ),
+	`VraiNom`            CHAR( 30 ),
+	`VraiPrenom`         CHAR( 20 ),
+--	`Status`             ENUM,
+--	`Departement`        ENUM,
+--	`Complement_Departement` ENUM,
+	`anApogee`           TINYINT,
+	CONSTRAINT pk_users PRIMARY KEY ( `Username` )
+ );
+
 CREATE TABLE vbMifare.`Answers` ( 
 	`Id_answer`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_question`        SMALLINT UNSIGNED,
@@ -108,6 +125,13 @@ CREATE INDEX idx_lectures ON vbMifare.`Lectures` ( `Id_package` );
 
 CREATE INDEX idx_lectures_0 ON vbMifare.`Lectures` ( `Id_availability` );
 
+CREATE TABLE vbMifare.`Users` ( 
+	`Id_user`            VARCHAR( 60 ),
+	`MCQStatus`          ENUM( 'Visitor','CanTakeMCQ','Generated','Taken' ) ,
+	`Mark`               FLOAT,
+	CONSTRAINT pk_users_0 UNIQUE ( `Id_user` )
+ );
+
 CREATE TABLE vbMifare.`AnswersOfUsers` ( 
 	`Id_user`            VARCHAR( 60 ),
 	`Id_question`        SMALLINT UNSIGNED,
@@ -131,7 +155,7 @@ CREATE INDEX idx_documentsofusers ON vbMifare.`DocumentsOfUsers` ( `Id_package` 
 CREATE INDEX idx_documentsofusers_0 ON vbMifare.`DocumentsOfUsers` ( `Id_user` );
 
 CREATE TABLE vbMifare.`QuestionsOfUsers` ( 
-	`Id_user`            VARCHAR( 60 ) UNSIGNED,
+	`Id_user`            VARCHAR( 60 ),
 	`Id_question`        SMALLINT UNSIGNED
  );
 
@@ -151,13 +175,6 @@ CREATE INDEX idx_registrations ON vbMifare.`Registrations` ( `Id_lecture` );
 CREATE INDEX idx_registrations_0 ON vbMifare.`Registrations` ( `Id_package` );
 
 CREATE INDEX idx_registrations_1 ON vbMifare.`Registrations` ( `Id_user` );
-
-CREATE TABLE vbMifare.`Users` ( 
-	`Id_user`            VARCHAR( 60 ),
-	`MCQStatus`          ENUM( 'Visitor','CanTakeMCQ','Generated','Taken' ) ,
-	`Mark`               FLOAT,
-	CONSTRAINT pk_users_0 UNIQUE ( `Id_user` )
- );
 
 ALTER TABLE vbMifare.`Answers` ADD CONSTRAINT fk_answers_questions FOREIGN KEY ( `Id_question` ) REFERENCES vbMifare.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
@@ -193,12 +210,12 @@ ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_packages FO
 
 ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Users` ADD CONSTRAINT fk_users_polytech.users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Polytech.Users`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE vbMifare.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 
 
 
-INSERT INTO `Config` (`Name`, `Value`) VALUES
+INSERT INTO vbMifare.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
 ('presentMark', '5'),
