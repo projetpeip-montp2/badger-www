@@ -1,11 +1,28 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \class Page
+    ///
+    /// \brief
+    /// A Page is a class that inherits from the ApplicationComponent.
+    /// The Page contains variables sent from the Controller to the View,
+    /// and specific information about what is sent to the user.
+    ////////////////////////////////////////////////////////////
     class Page extends ApplicationComponent
     {
         protected $m_filesToInclude = array();
         protected $m_contentFile;
         protected $m_vars = array();
 		private	  $m_isAjaxPage = FALSE;
-		
+	
+        ////////////////////////////////////////////////////////////
+        /// \function __construct
+        ///
+        /// \brief
+        /// Default constructor of the Page class
+        /// Includes the correct language file for the frontend
+        ///
+        /// \param app Reference to the Application
+        ////////////////////////////////////////////////////////////
         public function __construct(Application $app)
         {
             parent::__construct($app);
@@ -14,6 +31,15 @@
                 $this->addFileToInclude(dirname(__FILE__).'/../apps/frontend/lang/'.$app->user()->getAttribute('vbmifareLang').'.php');
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function addVar
+        ///
+        /// \brief
+        /// Creates a new var passed to the View from the Controller
+        ///
+        /// \param var Name of the variable
+        /// \param value Value of the variable
+        ////////////////////////////////////////////////////////////
         public function addVar($var, $value)
         {
             if (!is_string($var) || is_numeric($var) || empty($var))
@@ -22,11 +48,26 @@
             $this->m_vars[$var] = $value;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function addFileToInclude
+        ///
+        /// \brief
+        /// Registers which file must be included in the page
+        ///
+        /// \param filename Name of the file
+        ////////////////////////////////////////////////////////////
         public function addFileToInclude($filename)
         {
             $this->m_filesToInclude[] = $filename;
         }
         
+        ////////////////////////////////////////////////////////////
+        /// \function getGeneratedPage
+        ///
+        /// \brief
+        /// Returns the page once it is generated (ie: file included etc)
+        /// \return Return of the output buffer
+        ////////////////////////////////////////////////////////////
         public function getGeneratedPage()
         {
 			if (!file_exists($this->m_contentFile))

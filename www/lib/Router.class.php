@@ -1,10 +1,26 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \class Router
+    ///
+    /// \brief
+    /// A Router is a class that inherits from the ApplicationComponent.
+    /// The Router handles the URL to access the correct Controller
+    /// from the routes.xml file
+    ////////////////////////////////////////////////////////////
     class Router extends ApplicationComponent
     {
+        ////////////////////////////////////////////////////////////
+        /// \function getController
+        ///
+        /// \brief
+        /// Loads the right Controller based on the right URL
+        ////////////////////////////////////////////////////////////
         public function getController()
         {
             $dom = new DOMDocument;
             $dom->load(dirname(__FILE__).'/../apps/'.$this->app()->name().'/config/routes.xml');
+
+            // Search the routes.xml file to find a route matching with the URL
             foreach ($dom->getElementsByTagName('route') as $route)
             {
                 if (preg_match('`^'.'/vbMifare'.$route->getAttribute('url').'$`', $this->app()->httpRequest()->requestURI(), $matches))                
@@ -16,7 +32,7 @@
                     $file = dirname(__FILE__).'/../apps/'.$this->app()->name().'/modules/'.$module.'/'.$classname.'.class.php';
                     
                     if (!file_exists($file))
-                       throw new RuntimeException('The module use by the route "' . $route->getAttribute('url') . '" does not exist');
+                       throw new RuntimeException('The module used by the route "' . $route->getAttribute('url') . '" does not exist');
        
                     require $file;
 					

@@ -1,8 +1,24 @@
 <?php
     session_start();
     
+    ////////////////////////////////////////////////////////////
+    /// \class User
+    ///
+    /// \brief
+    /// A User is a class that inherits from the ApplicationComponent.
+    /// The User handles session variables, small messages displayed for
+    /// a specific user, his status (logged or not), etc.
+    ////////////////////////////////////////////////////////////
     class User extends ApplicationComponent
     {
+        ////////////////////////////////////////////////////////////
+        /// \function __construct
+        ///
+        /// \brief
+        /// Default constructor of the User class
+        ///
+        /// \param app Reference to the Application
+        ////////////////////////////////////////////////////////////
         public function __construct(Application $app)
         {
             parent::__construct($app);
@@ -20,11 +36,28 @@
                 $this->setAttribute('vbmifareLang', 'fr');
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function setAttribute
+        ///
+        /// \brief
+        /// Creates a new session variable
+        ///
+        /// \param attr Name of the variable
+        /// \param value Value of the variable
+        ////////////////////////////////////////////////////////////
         public function setAttribute($attr, $value)
         {
             $_SESSION[$attr] = $value;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function unsetAttribute
+        ///
+        /// \brief
+        /// Deletes a new session variable
+        ///
+        /// \param attr Name of the variable
+        ////////////////////////////////////////////////////////////
         public function unsetAttribute($attr)
         {
             if(!$this->existsAttribute($attr))
@@ -33,6 +66,16 @@
             unset($_SESSION[$attr]);
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function getAttribute
+        ///
+        /// \brief
+        /// Access a new session variable
+        ///
+        /// \param attr Name of the variable
+        ///
+        /// \return Value of the variable
+        ////////////////////////////////////////////////////////////
         public function getAttribute($attr)
         {
             if(!$this->existsAttribute($attr))
@@ -41,6 +84,16 @@
             return $_SESSION[$attr];
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function existsAttribute
+        ///
+        /// \brief
+        /// Tells whether a session variable exists or not
+        ///
+        /// \param attr Name of the variable
+        ///
+        /// \return true if exists, false elsewhere
+        ////////////////////////////////////////////////////////////
         public function existsAttribute($attr)
         {
             return isset($_SESSION[$attr]);
