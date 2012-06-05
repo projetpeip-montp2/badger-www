@@ -1,6 +1,13 @@
 <?php
     require_once dirname(__FILE__).'/../../lib/autoload.php';
-    
+
+    ////////////////////////////////////////////////////////////
+    /// \class FrontendApplication
+    ///
+    /// \brief
+    /// Defines the typical behavior of the Frontend application
+    /// by implementing the run method
+    ////////////////////////////////////////////////////////////
     class FrontendApplication extends Application
     {
         public function __construct()

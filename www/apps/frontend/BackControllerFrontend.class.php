@@ -1,6 +1,24 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \class BackControllerFrontend
+    ///
+    /// \brief
+    /// A BackControllerFrontend is an abstract class that inherits
+    /// from the BackController.
+    /// It is meant to be derivated into concrete controllers
+    ///to handle specifically each part of Frontend.
+    /// The BackControllerFrontend specifies some information
+    /// that are only displayed on the Frontend layout.
+    ////////////////////////////////////////////////////////////
     abstract class BackControllerFrontend extends BackController
     {
+        ////////////////////////////////////////////////////////////
+        /// \function getInfos
+        ///
+        /// \brief
+        /// Creates view variables for information about subscriptions
+        /// to packages and the limit date
+        ////////////////////////////////////////////////////////////
         public function getInfos()
         {
             $limitDate = new Date;

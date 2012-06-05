@@ -1,6 +1,13 @@
 <?php
     require_once dirname(__FILE__).'/../../lib/autoload.php';
-    
+
+    ////////////////////////////////////////////////////////////
+    /// \class BackendApplication
+    ///
+    /// \brief
+    /// Defines the typical behavior of the Backend application
+    /// by implementing the run method
+    ////////////////////////////////////////////////////////////
     class BackendApplication extends Application
     {
         public function __construct()
