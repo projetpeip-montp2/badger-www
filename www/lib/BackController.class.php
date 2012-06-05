@@ -1,7 +1,8 @@
 <?php
     ////////////////////////////////////////////////////////////
-    /// \brief Class BackController
+    /// \class BackController
     ///
+    /// \brief
     /// A BackController is an abstract class that inherits from the
     /// ApplicationComponent. It is meant to be derivated into
     /// concrete controllers to handle specifically each part of
@@ -19,8 +20,9 @@
         protected $m_managers = null;
 
         ////////////////////////////////////////////////////////////
-        /// \brief function __construct()
+        /// \function __construct
         ///
+        /// \brief
         /// Default constructor of the BackController class
         /// Initializes the variables of the class
         ///
@@ -41,8 +43,9 @@
         }
 
         ////////////////////////////////////////////////////////////
-        /// \brief function execute()
+        /// \function execute
         ///
+        /// \brief
         /// Executes the specific action contained in the module
         /// Throws an exception when the action doesn't exist.
         ////////////////////////////////////////////////////////////

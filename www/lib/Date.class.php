@@ -14,7 +14,7 @@
         private $m_day;
 
         ////////////////////////////////////////////////////////////
-        /// \function __construct()
+        /// \function __construct
         ///
         /// \brief
         /// Default constructor of the Date class
@@ -131,10 +131,10 @@
         /// \function isLeapYear
         ///
         /// \brief
-        /// Compare two dates
+        /// Tells if a year is a leap year or not
         ///
-        /// \param 
-        /// \return -1 if date1 < date2 | 1 if date1 > date2 | 0 if equal
+        /// \param year
+        /// \return true if leap year, false elsewhere
         ////////////////////////////////////////////////////////////
         static public function isLeapYear($year)
         {
@@ -145,8 +145,14 @@
         }
         
         ////////////////////////////////////////////////////////////
-        /// \brief Compare two dates
-        /// \params
+        /// \function compare
+        ///
+        /// \brief
+        /// Compares two dates
+        ///
+        /// \param date1
+        /// \param date2
+        ///
         /// \return -1 if date1 < date2 | 1 if date1 > date2 | 0 if equal
         ////////////////////////////////////////////////////////////
         static public function compare(Date $date1 , Date $date2)
@@ -163,11 +169,27 @@
                 return ($date1->year() > $date2->year()) ? 1 : -1;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function toStringMySQL
+        ///
+        /// \brief
+        /// Gets the date as the MySQL date string format (YYYY-MM-DD)
+        ///
+        /// \return date as a MySQL date string
+        ////////////////////////////////////////////////////////////
         public function toStringMySQL()
         {
             return $this->m_year.'-'.$this->m_month.'-'.$this->m_day;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function __toString
+        ///
+        /// \brief
+        /// Gets the date as the date string format (DD-MM-YYYY)
+        ///
+        /// \return date as a date string
+        ////////////////////////////////////////////////////////////
         public function __toString()
         {
             $output = '';
@@ -182,6 +204,14 @@
             return $output;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function current
+        ///
+        /// \brief
+        /// Gets the current date
+        ///
+        /// \return Current date
+        ////////////////////////////////////////////////////////////
         static public function current()
         {
             $currentDate = new Date;
@@ -190,24 +220,22 @@
             return $currentDate;
         }
 
-
-
-
-
         ////////////////////////////////////////////////////////////
-        /// \brief Return the day of the week for a date
+        /// \function dayOfWeek
+        ///
+        /// \brief Returns the day of the week for a date
         ///
         /// \warning: Work only with date greater than 1582
         ///
-        /// \params date : Date
+        /// \param date
         ///
-        /// \return 0: dimanche
-        ///         1: lundi
-        ///         2: mardi
-        ///         3: mercredi
-        ///         4: jeudi
-        ///         5: vendredi
-        ///         6: samedi
+        /// \return 0: Sunday
+        ///         1: Monday
+        ///         2: Tuesday
+        ///         3: Wednesday
+        ///         4: Thursday
+        ///         5: Friday
+        ///         6: Saturday
         ////////////////////////////////////////////////////////////
         static public function dayOfWeek(Date $date)
         {
@@ -225,6 +253,14 @@
             return $tmp % 7;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function check
+        ///
+        /// \brief
+        /// Checks the date format of a string
+        ///
+        /// \return true if correct, false elsewhere
+        ////////////////////////////////////////////////////////////
         static public function check($date)
         {
             return preg_match('#[0-9]{2}-[0-9]{2}-[0-9]{4}#', $date);

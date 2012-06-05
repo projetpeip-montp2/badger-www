@@ -1,7 +1,8 @@
 <?php
     ////////////////////////////////////////////////////////////
-    /// \brief Class ApplicationComponent
+    /// \class ApplicationComponent
     ///
+    /// \brief
     /// An ApplicationComponent is an abstract class derivated to
     /// create a concrete components such as the User, or
     /// the HTTP Resquests and Responses.
@@ -14,8 +15,9 @@
         private $m_app;
         
         ////////////////////////////////////////////////////////////
-        /// \brief function __construct()
+        /// \function __construct
         ///
+        /// \brief
         /// Default constructor of the ApplicationComponent class
         /// Initializes the reference to the Application
         ///

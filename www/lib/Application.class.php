@@ -1,7 +1,8 @@
 <?php
     ////////////////////////////////////////////////////////////
-    /// \brief Class Application
+    /// \class Application
     ///
+    /// \brief
     /// An Application is an abstract class derivated into
     /// a Backend and a Frontend.
     /// When a page is being generated, an Application instance
@@ -19,8 +20,9 @@
         private $m_user;
         
         ////////////////////////////////////////////////////////////
-        /// \brief function __construct()
+        /// \function __construct
         ///
+        /// \brief
         /// Default constructor of the Application class
         /// Initializes the variables contained in the class
         ////////////////////////////////////////////////////////////
@@ -36,8 +38,9 @@
         }
 
         ////////////////////////////////////////////////////////////
-        /// \brief function run()
+        /// \function run
         ///
+        /// \brief
         /// Abstract function to run the application
         ////////////////////////////////////////////////////////////
         abstract public function run();
