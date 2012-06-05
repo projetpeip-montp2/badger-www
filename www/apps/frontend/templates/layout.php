@@ -86,6 +86,7 @@
             </div>
     
                 <div id="footer">
+                    <a href="/home/legalNotice.html">Mentions légales</a>
                     <p>Droits réservés &copy; 2011 - 2012 Polytech'Montpellier</p>
                 </div>
             </div>

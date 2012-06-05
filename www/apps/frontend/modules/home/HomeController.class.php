@@ -13,6 +13,11 @@
 
         }
 
+        public function executeLegalNotice(HTTPRequest $request)
+        {
+
+        }
+
         public function executeChangeLang(HTTPRequest $request)
         {
             // Check that the lang sent by URL is available

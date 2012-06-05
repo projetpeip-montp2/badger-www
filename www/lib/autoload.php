@@ -1,4 +1,12 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \function autoload
+    ///
+    /// \brief
+    /// This function is meant to be called by spl_autoload_register.
+    /// It will automatically include the classes required during the
+    /// execution of the script.
+    ////////////////////////////////////////////////////////////
     function autoload($class)
     {
         $classes = array (

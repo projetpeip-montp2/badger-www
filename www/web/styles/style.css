@@ -405,7 +405,7 @@ p.packageTitle
 
 /* ------------------------ Footer ------------------------ */
 
-#footer {
+#footer, #footer a {
 	margin-top:100px;
 	padding:5px;
 	color:#FFF;
