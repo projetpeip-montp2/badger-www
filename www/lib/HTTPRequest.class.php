@@ -1,6 +1,24 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \class HTTPRequest
+    ///
+    /// \brief
+    /// An HTTPRequest is a class that inherits from the
+    /// ApplicationComponent.
+    /// The HTTPRequest is an interface to access GET and POST
+    /// vars sent by the user, his cookies, etc.
+    ////////////////////////////////////////////////////////////
     class HTTPRequest extends ApplicationComponent
     {
+        ////////////////////////////////////////////////////////////
+        /// \function addGetVar
+        ///
+        /// \brief
+        /// Creates a new GET variable
+        ///
+        /// \param key
+        /// \param value
+        ////////////////////////////////////////////////////////////
         public function addGetVar($key, $value)
         {
             $_GET[$key] = $value;

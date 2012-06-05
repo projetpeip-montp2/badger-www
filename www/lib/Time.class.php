@@ -1,10 +1,29 @@
 <?php
+    ////////////////////////////////////////////////////////////
+    /// \class Time
+    ///
+    /// \brief
+    /// Utility class to handle times to generate string and
+    /// SQL formats.
+    /// Also allows to compare times in an easier way.
+    ////////////////////////////////////////////////////////////
     class Time
     {
         private $m_hours;
         private $m_minutes;
         private $m_seconds;
 
+        ////////////////////////////////////////////////////////////
+        /// \function __construct
+        ///
+        /// \brief
+        /// Default constructor of the Time class
+        /// Initializes the variables of the class
+        ///
+        /// \param hours
+        /// \param minutes
+        /// \param seconds
+        ////////////////////////////////////////////////////////////
         public function __construct($hours = 0, $minutes = 0, $seconds = 0)
         {
             $this->set($hours, $minutes, $seconds);
@@ -17,6 +36,15 @@
             $this->setSeconds($seconds);
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function setFromString
+        ///
+        /// \brief
+        /// Parses a time from a string format (HH:MM:SS)
+        /// Throws an exception if the format is not respected
+        ///
+        /// \param time Time sent in a string
+        ////////////////////////////////////////////////////////////
         public function setFromString($time)
         {
             if(!Time::check($time))
@@ -82,8 +110,14 @@
 		
         
         ////////////////////////////////////////////////////////////
-        /// \brief Compare two times
-        /// \params
+        /// \function compare
+        ///
+        /// \brief
+        /// Compares two times
+        ///
+        /// \param time1
+        /// \param time2
+        ///
         /// \return -1 if time1 < time2 | 1 if time1 > time2 | 0 if equal
         ////////////////////////////////////////////////////////////
         static public function compare(Time $time1 , Time $time2)
@@ -100,11 +134,28 @@
                 return ($time1->hours() > $time2->hours()) ? 1 : -1;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function toStringMySQL
+        ///
+        /// \brief
+        /// Gets the time as the MySQL time string format (HH:MM:SS)
+        /// There is no padding with zeros
+        ///
+        /// \return time as a MySQL time string
+        ////////////////////////////////////////////////////////////
         public function toStringMySQL()
         {
             return $this->m_hours.':'.$this->m_minutes.':'.$this->m_seconds;
         }
 
+        ////////////////////////////////////////////////////////////
+        /// \function __toString
+        ///
+        /// \brief
+        /// Gets the time as the time string format (HH:MM:SS)
+        ///
+        /// \return time as a time string
+        ////////////////////////////////////////////////////////////
         public function __toString()
         {
             $output = '';
@@ -122,7 +173,14 @@
             return $output;
         }
 
-
+        ////////////////////////////////////////////////////////////
+        /// \function current
+        ///
+        /// \brief
+        /// Gets the current time
+        ///
+        /// \return Current time
+        ////////////////////////////////////////////////////////////
         static public function current()
         {
             $currentTime = new Time;
@@ -131,7 +189,14 @@
             return $currentTime;
         }
 
-
+        ////////////////////////////////////////////////////////////
+        /// \function check
+        ///
+        /// \brief
+        /// Checks the time format of a string
+        ///
+        /// \return true if correct, false elsewhere
+        ////////////////////////////////////////////////////////////
         static public function check($time)
         {
             return preg_match('#[0-9]{2}:[0-9]{2}:[0-9]{2}#', $time);
