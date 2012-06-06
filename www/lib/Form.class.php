@@ -24,6 +24,7 @@
         public function isInParagraph($isInParagraph)
         {
             $this->m_isInParagraph = $isInParagraph;
+            return $this;
         }
 
         public function getIsInParagraph()
