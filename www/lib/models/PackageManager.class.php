@@ -49,7 +49,6 @@
 
             foreach($packages as $package)
                 $req->execute(array($package->getCapacity(),
-                                    $package->getRegistrationsCount(),
                                     $package->getName('fr'),
                                     $package->getName('en'),
                                     $package->getDescription('fr'),
