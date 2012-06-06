@@ -1,5 +1,3 @@
-<h1>Ajouter des informations de badgages</h1>
-
 <p>
 Cette page permet de retrouver un élève et simuler sa présence à une 
 conférence. Pour cela:

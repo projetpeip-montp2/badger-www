@@ -1,4 +1,3 @@
-<p>
 <?php
     $form = new Form('', 'post');
 
@@ -9,4 +8,3 @@
 
     echo $form->toString();
 ?>
-</p>

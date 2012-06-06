@@ -1,4 +1,3 @@
-<h1>Modification/Suppression d'une inscription de promotions</h1>
 <p class="error">
     Attention à la suppression d'une séance de QCM, cela aura pour effet de supprimer toutes les inscriptions aux conférences des élèves !
 </p>

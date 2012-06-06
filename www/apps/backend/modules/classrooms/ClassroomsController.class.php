@@ -3,13 +3,16 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Gestion des salles et disponilités");
+
 			$classrooms = $this->m_managers->getManagerOf('classroom')->getWithAvailabilities();
-			
 			$this->Page()->addVar('classrooms', $classrooms);
         }
 
         public function executeAddClassrooms(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Uploader des salles");
+
             // If the form containing the filepath exist (aka the form is
             // submitted)
             if ($request->fileExists('vbmifareClassroomsCSV'))
@@ -56,6 +59,8 @@
 
         public function executeAddAvailabilities(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Uploader des disponilités");
+
             $flashMessage = '';
 
             // Upload availabilities for a classroom
@@ -114,7 +119,7 @@
             if(count($classrooms) == 0)
             {
                 $this->app()->user()->setFlashError('Il faut au moins une salle pour uploader des disponibilités.');
-                $this->app()->httpResponse()->redirect($request->requestURI());
+                $this->app()->httpResponse()->redirect('/admin/classrooms/index.html');
             }
 
             $this->page()->addVar('classrooms', $classrooms);

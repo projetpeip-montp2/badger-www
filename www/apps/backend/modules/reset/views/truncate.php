@@ -1,7 +1,3 @@
-<h1>Vider les tables</h1>
-
-<p>Cette page permet de vider certaines tables.</p>
-
 <p>Attention : </p>
 <ul>
     <li>Cette opération est irréversible!</li>

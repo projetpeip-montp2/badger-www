@@ -3,11 +3,13 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar("viewTitle", "Gestions des documents");
         }
 
         public function executeUploadPDF(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Uploader des PDF");
+
             // Handle POST data
             // Add PDF file to uploads folder
             if($request->fileExists('PDFFile'))
@@ -75,6 +77,8 @@
 
         public function executeUploadImages(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Uploader des images");
+
             // Handle POST data
             // Extract zip file and add images to uploads/admin/images folder
 
@@ -159,6 +163,8 @@
 
         public function executeDeletePDF(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Supprimer des PDF");
+
             // Handle POST data
             // Delete document
             if($request->postExists('Supprimer'))
@@ -196,6 +202,8 @@
 
         public function executeDeleteImages(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Supprimer des images");
+
             // Handle POST data
             // Delete images
             if($request->postData('Supprimer'))

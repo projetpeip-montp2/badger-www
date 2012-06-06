@@ -1,6 +1,3 @@
-<h1>Documents</h1>
-<p>Depuis cette page, vous pouvez supprimer les images associéees à un package.</p>
-
 <?php
     $forms = array();
 

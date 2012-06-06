@@ -1,6 +1,3 @@
-<h1>Documents</h1>
-<p>Depuis cette page, vous pouvez uploader les fichiers PDF pour un package.</p>
-
 <?php
     $form = new Form('', 'post');
 
