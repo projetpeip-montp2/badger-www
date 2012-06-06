@@ -14,6 +14,13 @@
     </head>
     
     <body>
+        <div id="top">
+	        <div id="top-content" align="right">
+                <!-- Logout-->
+                <a href="/home/logout.html">Déconnexion</a>
+            </div>
+        </div>
+
         <div id="wrapper">
             <div id="wrapper-body">
                 <div id="header">

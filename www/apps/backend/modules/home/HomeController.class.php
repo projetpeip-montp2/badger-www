@@ -5,5 +5,10 @@
         {
 
         }
+
+        public function executeLogout(HTTPRequest $request)
+        {
+            phpCAS::logout();
+        }
     }
 ?>

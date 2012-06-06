@@ -18,6 +18,11 @@
 
         }
 
+        public function executeLogout(HTTPRequest $request)
+        {
+            phpCAS::logout();
+        }
+
         public function executeChangeLang(HTTPRequest $request)
         {
             // Check that the lang sent by URL is available

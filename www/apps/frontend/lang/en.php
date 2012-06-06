@@ -1,6 +1,9 @@
 <?php
     $TEXT['Lang'] = "en";
     $TEXT['Page_Title'] = "Numerical Week";
+    $TEXT['Page_Logout'] = "Log out";
+    $TEXT['Page_English'] = "English";
+    $TEXT['Page_French'] = "French";
 
     $TEXT['Menu'] = "Menu";
     $TEXT['Menu_Home'] = "Home";
