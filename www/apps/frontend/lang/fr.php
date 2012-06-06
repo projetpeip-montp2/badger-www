@@ -15,6 +15,27 @@
     $TEXT['Menu_MCQ'] = "Q.C.M";
     $TEXT['Menu_Reports'] = "Rapports";
 
+    $TEXT['Title_HomeIndex'] = "Accueil";
+    $TEXT['Title_HomeGuide'] = "Guide d'utilisateur";
+    $TEXT['Title_HomeLegalNotice'] = "Mention légale";
+
+    $TEXT['Title_LectureIndex'] = "Packages";
+    $TEXT['Title_LectureShow'] = "Package";
+    $TEXT['Title_LectureShowAll'] = "Liste des packages";
+    $TEXT['Title_LectureShowDocuments'] = "Documents";
+    $TEXT['Title_LectureShowSubscribed'] = "Packages sélectionnés";
+    $TEXT['Title_LectureSchedule'] = "Planning";
+
+    $TEXT['Title_MCQIndex'] = "QCM";
+    $TEXT['Title_MCQTakeMCQ'] = "QCM";
+
+    $TEXT['Title_ReportsIndex'] = "Rapports";
+    $TEXT['Title_ReportsUpload'] = "Upload de rapports";
+    $TEXT['Title_ReportsDelete'] = "Suppression de rapports";
+
+    $TEXT['Title_ViewerIndex'] = "Visionneuse en ligne";
+    $TEXT['Title_ViewerViewImage'] = "Visionneuse en ligne";
+
     $TEXT['Form_Delete'] = "Supprimer";
 
     $TEXT['Flash_SubscribeVisitor'] = 'Vous ne pouvez pas vous inscrire car vous êtes un visiteur.';

@@ -8,6 +8,7 @@
         ////////////////////////////////////////////////////////////
         public function executeIndex(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_MCQIndex']);
             $this->page()->addVar('showMCQLink', $this->canTakeMCQ());
         }
 
@@ -16,6 +17,8 @@
         ////////////////////////////////////////////////////////////
         public function executeTakeMCQ(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_MCQTakeMCQ']);
+
             $logon = $this->app()->user()->getAttribute('logon');
 
             if(!$this->canTakeMCQ())

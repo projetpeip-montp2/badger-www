@@ -5,11 +5,13 @@
     {
         public function ExecuteIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ViewerIndex']);
         }
 
         public function ExecuteViewImage(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ViewerViewImage']);
+
             $idPackage = $request->getData('idPackage');
             $imageNumber = $request->getData('imageNumber');
 

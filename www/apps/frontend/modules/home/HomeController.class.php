@@ -5,17 +5,17 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_HomeIndex']);
         }
 
         public function executeGuide(HTTPRequest $request)
         {
-
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_HomeGuide']);
         }
 
         public function executeLegalNotice(HTTPRequest $request)
         {
-
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_HomeLegalNotice']);
         }
 
         public function executeLogout(HTTPRequest $request)

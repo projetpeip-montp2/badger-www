@@ -5,11 +5,13 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureIndex']);
         }
 
         public function executeShow(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureShow']);
+
             $username = $this->app()->user()->getAttribute('logon');
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
@@ -80,6 +82,8 @@
 
         public function executeShowDocuments(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureShowDocuments']);
+
             $idPackage = $request->getData('idPackage');
 
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
@@ -99,6 +103,8 @@
 
         public function executeShowAll(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureShowAll']);
+
             // Display all packages
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
@@ -110,6 +116,8 @@
 
         public function executeShowSubscribed(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureShowSubscribed']);
+
             // Display all packages subscribed
             $username = $this->app()->user()->getAttribute('logon');
 
@@ -132,6 +140,8 @@
 
         public function executeSchedule()
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureSchedule']);
+
             $username = $this->app()->user()->getAttribute('logon');
 
             $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);

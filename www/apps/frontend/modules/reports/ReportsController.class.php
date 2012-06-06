@@ -5,11 +5,13 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsIndex']);
         }
 
         public function executeUpload(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsUpload']);
+
             $sizeLimit = $this->m_managers->getManagerOf('config')->get('reportSizeLimitFrontend');
 
             $student = $this->app()->user()->getAttribute('vbmifareStudent');
@@ -83,6 +85,8 @@
 
         public function executeDeleteReport(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsDelete']);
+
             // Handle POST data
             // Delete report of user
             $lang = $this->app()->user()->getAttribute('vbmifareLang');

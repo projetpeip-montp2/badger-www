@@ -15,6 +15,27 @@
     $TEXT['Menu_MCQ'] = "M.C.Q";
     $TEXT['Menu_Reports'] = "Reports";
 
+    $TEXT['Title_HomeIndex'] = "Home";
+    $TEXT['Title_HomeGuide'] = "User guide";
+    $TEXT['Title_HomeLegalNotice'] = "Legal notice";
+
+    $TEXT['Title_LectureIndex'] = "Packages";
+    $TEXT['Title_LectureShow'] = "Package";
+    $TEXT['Title_LectureShowAll'] = "Packages list";
+    $TEXT['Title_LectureShowDocuments'] = "Documents";
+    $TEXT['Title_LectureShowSubscribed'] = "Subscribed packages";
+    $TEXT['Title_LectureSchedule'] = "Schedule";
+
+    $TEXT['Title_MCQIndex'] = "MCQ";
+    $TEXT['Title_MCQTakeMCQ'] = "MCQ";
+
+    $TEXT['Title_ReportsIndex'] = "Reports";
+    $TEXT['Title_ReportsUpload'] = "Upload reports";
+    $TEXT['Title_ReportsDelete'] = "Delete reports";
+
+    $TEXT['Title_ViewerIndex'] = "Online viewer";
+    $TEXT['Title_ViewerViewImage'] = "Online viewer";
+
     $TEXT['Form_Delete'] = "Delete";
 
     $TEXT['Flash_SubscribeVisitor'] = 'Your can\'t subscribe because you are a visitor.';
