@@ -1,4 +1,4 @@
-<h1>Documents du package <?php echo $packageName; ?><h1>
+<h1><?php echo $packageName; ?><h1>
 <ul>
 <?php
     foreach($documents as $document)

@@ -59,8 +59,6 @@
     $TEXT['Info_LimitDate'] = "Date limite des inscriptions: ";
     $TEXT['Info_RegistrationsCount'] = "Inscriptions: ";
 
-    $TEXT['Package_ListOf'] = "Liste des packages :";
-    $TEXT['Package_ListOfSubscribed'] = "Liste des packages enregistrés:";
     $TEXT['Package_ShowAll'] = "Afficher tous les packages";
     $TEXT['Package_ShowSubscribed'] = "Afficher les packages enregistrés";
     $TEXT['Package_NoSubscribtion'] = "Aucune inscription.";
@@ -74,7 +72,6 @@
     $TEXT['Package_NoDisplay'] = "Pas de documents disponibles";
     $TEXT['Package_NoLecture'] = "Aucune conférence.";
 
-    $TEXT['Lecture_Index'] = "Cette page vous permet d'effectuer des opérations sur les packages, comme l'inscription, où voir votre planning.";
     $TEXT['Lecture_Schedule'] = "Planning";
     $TEXT['Lecture_Date'] = "Date";
     $TEXT['Lecture_StartTime'] = "Horaire de début";
@@ -89,7 +86,6 @@
     $TEXT['Planning_Present'] = "Présent";
     $TEXT['Planning_Absent'] = "Absent";
 
-    $TEXT['Reports_Index'] = "Rapport";
     $TEXT['Reports_Upload'] = "Ajouter un rapport";
     $TEXT['Reports_Delete'] = "Voir mes rapports";
     $TEXT['Reports_Filename'] = "Nom du fichier";

@@ -59,8 +59,6 @@
     $TEXT['Info_LimitDate'] = "Limit date of registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";
 
-    $TEXT['Package_ListOf'] = "List of packages :";
-    $TEXT['Package_ListOfSubscribed'] = "List of packages subscribed:";
     $TEXT['Package_ShowAll'] = "Show all packages";
     $TEXT['Package_ShowSubscribed'] = "Show subscribed packages";
     $TEXT['Package_NoSubscribtion'] = "No subscribtion.";
@@ -74,7 +72,6 @@
     $TEXT['Package_NoDisplay'] = "No online documents available";
     $TEXT['Package_NoLecture'] = "No lecture.";
 
-    $TEXT['Lecture_Index'] = "From this page, you can do some operations, like subscribe to a package, or view you schedule.";
     $TEXT['Lecture_Schedule'] = "Schedule";
     $TEXT['Lecture_Date'] = "Date";
     $TEXT['Lecture_StartTime'] = "Start time";
@@ -89,7 +86,6 @@
     $TEXT['Planning_Present'] = "Present";
     $TEXT['Planning_Absent'] = "Absent";
 
-    $TEXT['Reports_Index'] = "Reports";
     $TEXT['Reports_Upload'] = "Add a report";
     $TEXT['Reports_Delete'] = "View my reports";
     $TEXT['Reports_Filename'] = "Filename";

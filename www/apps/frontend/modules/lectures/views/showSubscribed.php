@@ -1,5 +1,3 @@
-<p><?php echo $TEXT['Package_ListOfSubscribed']; ?></p>
-
 <?php
     if(count($packages) == 0)
         echo '<p>' . $TEXT['Package_NoSubscribtion'] . '</p>';

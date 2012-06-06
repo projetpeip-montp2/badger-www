@@ -1,5 +1,3 @@
-<p><?php echo $TEXT['Package_ListOf']; ?></p>
-
 <?php
     echo '<ul>';
 

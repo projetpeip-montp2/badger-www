@@ -1,6 +1,3 @@
-<h1><?php ?></h1>
-<p>Depuis cette page, vous pouvez voir le planning pour les conférences auxquelles vous êtes inscrit(e).</p>
-
 <?php
     // TODO: Do better..
     function getClassroomName($classrooms, $availabilities, $idAvailability)

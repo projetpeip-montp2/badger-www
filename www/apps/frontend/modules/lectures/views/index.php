@@ -1,5 +1,3 @@
-<p><?php echo $TEXT['Lecture_Index']; ?></p>
-
 <ul>
     <li><a href="/lectures/showAll.html"><?php echo $TEXT['Package_ShowAll']; ?></a></li>
     <li><a href="/lectures/showSubscribed.html"><?php echo $TEXT['Package_ShowSubscribed']; ?></a></li>

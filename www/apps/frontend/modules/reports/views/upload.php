@@ -1,5 +1,3 @@
-<h1><?php echo $TEXT['Reports_Upload']; ?></h1>
-
 <?php
     $form = new Form('', 'post');
 

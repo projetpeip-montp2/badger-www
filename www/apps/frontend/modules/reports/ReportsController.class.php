@@ -83,7 +83,7 @@
             $this->page()->addVar('packages', $packages);
         }
 
-        public function executeDeleteReport(HTTPRequest $request)
+        public function executeDelete(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsDelete']);
 
