@@ -1,4 +1,3 @@
-<h1>Inscription de promotion</h1>
 <p class="warning">
     La promotion doit être inscrite pour pouvoir s'inscrire à des packages et passer le QCM.
     <br/>

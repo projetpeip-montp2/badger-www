@@ -3,7 +3,7 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar("viewTitle", "Accueil administration");
         }
 
         public function executeLogout(HTTPRequest $request)

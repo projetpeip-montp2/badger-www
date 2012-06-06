@@ -1,5 +1,3 @@
-<h1>Modification des packages</h1>
-<p>Depuis cette page, il est possible de modifier les packages enregistrés dans la base de données.</p>
 <script src="../../web/js/jquery-1.7.1.min.js"></script>
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>

@@ -3,7 +3,7 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar("viewTitle", "Gestions des conférences");
         }
 
 
@@ -22,6 +22,8 @@
 
 		public function executeAssignLectures(HTTPRequest $request)
 		{
+            $this->page()->addVar("viewTitle", "Assigner des salles et disponibilités aux conférences");
+
 			if ($request->postExists('jsonPacket'))
 			{
 				$this->page()->setIsAjaxPage(TRUE);
@@ -99,6 +101,8 @@
 
         public function executeAddPackages(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Uploader des packages");
+
             // If the form containing the filepath exist (aka the form is
             // submitted)
             if ($request->fileExists('vbmifarePackagesCSV'))
@@ -150,6 +154,8 @@
 
         public function executeAddLecturesAndQuestionsAnswers(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Uploader des conférences, questions et réponses");
+
             // Create a flash message because we can have more than one message.
             $flashMessage = '';
 
@@ -322,6 +328,8 @@
 
         public function executeUpdatePackages(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Modifier des packages");
+
             // Ddisplay the form
             $managerPackages = $this->m_managers->getManagerOf('package');
             $packages = $managerPackages->get();
@@ -338,6 +346,8 @@
 
         public function executeUpdateLectures(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Modifier des conférences");
+
             // Handle POST data
             // Update lecture
             if($request->postExists('Modifier'))
@@ -412,6 +422,8 @@
 
         public function executeUpdateQuestionsAnswers(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Modifier des questions et réponses");
+
             $packages = $this->m_managers->getManagerOf('package')->get();
 
             $questions = array();
@@ -464,6 +476,8 @@
 
         public function executeAddBadgingInformation(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Ajouter des informations de badgages");
+
             // If form is submitted
             if($request->postExists('Envoyer'))
             {

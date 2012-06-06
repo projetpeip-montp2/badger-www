@@ -2,17 +2,11 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
-<h1>Gestion des salles</h1>
-
 <ul>
     <li><a href="/admin/classrooms/addClassrooms.html">Uploader des salles</a></li>
     <li><a href="/admin/classrooms/addAvailabilities.html">Uploader des disponibilités</a></li>
 
-	<li><a class="addable" data-entry-name='Classrooms' style="font-size: 16px">Ajouter une salle</a></li>
-<!--
-    <li><a href="/admin/classrooms/updateClassrooms.html">Modifier les salles</a></li>
-    <li><a href="/admin/classrooms/updateAvailabilities.html">Modifier les disponibilités</a></li>
--->
+	<li><a class="addable" data-entry-name='Classrooms'>Ajouter une salle</a></li>
 </ul>
 
 <table id="editableTable">

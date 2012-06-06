@@ -20,12 +20,14 @@
 
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar("viewTitle", "Remise à zéro");
         }
 
 
         public function executeTruncate(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Vider les tables");
+
             // If the form is submitted
             if($request->postExists('isSubmitted'))
             {

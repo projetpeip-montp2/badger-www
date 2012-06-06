@@ -1,5 +1,3 @@
-<h1>Modification des conférences</h1>
-<p>Depuis cette page, il est possible de modifier les conférences enregistrées dans la base de données.</p>
 <?php
     $forms = array();
     foreach($lectures as $lecture)

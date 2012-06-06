@@ -1,6 +1,3 @@
-<h1>Modification des questions/réponses</h1>
-<p>Depuis cette page, il est possible de modifier les questions/réponses enregistrés dans la base de données.</p>
-<p>Le form juste ci-dessous permet de sélectionner un package.</p>
 <script src="../../web/js/jquery-1.7.1.min.js"></script>
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>

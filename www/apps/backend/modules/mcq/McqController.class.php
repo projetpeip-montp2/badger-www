@@ -3,11 +3,13 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-
+            $this->page()->addVar("viewTitle", "Gestion des QCM et des inscriptions");
         }
 
         public function executeCreateMCQ(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Ajouter une inscription");
+
             // Handle POST data
             if($request->postExists('isSubmitted'))
             {
@@ -67,6 +69,8 @@
 
         public function executeUpdateMCQs(HTTPRequest $request)
         {
+            $this->page()->addVar("viewTitle", "Modifier une inscription");
+
             // Handle POST data
             // Update MCQ
             if($request->postExists('Modifier'))

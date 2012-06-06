@@ -1,6 +1,3 @@
-<h1>Assignation de plages horaires aux conférences</h1>
-<p>Depuis cette page, il est possible d'assigner des horaires aux conférences</p>
-
 <script src="../../web/js/jquery-1.7.1.min.js"></script>
 
 <script type="text/javascript">
