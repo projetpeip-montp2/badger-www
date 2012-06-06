@@ -80,8 +80,11 @@
                     <div class="module-text">
                     	<div class="module-text-content">
                     		<div class="module-text-header">
-                                <?php 
-                                    echo $TEXT['Page_Title'];
+                                <?php
+                                    if(isset($viewTitle))
+                                        echo $viewTitle;
+                                    else
+                                        echo $TEXT['Page_Title'];
                                 ?>
                             </div>
                     <div class="module-text-info">

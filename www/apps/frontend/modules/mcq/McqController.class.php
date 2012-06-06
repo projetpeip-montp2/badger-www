@@ -20,10 +20,7 @@
 
             if(!$this->canTakeMCQ())
             {
-                // Inclusion of the langage file
-                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-
-                $this->app()->user()->setFlashError($TEXT['Flash_NoTakeMCQ']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoTakeMCQ']);
                 $this->page()->addVar('showMCQLink', false);
                 $this->app()->httpResponse()->redirect('/mcq/index.html');
             }
@@ -58,11 +55,9 @@
                 $managerUser->updateMark($logon, $mark);
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMark($mark);
 
-                // Inclusion of the langage file
-                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
 
                 // Redirection
-                $this->app()->user()->setFlashInfo($TEXT['Flash_MCQTaken']);
+                $this->app()->user()->setFlashInfo($this->m_TEXT['Flash_MCQTaken']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
             }
 

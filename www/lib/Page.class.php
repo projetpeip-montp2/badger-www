@@ -12,24 +12,7 @@
         protected $m_filesToInclude = array();
         protected $m_contentFile;
         protected $m_vars = array();
-		private	  $m_isAjaxPage = FALSE;
-	
-        ////////////////////////////////////////////////////////////
-        /// \function __construct
-        ///
-        /// \brief
-        /// Default constructor of the Page class
-        /// Includes the correct language file for the frontend
-        ///
-        /// \param app Reference to the Application
-        ////////////////////////////////////////////////////////////
-        public function __construct(Application $app)
-        {
-            parent::__construct($app);
-            
-            if($app->name() == 'frontend')
-                $this->addFileToInclude(dirname(__FILE__).'/../apps/frontend/lang/'.$app->user()->getAttribute('vbmifareLang').'.php');
-        }
+		private $m_isAjaxPage = FALSE;
 
         ////////////////////////////////////////////////////////////
         /// \function addVar
@@ -82,7 +65,7 @@
             foreach($this->m_filesToInclude as $filename)
             {
 				if(!empty($filename))
-                    require_once $filename;
+                    require $filename;
             }
 
             extract($this->m_vars);

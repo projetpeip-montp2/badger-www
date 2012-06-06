@@ -1,4 +1,6 @@
 <?php
+    $TEXT = array();
+
     $TEXT['Lang'] = "en";
     $TEXT['Page_Title'] = "Numerical Week";
     $TEXT['Page_Logout'] = "Log out";

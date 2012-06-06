@@ -34,6 +34,7 @@
 
             $controller->getInfos();
             $controller->execute();
+            $controller->page()->addFileToInclude(dirname(__FILE__).'/lang/' . $this->user()->getAttribute('vbmifareLang') . '.php');
             
             $this->httpResponse()->setPage($controller->page());
             $this->httpResponse()->send();

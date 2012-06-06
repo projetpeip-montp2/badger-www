@@ -19,8 +19,7 @@
 
             if(count($package) == 0)
             {
-                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-                $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
@@ -28,8 +27,7 @@
 
             if($imageNumber > $count)
             {
-                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-                $this->app()->user()->setFlashError($TEXT['Flash_ImageUnknown']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_ImageUnknown']);
                 $this->app()->httpResponse()->redirect('/home/index.html'); 
             }
 

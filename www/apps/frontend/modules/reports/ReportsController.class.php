@@ -24,8 +24,7 @@
 
                 if( count($managerDoc->get($idPackage, $username)) != 0)
                 {
-                    require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                    $this->app()->user()->setFlashError($TEXT['Flash_AlreadyAReportForAPackage']);
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_AlreadyAReportForAPackage']);
                     $this->app()->httpResponse()->redirect('/reports/index.html');
                 }
 
@@ -38,8 +37,7 @@
 
                     if(count($packages) == 0)
                     {
-                        require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                        $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
+                        $this->app()->user()->setFlashError($this->m_TEXT['Flash_PackageUnknown']);
                         $this->app()->httpResponse()->redirect('/reports/index.html');
                     }
 
@@ -59,13 +57,11 @@
 
                 else
                 {
-                    require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                    $this->app()->user()->setFlashError($TEXT['Flash_UploadError']);
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_UploadError']);
                     $this->app()->httpResponse()->redirect('/reports/index.html');
                 }
 
-                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                $this->app()->user()->setFlashInfo($TEXT['Flash_Uploaded']);
+                $this->app()->user()->setFlashInfo($this->m_TEXT['Flash_Uploaded']);
                 $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
@@ -77,8 +73,7 @@
 
             if(count($packages) == 0)
             {
-                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                $this->app()->user()->setFlashError($TEXT['Flash_NoPackage']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoPackage']);
                 $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
@@ -109,8 +104,7 @@
 
             if(count($reports) == 0)
             {
-                require_once(dirname(__FILE__).'/../../lang/'.$this->app()->user()->getAttribute('vbmifareLang').'.php');
-                $this->app()->user()->setFlashError($TEXT['Flash_NoReport']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoReport']);
                 $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 

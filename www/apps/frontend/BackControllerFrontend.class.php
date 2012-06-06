@@ -12,6 +12,28 @@
     ////////////////////////////////////////////////////////////
     abstract class BackControllerFrontend extends BackController
     {
+        protected $m_TEXT;
+
+        ////////////////////////////////////////////////////////////
+        /// \function __construct
+        ///
+        /// \brief
+        /// Default constructor of the BackController class
+        /// Initializes the variables of the class
+        ///
+        /// \param app Reference to the Application
+        /// \param module Name of the module
+        /// \param action Name of the action
+        ////////////////////////////////////////////////////////////
+        public function __construct(Application $app, $module, $action)
+        {
+            parent::__construct($app, $module, $action);
+
+            // Include langage file for the view
+            require dirname(__FILE__).'/lang/' . $this->app()->user()->getAttribute('vbmifareLang') . '.php';
+            $this->m_TEXT = $TEXT;
+        }
+
         ////////////////////////////////////////////////////////////
         /// \function getInfos
         ///

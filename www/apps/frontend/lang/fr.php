@@ -1,4 +1,6 @@
 <?php
+    $TEXT = array();
+
     $TEXT['Lang'] = "fr";
     $TEXT['Page_Title'] = "Semaine du Numérique";
     $TEXT['Page_Logout'] = "Déconnexion";

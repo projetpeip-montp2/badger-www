@@ -25,9 +25,7 @@
             // Check that the package exists
             if(count($packages) != 1)
             {
-                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-
-                $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/lectures/showAll.html');
             }
 
@@ -61,9 +59,7 @@
 
                 $package->setRegistrationsCount($package->getRegistrationsCount() + ($wantSubscribe ? 1 : -1));
 
-                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-
-                $this->app()->user()->setFlashInfo($wantSubscribe ? $TEXT['Flash_SubscribeOk'] : $TEXT['Flash_UnsubscribeOk']);
+                $this->app()->user()->setFlashInfo($wantSubscribe ? $this->m_TEXT['Flash_SubscribeOk'] : $this->m_TEXT['Flash_UnsubscribeOk']);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -92,8 +88,7 @@
 
             if(count($package) == 0)
             {
-                require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-                $this->app()->user()->setFlashError($TEXT['Flash_PackageUnknown']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
@@ -164,7 +159,6 @@
         private function checkSubscribe(HTTPRequest $request)
         {
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
-            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 
             $status = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
 
@@ -176,15 +170,15 @@
                 switch($status)
                 {
                 case 'Visitor':
-                    $flashMessage = $TEXT['Flash_SubscribeVisitor'];
+                    $flashMessage = $this->m_TEXT['Flash_SubscribeVisitor'];
                     break;
 
                 case 'Generated':
-                    $flashMessage = $TEXT['Flash_SubscribeGenerated'];
+                    $flashMessage = $this->m_TEXT['Flash_SubscribeGenerated'];
                     break;
 
                 case 'Taken':
-                    $flashMessage = $TEXT['Flash_SubscribeTaken'];
+                    $flashMessage = $this->m_TEXT['Flash_SubscribeTaken'];
                     break;
 
                 default:
@@ -200,26 +194,22 @@
             // Check if registrations are allowed
             if($this->m_managers->getManagerOf('config')->get('canSubscribe') == '0')
             {
-                $this->app()->user()->setFlashError($TEXT['Flash_SubscribeImpossible']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_SubscribeImpossible']);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
         }
 
         private function checkRegistrationsCount($lang, HTTPRequest $request, $packageNeeded)
         {
-            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-
             if($packageNeeded->getRegistrationsCount() + 1 > $packageNeeded->getCapacity())
             {
-                $this->app()->user()->setFlashError($TEXT['Flash_NoPlace']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoPlace']);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
         }
 
         private function checkConflict($lang, HTTPRequest $request, $registrationsOfUser, $packageNeeded)
         {
-            require dirname(__FILE__).'/../../lang/' . $lang . '.php';
-
             $managerLecture = $this->m_managers->getManagerOf('lecture');
 
             // TODO: En créant une fonction dans le LectureManager prenant un
@@ -249,7 +239,7 @@
                     if(Lecture::conflict($lectures[$i], $lectures[$j]))
                     {
                         // TODO: Ajouter dans le message flash avec qui y a conflit.
-                        $messageFlash = $TEXT['Flash_SubscribeConflict'];
+                        $messageFlash = $this->m_TEXT['Flash_SubscribeConflict'];
 
                         $this->app()->user()->setFlashError($messageFlash);
                         $this->app()->httpResponse()->redirect($request->requestURI());
