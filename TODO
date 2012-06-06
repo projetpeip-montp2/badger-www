@@ -1,5 +1,8 @@
     TODO list
 
+- Serveur:
+    - Autoriser la copie de fichiers sur le serveur
+
 - Général:
     - Inclure la langue à chaque entête de controlleur Frontend (à tester)
     - Entrée dans le test du FORM: PostExists à la place de PostData
@@ -40,7 +43,7 @@
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
-    - Lors du changement des admins, afficher la liste courante des admins.
+    - Revoir ajout Admins
 
 
 - William:
