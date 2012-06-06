@@ -391,7 +391,7 @@
             if($request->postData('Supprimer'))
             {
                 $this->m_managers->getManagerOf('lecture')->delete($request->postData('lectureId'));
-                $this->deleteLectureDependancies($request->postData('lectureId'));
+                //$this->deleteLectureDependancies($request->postData('lectureId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
@@ -454,7 +454,6 @@
                 unlink($path . $filename);
             }
         }
-
 
         private function deleteLectureDependancies($lectureId)
         {
