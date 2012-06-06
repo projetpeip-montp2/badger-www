@@ -1,6 +1,7 @@
 <routes>
     <route url="/admin/*" module="home" action="index"/>
     <route url="/admin/home/index\.html" module="home" action="index"/>
+    <route url="/admin/home/logout\.html" module="home" action="logout"/>
 
     <route url="/admin/classrooms/index\.html" module="classrooms" action="index"/>
     <route url="/admin/classrooms/addClassrooms\.html" module="classrooms" action="addClassrooms"/>

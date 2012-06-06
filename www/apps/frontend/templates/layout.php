@@ -15,12 +15,18 @@
     <body>
         <div id="top">
 	        <div id="top-content" align="right">
+                <!-- Flag french-->
                 <a href="/home/changeLang-fr-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
-                    <img src="/web/images/tools/french_flag.jpg" alt="Français" /> Français
+                    <img src="/web/images/tools/french_flag.jpg" alt="Français" /> <?php echo $TEXT['Page_French']; ?>
                 </a>
+
+                <!-- Flag english-->
                 <a href="/home/changeLang-en-<?php echo $user->app()->httpRequest()->requestURI(); ?>.html">
-                    <img src="/web/images/tools/english_flag.jpg" alt="Anglais"/> Anglais
+                    <img src="/web/images/tools/english_flag.jpg" alt="Anglais"/> <?php echo $TEXT['Page_English']; ?>
                 </a>
+
+                <!-- Logout-->
+                <a href="/home/logout.html"><?php echo '   | ', $TEXT['Page_Logout']; ?></a>
             </div>
         </div>
 
