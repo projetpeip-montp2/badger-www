@@ -4,6 +4,7 @@
 <p>Séparer les administrateurs par un point-virgule.</p>
 
 <?php
+    echo '<strong>' . $admins . '</strong>';
     $form = new Form('', 'post');
 
     $form->add('text', 'adminList')
