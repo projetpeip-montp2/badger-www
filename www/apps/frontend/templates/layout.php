@@ -8,7 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Language" content="<?php echo $user->getAttribute('vbmifareLang'); ?>" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
-        
+
+        <link rel="shortcut icon" href="/web/images/design/polytech.ico">
         <link rel="stylesheet" href="/web/styles/style.css" type="text/css" />
     </head>
     

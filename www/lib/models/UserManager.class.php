@@ -54,7 +54,6 @@
 
         public function retrieveStudentFromPolytech($logon)
         {
-            // The request is on Polytech database here!
             $req = $this->m_dao->prepare('SELECT Username, Departement, anApogee, Mifare, Actif, Statut FROM UsersPolytech WHERE Username = ?');
             $req->execute(array($logon));
 

@@ -21,6 +21,7 @@
             }
 
             // Else we display the form
+            $this->page()->addVar('admins', $this->m_managers->getManagerOf('config')->get('adminsList', $newAdminList));
         }
 
         public function executeChangeSubscribesStatus(HTTPRequest $request)
