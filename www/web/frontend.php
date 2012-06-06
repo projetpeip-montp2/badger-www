@@ -1,8 +1,11 @@
 <?php
     try
-    {
-        require '../apps/frontend/FrontendApplication.class.php';
-        
+    { 
+        // Don't change the order of this includes!!!
+        require_once dirname(__FILE__).'/../lib/CAS.php';
+        require_once '../apps/frontend/FrontendApplication.class.php';
+        require_once dirname(__FILE__).'/PHPCasInit.php';
+  
         $app = new FrontendApplication;
         $app->run(); 
     }

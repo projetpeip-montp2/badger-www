@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // Commented because the CAS system have already a session_start()
+    //session_start();
     
     ////////////////////////////////////////////////////////////
     /// \class User
@@ -22,12 +23,6 @@
         public function __construct(Application $app)
         {
             parent::__construct($app);
-
-            /////////////////////////////////////////////////////////////////////
-            // TODO: Retirer la ligne suivantes, qui ne sert que pour les tests
-            $this->setAttribute('logon', 'victor.hiairrassary');
-            //$this->setAttribute('logon', 'vbmifare');
-            /////////////////////////////////////////////////////////////////////
 
             if(!$this->isLogged())
                 throw new RuntimeException('User is not logged');
