@@ -179,8 +179,6 @@ ALTER TABLE vbMifare.`ImagesOfPackages` ADD CONSTRAINT fk_imagesofpackages_packa
 
 ALTER TABLE vbMifare.`Lectures` ADD CONSTRAINT fk_lectures_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Lectures` ADD CONSTRAINT fk_lectures_availabilities FOREIGN KEY ( `Id_availability` ) REFERENCES vbMifare.`Availabilities`( `Id_availability` ) ON DELETE CASCADE ON UPDATE NO ACTION;
-
 ALTER TABLE vbMifare.`Questions` ADD CONSTRAINT fk_questions_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE vbMifare.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
