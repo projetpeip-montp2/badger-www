@@ -48,23 +48,6 @@ CREATE TABLE vbMifare.`Questions` (
 
 CREATE INDEX idx_questions ON vbMifare.`Questions` ( `Id_package` );
 
-CREATE TABLE vbMifare.`UsersPolytech` ( 
-	`Username`           VARCHAR( 60 ) NOT NULL,
-	`Num_Etudiant`       CHAR( 8 ),
-	`Mifare`             CHAR( 8 ),
-	`MifareControleAcces` INT,
-	`Actif`              CHAR( 1 ),
-	`Nom`                CHAR( 30 ),
-	`Prenom`             CHAR( 20 ),
-	`VraiNom`            CHAR( 30 ),
-	`VraiPrenom`         CHAR( 20 ),
---	`Status`             ENUM,
---	`Departement`        ENUM,
---	`Complement_Departement` ENUM,
-	`anApogee`           TINYINT,
-	CONSTRAINT pk_users PRIMARY KEY ( `Username` )
- );
-
 CREATE TABLE vbMifare.`Answers` ( 
 	`Id_answer`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_question`        SMALLINT UNSIGNED,
@@ -210,7 +193,8 @@ ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_packages FO
 
 ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+-- TODO: Voir comment faire pour cette clés étrangère.
+-- ALTER TABLE vbMifare.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 
 
@@ -219,7 +203,7 @@ INSERT INTO vbMifare.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
 ('presentMark', '5'),
-('adminsList', 'vbMifare;victor.hiairrassary;gregoire.guisez'),
+('adminsList', 'victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
 ('packageRegistrationsCount', '5'),
 ('registrationsDateLimit', '23-08-2012'),

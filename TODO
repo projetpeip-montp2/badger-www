@@ -39,6 +39,8 @@
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
+    - Lors du changement des admins, afficher la liste courante des admins.
+
 
 - William:
     - Pouvoir mettre un select dans les tableaux éditables
