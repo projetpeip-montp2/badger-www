@@ -2,6 +2,8 @@
     class Student extends Record
     {
         private $m_username;
+        private $m_name;
+        private $m_surname;
         private $m_departement; 
         private $m_active;
         private $m_statut;
@@ -20,6 +22,26 @@
         public function getUsername()
         {
             return $this->m_username;
+        }
+
+        public function setName($name)
+        {
+            $this->m_name = $name;
+        }
+
+        public function getName()
+        {
+            return $this->m_name;
+        }
+
+        public function setSurname($surname)
+        {
+            $this->m_surname = $surname;
+        }
+
+        public function getSurname()
+        {
+            return $this->m_surname;
         }
 
         public function setDepartment($department)

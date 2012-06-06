@@ -37,11 +37,10 @@
                     <a href="/home/index.html"><div id="header-logo"><img src="/web/images/tools/logo.png" alt="" width="232" height="78" /></div></a>
                     <div id="header-content">
                         <div id="header-info">
-                        	<?php echo $user->getAttribute('logon'); ?>
-                            <br/>
-                            <?php 
+                        	<?php
                                 $student = $user->getAttribute('vbmifareStudent');
-                                echo $student->getDepartment() . ' ' . $student->getSchoolYear();
+                                echo $student->getName() . ' ' . $student->getSurname() . '<br/>' .
+                                     $student->getDepartment() . ' ' . $student->getSchoolYear();
                             ?>
                         </div>
                     </div>
