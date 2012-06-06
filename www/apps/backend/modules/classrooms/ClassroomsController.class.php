@@ -119,10 +119,5 @@
 
             $this->page()->addVar('classrooms', $classrooms);
         }
-
-        private function deleteClassroomDependancies($idClassroom)
-        {
-            $this->m_managers->getManagerOf('availability')->deleteFromClassroom($idClassroom);
-        }
     }
 ?>

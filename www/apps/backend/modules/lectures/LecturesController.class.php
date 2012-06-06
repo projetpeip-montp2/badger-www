@@ -391,7 +391,6 @@
             if($request->postData('Supprimer'))
             {
                 $this->m_managers->getManagerOf('lecture')->delete($request->postData('lectureId'));
-                //$this->deleteLectureDependancies($request->postData('lectureId'));
 
                 // Redirection
                 $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
@@ -410,66 +409,6 @@
 
             $this->page()->addVar('lectures', $lectures);
         }
-
-
-        private function deletePackageDependancies($packageId)
-        {
-            $lectures = $this->m_managers->getManagerOf('lecture')->get($packageId);
-            foreach($lectures as $lecture)
-            {
-                $this->deleteLectureDependancies($lecture->getId());
-                // Delete associated lectures
-                $this->m_managers->getManagerOf('lecture')->delete($lecture->getId());
-            }
-
-            $questions = $this->m_managers->getManagerOf('mcq')->getQuestionsFromPackage($packageId);
-            foreach($questions as $question)
-                $this->deleteQuestionDependancies($question->getId());
-
-            // Delete associated questions
-             $this->m_managers->getManagerOf('mcq')->deleteQuestions($packageId);
-
-            // Delete associated documents and images
-            $path = dirname(__FILE__).'/../../../../uploads/admin/';
-            
-            $managerDocuments = $this->m_managers->getManagerOf('documentofpackage');
-            $documents = $managerDocuments->get($packageId);
-
-            // Delete documents database
-            $managerDocuments->delete($packageId);
-
-            foreach($documents as $document)
-                unlink($path . 'pdf/' . $document->getFilename());
-
-            $managerImages = $this->m_managers->getManagerOf('imageofpackage');
-            $count = $managerImages->count($packageId);
-
-            // Delete images database
-            $managerImages->delete($packageId);
-
-            // Delete images on server
-            for($i = 1; $i <= $count; $i++)
-            {
-                $filename = 'images/' . $packageId . '_' . $i . '.jpg';
-                unlink($path . $filename);
-            }
-        }
-
-        private function deleteLectureDependancies($lectureId)
-        {
-            // Delete registrations to a lecture
-            $this->m_managers->getManagerOf('registration')->delete($lectureId);
-        }
-
-
-        private function deleteQuestionDependancies($questionId)
-        {
-            $managerMCQ = $this->m_managers->getManagerOf('mcq');
-            $managerMCQ->deleteAnswers($questionId);
-            $managerMCQ->deleteQuestionsOfUsers($questionId);
-            $managerMCQ->deleteAnswersOfUsers($questionId);
-        }
-
 
         public function executeUpdateQuestionsAnswers(HTTPRequest $request)
         {
@@ -566,5 +505,25 @@
 
             // Else display the form
         }
+
+        private function deletePackageDocuments($packageId)
+        {
+            // Delete associated documents and images
+            $path = dirname(__FILE__).'/../../../../uploads/admin/';
+            
+            $managerDocuments = $this->m_managers->getManagerOf('documentofpackage');
+            $documents = $managerDocuments->get($packageId);
+
+            foreach($documents as $document)
+                unlink($path . 'pdf/' . $document->getFilename());
+
+            // Delete images on server
+            for($i = 1; $i <= $count; $i++)
+            {
+                $filename = 'images/' . $packageId . '_' . $i . '.jpg';
+                unlink($path . $filename);
+            }
+        }
+
     }
 ?>
