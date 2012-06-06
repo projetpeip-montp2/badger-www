@@ -78,7 +78,7 @@
 				$this->m_req = mysqli_query($this->m_link, "EXECUTE {$this->m_id}");
 				
 		    if($this->m_req === FALSE)
-			    throw new RuntimeException('Execution of prepared request failed');
+			    throw new RuntimeException('Execution of prepared request failed: '. mysqli_error($this->m_link));
 	    }
 	
 	    public function fetch()

@@ -143,9 +143,6 @@
 			<fk name="fk_lectures_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
-			<fk name="fk_lectures_availabilities" to_schema="vbmifare" to_table="Availabilities" delete_action="CASCADE" >
-				<fk_column name="Id_availability" pk="Id_availability" />
-			</fk>
 		</table>
 		<table name="MCQs" >
 			<column name="Department" type="TEXT" jt="-1" />
