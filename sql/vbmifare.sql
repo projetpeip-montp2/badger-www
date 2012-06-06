@@ -29,7 +29,6 @@ CREATE TABLE vbMifare.`MCQs` (
 CREATE TABLE vbMifare.`Packages` ( 
 	`Id_package`         SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Capacity`           SMALLINT UNSIGNED,
-	`RegistrationsCount` SMALLINT UNSIGNED,
 	`Name_fr`            TEXT,
 	`Name_en`            TEXT,
 	`Description_fr`     TEXT,

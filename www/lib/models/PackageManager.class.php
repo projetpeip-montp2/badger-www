@@ -20,13 +20,14 @@
 
             while($data = $req->fetch())
             {
-                $reqCount = $this->m_dao->prepare('');
-                $reqCount->execute(); 
+                $reqCount = $this->m_dao->prepare('SELECT COUNT(DISTINCT Id_package AND Id_user) FROM Registrations WHERE Id_package = ?');
+                $reqCount->execute( array($data['Id_package']) ); 
+                $registrationsCount = $reqCount->fetch();
 
                 $package = new Package;
                 $package->setId($data['Id_package']);
                 $package->setCapacity($data['Capacity']);
-                $package->setRegistrationsCount($reqCount->fetch());
+                $package->setRegistrationsCount( $registrationsCount['COUNT(DISTINCT Id_package AND Id_user)'] );
                 $package->setName('fr', $data['Name_fr']);
                 $package->setName('en', $data['Name_en']);
                 $package->setDescription('fr', $data['Description_fr']);
