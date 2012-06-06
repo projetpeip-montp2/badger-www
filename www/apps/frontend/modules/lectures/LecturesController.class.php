@@ -60,7 +60,6 @@
                     $managerRegistration->subscribe($request->getData('idPackage'), $lecture->getId(), $username, $wantSubscribe ? 1 : 0);
 
                 $package->setRegistrationsCount($package->getRegistrationsCount() + ($wantSubscribe ? 1 : -1));
-                $managerPackage->updateRegistrationsCount($request->getData('idPackage'), $package->getRegistrationsCount());
 
                 require dirname(__FILE__).'/../../lang/' . $lang . '.php';
 

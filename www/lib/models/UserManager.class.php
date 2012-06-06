@@ -6,7 +6,7 @@
             $req = $this->m_dao->prepare('SELECT * FROM Users');
             $req->execute();
 
-            $reqNext = $this->m_dao->prepare('SELECT Departement, anApogee, Num_Etudiant FROM Polytech.Users WHERE Username = ?');
+            $reqNext = $this->m_dao->prepare('SELECT Departement, anApogee, Num_Etudiant FROM UsersPolytech WHERE Username = ?');
 
             $students = array();
             while($data = $req->fetch())
@@ -31,7 +31,7 @@
         public function getFromDepartmentAndSchoolYear($department, $schoolYear)
         {
             // The request is on Polytech database here!
-            $req = $this->m_dao->prepare('SELECT Username FROM Polytech.Users WHERE Departement = ? AND anApogee = ?');
+            $req = $this->m_dao->prepare('SELECT Username FROM UsersPolytech WHERE Departement = ? AND anApogee = ?');
             $req->execute(array($department, $schoolYear));
 
             $students = array();
@@ -111,7 +111,7 @@
 
         public function retrieveMifare($logon)
         {
-            $req = $this->m_dao->prepare('SELECT Mifare FROM Polytech.Users WHERE Username = ?');
+            $req = $this->m_dao->prepare('SELECT Mifare FROM UsersPolytech WHERE Username = ?');
             $req->execute(array($logon));
 
             $mifares = array();
@@ -137,7 +137,7 @@
 
         public function getDepartments()
         {
-            $req = $this->m_dao->query('SHOW COLUMNS FROM Polytech.Users LIKE \'Departement\'');
+            $req = $this->m_dao->query('SHOW COLUMNS FROM UsersPolytech LIKE \'Departement\'');
 
             $result = $req->fetch();
 

@@ -5,7 +5,6 @@
         {
             $requestSQL = 'SELECT Id_package,
                                   Capacity,
-                                  RegistrationsCount,
                                   Name_fr, 
                                   Name_en,
                                   Description_fr,
@@ -21,10 +20,13 @@
 
             while($data = $req->fetch())
             {
+                $reqCount = $this->m_dao->prepare('');
+                $reqCount->execute(); 
+
                 $package = new Package;
                 $package->setId($data['Id_package']);
                 $package->setCapacity($data['Capacity']);
-                $package->setRegistrationsCount($data['RegistrationsCount']);
+                $package->setRegistrationsCount($reqCount->fetch());
                 $package->setName('fr', $data['Name_fr']);
                 $package->setName('en', $data['Name_en']);
                 $package->setDescription('fr', $data['Description_fr']);
@@ -39,11 +41,10 @@
         public function save($packages)
         {
             $req = $this->m_dao->prepare('INSERT INTO Packages(Capacity,
-                                                               RegistrationsCount,
                                                                Name_fr, 
                                                                Name_en,
                                                                Description_fr,
-                                                               Description_en) VALUES(?, ?, ?, ?, ?, ?)');
+                                                               Description_en) VALUES(?, ?, ?, ?, ?)');
 
             foreach($packages as $package)
                 $req->execute(array($package->getCapacity(),
@@ -57,26 +58,17 @@
         public function update($package)
         {
             $req = $this->m_dao->prepare('UPDATE Packages SET Capacity = ?,
-                                                              RegistrationsCount = ?,
                                                               Name_fr = ?, 
                                                               Name_en = ?,
                                                               Description_fr = ?,
                                                               Description_en = ? WHERE Id_Package = ?');
 
             $req->execute(array($package->getCapacity(),
-                                $package->getRegistrationsCount(),
                                 $package->getName('fr'),
                                 $package->getName('en'),
                                 $package->getDescription('fr'),
                                 $package->getDescription('en'),
                                 $package->getId()));
-        }
-
-        public function updateRegistrationsCount($packageId, $newRegistrationsCount)
-        {
-            $req = $this->m_dao->prepare('UPDATE Packages SET RegistrationsCount = ? WHERE Id_Package = ?');
-
-            $req->execute(array($newRegistrationsCount, $packageId));
         }
 
         public function delete($packageIds)
