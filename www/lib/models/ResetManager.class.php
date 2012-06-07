@@ -8,11 +8,8 @@
             if($num == 0)
                 throw new InvalidArgumentException('No tables in arguments, need at least one.');
 
-            // TODO: Est-il possible d'utiliser '?' pour spécifier le nom d'une table?
-            // Au moins on pourrait préparer la requête.
-
             for ($i=0; $i<$num; $i++)
-                $this->m_dao->query('TRUNCATE TABLE ' . $tables[$i]);
+                $this->m_dao->query('DELETE FROM ' . $tables[$i]);
         }
     }
 ?>

@@ -107,7 +107,7 @@
 		<table name="ImagesOfPackages" >
 			<column name="Id_image" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
-			<column name="Id_zip" type="SMALLINT" jt="5" unsigned="y" />
+			<column name="Id_archive" type="SMALLINT" jt="5" unsigned="y" />
 			<column name="Filename" type="TEXT" length="100" jt="-1" />
 			<index name="pk_imagesofpackages" unique="PRIMARY_KEY" >
 				<column name="Id_image" />
@@ -115,8 +115,14 @@
 			<index name="idx_imagesofpackages" unique="NORMAL" >
 				<column name="Id_package" />
 			</index>
+			<index name="idx_imagesofpackages_0" unique="NORMAL" >
+				<column name="Id_archive" />
+			</index>
 			<fk name="fk_imagesofpackages_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
+			</fk>
+			<fk name="fk_imagesofpackages" to_schema="vbmifare" to_table="ArchivesOfImages" delete_action="CASCADE" >
+				<fk_column name="Id_archive" pk="Id_archive" />
 			</fk>
 		</table>
 		<table name="Lectures" >
@@ -253,10 +259,16 @@
 				<column name="Username" />
 			</index>
 		</table>
+		<table name="ArchivesOfImages" >
+			<column name="Id_archive" type="SMALLINT" jt="5" mandatory="y" unsigned="y" />
+			<column name="Filename" type="TEXT" length="100" jt="-1" />
+			<index name="pk_zipofimages" unique="PRIMARY_KEY" >
+				<column name="Id_archive" />
+			</index>
+		</table>
 	</schema>
 	<layout name="vbmifare" >
 		<entity schema="vbmifare" name="Classrooms" x="70" y="56" />
-		<entity schema="vbmifare" name="MCQs" x="826" y="168" />
 		<entity schema="vbmifare" name="BadgingInformations" x="714" y="56" />
 		<entity schema="vbmifare" name="Questions" x="602" y="322" />
 		<entity schema="vbmifare" name="Answers" x="826" y="308" />
@@ -266,13 +278,15 @@
 		<entity schema="vbmifare" name="Registrations" x="56" y="630" />
 		<entity schema="vbmifare" name="Config" x="364" y="728" />
 		<entity schema="vbmifare" name="DocumentsOfUsers" x="308" y="588" />
-		<entity schema="vbmifare" name="ImagesOfPackages" x="616" y="196" />
 		<entity schema="vbmifare" name="DocumentsOfPackages" x="420" y="84" />
 		<entity schema="vbmifare" name="QuestionsOfUsers" x="490" y="490" />
 		<entity schema="vbmifare" name="UsersPolytech" x="980" y="532" />
 		<entity schema="vbmifare" name="Users" x="602" y="644" />
 		<entity schema="vbmifare" name="Packages" x="322" y="294" />
-		<group name="vbMifare" color="c4e0f9" >
+		<entity schema="vbmifare" name="MCQs" x="1050" y="266" />
+		<entity schema="vbmifare" name="ArchivesOfImages" x="882" y="182" />
+		<entity schema="vbmifare" name="ImagesOfPackages" x="616" y="196" />
+		<group name="numsem" color="c4e0f9" >
 			<entity schema="vbmifare" name="Answers" />
 			<entity schema="vbmifare" name="AnswersOfUsers" />
 			<entity schema="vbmifare" name="Availabilities" />

@@ -1,24 +1,28 @@
-CREATE SCHEMA vbMifare;
+CREATE TABLE numsem.`ArchivesOfImages` ( 
+	`Id_archive`         SMALLINT UNSIGNED NOT NULL,
+	`Filename`           TEXT,
+	CONSTRAINT pk_zipofimages PRIMARY KEY ( `Id_archive` )
+ );
 
-CREATE TABLE vbMifare.`BadgingInformations` ( 
+CREATE TABLE numsem.`BadgingInformations` ( 
 	`Mifare`             CHAR( 8 ),
 	`Date`               DATE,
 	`Time`               TIME
  );
 
-CREATE TABLE vbMifare.`Classrooms` ( 
+CREATE TABLE numsem.`Classrooms` ( 
 	`Id_classroom`       SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Name`               TEXT,
 	`Size`               SMALLINT UNSIGNED,
 	CONSTRAINT pk_classrooms PRIMARY KEY ( `Id_classroom` )
  );
 
-CREATE TABLE vbMifare.`Config` ( 
+CREATE TABLE numsem.`Config` ( 
 	`Name`               TEXT,
 	`Value`              TEXT
  );
 
-CREATE TABLE vbMifare.`MCQs` ( 
+CREATE TABLE numsem.`MCQs` ( 
 	`Department`         TEXT,
 	`SchoolYear`         SMALLINT UNSIGNED,
 	`Date`               DATE,
@@ -26,7 +30,7 @@ CREATE TABLE vbMifare.`MCQs` (
 	`EndTime`            TIME
  );
 
-CREATE TABLE vbMifare.`Packages` ( 
+CREATE TABLE numsem.`Packages` ( 
 	`Id_package`         SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Capacity`           SMALLINT UNSIGNED,
 	`Name_fr`            TEXT,
@@ -36,7 +40,7 @@ CREATE TABLE vbMifare.`Packages` (
 	CONSTRAINT pk_packages PRIMARY KEY ( `Id_package` )
  );
 
-CREATE TABLE vbMifare.`Questions` ( 
+CREATE TABLE numsem.`Questions` ( 
 	`Id_questions`       SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Label_fr`           TEXT,
@@ -45,9 +49,9 @@ CREATE TABLE vbMifare.`Questions` (
 	CONSTRAINT pk_questions PRIMARY KEY ( `Id_questions` )
  );
 
-CREATE INDEX idx_questions ON vbMifare.`Questions` ( `Id_package` );
+CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
 
-CREATE TABLE vbMifare.`Answers` ( 
+CREATE TABLE numsem.`Answers` ( 
 	`Id_answer`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_question`        SMALLINT UNSIGNED,
 	`Label_fr`           TEXT,
@@ -56,9 +60,9 @@ CREATE TABLE vbMifare.`Answers` (
 	CONSTRAINT pk_answers PRIMARY KEY ( `Id_answer` )
  );
 
-CREATE INDEX idx_answers ON vbMifare.`Answers` ( `Id_question` );
+CREATE INDEX idx_answers ON numsem.`Answers` ( `Id_question` );
 
-CREATE TABLE vbMifare.`Availabilities` ( 
+CREATE TABLE numsem.`Availabilities` ( 
 	`Id_availability`    SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_classroom`       SMALLINT UNSIGNED,
 	`Date`               DATE,
@@ -67,28 +71,30 @@ CREATE TABLE vbMifare.`Availabilities` (
 	CONSTRAINT pk_availabilities PRIMARY KEY ( `Id_availability` )
  );
 
-CREATE INDEX idx_availabilities ON vbMifare.`Availabilities` ( `Id_classroom` );
+CREATE INDEX idx_availabilities ON numsem.`Availabilities` ( `Id_classroom` );
 
-CREATE TABLE vbMifare.`DocumentsOfPackages` ( 
+CREATE TABLE numsem.`DocumentsOfPackages` ( 
 	`Id_document`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Filename`           TEXT,
 	CONSTRAINT pk_documentsofpackages PRIMARY KEY ( `Id_document` )
  );
 
-CREATE INDEX idx_documentsofpackages ON vbMifare.`DocumentsOfPackages` ( `Id_package` );
+CREATE INDEX idx_documentsofpackages ON numsem.`DocumentsOfPackages` ( `Id_package` );
 
-CREATE TABLE vbMifare.`ImagesOfPackages` ( 
+CREATE TABLE numsem.`ImagesOfPackages` ( 
 	`Id_image`           SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
-	`Id_zip`             SMALLINT UNSIGNED,
+	`Id_archive`         SMALLINT UNSIGNED,
 	`Filename`           TEXT,
 	CONSTRAINT pk_imagesofpackages PRIMARY KEY ( `Id_image` )
  );
 
-CREATE INDEX idx_imagesofpackages ON vbMifare.`ImagesOfPackages` ( `Id_package` );
+CREATE INDEX idx_imagesofpackages ON numsem.`ImagesOfPackages` ( `Id_package` );
 
-CREATE TABLE vbMifare.`Lectures` ( 
+CREATE INDEX idx_imagesofpackages_0 ON numsem.`ImagesOfPackages` ( `Id_archive` );
+
+CREATE TABLE numsem.`Lectures` ( 
 	`Id_lecture`         SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Id_availability`    SMALLINT UNSIGNED,
@@ -103,100 +109,102 @@ CREATE TABLE vbMifare.`Lectures` (
 	CONSTRAINT pk_lectures PRIMARY KEY ( `Id_lecture` )
  );
 
-CREATE INDEX idx_lectures ON vbMifare.`Lectures` ( `Id_package` );
+CREATE INDEX idx_lectures ON numsem.`Lectures` ( `Id_package` );
 
-CREATE INDEX idx_lectures_0 ON vbMifare.`Lectures` ( `Id_availability` );
+CREATE INDEX idx_lectures_0 ON numsem.`Lectures` ( `Id_availability` );
 
-CREATE TABLE vbMifare.`Users` ( 
+CREATE TABLE numsem.`Users` ( 
 	`Id_user`            VARCHAR( 60 ),
 	`MCQStatus`          ENUM( 'Visitor','CanTakeMCQ','Generated','Taken' ) ,
 	`Mark`               FLOAT,
 	CONSTRAINT pk_users_0 UNIQUE ( `Id_user` )
  );
 
-CREATE TABLE vbMifare.`AnswersOfUsers` ( 
+CREATE TABLE numsem.`AnswersOfUsers` ( 
 	`Id_user`            VARCHAR( 60 ),
 	`Id_question`        SMALLINT UNSIGNED,
 	`Id_answer`          SMALLINT UNSIGNED
  );
 
-CREATE INDEX idx_answersofusers ON vbMifare.`AnswersOfUsers` ( `Id_user` );
+CREATE INDEX idx_answersofusers ON numsem.`AnswersOfUsers` ( `Id_user` );
 
-CREATE INDEX idx_answersofusers_0 ON vbMifare.`AnswersOfUsers` ( `Id_answer` );
+CREATE INDEX idx_answersofusers_0 ON numsem.`AnswersOfUsers` ( `Id_answer` );
 
-CREATE INDEX idx_answersofusers_1 ON vbMifare.`AnswersOfUsers` ( `Id_question` );
+CREATE INDEX idx_answersofusers_1 ON numsem.`AnswersOfUsers` ( `Id_question` );
 
-CREATE TABLE vbMifare.`DocumentsOfUsers` ( 
+CREATE TABLE numsem.`DocumentsOfUsers` ( 
 	`Id_package`         SMALLINT UNSIGNED,
 	`Id_user`            VARCHAR( 60 ),
 	`Filename`           TEXT
  );
 
-CREATE INDEX idx_documentsofusers ON vbMifare.`DocumentsOfUsers` ( `Id_package` );
+CREATE INDEX idx_documentsofusers ON numsem.`DocumentsOfUsers` ( `Id_package` );
 
-CREATE INDEX idx_documentsofusers_0 ON vbMifare.`DocumentsOfUsers` ( `Id_user` );
+CREATE INDEX idx_documentsofusers_0 ON numsem.`DocumentsOfUsers` ( `Id_user` );
 
-CREATE TABLE vbMifare.`QuestionsOfUsers` ( 
+CREATE TABLE numsem.`QuestionsOfUsers` ( 
 	`Id_user`            VARCHAR( 60 ),
 	`Id_question`        SMALLINT UNSIGNED
  );
 
-CREATE INDEX idx_questionsofusers ON vbMifare.`QuestionsOfUsers` ( `Id_user` );
+CREATE INDEX idx_questionsofusers ON numsem.`QuestionsOfUsers` ( `Id_user` );
 
-CREATE INDEX idx_questionsofusers_0 ON vbMifare.`QuestionsOfUsers` ( `Id_question` );
+CREATE INDEX idx_questionsofusers_0 ON numsem.`QuestionsOfUsers` ( `Id_question` );
 
-CREATE TABLE vbMifare.`Registrations` ( 
+CREATE TABLE numsem.`Registrations` ( 
 	`Id_lecture`         SMALLINT UNSIGNED,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Id_user`            VARCHAR( 60 ),
 	`Status`             ENUM( 'Coming','Absent','Present' ) 
  );
 
-CREATE INDEX idx_registrations ON vbMifare.`Registrations` ( `Id_lecture` );
+CREATE INDEX idx_registrations ON numsem.`Registrations` ( `Id_lecture` );
 
-CREATE INDEX idx_registrations_0 ON vbMifare.`Registrations` ( `Id_package` );
+CREATE INDEX idx_registrations_0 ON numsem.`Registrations` ( `Id_package` );
 
-CREATE INDEX idx_registrations_1 ON vbMifare.`Registrations` ( `Id_user` );
+CREATE INDEX idx_registrations_1 ON numsem.`Registrations` ( `Id_user` );
 
-ALTER TABLE vbMifare.`Answers` ADD CONSTRAINT fk_answers_questions FOREIGN KEY ( `Id_question` ) REFERENCES vbMifare.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Answers` ADD CONSTRAINT fk_answers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_answers FOREIGN KEY ( `Id_answer` ) REFERENCES vbMifare.`Answers`( `Id_answer` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_answers FOREIGN KEY ( `Id_answer` ) REFERENCES numsem.`Answers`( `Id_answer` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES vbMifare.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Availabilities` ADD CONSTRAINT fk_availabilities_classrooms FOREIGN KEY ( `Id_classroom` ) REFERENCES vbMifare.`Classrooms`( `Id_classroom` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Availabilities` ADD CONSTRAINT fk_availabilities_classrooms FOREIGN KEY ( `Id_classroom` ) REFERENCES numsem.`Classrooms`( `Id_classroom` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`DocumentsOfPackages` ADD CONSTRAINT fk_documentsofpackages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`DocumentsOfPackages` ADD CONSTRAINT fk_documentsofpackages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`ImagesOfPackages` ADD CONSTRAINT fk_imagesofpackages_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`ImagesOfPackages` ADD CONSTRAINT fk_imagesofpackages_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Lectures` ADD CONSTRAINT fk_lectures_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`ImagesOfPackages` ADD CONSTRAINT fk_imagesofpackages FOREIGN KEY ( `Id_archive` ) REFERENCES numsem.`ArchivesOfImages`( `Id_archive` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Questions` ADD CONSTRAINT fk_questions_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Lectures` ADD CONSTRAINT fk_lectures_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Questions` ADD CONSTRAINT fk_questions_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES vbMifare.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_lectures FOREIGN KEY ( `Id_lecture` ) REFERENCES vbMifare.`Lectures`( `Id_lecture` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_packages FOREIGN KEY ( `Id_package` ) REFERENCES vbMifare.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_lectures FOREIGN KEY ( `Id_lecture` ) REFERENCES numsem.`Lectures`( `Id_lecture` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE vbMifare.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 -- TODO: Voir comment faire pour cette clés étrangère.
--- ALTER TABLE vbMifare.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES vbMifare.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+-- ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 
 
 
-INSERT INTO vbMifare.`Config` (`Name`, `Value`) VALUES
+INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
 ('presentMark', '5'),
