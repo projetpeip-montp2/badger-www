@@ -1,8 +1,8 @@
 <?php
-    class ImageOfPackage extends Record
+    class ImageOfArchive extends Record
     {
         private $m_idImage;
-        private $m_idPackage;
+        private $m_idArchive;
         private $m_filename;
 
         public function setId($idImage)
@@ -15,14 +15,14 @@
             return $this->m_idImage;
         }
 
-        public function setIdPackage($idPackage)
+        public function setIdArchive($idArchive)
         {
-            $this->m_idPackage = $idPackage;
+            $this->m_idArchive = $idArchive;
         }
 
-        public function getIdPackage()
+        public function getIdArchive()
         {
-            return $this->m_idPackage;
+            return $this->m_idArchive;
         }
 
         public function setFilename($filename)

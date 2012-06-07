@@ -20,13 +20,15 @@
 								   'Availabilities' => array('Date', 'StartTime', 'EndTime'),
 								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'),
 								   'Questions' => array('Label_fr', 'Label_en', 'Status'),
-								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'));
+								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'),
+                                   'ArchivesOfPackages' => array('Filename'));
 
 			$idFields = array('Classrooms' => 'Id_classroom',
 							  'Availabilities' => 'Id_availability',
 							  'Questions' => 'Id_question',
 							  'Answers' => 'Id_answer',
-							  'Packages' => 'Id_package');
+							  'Packages' => 'Id_package',
+                              'ArchivesOfPackages' => 'Id_archive');
 
 			$allowedFormType = array('text', 'number', 'textbox');
 			
@@ -110,13 +112,14 @@
 		{
 			$this->page()->setIsAjaxPage(TRUE);
 			
-			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities');
+			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities', 'ArchivesOfPackages');
 
 			$idFields = array('Classrooms' => 'Id_classroom',
                               'Questions' => 'Id_question',
                               'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package',
-							  'Availabilities' => 'Id_availability');
+							  'Availabilities' => 'Id_availability',
+                              'ArchivesOfPackages' => 'Id_archive');
 			
 			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
 			{

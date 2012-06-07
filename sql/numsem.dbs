@@ -14,7 +14,7 @@
 				<column name="Id_question" />
 			</index>
 			<fk name="fk_answers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
-				<fk_column name="Id_question" pk="Id_questions" />
+				<fk_column name="Id_question" pk="Id_question" />
 			</fk>
 		</table>
 		<table name="AnswersOfUsers" >
@@ -37,7 +37,7 @@
 				<fk_column name="Id_answer" pk="Id_answer" />
 			</fk>
 			<fk name="fk_answersofusers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
-				<fk_column name="Id_question" pk="Id_questions" />
+				<fk_column name="Id_question" pk="Id_question" />
 			</fk>
 		</table>
 		<table name="ArchivesOfPackages" >
@@ -176,7 +176,7 @@
 			</index>
 		</table>
 		<table name="Questions" >
-			<column name="Id_questions" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="Id_question" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
 			<column name="Label_fr" type="TEXT" jt="-1" />
 			<column name="Label_en" type="TEXT" jt="-1" />
@@ -184,7 +184,7 @@
 				<enumeration>&#039;Possible&#039;,&#039;Impossible&#039;,&#039;Obligatory&#039;</enumeration>
 			</column>
 			<index name="pk_questions" unique="PRIMARY_KEY" >
-				<column name="Id_questions" />
+				<column name="Id_question" />
 			</index>
 			<index name="idx_questions" unique="NORMAL" >
 				<column name="Id_package" />
@@ -206,7 +206,7 @@
 				<fk_column name="Id_user" pk="Id_user" />
 			</fk>
 			<fk name="fk_questionsofusers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
-				<fk_column name="Id_question" pk="Id_questions" />
+				<fk_column name="Id_question" pk="Id_question" />
 			</fk>
 		</table>
 		<table name="Registrations" >
@@ -270,7 +270,6 @@
 	<layout name="vbmifare" >
 		<entity schema="vbmifare" name="Classrooms" x="70" y="56" />
 		<entity schema="vbmifare" name="BadgingInformations" x="714" y="56" />
-		<entity schema="vbmifare" name="Questions" x="602" y="322" />
 		<entity schema="vbmifare" name="Answers" x="826" y="308" />
 		<entity schema="vbmifare" name="AnswersOfUsers" x="784" y="532" />
 		<entity schema="vbmifare" name="Availabilities" x="252" y="42" />
@@ -286,6 +285,7 @@
 		<entity schema="vbmifare" name="ImagesOfArchives" x="868" y="168" />
 		<entity schema="vbmifare" name="DocumentsOfPackages" x="406" y="84" />
 		<entity schema="vbmifare" name="ArchivesOfPackages" x="588" y="196" />
+		<entity schema="vbmifare" name="Questions" x="602" y="322" />
 		<group name="numsem" color="c4e0f9" >
 			<entity schema="vbmifare" name="Answers" />
 			<entity schema="vbmifare" name="AnswersOfUsers" />

@@ -1,53 +1,66 @@
+<script src="../../web/js/jquery-1.7.1.min.js"></script>
+<script src="../../web/js/handlers.js"></script>
+<script src="../../web/js/editTable.js"></script>
+
+<form id="form" method="post">
+    <select class="target" name="packageIdRequested">
 <?php
-    $forms = array();
-
-    // There is at least one element in images (checked in Controller)
-    $i = 1;
-
-    // Loop on every images
-    while($i < count($images))
+    foreach($packages as $package)
     {
-        // Count how many images there are for each packages
-        $counter = 0;
-        while($i < count($images) && ($images[$i - 1]->getIdPackage() == $images[$i]->getIdPackage()))
-        {
-            $counter++;
-            $i++;
-        }
-        $counter++;
-
-        $form = new Form('', 'post');
-
-        // Get packages' name
-        foreach($packages as $package)
-        {
-            if($package->getId() == $images[$i - 1]->getIdPackage())
-            {
-                $form->add('label', 'Package')
-                     ->label($package->getName('fr'));
-                $form->add('hidden', 'PackageName')
-                     ->value($package->getName('fr'));
-                $form->add('hidden', 'packageId')
-                     ->value($package->getId());
-            }
-        }
-
-        $form->add('label', 'Count')
-             ->label($counter);
-
-        $form->add('submit', 'Supprimer');
-
-        $forms[] = $form;
+        echo '<option ' . ($package->getId() == $packageIdRequested ? 'selected' : '') . ' value="' . $package->getId() . '">' . $package->getName('fr') . '</option>';
     }
 ?>
+    </select>
+</form>
 
-<table class="FormTable">
-    <tr>
-        <th>Nom du package</th>
-        <th>Nombre d'images associées</th>
-    </tr>
+
+<script type="text/javascript">
+    $('.target').change(function() {
+        $('#form').submit();
+    });
+</script>
+
+
+<br/>
+
+
 <?php
-    foreach($forms as $form)
-        echo $form->toTr();
+    function setSelected($data, $compareTo)
+    {
+        if ($data == $compareTo)
+            return "selected='selected'";
+        return '';
+    }
+
+    // Display archives
+	for($i=0; $i<count($archives); ++$i)
+	{
+        if($archives[$i]->getIdPackage() != $packageIdRequested)
+            continue;
+
+        $idArchive = $archives[$i]->getId();
+
+        echo '
+        <table id="editableTable">
+	        <tr>
+		        <th>Nom</th>
+		        <th>Action</th>
+	        </tr>';
+
+	        $sizeName = strlen($archives[$i]->getFilename());
+
+	        echo '<tr>';
+	        echo "<td><p  class='editable' 
+                          data-id='{$archives[$i]->getId()}'
+                          data-entry-name='ArchivesOfPackages'
+                          data-field-name='Filename'
+                          data-form-type='text'
+                          data-form-size='{$sizeName}'>{$archives[$i]->getFilename()}</p></td>";
+    		echo "<td><img class='deletable' data-entry-name='ArchivesOfPackages' data-id='$idArchive' src='../../web/images/delete.png' /></a></td>";
+	        echo '</tr>';
+
+        echo '</table>';
+
+        echo '<br/><br/><br/><br/>';
+    }
 ?>
-</table>

@@ -10,6 +10,9 @@
          ->label('Sélection du package : ')
          ->choices($choices);
 
+    $form->add('text', 'filename')
+         ->label('Nom du fichier: ');
+
     $form->add('file', 'zipFile')
          ->label('Chemin du fichier zip : ');
 
