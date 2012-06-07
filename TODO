@@ -1,19 +1,19 @@
     TODO list
 
-- Centrer nom Frontend
-
 - Général:
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
     - Quand pas d'inscriptions aux conférences, le dire lors de l'affichage de planning.
     - Suppression documents physiques formulaire Ajax
+    - Centrer nom Frontend
+    - Redirection: RequestURI()
+
 
 - AJAX:
     - Mettre un attribut dans le back-controller permettant de ne pas inclure les views
 
 
 - Frontend:
-    - Refaire le planning en tableau (priorité faible)
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
     - Notation QCM
@@ -41,5 +41,4 @@
     - Editage en ligne à refaire avec Ajax-JQuery pour conférences
 
     - Ajouter un éditage en ligne pour questions/réponses (quasiment finis)
-
 
