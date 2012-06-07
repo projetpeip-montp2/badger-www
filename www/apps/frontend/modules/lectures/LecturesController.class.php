@@ -76,7 +76,7 @@
 
             $counter = $this->m_managers->getManagerOf('documentofpackage')->count($request->getData('idPackage'));
             $this->page()->addVar('showDocuments', $counter != 0);
-            $counter = $this->m_managers->getManagerOf('imageofpackage')->count($request->getData('idPackage'));
+            $counter = $this->m_managers->getManagerOf('archiveofpackage')->count($request->getData('idPackage'));
             $this->page()->addVar('showImages', $counter != 0);
         }
 
