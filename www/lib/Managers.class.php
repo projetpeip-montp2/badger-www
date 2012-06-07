@@ -20,7 +20,7 @@
         ////////////////////////////////////////////////////////////
         public function __construct()
         {
-            $this->m_dao = new Database('localhost', 'vbMifare', 'vbMifare2012', 'vbMifare');
+            $this->m_dao = new Database('localhost', 'vbMifare', 'vbMifare2012', 'numsem');
         }
         
         ////////////////////////////////////////////////////////////
