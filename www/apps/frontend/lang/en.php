@@ -68,6 +68,7 @@
     $TEXT['Package_Unsubscribe'] = "Unsubscribe";
     $TEXT['Package_ListOfLecture'] = "List of lectures in the package:";
     $TEXT['Package_DocumentsLink'] = "Browse associated files";
+    $TEXT['Package_DownloadDocumentsLink'] = "Download all associated files";
     $TEXT['Package_ImagesLink'] = "Online images viewer";
     $TEXT['Package_NoDisplay'] = "No online documents available";
     $TEXT['Package_NoLecture'] = "No lecture.";
@@ -99,4 +100,3 @@
     $TEXT['Viewer_Index'] = "Viewer";
     $TEXT['Viewer_GoTo'] = "Go to page";
 ?>
-

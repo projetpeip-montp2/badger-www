@@ -1,6 +1,7 @@
 <div class="doc-dispo">
     <?php
         $documentsLink = '/lectures/showDocuments-' . $package->getId() . '.html';
+        $downloadDocumentsLink = '/lectures/downloadDocuments-' . $package->getId() . '.html';
         $imagesLink = '/viewer/viewImage-' . $package->getId() . '-' . '1.html';
 
         $noDisplay = true;
@@ -12,6 +13,8 @@
         {
     ?>
         <a href="<?php echo $documentsLink; ?>"><?php echo $TEXT['Package_DocumentsLink']; ?></a>
+        <br/>
+        <a href="<?php echo $downloadDocumentsLink; ?>"><?php echo $TEXT['Package_DownloadDocumentsLink']; ?></a>
     <?php
         $noDisplay = false;
         }

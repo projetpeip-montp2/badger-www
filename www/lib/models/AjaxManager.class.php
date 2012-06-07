@@ -211,5 +211,4 @@
 				throw new Exception("Erreur: Vous ne pouvez mettre une capacité inférieure au nombre d'inscriptions déjà faites");
 		}
 	}
-	
 ?>

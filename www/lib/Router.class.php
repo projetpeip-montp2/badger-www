@@ -35,7 +35,7 @@
                        throw new RuntimeException('The module used by the route "' . $route->getAttribute('url') . '" does not exist');
        
                     require $file;
-					
+
                     $controller = new $classname($this->app(), $module, $action);
 
                     if ($route->hasAttribute('vars'))
