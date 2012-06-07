@@ -1,17 +1,17 @@
 <?php
     class ArchiveOfPackageManager extends Manager
     {
-        public function get($idArchive = -1, $idImage = -1)
+        public function get($idPackage = -1, $idImage = -1)
         {
-            $requestSQL = 'SELECT Id_image,
-                                  Id_archive,
-                                  Filename FROM ImagesOfArchives';
+            $requestSQL = 'SELECT Id_archive,
+                                  Id_package,
+                                  Filename FROM ArchivesOfPackages';
 
             $paramsSQL = array();
 
-            if($idArchive != -1)
+            if($idPackage != -1)
             {
-                $requestSQL .= ' WHERE Id_archive = ?';
+                $requestSQL .= ' WHERE Id_package = ?';
                 $paramsSQL[] = $idPackage;
             }
 
@@ -25,19 +25,19 @@
             $req = $this->m_dao->prepare($requestSQL);
             $req->execute($paramsSQL);
 
-            $images = array();
+            $archives = array();
 
             while($data = $req->fetch())
             {
-                $image = new ImageOfArchive;
-                $image->setId($data['Id_image']);
-                $image->setIdArchive($data['Id_archive']);
-                $image->setFilename($data['Filename']);
+                $archive = new ArchiveOfPackage;
+                $archive->setId($data['Id_archive']);
+                $archive->setIdPackage($data['Id_package']);
+                $archive->setFilename($data['Filename']);
 
-                $images[] = $image;
+                $archives[] = $archive;
             }
 
-            return $images;
+            return $archives;
         }
 
         public function save($archive)

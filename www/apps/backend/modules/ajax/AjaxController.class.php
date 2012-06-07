@@ -8,19 +8,27 @@
 			$this->app()->httpResponse()->redirect('/admin/home/index.html');
         }
 		
+		public function verifyInput($ajaxInput)
+		{
+			if ($ajaxInput->getData('entry-name') == 'Packages' && $ajaxInput->getData('field-name') == 'Capacity')
+				$this->m_managers->getManagerOf('ajax')->verifyCapacity($ajaxInput);
+		}
+		
 		public function executeModifyText(HTTPRequest $request)
 		{
 			$allowedFields = array('Classrooms' => array('Name', 'Size'),
 								   'Availabilities' => array('Date', 'StartTime', 'EndTime'),
 								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'),
 								   'Questions' => array('Label_fr', 'Label_en', 'Status'),
-								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'));
+								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'),
+                                   'ArchivesOfPackages' => array('Filename'));
 
 			$idFields = array('Classrooms' => 'Id_classroom',
 							  'Availabilities' => 'Id_availability',
 							  'Questions' => 'Id_question',
 							  'Answers' => 'Id_answer',
-							  'Packages' => 'Id_package');
+							  'Packages' => 'Id_package',
+                              'ArchivesOfPackages' => 'Id_archive');
 
 			$allowedFormType = array('text', 'number', 'textbox');
 			
@@ -38,6 +46,7 @@
 				$ajaxInput->setData('id', $request->postData('data-id'));
 				$ajaxInput->setData('id-sub', $request->postExists('data-id-sub') ? $request->postData('data-id-sub') : '');
 				$ajaxInput->setData('subfield-name', $request->postExists('data-subfield-name') ? $request->postData('data-subfield-name') : '');
+				$ajaxInput->setData('verify-callback', $request->postExists('data-verify-callback') ? $request->postData('data-verify-callback') : '');
 				$ajaxInput->setValue($request->postData('value'));
 
 				if (!array_key_exists($ajaxInput->getData('entry-name'), $allowedFields) || !in_array($ajaxInput->getData('field-name') , $allowedFields[$ajaxInput->getData('entry-name')]))
@@ -50,7 +59,10 @@
 					else
 					{
 						try
-						{	
+						{
+							if ($ajaxInput->getData('verify-callback') == 'true')
+								$this->verifyInput($ajaxInput);
+						
 							$this->m_managers->getManagerOf('ajax')->updateText($ajaxInput);
 						}
 						catch (Exception $e)
@@ -100,13 +112,14 @@
 		{
 			$this->page()->setIsAjaxPage(TRUE);
 			
-			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities');
+			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities', 'ArchivesOfPackages');
 
 			$idFields = array('Classrooms' => 'Id_classroom',
                               'Questions' => 'Id_question',
                               'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package',
-							  'Availabilities' => 'Id_availability');
+							  'Availabilities' => 'Id_availability',
+                              'ArchivesOfPackages' => 'Id_archive');
 			
 			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
 			{
