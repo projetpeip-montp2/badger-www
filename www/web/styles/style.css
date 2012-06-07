@@ -370,6 +370,11 @@ p.editable, p.addable, p.ajaxInput, p.separator, p.selectable
 	display: inline;
 }
 
+p.labelable
+{
+	display: inline;
+}
+
 a.addable
 {
 	font-size: 12px;

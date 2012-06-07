@@ -118,15 +118,12 @@
     {
 	    private $m_link;
 
-	    public function __construct($host, $username, $password, $dbName)
+	    public function __construct($host, $username, $password, $dbName, $port = 3306)
 	    {	
-		    $this->m_link = mysqli_connect($host, $username, $password);
+		    $this->m_link = mysqli_connect($host, $username, $password, $dbName, $port);
 
 		    if($this->m_link === FALSE)
 			    throw new RuntimeException('Cannot connect to MySQL');
-
-		    if(mysqli_select_db($this->m_link, $dbName) === FALSE)
-			    throw new RuntimeException('Cannot select database');
 	    }
 	
 	    public function __destruct()

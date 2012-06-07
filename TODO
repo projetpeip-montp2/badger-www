@@ -9,10 +9,6 @@
     - Redirection: RequestURI()
 
 
-- AJAX:
-    - Mettre un attribut dans le back-controller permettant de ne pas inclure les views
-
-
 - Frontend:
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
@@ -35,10 +31,11 @@
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
+
 - William:
-    - Pouvoir mettre un select dans les tableaux éditables
     - Attribution des packages aux élèves pas inscrits totalement
     - Editage en ligne à refaire avec Ajax-JQuery pour conférences
+    - Verifier que la capacité est supérieur au registraionCount lors d'un rabaissement de la capacity
 
     - Ajouter un éditage en ligne pour questions/réponses (quasiment finis)
 

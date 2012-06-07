@@ -6,7 +6,7 @@
             $req = $this->m_dao->prepare('SELECT * FROM Users');
             $req->execute();
 
-            $reqNext = $this->m_dao->prepare('SELECT VraiPrenom, VraiNom Departement, anApogee, Num_Etudiant FROM UsersPolytech WHERE Username = ?');
+            $reqNext = $this->m_dao->prepare('SELECT VraiPrenom, VraiNom, Departement, anApogee, Num_Etudiant FROM UsersPolytech WHERE Username = ?');
 
             $students = array();
             while($data = $req->fetch())
@@ -16,10 +16,11 @@
 
                 $student = new Student;
                 $student->setUsername($data['Id_user']);
-                $student->setName($data['VraiPrenom']);
-                $student->setSurname($data['VraiNom']);
                 $student->setMark($data['Mark']);
                 $student->setMCQStatus($data['MCQStatus']);
+
+                $student->setName($dataNext['VraiPrenom']);
+                $student->setSurname($dataNext['VraiNom']);
                 $student->setDepartment($dataNext['Departement']);
                 $student->setSchoolYear($dataNext['anApogee']);
                 $student->setStudentNumber($dataNext['Num_Etudiant']);

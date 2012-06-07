@@ -53,13 +53,13 @@
         ////////////////////////////////////////////////////////////
         public function getGeneratedPage()
         {
+			if ($this->m_isAjaxPage)
+				return '';
+
 			if (!file_exists($this->m_contentFile))
                 throw new RuntimeException('The needed view does not exist');
             
             $user = $this->app()->user();
-            
-			if ($this->m_isAjaxPage)
-				return '';
 			
             foreach($this->m_filesToInclude as $filename)
             {
