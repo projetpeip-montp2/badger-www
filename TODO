@@ -1,19 +1,12 @@
     TODO list
 
-- Serveur:
-    - Autoriser la copie de fichiers sur le serveur
+- Centrer nom Frontend
 
 - Général:
-    - Inclure la langue à chaque entête de controlleur Frontend (à tester)
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
     - Quand pas d'inscriptions aux conférences, le dire lors de l'affichage de planning.
     - Suppression documents physiques formulaire Ajax
-
-- Production:
-    - Les liens vers les images ne fonctionneront certainement pas en production à cause du /vbMifare/web...
-    - Retirer les fonctions inutiles comme celle dans la classe User
-
 
 - AJAX:
     - Mettre un attribut dans le back-controller permettant de ne pas inclure les views
@@ -35,16 +28,12 @@
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
     - Envoie de mails contenant questions-réponses.
     - Statistiques
-    - Gestion des pertes de cartes (voir si on peut faire mieux, en montrant les conf de l'élèves en Ajax)
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
     - Gros coup de Polish
     - Empecher de reduire la capacité si on à déjà trop d'élèves
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
-
-    - Revoir ajout Admins
-
 
 - William:
     - Pouvoir mettre un select dans les tableaux éditables
