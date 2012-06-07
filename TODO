@@ -3,7 +3,6 @@
 - Général:
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
-    - Quand pas d'inscriptions aux conférences, le dire lors de l'affichage de planning.
     - Suppression documents physiques formulaire Ajax
     - Centrer nom Frontend
     - Redirection: RequestURI()
@@ -30,6 +29,8 @@
     - Empecher de reduire la capacité si on à déjà trop d'élèves
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
+
+    - Une personne interdite à quand même accès à l'interface du backend
 
 
 - William:
