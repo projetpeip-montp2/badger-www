@@ -121,9 +121,32 @@
             $packageName = $package[0]->getName($lang);
             $documentsName = $this->m_managers->getManagerOf('documentofpackage')->get($idPackage);
 
-            header('Content-Type: text/csv');
-            header('Content-Disposition: attachment; filename="' . $packageName . '.zip"');
-            echo 'aa';
+            $zip = new ZipArchive;
+            $res = $zip->open('test.zip', ZipArchive::CREATE);
+
+            if($res === TRUE) 
+            {
+                foreach($documentsName as $name)
+                {
+                    $res = $zip->addFile('/uploads/admin/pdf/' . $name->getFilename(), $name->getFilename());
+
+                    if($res === FALSE)
+                        throw new Exception('Impossible d\ajouter: ' . $name->getFilename());
+                }
+
+                $fp = $zip->getStream('test');
+                if(!$fp)
+                    exit(":(");
+
+                header('Content-Type: text/csv');
+                header('Content-Disposition: attachment; filename="' . $packageName . '.zip"');
+                echo 'aaaa';
+            } 
+
+            else 
+            {
+                var_dump('Impossible de créer l\'archive vide ' . $res); die();
+            }
         }
 
         public function executeShowAll(HTTPRequest $request)
