@@ -1,40 +1,69 @@
+<script src="../../web/js/jquery-1.7.1.min.js"></script>
+<script src="../../web/js/handlers.js"></script>
+<script src="../../web/js/editTable.js"></script>
+
+<form id="form" method="post">
+    <select class="target" name="packageIdRequested">
 <?php
-    $forms = array();
-    foreach($documents as $document)
+    foreach($packages as $package)
     {
-        $form = new Form('', 'post');
-
-        // Get packages' name
-        foreach($packages as $package)
-        {
-            if($package->getId() == $document->getIdPackage())
-            {
-                $form->add('label', 'Package')
-                     ->label($package->getName('fr'));
-                $form->add('hidden', 'PackageName')
-                     ->value($package->getName('fr'));
-            }
-        }
-        $form->add('label', 'Name')
-             ->label($document->getFilename());
-        $form->add('hidden', 'DocumentName')
-             ->value($document->getFilename());
-        $form->add('hidden', 'documentId')
-             ->value($document->getId());
-
-        $form->add('submit', 'Supprimer');
-
-        $forms[] = $form;
+        echo '<option ' . ($package->getId() == $packageIdRequested ? 'selected' : '') . ' value="' . $package->getId() . '">' . $package->getName('fr') . '</option>';
     }
 ?>
+    </select>
+</form>
 
-<table class="FormTable">
-    <tr>
-        <th>Nom du package</th>
-        <th>Nom du document</th>
-    </tr>
+
+<script type="text/javascript">
+    $('.target').change(function() {
+        $('#form').submit();
+    });
+</script>
+
+
+<br/>
+
+
 <?php
-    foreach($forms as $form)
-        echo $form->toTr();
+    function setSelected($data, $compareTo)
+    {
+        if ($data == $compareTo)
+            return "selected='selected'";
+        return '';
+    }
+
+    // Display documents
+	for($i=0; $i<count($documents); ++$i)
+	{
+        if($documents[$i]->getIdPackage() != $packageIdRequested)
+            continue;
+
+        $idDocument = $documents[$i]->getId();
+
+        echo '
+        <table id="editableTable">
+	        <tr>
+		        <th>Nom</th>
+		        <th>Action</th>
+	        </tr>';
+
+	        $sizeName = strlen($documents[$i]->getFilename());
+
+	        echo '<tr>';
+	        echo "<td><p  class='editable' 
+                          data-id='{$documents[$i]->getId()}'
+                          data-entry-name='DocumentsOfPackages'
+                          data-field-name='Filename'
+                          data-form-type='text'
+                          data-form-size='{$sizeName}'>{$documents[$i]->getFilename()}</p></td>";
+    		echo "<td><img class='deletable'
+                           data-entry-name='DocumentsOfPackages'
+                           data-id='$idDocument'
+                           src='../../web/images/delete.png' /></a></td>";
+	        echo '</tr>';
+
+        echo '</table>';
+
+        echo '<br/><br/><br/><br/>';
+    }
 ?>
-</table>

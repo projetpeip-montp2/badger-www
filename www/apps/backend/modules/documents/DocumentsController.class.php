@@ -4,6 +4,52 @@
         public function executeIndex(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Gestions des documents");
+
+            $packages = $this->m_managers->getManagerOf('package')->get();
+
+            $documents = array();
+            $archives = array();
+
+            $documentsManager = $this->m_managers->getManagerOf('documentofpackage');
+            $archivesManager = $this->m_managers->getManagerOf('archiveofpackage');
+
+            $packageRequested = false;
+            if($request->postExists('packageIdRequested'))
+            {
+                $packageRequested = true;
+                $packageIdRequested = $request->postData('packageIdRequested');
+            }
+
+            $found = false;
+
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlashError('Il n\'y a pas de package dans la base de données.');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            foreach($packages as $package)
+            {
+                if($packageRequested && $packageIdRequested == $package->getId())
+                    $found = true;
+
+                $documentOnePackage = $documentsManager->get($package->getId());
+                $documents = array_merge($documents, $documentOnePackage);
+
+                $archiveOnePackage = $archivesManager->get($package->getId());
+                $archives = array_merge($archives, $archiveOnePackage);
+            }
+
+            if($packageRequested && !$found)
+            {
+                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas.');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            $this->page()->addVar('packageIdRequested', ($packageRequested ? $packageIdRequested : $packages[0]->getId()) );
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('documents', $documents);
+            $this->page()->addVar('archives', $archives);
         }
 
         public function executeUploadPDF(HTTPRequest $request)
@@ -167,85 +213,6 @@
             }
 
             $this->page()->addVar('packages', $packages);
-        }
-
-        public function executeDeletePDF(HTTPRequest $request)
-        {
-            $this->page()->addVar("viewTitle", "Supprimer des PDF");
-
-            // Handle POST data
-            // Delete document
-            if($request->postExists('Supprimer'))
-            {
-                // Database
-                $filename = $this->m_managers->getManagerOf('documentofpackage')->delete($request->postData('documentId'));
-
-                // Redirection
-                $this->app()->user()->setFlashInfo('Le document "' . $request->postData('DocumentName') . ' a été supprimé.');
-                $this->app()->httpResponse()->redirect('/admin/documents/deletePDF.html');
-            }
-            // Else display the form
-            $packages = $this->m_managers->getManagerOf('package')->get();
-            $documents = $this->m_managers->getManagerOf('documentofpackage')->get();
-
-            if(count($packages) == 0)
-            {
-                $this->app()->user()->setFlashError('Il n\'y a pas de packages dans la base de données.');
-                $this->app()->httpResponse()->redirect('/admin/documents/index.html');
-            }
-            if(count($documents) == 0)
-            {
-                $this->app()->user()->setFlashError('Il n\'y a pas de document dans la base de données.');
-                $this->app()->httpResponse()->redirect('/admin/documents/index.html');
-            }
-
-            $this->page()->addVar('packages', $packages);
-            $this->page()->addVar('documents', $documents);
-        }
-
-        public function executeDeleteImages(HTTPRequest $request)
-        {
-            $this->page()->addVar("viewTitle", "Edtion d'archives d'images");
-
-            $packages = $this->m_managers->getManagerOf('package')->get();
-
-            $archives = array();
-
-            $archivesManager = $this->m_managers->getManagerOf('archiveofpackage');
-
-            $packageRequested = false;
-            if($request->postExists('packageIdRequested'))
-            {
-                $packageRequested = true;
-                $packageIdRequested = $request->postData('packageIdRequested');
-            }
-
-            $found = false;
-
-            if(count($packages) == 0)
-            {
-                $this->app()->user()->setFlashError('Il n\'y a pas de package dans la base de données.v');
-                $this->app()->httpResponse()->redirect($request->requestURI());
-            }
-
-            foreach($packages as $package)
-            {
-                if($packageRequested && $packageIdRequested == $package->getId())
-                    $found = true;
-
-                $archiveOnePackage = $archivesManager->get($package->getId());
-                $archives = array_merge($archives, $archiveOnePackage);
-            }
-
-            if($packageRequested && !$found)
-            {
-                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas.');
-                $this->app()->httpResponse()->redirect($request->requestURI());
-            }
-
-            $this->page()->addVar('packageIdRequested', ($packageRequested ? $packageIdRequested : $packages[0]->getId()) );
-            $this->page()->addVar('packages', $packages);
-            $this->page()->addVar('archives', $archives);
         }
     }
 ?>
