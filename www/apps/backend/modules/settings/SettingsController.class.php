@@ -10,20 +10,59 @@
         {
             $this->page()->addVar("viewTitle", "Gestion des administrateurs");
 
-            // If the form is submitted, we replace the current admin list by 
-            // the new
-            if($request->postExists('adminList'))
+            $currentAdminList = explode(';', $this->m_managers->getManagerOf('config')->get('adminsList'));
+
+            if($request->postExists('Ajouter'))
             {
-                $newAdminList = $this->app()->user()->getAttribute('logon') . ';' . $request->postData('adminList');
+                $newAdmin = $request->postData('newAdmin');
+
+                if(in_array($newAdmin, $currentAdminList))
+                {
+                    $this->app()->user()->setFlashInfo('Administrateur déjà présent');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                if(!empty($newAdmin))
+                {
+                    $currentAdminList[] = $newAdmin;
+                    $newAdminList = implode(';', $currentAdminList);
+
+                    $this->m_managers->getManagerOf('config')->replace('adminsList', $newAdminList);
+
+                    $this->app()->user()->setFlashInfo('Nouvelle administrateur: ' . $newAdmin);
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+            }
+
+            if($request->postExists('deletedAdmin'))
+            {
+                $deleted = $request->postData('deletedAdmin');
+
+                if(!in_array($deleted, $currentAdminList))
+                {
+                    $this->app()->user()->setFlashError('Cet administrateur n\'existe pas!');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                if(count($currentAdminList) == 1)
+                {
+                    $this->app()->user()->setFlashError('Impossible de supprimer le dernier administrateur!');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                $currentAdminList = array_unique($currentAdminList);
+                unset($currentAdminList[array_search($deleted, $currentAdminList)]);
+
+                $newAdminList = implode(';', $currentAdminList);
 
                 $this->m_managers->getManagerOf('config')->replace('adminsList', $newAdminList);
 
-                $this->app()->user()->setFlashInfo('Nouvelle liste d\'administration: "' . $newAdminList . '".');
+                $this->app()->user()->setFlashInfo('Administrateur retiré: ' . $deleted);
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
             // Else we display the form
-            $this->page()->addVar('admins', $this->m_managers->getManagerOf('config')->get('adminsList'));
+            $this->page()->addVar('currentAdminList', $currentAdminList);
         }
 
         public function executeChangeSubscribesStatus(HTTPRequest $request)
