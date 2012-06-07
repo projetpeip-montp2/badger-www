@@ -9,10 +9,6 @@
     - Redirection: RequestURI()
 
 
-- AJAX:
-    - Mettre un attribut dans le back-controller permettant de ne pas inclure les views
-
-
 - Frontend:
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
