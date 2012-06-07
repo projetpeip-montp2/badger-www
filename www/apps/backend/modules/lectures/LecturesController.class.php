@@ -443,7 +443,7 @@
             if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError('Besoin d\'avoir au moins un package!');
-                $this->app()->httpResponse()->redirect($request->requestURI());
+                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
             }
 
             foreach($packages as $package)

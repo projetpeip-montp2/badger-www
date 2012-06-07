@@ -35,12 +35,12 @@ CREATE TABLE numsem.`Packages` (
  );
 
 CREATE TABLE numsem.`Questions` ( 
-	`Id_questions`       SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Id_question`       SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Label_fr`           TEXT,
 	`Label_en`           TEXT,
 	`Status`             ENUM( 'Possible','Impossible','Obligatory' ) ,
-	CONSTRAINT pk_questions PRIMARY KEY ( `Id_questions` )
+	CONSTRAINT pk_questions PRIMARY KEY ( `Id_question` )
  );
 
 CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
@@ -164,13 +164,13 @@ CREATE INDEX idx_registrations_0 ON numsem.`Registrations` ( `Id_package` );
 
 CREATE INDEX idx_registrations_1 ON numsem.`Registrations` ( `Id_user` );
 
-ALTER TABLE numsem.`Answers` ADD CONSTRAINT fk_answers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`Answers` ADD CONSTRAINT fk_answers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_question` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_answers FOREIGN KEY ( `Id_answer` ) REFERENCES numsem.`Answers`( `Id_answer` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_question` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`ArchivesOfPackages` ADD CONSTRAINT fk_archivesofimages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
@@ -190,7 +190,7 @@ ALTER TABLE numsem.`Questions` ADD CONSTRAINT fk_questions_packages FOREIGN KEY 
 
 ALTER TABLE numsem.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE numsem.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`QuestionsOfUsers` ADD CONSTRAINT fk_questionsofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_question` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_lectures FOREIGN KEY ( `Id_lecture` ) REFERENCES numsem.`Lectures`( `Id_lecture` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
