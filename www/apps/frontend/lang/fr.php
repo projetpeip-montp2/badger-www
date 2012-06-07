@@ -68,6 +68,7 @@
     $TEXT['Package_Unsubscribe'] = "Se désinscrire";
     $TEXT['Package_ListOfLecture'] = "Liste des conférences dans le package:";
     $TEXT['Package_DocumentsLink'] = "Voir les documents associés";
+    $TEXT['Package_DownloadDocumentsLink'] = "Télécharger tous les documents associés";
     $TEXT['Package_ImagesLink'] = "Visionneuse en ligne";
     $TEXT['Package_NoDisplay'] = "Pas de documents disponibles";
     $TEXT['Package_NoLecture'] = "Aucune conférence.";
@@ -99,4 +100,3 @@
     $TEXT['Viewer_Index'] = "Visionneuse";
     $TEXT['Viewer_GoTo'] = "Aller à la page";
 ?>
-

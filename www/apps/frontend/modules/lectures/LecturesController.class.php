@@ -101,6 +101,31 @@
             $this->page()->addVar('documents', $this->m_managers->getManagerOf('documentofpackage')->get($idPackage));
         }
 
+        public function executeDownloadDocuments(HTTPRequest $request)
+        {
+            // Hack to don't display the layout :)
+			$this->page()->setIsAjaxPage(TRUE);
+
+            $idPackage = $request->getData('idPackage');
+
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
+            $package = $this->m_managers->getManagerOf('package')->get($idPackage);
+
+            if(count($package) == 0)
+            {
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_PackageUnknown']);
+                $this->app()->httpResponse()->redirect('/home/index.html');
+            }
+
+            $packageName = $package[0]->getName($lang);
+            $documentsName = $this->m_managers->getManagerOf('documentofpackage')->get($idPackage);
+
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="' . $packageName . '.zip"');
+            echo 'aa';
+        }
+
         public function executeShowAll(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureShowAll']);
@@ -276,4 +301,3 @@ function dateCompare($string1, $string2)
     return Date::compare($date1, $date2);
 }
 ?>
-
