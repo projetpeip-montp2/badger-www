@@ -1,23 +1,23 @@
 <?php
-    class ImageOfPackageManager extends Manager
+    class ImageOfArchiveManager extends Manager
     {
-        public function get($idPackage = -1, $idImage = -1)
+        public function get($idArchive = -1, $idImage = -1)
         {
             $requestSQL = 'SELECT Id_image,
-                                  Id_package,
-                                  Filename FROM ImagesOfPackages';
+                                  Id_archive,
+                                  Filename FROM ImagesOfArchives';
 
             $paramsSQL = array();
 
-            if($idPackage != -1)
+            if($idArchive != -1)
             {
-                $requestSQL .= ' WHERE Id_package = ?';
+                $requestSQL .= ' WHERE Id_archive = ?';
                 $paramsSQL[] = $idPackage;
             }
 
             if($idImage != -1)
             {
-                $connect = ($idPackage != -1) ? 'AND' : 'WHERE';
+                $connect = ($idArchive != -1) ? 'AND' : 'WHERE';
                 $requestSQL .= ' ' . $connect .' Id_image = ?';
                 $paramsSQL[] = $idImage;
             }
@@ -29,9 +29,9 @@
 
             while($data = $req->fetch())
             {
-                $image = new ImageOfPackage;
+                $image = new ImageOfArchive;
                 $image->setId($data['Id_image']);
-                $image->setIdPackage($data['Id_package']);
+                $image->setIdArchive($data['Id_archive']);
                 $image->setFilename($data['Filename']);
 
                 $images[] = $image;
@@ -42,29 +42,29 @@
 
         public function save($image)
         {
-            $req = $this->m_dao->prepare('INSERT INTO ImagesOfPackages(Id_package,
+            $req = $this->m_dao->prepare('INSERT INTO ImagesOfArchives(Id_archive,
                                                                          Filename) VALUES(?, ?)');
 
-            $req->execute(array($image->getIdPackage(),
+            $req->execute(array($image->getIdArchive(),
                                 $image->getFilename()));
         }
 
-        public function delete($idPackage)
+        public function delete($idArchive)
         {
-            $req = $this->m_dao->prepare('DELETE FROM ImagesOfPackages WHERE Id_package = ?');
+            $req = $this->m_dao->prepare('DELETE FROM ImagesOfArchive WHERE Id_archive = ?');
 
-            $req->execute(array($idPackage));
+            $req->execute(array($idArchive));
         }
 
-        public function count($idPackage = -1)
+        public function count($idArchive = -1)
         {
-            $requestSQL = 'SELECT COUNT(*) FROM ImagesOfPackages';
+            $requestSQL = 'SELECT COUNT(*) FROM ImagesOfArchive';
 
             $paramsSQL = array();
 
-            if($idPackage != -1)
+            if($idArchive != -1)
             {
-                $requestSQL .= ' WHERE Id_package = ?';
+                $requestSQL .= ' WHERE Id_archive = ?';
                 $paramsSQL[] = $idPackage;
             }
 
