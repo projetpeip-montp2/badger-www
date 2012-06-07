@@ -20,7 +20,7 @@
 			$statement->execute(array($id));
 			
 			if ($statement->getNumRows() == 0)
-				throw new RuntimeException('Erreur: ProblËme d\'ID');
+				throw new RuntimeException('Erreur: Probl√®me d\'ID');
 				
 			$result = $statement->fetch();
 			$date = new Date;
@@ -37,7 +37,7 @@
 					$date->setYear(intval($value));
 					break;
 				default:
-					throw new RuntimeException('Erreur: ProblËme de sous champ');
+					throw new RuntimeException('Erreur: Probl√®me de sous champ');
 			}
 			
 			$statement = $this->m_dao->prepare("UPDATE $tableName SET $fieldName = ? WHERE $idName = ?");
@@ -50,7 +50,7 @@
 			$statement->execute(array($id));
 			
 			if ($statement->getNumRows() == 0)
-				throw new RuntimeException('Erreur: ProblËme d\'ID');
+				throw new RuntimeException('Erreur: Probl√®me d\'ID');
 				
 			$result = $statement->fetch();
 			$time = new Time;
@@ -67,7 +67,7 @@
 					$time->setSeconds(intval($value));
 					break;
 				default:
-					throw new RuntimeException('Erreur: ProblËme de sous champ');
+					throw new RuntimeException('Erreur: Probl√®me de sous champ');
 			}
 			
 			$statement = $this->m_dao->prepare("UPDATE $tableName SET $fieldName = ? WHERE $idName = ?");
@@ -100,7 +100,7 @@
 						$startTime->setSeconds(intval($value));
 						break;
 					default:
-						throw new RuntimeException('Erreur: ProblËme de sous champ');
+						throw new RuntimeException('Erreur: Probl√®me de sous champ');
 				}
 			else
 				switch ($subField)
@@ -115,10 +115,10 @@
 						$endTime->setSeconds(intval($value));
 						break;
 					default:
-						throw new RuntimeException('Erreur: ProblËme de sous champ');
+						throw new RuntimeException('Erreur: Probl√®me de sous champ');
 				}
 			if (Time::compare($startTime, $endTime) == 1)
-				throw new RuntimeException('Erreur: Vous avez rentrÈ une heure de dÈbut plus tardive que l\'heure de fin');
+				throw new RuntimeException('Erreur: Vous avez rentr√© une heure de d√©but plus tardive que l\'heure de fin');
 		}
 		
 		private function updateSubText($ajaxInput)
@@ -131,7 +131,7 @@
 			$subField = $ajaxInput->getData('subfield-name');
 			$value = $ajaxInput->getValue();
 			
-			// Cas spÈcifique pour availabilities
+			// Cas sp√©cifique pour availabilities
 			if ($fieldName == 'StartTime' || $fieldName == 'EndTime')
 				$this->checkAvailabilityCoherency($fieldName, $subField, $id, $value);
 			
@@ -145,7 +145,7 @@
 					$newValue = $this->updateTime($tableName, $fieldName, $id, $idName, $idSub, $subField, $value);
 					break;
 				default:
-					throw new Exception('Erreur cas spÈcial non gÈrÈ');
+					throw new Exception('Erreur cas sp√©cial non g√©r√©');
 			}
 		}
 		
@@ -172,7 +172,7 @@
 			$statement = $this->m_dao->prepare('SELECT Id_classroom FROM Classrooms WHERE Id_classroom = ?');
 			$statement->execute(array($id_classroom));
 			if ($statement->getNumRows() == 0)
-				throw new RuntimeException('Erreur: ProblËme d\'ID');
+				throw new RuntimeException('Erreur: Probl√®me d\'ID');
 			
 			$date = new Date(01, 01, (int)date('Y'));
 			$dateString = $date->toStringMySQL();
@@ -204,11 +204,11 @@
 		public function verifyCapacity($ajaxInput)
 		{
 			$reqCount = $this->m_dao->prepare('SELECT COUNT(DISTINCT Id_user) FROM Registrations WHERE Id_package = ?');
-			$reqCount->execute($ajaxInput->getData('id'));
+			$reqCount->execute(array($ajaxInput->getData('id')));
 			$registrationsCount = $reqCount->fetch();
 			
-			if ($registrationsCount > $ajaxInput->getValue())
-				throw new Exception("Erreur: Vous ne pouvez mettre une capacitÈ infÈrieure au nombre d'inscriptions dÈj‡ faites");
+			if ($registrationsCount['COUNT(DISTINCT Id_user)'] > $ajaxInput->getValue())
+				throw new Exception("Erreur: Vous ne pouvez mettre une capacit√© inf√©rieure au nombre d'inscriptions d√©j√† faites");
 		}
 	}
 	

@@ -51,10 +51,6 @@ $(document).ready(function()
 	{
 		deleteEntry(e.target);
 	});
-	$("#verify-count").live("click", function(e)
-	{
-		verifyCount(e.target);
-	});
 });
 
 function addForm(element)
@@ -103,7 +99,6 @@ function modifyCell(element)
 			$(newElem).attr('data-id', $(element).attr('data-id'));
 			$(newElem).attr('data-id-sub', $(element).attr('data-id-sub'));
 			$(newElem).attr('data-subfield-name', $(element).attr('data-subfield-name'));
-			
 			if ($(element).attr('data-verify-callback'))
 				$(newElem).attr('data-verify-callback', $(element).attr('data-verify-callback'));
 			if ($(element).attr('data-form-size'))
