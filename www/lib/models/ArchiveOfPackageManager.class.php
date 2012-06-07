@@ -56,6 +56,25 @@
             $req->execute(array($idArchive));
         }
 
+        public function count($idPackage = -1)
+        {
+            $requestSQL = 'SELECT COUNT(*) FROM ArchivesOfPackages';
+
+            $paramsSQL = array();
+
+            if($idPackage != -1)
+            {
+                $requestSQL .= ' WHERE Id_package = ?';
+                $paramsSQL[] = $idPackage;
+            }
+
+            $req = $this->m_dao->prepare($requestSQL);
+            $req->execute($paramsSQL);
+
+            $count = $req->fetch();
+            return $count['COUNT(*)'];
+        }
+
         public function lastInsertId()
         {
             return $this->m_dao->lastInsertId();
