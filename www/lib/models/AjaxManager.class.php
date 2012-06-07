@@ -200,6 +200,16 @@
 			$statement = $this->m_dao->prepare("DELETE FROM $tableName WHERE $idName = ?");
 			$statement->execute(array($id));
 		}
+		
+		public function verifyCapacity($ajaxInput)
+		{
+			$reqCount = $this->m_dao->prepare('SELECT COUNT(DISTINCT Id_user) FROM Registrations WHERE Id_package = ?');
+			$reqCount->execute($ajaxInput->getData('id'));
+			$registrationsCount = $reqCount->fetch();
+			
+			if ($registrationsCount > $ajaxInput->getValue())
+				throw new Exception("Erreur: Vous ne pouvez mettre une capacité inférieure au nombre d'inscriptions déjà faites");
+		}
 	}
 	
 ?>

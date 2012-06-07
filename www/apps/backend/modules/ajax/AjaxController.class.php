@@ -8,6 +8,12 @@
 			$this->app()->httpResponse()->redirect('/admin/home/index.html');
         }
 		
+		public function verifyInput($ajaxInput)
+		{
+			if ($ajaxInput->getData('entry-name') == 'Packages' && $ajaxInput->getData('field-name') == 'Capacity')
+				$this->m_managers->getManagerOf('ajax')->verifyCapacity($ajaxInput);
+		}
+		
 		public function executeModifyText(HTTPRequest $request)
 		{
 			$allowedFields = array('Classrooms' => array('Name', 'Size'),
@@ -38,6 +44,7 @@
 				$ajaxInput->setData('id', $request->postData('data-id'));
 				$ajaxInput->setData('id-sub', $request->postExists('data-id-sub') ? $request->postData('data-id-sub') : '');
 				$ajaxInput->setData('subfield-name', $request->postExists('data-subfield-name') ? $request->postData('data-subfield-name') : '');
+				$ajaxInput->setData('verify-callback', $request->postExists('data-verify-callback') ? $request->postData('data-verify-callback') : '');
 				$ajaxInput->setValue($request->postData('value'));
 
 				if (!array_key_exists($ajaxInput->getData('entry-name'), $allowedFields) || !in_array($ajaxInput->getData('field-name') , $allowedFields[$ajaxInput->getData('entry-name')]))
@@ -50,7 +57,10 @@
 					else
 					{
 						try
-						{	
+						{
+							if ($ajaxInput->getData('verify-callback') == 'true')
+								$this->verifyInput($ajaxInput);
+						
 							$this->m_managers->getManagerOf('ajax')->updateText($ajaxInput);
 						}
 						catch (Exception $e)

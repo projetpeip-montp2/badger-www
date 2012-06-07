@@ -41,15 +41,19 @@ $(document).ready(function()
 {
 	$(".editable").live("click", function(e)
 	{
-			modifyCell(e.target);
+		modifyCell(e.target);
 	});
 	$(".addable").live("click", function(e)
 	{
-			addForm(e.target);
+		addForm(e.target);
 	});
 	$(".deletable").live("click", function(e)
 	{
-			deleteEntry(e.target);
+		deleteEntry(e.target);
+	});
+	$("#verify-count").live("click", function(e)
+	{
+		verifyCount(e.target);
 	});
 });
 
@@ -99,7 +103,9 @@ function modifyCell(element)
 			$(newElem).attr('data-id', $(element).attr('data-id'));
 			$(newElem).attr('data-id-sub', $(element).attr('data-id-sub'));
 			$(newElem).attr('data-subfield-name', $(element).attr('data-subfield-name'));
-
+			
+			if ($(element).attr('data-verify-callback'))
+				$(newElem).attr('data-verify-callback', $(element).attr('data-verify-callback'));
 			if ($(element).attr('data-form-size'))
 				$(newElem).attr('size', $(element).attr('data-form-size'));
 			if ($(element).attr('data-form-type') != 'textbox')
