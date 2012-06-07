@@ -31,9 +31,11 @@
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
+
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
     - Editage en ligne à refaire avec Ajax-JQuery pour conférences
+    - Verifier que la capacité est supérieur au registraionCount lors d'un rabaissement de la capacity
 
     - Ajouter un éditage en ligne pour questions/réponses (quasiment finis)
 
