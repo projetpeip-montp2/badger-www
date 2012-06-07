@@ -5,7 +5,7 @@
         {
             // Check if the user is a admin
             if(!in_array($this->app()->user()->getAttribute('logon'), explode(';', $this->m_managers->getManagerOf('config')->get('adminsList'))))
-                $this->httpResponse->redirect403();
+                $this->httpResponse()->redirect403();
 
             $this->app()->user()->setAttribute('admin', true);
 

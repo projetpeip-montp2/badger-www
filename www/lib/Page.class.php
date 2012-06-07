@@ -61,7 +61,6 @@
 			if ($this->m_isAjaxPage)
 				return '';
 			
-            // TODO: William: Si on est en ajax, on doit pas inclure ça non?
             foreach($this->m_filesToInclude as $filename)
             {
 				if(!empty($filename))

@@ -1,9 +1,3 @@
-CREATE TABLE numsem.`ArchivesOfImages` ( 
-	`Id_archive`         SMALLINT UNSIGNED NOT NULL,
-	`Filename`           TEXT,
-	CONSTRAINT pk_zipofimages PRIMARY KEY ( `Id_archive` )
- );
-
 CREATE TABLE numsem.`BadgingInformations` ( 
 	`Mifare`             CHAR( 8 ),
 	`Date`               DATE,
@@ -62,6 +56,15 @@ CREATE TABLE numsem.`Answers` (
 
 CREATE INDEX idx_answers ON numsem.`Answers` ( `Id_question` );
 
+CREATE TABLE numsem.`ArchivesOfPackages` ( 
+	`Id_archive`         SMALLINT UNSIGNED NOT NULL,
+	`Id_package`         SMALLINT UNSIGNED,
+	`Filename`           TEXT,
+	CONSTRAINT pk_zipofimages PRIMARY KEY ( `Id_archive` )
+ );
+
+CREATE INDEX idx_archivesofimages ON numsem.`ArchivesOfPackages` ( `Id_package` );
+
 CREATE TABLE numsem.`Availabilities` ( 
 	`Id_availability`    SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_classroom`       SMALLINT UNSIGNED,
@@ -82,17 +85,14 @@ CREATE TABLE numsem.`DocumentsOfPackages` (
 
 CREATE INDEX idx_documentsofpackages ON numsem.`DocumentsOfPackages` ( `Id_package` );
 
-CREATE TABLE numsem.`ImagesOfPackages` ( 
+CREATE TABLE numsem.`ImagesOfArchives` ( 
 	`Id_image`           SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	`Id_package`         SMALLINT UNSIGNED,
 	`Id_archive`         SMALLINT UNSIGNED,
 	`Filename`           TEXT,
 	CONSTRAINT pk_imagesofpackages PRIMARY KEY ( `Id_image` )
  );
 
-CREATE INDEX idx_imagesofpackages ON numsem.`ImagesOfPackages` ( `Id_package` );
-
-CREATE INDEX idx_imagesofpackages_0 ON numsem.`ImagesOfPackages` ( `Id_archive` );
+CREATE INDEX idx_imagesofpackages_0 ON numsem.`ImagesOfArchives` ( `Id_archive` );
 
 CREATE TABLE numsem.`Lectures` ( 
 	`Id_lecture`         SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -172,6 +172,8 @@ ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_answers FOR
 
 ALTER TABLE numsem.`AnswersOfUsers` ADD CONSTRAINT fk_answersofusers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_questions` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
+ALTER TABLE numsem.`ArchivesOfPackages` ADD CONSTRAINT fk_archivesofimages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+
 ALTER TABLE numsem.`Availabilities` ADD CONSTRAINT fk_availabilities_classrooms FOREIGN KEY ( `Id_classroom` ) REFERENCES numsem.`Classrooms`( `Id_classroom` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`DocumentsOfPackages` ADD CONSTRAINT fk_documentsofpackages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
@@ -180,9 +182,7 @@ ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_package
 
 ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE numsem.`ImagesOfPackages` ADD CONSTRAINT fk_imagesofpackages_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
-
-ALTER TABLE numsem.`ImagesOfPackages` ADD CONSTRAINT fk_imagesofpackages FOREIGN KEY ( `Id_archive` ) REFERENCES numsem.`ArchivesOfImages`( `Id_archive` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+ALTER TABLE numsem.`ImagesOfArchives` ADD CONSTRAINT fk_imagesofarchives FOREIGN KEY ( `Id_archive` ) REFERENCES numsem.`ArchivesOfPackages`( `Id_archive` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`Lectures` ADD CONSTRAINT fk_lectures_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
@@ -197,6 +197,8 @@ ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_lectures FORE
 ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+
 
 -- TODO: Voir comment faire pour cette clés étrangère.
 -- ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
