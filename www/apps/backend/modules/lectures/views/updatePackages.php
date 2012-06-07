@@ -24,7 +24,7 @@ TODO: Faire un style générique pour les tables
 		$sizeNameEN = strlen($package->getName('en'));
 
 		echo '<tr>';
-		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Capacity' data-form-type='number' data-form-size='{$sizeCapacity}'>{$package->getCapacity()}</p></td>";
+		echo "<td><p class='editable' data-id='{$package->getId()}' data-verify-callback='true' data-entry-name='Packages' data-field-name='Capacity' data-form-type='number' data-form-size='{$sizeCapacity}'>{$package->getCapacity()}</p></td>";
 		echo "<td><p class='labelable' data-form-size='{$sizeRegistrationsCount}'>{$package->getRegistrationsCount()}</p></td>";
 		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Name_fr' data-form-type='text' data-form-size='{$sizeNameFR}'>{$package->getName('fr')}</p></td>";
 		echo "<td><p class='editable' data-id='{$package->getId()}'  data-entry-name='Packages' data-field-name='Name_en' data-form-type='text' data-form-size='{$sizeNameEN}'>{$package->getName('en')}</p></td>";
