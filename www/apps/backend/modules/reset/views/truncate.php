@@ -1,8 +1,4 @@
-<p>Attention : </p>
-<ul>
-    <li>Cette opération est irréversible!</li>
-    <li>Elle ne supprime pas les dépendances des tables (par exemples supprimer les questions invalidera les réponses)!</li>
-</ul>
+<p>Attention : Cette opération est irréversible et elle supprime les dépendances!</p>
 
 <a href="Javascript:void(0)" onclick="changeCheckboxesStateForm('truncateForm', true);">Tout cocher</a>
 /
