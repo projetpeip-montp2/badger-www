@@ -88,6 +88,7 @@
     $TEXT['Planning_Present'] = "Present";
     $TEXT['Planning_Absent'] = "Absent";
     $TEXT['Planning_NoRegistrations'] = "No registrations available";
+    $TEXT['Planning_Unavailable'] = "Planning unavailable";
 
     $TEXT['Reports_Upload'] = "Add a report";
     $TEXT['Reports_Filename'] = "Filename";
