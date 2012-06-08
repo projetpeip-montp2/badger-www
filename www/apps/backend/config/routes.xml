@@ -8,13 +8,15 @@
     <route url="/admin/classrooms/addAvailabilities\.html" module="classrooms" action="addAvailabilities"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
-    <route url="/admin/lectures/addLecturesAndQuestionsAnswers\.html" module="lectures" action="addLecturesAndQuestionsAnswers"/>
-    <route url="/admin/lectures/addPackages\.html" module="lectures" action="addPackages"/>
-    <route url="/admin/lectures/updatePackages\.html" module="lectures" action="updatePackages"/>
-    <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
-    <route url="/admin/lectures/updateQuestionsAnswers\.html" module="lectures" action="updateQuestionsAnswers"/>
     <route url="/admin/lectures/addBadgingInformation\.html" module="lectures" action="addBadgingInformation"/>
     <route url="/admin/lectures/assignLectures\.html" module="lectures" action="assignLectures"/>
+    <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
+
+    <route url="/admin/packages/index\.html" module="packages" action="index"/>
+    <route url="/admin/packages/addLecturesAndQuestionsAnswers\.html" module="packages" action="addLecturesAndQuestionsAnswers"/>
+    <route url="/admin/packages/addPackages\.html" module="packages" action="addPackages"/>
+    <route url="/admin/packages/updatePackages\.html" module="packages" action="updatePackages"/>
+    <route url="/admin/packages/updateQuestionsAnswers\.html" module="packages" action="updateQuestionsAnswers"/>
 
     <route url="/admin/mcq/index\.html" module="mcq" action="index"/>
     <route url="/admin/mcq/createMCQ\.html" module="mcq" action="createMCQ"/>

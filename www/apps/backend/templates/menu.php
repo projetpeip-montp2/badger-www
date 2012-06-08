@@ -33,6 +33,11 @@
         Conférences
     </div>
 </a>
+<a href="/admin/packages/index.html">
+    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
+        Packages
+    </div>
+</a>
 <a href="/home/index.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
         Partie utilisateur
