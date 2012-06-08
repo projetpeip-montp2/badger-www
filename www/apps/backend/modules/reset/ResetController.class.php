@@ -30,7 +30,7 @@
             $this->page()->addVar("viewTitle", "Vider les tables");
 
             // If the form is submitted
-            if($request->postExists('isSubmitted'))
+            if($request->postExists('Vider'))
             {
                 $tablesSelectedArray = array();
                 $tablesSelected = '';

@@ -167,10 +167,10 @@ li {
 
 #flash
 {
-	background:#0099fc;
-	width: 50%;
+	background: #1F3B62;
+	width: 75%;
+    padding: 5px;
 	margin: auto;
-	border: 2px solid black;
     text-align: center; 
 }
 
@@ -218,19 +218,19 @@ li {
 .error
 {
     font-size: 22px;
-    color: white;
+    color: red;
 }
 
 .warning
 {
     font-size: 22px;
-    color: white;
+    color: orange;
 }
 
 .info
 {
     font-size: 22px;
-    color: white;
+    color: green;
 }
 
 /* ------------------------ Message typé ------------------------ */

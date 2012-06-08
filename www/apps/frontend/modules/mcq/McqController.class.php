@@ -46,6 +46,7 @@
             $answers = $this->getAssociatedAnswers($questions);
 
             // If the user has validated the mcq
+            // Impossible to check button because it depends of the language used
             if($request->postExists('isSubmitted'))
             {
                 $answersOfUser = $this->computeAndSaveUserAnswers($request, $logon, $answers);

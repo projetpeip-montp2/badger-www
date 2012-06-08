@@ -1,10 +1,10 @@
-<p class="error">
+<p style="color:red">
     Attention à la suppression d'une séance de QCM, cela aura pour effet de supprimer toutes les inscriptions aux conférences des élèves !
 </p>
-<p class="warning">
+<p>
     L'inscription ne fonctionne que pour les départements ingénieurs (MAT, ERII, etc), pas pour les PEIP (et les autres). (Problème dans la gestion des années)
 </p>
-<p class="info">
+<p>
     Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".
 </p>
 <?php
