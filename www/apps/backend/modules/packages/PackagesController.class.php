@@ -3,13 +3,17 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-            $this->page()->addVar("viewTitle", "Gestions des conférences");
+            $this->page()->addVar("viewTitle", "Gestions des packages");
+
+            // Ddisplay the form
+            $managerPackages = $this->m_managers->getManagerOf('package');
+            $packages = $managerPackages->get();
+
+            $this->page()->addVar('packages', $packages);
         }
 
         public function executeAddPackages(HTTPRequest $request)
         {
-            $this->page()->addVar("viewTitle", "Uploader des packages");
-
             // If the form containing the filepath exist (aka the form is
             // submitted)
             if ($request->fileExists('vbmifarePackagesCSV'))
@@ -29,7 +33,7 @@
                         if(count($lineDatas) != 5)
                         {
                             $this->app()->user()->setFlashError('Le fichier n\'a pas 5 colonnes');
-                            $this->app()->httpResponse()->redirect('./addPackages.html');
+                            $this->app()->httpResponse()->redirect('/admin/packages/index.html');
                             break;
                         }
         
@@ -56,9 +60,11 @@
                 else
                     $this->app()->user()->setFlashError('Erreur durant l\'upload du fichier');
             }
+
+            $this->app()->httpResponse()->redirect('/admin/packages/index.html');
         }
 
-
+/*
         public function executeAddLecturesAndQuestionsAnswers(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Uploader des conférences, questions et réponses");
@@ -137,87 +143,7 @@
                     $flashMessage = 'Impossible d\'uploader les conférences.';
             }
 
-
-            // Upload questions/answers for a package
-            if($request->fileExists('vbmifareQuestionsAnswersCSV'))
-            {
-                $fileData = $request->fileData('vbmifareQuestionsAnswersCSV');
-
-                // Check if the file is sucefully uploaded
-                if($fileData['error'] == 0)
-                {
-                    $file = fopen($fileData['tmp_name'], 'r');
-
-                    $answers = array();
-                    $readQuestion = true;
-                    $lastQuestionID;
-
-                    $managerMCQ = $this->m_managers->getManagerOf('mcq');
-
-                    while(($line = fgets($file)) !== FALSE) 
-                    {
-                        if(preg_match('#__vbmifare\*#', $line))
-                            $readQuestion = true;
-
-                        else
-                        {
-                            $datas = str_getcsv($line);
-
-                            if($readQuestion)
-                            {
-                                if(count($datas) != 3)
-                                {
-                                    $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes.');
-                                    $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
-                                }
-
-                                $question = new Question;
-                                $question->setIdPackage($request->postData('vbmifarePackage'));
-                                $question->setLabel('fr', $datas[0]);
-                                $question->setLabel('en', $datas[1]);
-                                $question->setStatus($datas[2]);
-
-                                $lastQuestionID = $managerMCQ->saveQuestion($question);
-
-                                $readQuestion = false;
-                            }
-
-                            else
-                            {
-                                if(count($datas) != 3)
-                                {
-                                    $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes.');
-                                    $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
-                                }
-
-                                $answer = new Answer;
-                                $answer->setIdQuestion($lastQuestionID);
-                                $answer->setLabel('fr', $datas[0]);
-                                $answer->setLabel('en', $datas[1]);
-                                $answer->setTrueOrFalse($datas[2]);
-
-                                array_push($answers, $answer);
-                            }
-                        }
-                    }
-
-                    fclose($file);
-
-                    // Save all questions/answers parsed
-                    $managerMCQ->saveAnswers($answers);
-
-                    if($flashMessage != '')
-                        $flashMessage .= '<br/>';
-                    $flashMessage .= 'Questions/Réponses uploadées.';
-                }
-
-                else
-                    $flashMessage .= 'Impossible d\'uploader les questions/réponses.';
-            }
-
-
             // Else display the form
-
             $packages = $this->m_managers->getManagerOf('package')->get();
 
             if(count($packages) == 0)
@@ -231,78 +157,7 @@
 
             $this->page()->addVar('packages', $packages);
         }
-
-
-        public function executeUpdatePackages(HTTPRequest $request)
-        {
-            $this->page()->addVar("viewTitle", "Modifier des packages");
-
-            // Ddisplay the form
-            $managerPackages = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackages->get();
-
-            if(count($packages) == 0)
-            {
-                $this->app()->user()->setFlashError('Il n\'y a pas de packages dans la base de données.');
-                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
-            }
-
-            $this->page()->addVar('packages', $packages);
-        }
-
-        public function executeUpdateQuestionsAnswers(HTTPRequest $request)
-        {
-            $this->page()->addVar("viewTitle", "Modifier des questions et réponses");
-
-            $packages = $this->m_managers->getManagerOf('package')->get();
-
-            $questions = array();
-            $answers = array();
-
-            $managerMCQ = $this->m_managers->getManagerOf('mcq');
-
-            $packageRequested = false;
-            if($request->postExists('packageIdRequested'))
-            {
-                $packageRequested = true;
-                $packageIdRequested = $request->postData('packageIdRequested');
-            }
-
-            $found = false;
-
-            if(count($packages) == 0)
-            {
-                $this->app()->user()->setFlashError('Besoin d\'avoir au moins un package!');
-                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
-            }
-
-            foreach($packages as $package)
-            {
-                if($packageRequested && $packageIdRequested == $package->getId())
-                    $found = true;
-
-                $questionOnePackage = $managerMCQ->getQuestionsFromPackage($package->getId());
-                $questions = array_merge($questions, $questionOnePackage);
-
-                foreach($questionOnePackage as $question)
-                {
-                    $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId());
-                    $answers = array_merge($answers, $answersOneQuestion);
-                }
-            }
-
-            if($packageRequested && !$found)
-            {
-                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas!');
-                $this->app()->httpResponse()->redirect($request->requestURI());
-            }
-
-            $this->page()->addVar('packageIdRequested', ($packageRequested ? $packageIdRequested : $packages[0]->getId()) );
-            $this->page()->addVar('packages', $packages);
-            $this->page()->addVar('questions', $questions);
-            $this->page()->addVar('answers', $answers);
-        }
-
+*/
 /*
         private function deletePackageDocuments($packageId)
         {

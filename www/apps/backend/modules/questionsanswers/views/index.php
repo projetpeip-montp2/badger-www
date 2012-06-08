@@ -24,6 +24,37 @@
 
 
 <br/>
+<br/>
+
+
+<p>Uploader des questions-réponses pour ce package<p>
+<?php
+    $form = new Form('/admin/questionsanswers/addQuestionsAnswers.html', 'post');
+
+    $form->add('file', 'vbmifareQuestionsAnswersCSV')
+         ->isInParagraph(false)
+         ->label('Chemin du fichier : ');
+
+    $form->add('hidden', 'idPackage');
+
+    $form->add('submit', 'Envoyer')
+         ->isInParagraph(false);
+
+    echo $form->toString();
+?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('input[name="idPackage"]').attr(
+                                      'value',
+                                       $('.target').val()
+                                       );
+    });
+</script>
+
+
+<br/>
+<br/>
 
 
 <?php
@@ -100,4 +131,3 @@
         echo '<br/><br/><br/><br/>';
     }
 ?>
-
