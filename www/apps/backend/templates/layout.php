@@ -37,7 +37,7 @@
                         if($user->hasFlash())
                         { 
                             echo '<div id="flash">';
-                            echo '<p id="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
+                            echo '<p class="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
                             echo '</div>';
                         }
                     ?>
