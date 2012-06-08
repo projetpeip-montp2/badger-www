@@ -29,6 +29,7 @@
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
+    - Configuration du site web
 
 
 - William:
