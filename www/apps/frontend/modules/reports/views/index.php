@@ -9,8 +9,8 @@
 
 <table id="editableTable">
 	<tr>
-		<th>Nom du rapport</th>
-		<th>Action</th>
+		<th><?php echo $TEXT['Reports_Name']; ?></th>
+		<th><?php echo $TEXT['Reports_Action']; ?></th>
 	</tr>
 
 <?php
@@ -21,7 +21,7 @@
 		echo '<tr>';
 		echo "<td><p class='labelable' data-form-size='{$sizeReportName}'>{$report->getFilename()}</p></td>";
 
-		echo "<td><img class='deletable' data-entry-name='DocumentsOfUsers' data-id='{$report->getId()}' src='../../web/images/delete.png' /></a></td>";
+		echo "<td><img class='deletable' data-app-name='frontend' data-entry-name='DocumentsOfUsers' data-id='{$report->getId()}' src='../../web/images/delete.png' /></a></td>";
 		echo '</tr>';
 	}
 ?>

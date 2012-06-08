@@ -128,8 +128,7 @@ function deleteEntry(element)
     {
         var url = "/admin/ajax/deleteEntry.html";
 
-        // TODO: Hack for report on frontend
-        if($(element).attr('data-entry-name') == 'DocumentsOfUsers')
+        if($(element).attr('data-app-name') == 'frontend')
             url = '/ajax/deleteEntry.html';
 
 		$.post(url, {

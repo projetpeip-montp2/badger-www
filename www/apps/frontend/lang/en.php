@@ -37,6 +37,7 @@
     $TEXT['Title_ViewerViewImage'] = "Online viewer";
 
     $TEXT['Form_Delete'] = "Delete";
+    $TEXT['Form_Send'] = "Send";
 
     $TEXT['Flash_SubscribeVisitor'] = 'Your can\'t subscribe because you are a visitor.';
     $TEXT['Flash_SubscribeGenerated'] = 'Your can\'t subscribe because your MCQ is already generated.';
@@ -92,6 +93,8 @@
     $TEXT['Reports_Filename'] = "Filename";
     $TEXT['Reports_Name'] = "Name of report";
     $TEXT['Reports_Action'] = "Action";
+    $TEXT['Reports_PackageSelection'] = "Select a package";
+    $TEXT['Reports_Path'] = "Path of report";
 
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";
