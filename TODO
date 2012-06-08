@@ -14,9 +14,9 @@
 
 
 - Frontend:
-    - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
     - Correction visionneuse nouveau système
 
+    - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
     - Notation QCM
     - Mettre Instruction QCM
 
@@ -27,16 +27,12 @@
     - Envoie de mails contenant questions-réponses.
     - Statistiques
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
-    - Gestion form documents
-
-    - Modification menu Package / Conférence / Questions.Réponses
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
-    - Editage en ligne à refaire avec Ajax-JQuery pour conférences
 
     - Double alert réduction capacity
 
@@ -44,3 +40,4 @@
 - Victor:
 
     - REFAIRE LE MCQ MANAGER !!!! :D :D :D
+

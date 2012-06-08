@@ -14,6 +14,10 @@
     </select>
 </form>
 
+<?php
+    echo '<br/><br/><div style="border-top: 1px solid black"></div><br/>';
+?>
+
 
 <script type="text/javascript">
     // Submit form when select is changed
@@ -88,6 +92,8 @@
         echo '<br/><br/><br/><br/>';
     }
 
+    echo '<br/><br/><div style="border-top: 1px solid black"></div><br/>';
+
     echo '<h1>Documents</h1>';
 
     // Upload new document
@@ -136,5 +142,7 @@
 
         echo '<br/><br/><br/><br/>';
     }
+
+    echo '<br/>';
 
 ?>
