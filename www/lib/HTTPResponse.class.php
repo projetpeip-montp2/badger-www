@@ -64,12 +64,7 @@
         ////////////////////////////////////////////////////////////
         public function redirect403()
         {
-            $this->m_page = new Page($this->app());
-            $this->m_page->setContentFile(dirname(__FILE__).'/../errors/403.html');
-            
-            $this->addHeader('HTTP/1.0 403 Forbiden access');
-            
-            $this->send();
+            $this->redirect('/error/403.html');
         }
 
         ////////////////////////////////////////////////////////////

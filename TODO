@@ -3,19 +3,17 @@
 - Général:
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
-    - Suppression documents physiques formulaire Ajax
     - Centrer nom Frontend
     - Redirection: RequestURI()
+
+    - Gros coup de Polish
 
 
 - Frontend:
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
 
     - Notation QCM
-    - Eviter que les étudiants puisse cliquer ailleurs que sur Valider dans le QCM
     - Mettre Instruction QCM
-
-    - Permettre le download de tout les fichiers .pdf par un fichier zip
 
 
 - Backend:
@@ -25,18 +23,12 @@
     - Statistiques
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
-    - Gros coup de Polish
-    - Empecher de reduire la capacité si on à déjà trop d'élèves
-
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
-
-    - Une personne interdite à quand même accès à l'interface du backend
 
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
     - Editage en ligne à refaire avec Ajax-JQuery pour conférences
-    - Verifier que la capacité est supérieur au registraionCount lors d'un rabaissement de la capacity
 
-    - Ajouter un éditage en ligne pour questions/réponses (quasiment finis)
+    - Ajouter une édition en ligne pour questions/réponses (quasiment finis)
 

@@ -7,6 +7,8 @@
     <route url="/home/changeLang-([a-zA-Z]+)-([a-zA-Z0-9\.\\\/\-]+)\.html" module="home" action="changeLang" vars="newLang,previousPage"/>
     <route url="/home/logout\.html" module="home" action="logout"/>
 
+    <route url="/error/403\.html" module="errors" action="403"/>
+
     <route url="/lectures/index\.html" module="lectures" action="index"/>
     <route url="/lectures/show-([0-9]+)\.html" module="lectures" action="show" vars="idPackage"/>
     <route url="/lectures/showAll\.html" module="lectures" action="showAll"/>

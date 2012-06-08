@@ -28,7 +28,7 @@
                     if(count($this->m_managers->getManagerOf('package')->get($idPackage)) == 0)
                     {
                         $this->app()->user()->setFlashError('Le package associé n\'existe pas.');
-                        $this->app()->httpResponse()->redirect('admin/documents/index.html');
+                        $this->app()->httpResponse()->redirect('/admin/documents/index.html');
                     }
 
                     $zipArchive = new ZipArchive;
@@ -37,7 +37,7 @@
                     if($zipArchive->open($fileData['tmp_name']) !== true)
                     {
                         $this->app()->user()->setFlashError('Erreur lors de l\'ouverture de l\'archive.');
-                        $this->app()->httpResponse()->redirect('admin/documents/index.html');
+                        $this->app()->httpResponse()->redirect('/admin/documents/index.html');
                     }
 
                     $path = dirname(__FILE__).'/../../../../uploads/admin/images/';
@@ -156,7 +156,7 @@
             if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError('Il n\'y a pas de package dans la base de données.');
-                $this->app()->httpResponse()->redirect('admin/home/index.html');
+                $this->app()->httpResponse()->redirect('/admin/home/index.html');
             }
 
             foreach($packages as $package)
