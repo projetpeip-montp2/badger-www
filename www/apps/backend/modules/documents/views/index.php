@@ -2,6 +2,8 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
+Sélection du package:
+<br/>
 <form id="form" method="post">
     <select class="target" name="packageIdRequested">
 <?php
@@ -15,9 +17,19 @@
 
 
 <script type="text/javascript">
+    // Submit form when select is changed
     $('.target').change(function() {
+
         $('#form').submit();
     });
+
+    $(document).ready(function() {
+      $('input[name="idPackage"]').attr(
+                                      'value',
+                                       $('.target').val()
+                                       );
+    });
+    
 </script>
 
 
@@ -32,8 +44,24 @@
         return '';
     }
 
-    echo 'Archives';
-    // Display archives
+    echo '____________________________________<br/>Archives<br/>';
+
+    // Upload new archive
+    $form = new Form('', 'post');
+
+    $form->add('text', 'filename')
+         ->label('Nom du fichier: ');
+
+    $form->add('hidden', 'idPackage');
+
+    $form->add('file', 'zipFile')
+         ->label('Chemin du fichier zip : ');
+
+    $form->add('submit', 'Envoyer');
+
+    echo $form->toString();
+
+    // Display uploaded archives
 	for($i=0; $i<count($archives); ++$i)
 	{
         if($archives[$i]->getIdPackage() != $packageIdRequested)
@@ -65,8 +93,21 @@
         echo '<br/><br/><br/><br/>';
     }
 
-    // Display documents
-    echo 'Documents';
+    echo '_____________________________________<br/>Documents';
+
+    // Upload new document
+    $form = new Form('', 'post');
+
+    $form->add('file', 'PDFFile')
+         ->label('Chemin du fichier PDF: ');
+
+    $form->add('hidden', 'idPackage');
+
+    $form->add('submit', 'Envoyer');
+
+    echo $form->toString();
+
+    // Display uploaded documents
 	for($i=0; $i<count($documents); ++$i)
 	{
         if($documents[$i]->getIdPackage() != $packageIdRequested)
