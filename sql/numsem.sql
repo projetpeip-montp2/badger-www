@@ -133,9 +133,11 @@ CREATE INDEX idx_answersofusers_0 ON numsem.`AnswersOfUsers` ( `Id_answer` );
 CREATE INDEX idx_answersofusers_1 ON numsem.`AnswersOfUsers` ( `Id_question` );
 
 CREATE TABLE numsem.`DocumentsOfUsers` ( 
+	`Id_document`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Id_user`            VARCHAR( 60 ),
-	`Filename`           TEXT
+	`Filename`           TEXT,
+	CONSTRAINT pk_documentsofusers PRIMARY KEY ( `Id_document` )
  );
 
 CREATE INDEX idx_documentsofusers ON numsem.`DocumentsOfUsers` ( `Id_package` );

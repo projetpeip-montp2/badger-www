@@ -27,4 +27,5 @@
     <route url="/reports/delete\.html" module="reports" action="delete"/>
 	
 	<route url="/ajax/index\.html" module="ajax" action="index" />
+	<route url="/ajax/deleteEntry\.html" module="ajax" action="deleteEntry" />
 </routes>

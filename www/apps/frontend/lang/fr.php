@@ -89,8 +89,9 @@
     $TEXT['Planning_NoRegistrations'] = "Aucune inscription.";
 
     $TEXT['Reports_Upload'] = "Ajouter un rapport";
-    $TEXT['Reports_Delete'] = "Voir mes rapports";
     $TEXT['Reports_Filename'] = "Nom du fichier";
+    $TEXT['Reports_Name'] = "Nom du rapport";
+    $TEXT['Reports_Action'] = "Action";
 
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";

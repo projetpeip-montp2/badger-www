@@ -114,7 +114,7 @@
 		{
 			$this->page()->setIsAjaxPage(TRUE);
 			
-			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities', 'ArchivesOfPackages', 'DocumentsOfPackages');
+			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities', 'ArchivesOfPackages', 'DocumentsOfPackages', 'DocumentsOfUsers');
 
 			$idFields = array('Classrooms' => 'Id_classroom',
                               'Questions' => 'Id_question',
@@ -122,7 +122,8 @@
 							  'Packages' => 'Id_package',
 							  'Availabilities' => 'Id_availability',
                               'DocumentsOfPackages' => 'Id_document',
-                              'ArchivesOfPackages' => 'Id_archive');
+                              'ArchivesOfPackages' => 'Id_archive',
+                              'DocumentsOfUsers' => 'Id_document');
 			
 			if ($request->postExists('data-entry-name') && $request->postExists('data-id'))
 			{

@@ -3,7 +3,8 @@
     {
         public function get($idPackage = -1, $idUser = null)
         {
-            $requestSQL = 'SELECT Id_package,
+            $requestSQL = 'SELECT Id_document,
+                                  Id_package,
                                   Id_user,
                                   Filename FROM DocumentsOfUsers';
 
@@ -30,6 +31,7 @@
             while($data = $req->fetch())
             {
                 $doc = new DocumentOfUser;
+                $doc->setId($data['Id_document']);
                 $doc->setIdPackage($idPackage);
                 $doc->setIdUser($idUser);
                 $doc->setFilename($data['Filename']);

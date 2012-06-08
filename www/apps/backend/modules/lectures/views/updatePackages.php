@@ -2,9 +2,6 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
-<!--
-TODO: Faire un style générique pour les tables
--->
 <table id="editableTable">
 	<tr>
 		<th>Capacity</th>

@@ -125,10 +125,18 @@ function finishDeleteEntry(element, data)
 function deleteEntry(element)
 {
 	if (window.confirm("Etes-vous sûr de vouloir supprimer cet élément ?"))
-		$.post("/admin/ajax/deleteEntry.html", {
+    {
+        var url = "/admin/ajax/deleteEntry.html";
+
+        // TODO: Hack for report on frontend
+        if($(element).attr('data-entry-name') == 'DocumentsOfUsers')
+            url = '/ajax/deleteEntry.html';
+
+		$.post(url, {
 		'data-entry-name': $(element).attr('data-entry-name'),
 		'data-id': $(element).attr('data-id')}).error(onError).complete(function(data, textStatus)
 		{
 			finishDeleteEntry(element, data.responseText);
 		});
+    }
 }

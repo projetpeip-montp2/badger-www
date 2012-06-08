@@ -89,8 +89,9 @@
     $TEXT['Planning_NoRegistrations'] = "No registrations available";
 
     $TEXT['Reports_Upload'] = "Add a report";
-    $TEXT['Reports_Delete'] = "View my reports";
     $TEXT['Reports_Filename'] = "Filename";
+    $TEXT['Reports_Name'] = "Name of report";
+    $TEXT['Reports_Action'] = "Action";
 
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";

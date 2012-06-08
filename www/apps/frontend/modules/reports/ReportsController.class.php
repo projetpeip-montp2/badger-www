@@ -6,6 +6,11 @@
         public function executeIndex(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsIndex']);
+
+            $username = $this->app()->user()->getAttribute('logon');
+
+            $reports = $this->m_managers->getManagerOf('documentofuser')->get(-1, $username);
+            $this->page()->addVar('reports', $reports);
         }
 
         public function executeUpload(HTTPRequest $request)
@@ -81,40 +86,6 @@
 
             $this->page()->addVar('lang', $lang);
             $this->page()->addVar('packages', $packages);
-        }
-
-        public function executeDelete(HTTPRequest $request)
-        {
-            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsDelete']);
-
-            // Handle POST data
-            // Delete report of user
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
-            $username = $this->app()->user()->getAttribute('logon');
-
-            if($request->postExists('Supprimer'))
-            {
-                $this->m_managers->getManagerOf('documentofuser')->delete($request->postData('packageId'), $username);
-
-                // Redirection
-                // TODO: Message en anglais
-                $this->app()->user()->setFlashInfo('Le rapport "' . $request->postData('ReportName') . '" du package "' . $request->postData('PackageName') . '" a été supprimé.');
-                $this->app()->httpResponse()->redirect('/reports/deleteReport.html');
-            }
-
-            // Else display the form
-
-            $reports = $this->m_managers->getManagerOf('documentofuser')->get(-1, $username);
-
-            if(count($reports) == 0)
-            {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoReport']);
-                $this->app()->httpResponse()->redirect('/reports/index.html');
-            }
-
-            $this->page()->addVar('lang', $lang);
-            $this->page()->addVar('reports', $reports);
-            $this->page()->addVar('packages', $this->m_managers->getManagerOf('package')->get());
         }
     }
 ?>

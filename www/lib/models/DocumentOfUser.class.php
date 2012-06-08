@@ -1,9 +1,20 @@
 <?php
     class DocumentOfUser extends Record
     {
+        private $m_idDocument;
         private $m_idPackage;
         private $m_idUser;
         private $m_filename;
+
+        public function setId($idDocument)
+        {
+            $this->m_idDocument = $idDocument;
+        }
+
+        public function getId()
+        {
+            return $this->m_idDocument;
+        }
 
         public function setIdPackage($idPackage)
         {
