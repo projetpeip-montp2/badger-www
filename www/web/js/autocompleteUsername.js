@@ -1,6 +1,6 @@
 (function() {
 
-var searchElement = $('.vbmifareUsername');
+var searchElement = $('.username');
 var previousValue = searchElement.val();
 var selectedResult = -1;
 var previousRequest;
@@ -23,10 +23,10 @@ function displayResults(response)
         {
             results.append('<img src="/web/images/tools/iconOk.png"/>');
     
-            results.append('<select name="vbmifareSelectedLecture" id="vbmifareSelectedLecture">');
+            results.append('<select name="selectedLecture" id="selectedLecture">');
 
             for (var index in response.Lectures)
-                $('#vbmifareSelectedLecture').append('<option value="' + index + '">' + response.Lectures[index] + '</option>');
+                $('#selectedLecture').append('<option value="' + index + '">' + response.Lectures[index] + '</option>');
 
             results.append('</select>');
 
@@ -76,11 +76,11 @@ function chooseResult(choice)
     searchElement.focus();
 
     // Simulate a keyup
-    $(".vbmifareUsername").keyup();
+    $(".username").keyup();
 }
 
 
-$('.vbmifareUsername').keyup(function(e) 
+$('.username').keyup(function(e) 
 {
     if(searchElement.val() != previousValue)
     {

@@ -15,9 +15,9 @@
 
             // If the form containing the filepath exist (aka the form is
             // submitted)
-            if ($request->fileExists('vbmifareClassroomsCSV'))
+            if ($request->fileExists('CSVFile'))
             {
-                $fileData = $request->fileData('vbmifareClassroomsCSV');
+                $fileData = $request->fileData('CSVFile');
 
                 // Check if the file is sucessfully uploaded
                 if($fileData['error'] == 0)
@@ -31,7 +31,7 @@
                     {
                         if(count($lineDatas) != 2)
                         {
-                            $this->app()->user()->setFlashError('Classroom in ' . $doc->setIdPackage($idPackage) . 'csv has not got 2 rows.');
+                            $this->app()->user()->setFlashError('Le fichier CSV n\'a pas 2 colonnes.');
                             $this->app()->httpResponse()->redirect($request->requestURI());
                             break;
                         }
@@ -48,11 +48,11 @@
                     // Save all packages parsed
                     $this->m_managers->getManagerOf('classroom')->save($classrooms);
 
-                    $this->app()->user()->setFlashInfo('File uploaded');
+                    $this->app()->user()->setFlashInfo('Fichier uploadé.');
                 }
 
                 else
-                    $this->app()->user()->setFlashError('Error during the upload of classrooms');
+                    $this->app()->user()->setFlashError('Erreur lors de l\'upload des salles.');
             }
         }
 
@@ -64,9 +64,9 @@
             $flashMessage = '';
 
             // Upload availabilities for a classroom
-            if($request->fileExists('vbmifareAvailabilitiesCSV'))
+            if($request->fileExists('CSVFile'))
             {
-                $fileData = $request->fileData('vbmifareAvailabilitiesCSV');
+                $fileData = $request->fileData('CSVFile');
 
                 // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
@@ -79,7 +79,7 @@
                     {
                         if(count($lineDatas) != 3)
                         {
-                            $this->app()->user()->setFlashError('Availability in csv file has not got 3 rows.');
+                            $this->app()->user()->setFlashError('Le fichier n\a pas 3 colonnes.');
                             $this->app()->httpResponse()->redirect($request->requestURI());
                         }
 
@@ -93,7 +93,7 @@
                         $endTime->setFromString($lineDatas[2]);
         
                         $availability = new Availability;
-                        $availability->setIdClassroom($request->postData('vbmifareClassroom'));
+                        $availability->setIdClassroom($request->postData('idClassroom'));
                         $availability->setDate($date);
                         $availability->setStartTime($startTime);
                         $availability->setEndTime($endTime);

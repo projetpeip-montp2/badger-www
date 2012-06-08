@@ -2,7 +2,7 @@
 <?php
     $form = new Form('/admin/packages/addPackages.html', 'post');
 
-    $form->add('file', 'vbmifarePackagesCSV')
+    $form->add('file', 'CSVFile')
          ->isInParagraph(false)
          ->label('Chemin du fichier : ');
 

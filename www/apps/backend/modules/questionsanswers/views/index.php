@@ -31,7 +31,7 @@
 <?php
     $form = new Form('/admin/questionsanswers/addQuestionsAnswers.html', 'post');
 
-    $form->add('file', 'vbmifareQuestionsAnswersCSV')
+    $form->add('file', 'CSVFile')
          ->isInParagraph(false)
          ->label('Chemin du fichier : ');
 

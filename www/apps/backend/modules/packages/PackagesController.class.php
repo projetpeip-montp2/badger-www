@@ -15,9 +15,9 @@
         {
             // If the form containing the filepath exist (aka the form is
             // submitted)
-            if ($request->fileExists('vbmifarePackagesCSV'))
+            if ($request->fileExists('CSVFile'))
             {
-                $fileData = $request->fileData('vbmifarePackagesCSV');
+                $fileData = $request->fileData('CSVFile');
 
                 // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
@@ -32,7 +32,7 @@
                         if(count($lineDatas) != 5)
                         {
                             $this->app()->user()->setFlashError('Le fichier n\'a pas 5 colonnes');
-                            $this->app()->httpResponse()->redirect('/admin/packages/index.html');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
                             break;
                         }
         

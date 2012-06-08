@@ -14,7 +14,7 @@ conférence. Pour cela:
 
 <!-- Here we use our form because we need a div between two inputs -->
 <form action="" method="post">
-    <p><label for="vbmifareUsername">Identifiant : </label><input type="text" name="vbmifareUsername" class="vbmifareUsername" autocomplete="off"/>
+    <p><label for="username">Identifiant : </label><input type="text" name="username" class="username" autocomplete="off"/>
 
     <!-- Need for autocomplete system -->
     <span id="results"></span>
@@ -29,6 +29,6 @@ conférence. Pour cela:
 <!-- Give focus on input field -->
 <script type="text/javascript">
 $(document).ready(function(){
-    $(".vbmifareUsername").focus();
+    $(".username").focus();
 });
 </script>
