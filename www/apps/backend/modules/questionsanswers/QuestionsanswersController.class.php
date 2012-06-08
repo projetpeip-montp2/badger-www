@@ -44,7 +44,7 @@
 
             if($packageRequested && !$found)
             {
-                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas!');
+                $this->app()->user()->setFlashError('Le package demandé n\'existe pas!');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -59,9 +59,9 @@
             $flashMessage = '';
 
             // Upload questions/answers for a package
-            if($request->fileExists('vbmifareQuestionsAnswersCSV'))
+            if($request->fileExists('CSVFile'))
             {
-                $fileData = $request->fileData('vbmifareQuestionsAnswersCSV');
+                $fileData = $request->fileData('CSVFile');
 
                 // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
@@ -88,7 +88,7 @@
                                 if(count($datas) != 3)
                                 {
                                     $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes.');
-                                    $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
+                                    $this->app()->httpResponse()->redirect($request->requestURI());
                                 }
 
                                 $question = new Question;
@@ -107,7 +107,7 @@
                                 if(count($datas) != 3)
                                 {
                                     $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes.');
-                                    $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
+                                    $this->app()->httpResponse()->redirect($request->requestURI());
                                 }
 
                                 $answer = new Answer;

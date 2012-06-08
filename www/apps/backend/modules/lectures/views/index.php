@@ -36,7 +36,7 @@
 <?php
     $form = new Form('/admin/lectures/addLectures.html', 'post');
 
-    $form->add('file', 'vbmifareLecturesCSV')
+    $form->add('file', 'CSVFile')
          ->isInParagraph(false)
          ->label('Chemin du fichier : ');
 

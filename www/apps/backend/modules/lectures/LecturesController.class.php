@@ -30,7 +30,7 @@
 
             if($packageRequested && !$found)
             {
-                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas!');
+                $this->app()->user()->setFlashError('Le package demandé n\'existe pas!');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
@@ -143,9 +143,9 @@
             $flashMessage = '';
 
             // Upload lectures for a package
-            if($request->fileExists('vbmifareLecturesCSV'))
+            if($request->fileExists('CSVFile'))
             {
-                $fileData = $request->fileData('vbmifareLecturesCSV');
+                $fileData = $request->fileData('CSVFile');
 
                 // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
@@ -159,7 +159,7 @@
                         if(count($lineDatas) != 8)
                         {
                             $this->app()->user()->setFlashError('Le fichier n\'a pas 7 colonnes');
-                            $this->app()->httpResponse()->redirect('/admin/lecture/index.html');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
                         }
 
                         // Check Date and Time formats
@@ -168,7 +168,7 @@
                              Time::check($lineDatas[7])))
                         {
                             $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
-                            $this->app()->httpResponse()->redirect('/admin/lecture/index.html');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
                         }
 
                         $date = new Date;
@@ -183,7 +183,7 @@
                         if(Time::compare($startTime, $endTime) > 0)
                         {
                             $this->app()->user()->setFlashError('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
-                            $this->app()->httpResponse()->redirect('/admin/lecture/index.html');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
                         }
         
                         $lecture = new Lecture;
@@ -223,7 +223,7 @@
             // If form is submitted
             if($request->postExists('Envoyer'))
             {
-                $username = $request->postData('vbmifareUsername');
+                $username = $request->postData('username');
 
                 $mifares = $this->m_managers->getManagerOf('user')->retrieveMifare($username);
 

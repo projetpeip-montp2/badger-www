@@ -28,7 +28,7 @@
                     if(count($this->m_managers->getManagerOf('package')->get($idPackage)) == 0)
                     {
                         $this->app()->user()->setFlashError('Le package associé n\'existe pas.');
-                        $this->app()->httpResponse()->redirect('/admin/documents/index.html');
+                        $this->app()->httpResponse()->redirect($request->requestURI());
                     }
 
                     $zipArchive = new ZipArchive;
@@ -37,7 +37,7 @@
                     if($zipArchive->open($fileData['tmp_name']) !== true)
                     {
                         $this->app()->user()->setFlashError('Erreur lors de l\'ouverture de l\'archive.');
-                        $this->app()->httpResponse()->redirect('/admin/documents/index.html');
+                        $this->app()->httpResponse()->redirect($request->requestURI());
                     }
 
                     $path = dirname(__FILE__).'/../../../../uploads/admin/images/';
@@ -75,7 +75,7 @@
                 else
                 {
                     $this->app()->user()->setFlashError('Problème lors de l\'upload des images contenues dans "' . $fileData['name'] . '".');
-                    $this->app()->httpResponse()->redirect('admin/documents/index.html');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
                 }
 
                 $this->app()->user()->setFlashInfo('Les images contenues dans "' . $fileData['name'] . '" ont été uploadées.');
@@ -98,7 +98,7 @@
                     if($existingFile->getFileName() == $fileData['name'])
                     {
                         $this->app()->user()->setFlashError('Un document porte déjà le nom: "' . $fileData['name'] . '".');
-                        $this->app()->httpResponse()->redirect('/admin/documents/index.html');
+                        $this->app()->httpResponse()->redirect($request->requestURI());
                     }
                 }
 
@@ -110,7 +110,7 @@
                     if(count($packages) == 0)
                     {
                         $this->app()->user()->setFlashError('Le package associé n\'existe pas.');
-                        $this->app()->httpResponse()->redirect('/admin/documents/index.html');
+                        $this->app()->httpResponse()->redirect($request->requestURI());
                     }
 
                     $path = dirname(__FILE__).'/../../../../uploads/admin/pdf/';
@@ -126,7 +126,7 @@
                 else
                 {
                     $this->app()->user()->setFlashError('Problème lors de l\'upload de "' . $fileData['name'] . '".');
-                    $this->app()->httpResponse()->redirect('/admin/documents/index.html');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
                 }
 
                 $this->app()->user()->setFlashInfo('Le document "' . $fileData['name'] . '" a été uploadé.');
@@ -172,7 +172,7 @@
 
             if($packageRequested && !$found)
             {
-                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas.');
+                $this->app()->user()->setFlashError('Le package demandé n\'existe pas.');
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
