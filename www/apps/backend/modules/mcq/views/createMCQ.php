@@ -1,4 +1,4 @@
-<p class="warning">
+<p>
     La promotion doit être inscrite pour pouvoir s'inscrire à des packages et passer le QCM.
     <br/>
     <br/>
@@ -10,7 +10,7 @@
     <br/>
     L'inscription ne fonctionne que pour les départements ingénieurs (MAT, ERII, etc), pas pour les PEIP (et les autres). (Problème dans la gestion des années)
 </p>
-<p class="info">
+<p>
     Date au format "JJ-MM-AAAA" et heures au format "HH:MM:SS".
 </p>
 <?php

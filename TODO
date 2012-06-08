@@ -27,7 +27,6 @@
     - Envoie de mails contenant questions-réponses.
     - Statistiques
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
-    - Flash moche côté Backend
     - Gestion form documents
 
     - Modification menu Package / Conférence / Questions.Réponses
@@ -41,7 +40,6 @@
 
     - Double alert réduction capacity
 
-    - Ajouter une édition en ligne pour questions/réponses (quasiment finis)
 
 - Victor:
 

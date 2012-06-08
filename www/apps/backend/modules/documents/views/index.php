@@ -2,10 +2,9 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
-Sélection du package:
 <br/>
 <form id="form" method="post">
-    <select class="target" name="packageIdRequested">
+    Sélection du package: <select class="target" name="packageIdRequested">
 <?php
     foreach($packages as $package)
     {
@@ -32,10 +31,6 @@ Sélection du package:
     
 </script>
 
-
-<br/>
-
-
 <?php
     function setSelected($data, $compareTo)
     {
@@ -44,7 +39,7 @@ Sélection du package:
         return '';
     }
 
-    echo '____________________________________<br/>Archives<br/>';
+    echo '<h1>Archives zip</h1>';
 
     // Upload new archive
     $form = new Form('', 'post');
@@ -93,7 +88,7 @@ Sélection du package:
         echo '<br/><br/><br/><br/>';
     }
 
-    echo '_____________________________________<br/>Documents';
+    echo '<h1>Documents</h1>';
 
     // Upload new document
     $form = new Form('', 'post');

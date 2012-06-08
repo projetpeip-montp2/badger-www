@@ -20,9 +20,6 @@
              ->label($checkboxes[$i]);
     }
 
-    $form->add('hidden', 'isSubmitted')
-         ->value('on');
-
     $form->add('submit', 'Vider');
 
     $form->endFieldset();

@@ -74,7 +74,7 @@
 
             // If the form is submitted, we replace the current registration
             // status by the new
-            if($request->postExists('isSubmitted'))
+            if($request->postExists('Interdire') || $request->postExists('Autoriser'))
             {
                 $this->m_managers->getManagerOf('config')->replace('canSubscribe', $authorized ? 0 : 1);
                 $this->app()->httpResponse()->redirect($request->requestURI());
