@@ -7,13 +7,13 @@
         $choices[$package->getId()] = $package->getName($lang);
 
     $form->add('select', 'vbmifarePackage')
-         ->label('Sélection du package : ')
+         ->label($TEXT['Reports_PackageSelection'] . ': ')
          ->choices($choices);
 
     $form->add('file', 'vbmifareReport')
-         ->label('Chemin du rapport : ');
+         ->label($TEXT['Reports_Path'] . ': ');
 
-    $form->add('submit', 'Envoyer');
+    $form->add('submit', $TEXT['Form_Send']);
 
     echo $form->toString();
 ?>

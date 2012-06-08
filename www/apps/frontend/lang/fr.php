@@ -37,6 +37,7 @@
     $TEXT['Title_ViewerViewImage'] = "Visionneuse en ligne";
 
     $TEXT['Form_Delete'] = "Supprimer";
+    $TEXT['Form_Send'] = "Envoyer";
 
     $TEXT['Flash_SubscribeVisitor'] = 'Vous ne pouvez pas vous inscrire car vous êtes un visiteur.';
     $TEXT['Flash_SubscribeGenerated'] = 'Vous ne pouvez pas vous inscrire car votre QCM est déjà généré.';
@@ -92,6 +93,8 @@
     $TEXT['Reports_Filename'] = "Nom du fichier";
     $TEXT['Reports_Name'] = "Nom du rapport";
     $TEXT['Reports_Action'] = "Action";
+    $TEXT['Reports_PackageSelection'] = "Selectionner un package";
+    $TEXT['Reports_Path'] = "Chemin du rapport";
 
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";
