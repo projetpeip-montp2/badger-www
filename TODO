@@ -1,16 +1,21 @@
     TODO list
 
 - Général:
+    - UTF 8 sur tous les fichiers
+
     - Entrée dans le test du FORM: PostExists à la place de PostData
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
     - Centrer nom Frontend
     - Redirection: RequestURI()
+
+    - Demander DSI sup répertoire vbMifare
 
     - Gros coup de Polish
 
 
 - Frontend:
     - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
+    - Correction visionneuse nouveau système
 
     - Notation QCM
     - Mettre Instruction QCM
@@ -22,6 +27,10 @@
     - Envoie de mails contenant questions-réponses.
     - Statistiques
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
+    - Flash moche côté Backend
+    - Gestion form documents
+
+    - Modification menu Package / Conférence / Questions.Réponses
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
 
@@ -29,6 +38,8 @@
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
     - Editage en ligne à refaire avec Ajax-JQuery pour conférences
+
+    - Double alert réduction capacity
 
     - Ajouter une édition en ligne pour questions/réponses (quasiment finis)
 
