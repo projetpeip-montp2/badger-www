@@ -5,7 +5,6 @@
         {
             $this->page()->addVar("viewTitle", "Gestions des packages");
 
-            // Ddisplay the form
             $managerPackages = $this->m_managers->getManagerOf('package');
             $packages = $managerPackages->get();
 
@@ -64,100 +63,6 @@
             $this->app()->httpResponse()->redirect('/admin/packages/index.html');
         }
 
-/*
-        public function executeAddLecturesAndQuestionsAnswers(HTTPRequest $request)
-        {
-            $this->page()->addVar("viewTitle", "Uploader des conférences, questions et réponses");
-
-            // Create a flash message because we can have more than one message.
-            $flashMessage = '';
-
-            // Upload lectures for a package
-            if($request->fileExists('vbmifareLecturesCSV'))
-            {
-                $fileData = $request->fileData('vbmifareLecturesCSV');
-
-                // Check if the file is sucefully uploaded
-                if($fileData['error'] == 0)
-                {
-                    $file = fopen($fileData['tmp_name'], 'r');
-
-                    $lectures = array();
-
-                    while (($lineDatas = fgetcsv($file)) !== FALSE) 
-                    {
-                        if(count($lineDatas) != 8)
-                        {
-                            $this->app()->user()->setFlashError('Le fichier n\'a pas 7 colonnes');
-                            $this->app()->httpResponse()->redirect('./addLecturesAndQuestionsAnswers.html');
-                        }
-
-                        // Check Date and Time formats
-                        if(!(Date::check($lineDatas[5]) &&
-                             Time::check($lineDatas[6]) &&
-                             Time::check($lineDatas[7])))
-                        {
-                            $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
-                            $this->app()->httpResponse()->redirect('/admin/lectures/addLecturesAndQuestionsAnswers.html');
-                        }
-
-                        $date = new Date;
-                        $date->setFromString($lineDatas[5]);
-
-                        $startTime = new Time;
-                        $startTime->setFromString($lineDatas[6]);
-
-                        $endTime = new Time;
-                        $endTime->setFromString($lineDatas[7]);
-
-                        if(Time::compare($startTime, $endTime) > 0)
-                        {
-                            $this->app()->user()->setFlashError('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
-                            $this->app()->httpResponse()->redirect('/admin/lectures/addLecturesAndQuestionsAnswers.html');
-                        }
-        
-                        $lecture = new Lecture;
-                        $lecture->setIdPackage($request->postData('vbmifarePackage'));
-                        $lecture->setLecturer($lineDatas[0]);
-                        $lecture->setName('fr', $lineDatas[1]);
-                        $lecture->setName('en', $lineDatas[2]);
-                        $lecture->setDescription('fr', $lineDatas[3]);
-                        $lecture->setDescription('en', $lineDatas[4]);
-                        $lecture->setDate($date);
-                        $lecture->setStartTime($startTime);
-                        $lecture->setEndTime($endTime);
-
-                        array_push($lectures, $lecture);
-                    }
-
-                    fclose($file);
-
-                    // Save all lectures parsed
-                    $managerLectures = $this->m_managers->getManagerOf('lecture');
-                    $managerLectures->save($lectures);
-
-                    $flashMessage = 'Conférences uploadées.';
-                }
-
-                else
-                    $flashMessage = 'Impossible d\'uploader les conférences.';
-            }
-
-            // Else display the form
-            $packages = $this->m_managers->getManagerOf('package')->get();
-
-            if(count($packages) == 0)
-            {
-                $this->app()->user()->setFlashError('Il faut au moins un package pour pouvoir uploader des conférences ou des questions/réponses.');
-                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
-            }
-
-            if($flashMessage != '')
-                $this->app()->user()->setFlashInfo($flashMessage);
-
-            $this->page()->addVar('packages', $packages);
-        }
-*/
 /*
         private function deletePackageDocuments($packageId)
         {
