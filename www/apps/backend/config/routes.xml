@@ -11,9 +11,9 @@
     <route url="/admin/packages/addPackages\.html" module="packages" action="addPackages"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
+    <route url="/admin/lectures/addLectures\.html" module="lectures" action="addLectures"/>
     <route url="/admin/lectures/addBadgingInformation\.html" module="lectures" action="addBadgingInformation"/>
     <route url="/admin/lectures/assignLectures\.html" module="lectures" action="assignLectures"/>
-    <route url="/admin/lectures/updateLectures\.html" module="lectures" action="updateLectures"/>
 
     <route url="/admin/questionsanswers/index\.html" module="questionsanswers" action="index"/>
     <route url="/admin/questionsanswers/addQuestionsAnswers\.html" module="questionsanswers" action="addQuestionsAnswers"/>

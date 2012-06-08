@@ -4,6 +4,44 @@
         public function executeIndex(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Gestions des conférences");
+
+            $packages = $this->m_managers->getManagerOf('package')->get();
+
+            $packageRequested = false;
+            if($request->postExists('packageIdRequested'))
+            {
+                $packageRequested = true;
+                $packageIdRequested = $request->postData('packageIdRequested');
+            }
+
+            $found = false;
+
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlashError('Besoin d\'avoir au moins un package!');
+                $this->app()->httpResponse()->redirect('/admin/home/index.html');
+            }
+
+            foreach($packages as $package)
+            {
+                if($packageRequested && $packageIdRequested == $package->getId())
+                    $found = true;
+            }
+
+            if($packageRequested && !$found)
+            {
+                $this->app()->user()->setFlashError('Le package demandé par POST n\'existe pas!');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
+
+            $packageIdRequested = ($packageRequested ? $packageIdRequested : $packages[0]->getId());
+
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
+            $lectures = $managerLectures->get($packageIdRequested);
+
+            $this->page()->addVar('packageIdRequested', $packageIdRequested);
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('lectures', $lectures);
         }
 
 
@@ -97,84 +135,86 @@
 				$this->page()->addVar('packages', $packages);
 			}
 		}
-		
 
-        public function executeUpdateLectures(HTTPRequest $request)
+
+        public function executeAddLectures(HTTPRequest $request)
         {
-            $this->page()->addVar("viewTitle", "Modifier des conférences");
+            // Create a flash message because we can have more than one message.
+            $flashMessage = '';
 
-            // Handle POST data
-            // Update lecture
-            if($request->postExists('Modifier'))
+            // Upload lectures for a package
+            if($request->fileExists('vbmifareLecturesCSV'))
             {
-                // Check Date and Time formats
-                if(!(Date::check($request->postData('Date')) &&
-                     Time::check($request->postData('StartTime')) &&
-                     Time::check($request->postData('EndTime'))))
+                $fileData = $request->fileData('vbmifareLecturesCSV');
+
+                // Check if the file is sucefully uploaded
+                if($fileData['error'] == 0)
                 {
-                    $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire.');
-                    $this->app()->httpResponse()->redirect('/admin/lectures/updateLectures.html');
+                    $file = fopen($fileData['tmp_name'], 'r');
+
+                    $lectures = array();
+
+                    while (($lineDatas = fgetcsv($file)) !== FALSE) 
+                    {
+                        if(count($lineDatas) != 8)
+                        {
+                            $this->app()->user()->setFlashError('Le fichier n\'a pas 7 colonnes');
+                            $this->app()->httpResponse()->redirect('/admin/lecture/index.html');
+                        }
+
+                        // Check Date and Time formats
+                        if(!(Date::check($lineDatas[5]) &&
+                             Time::check($lineDatas[6]) &&
+                             Time::check($lineDatas[7])))
+                        {
+                            $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'horaire de la conférence "' . $lineDatas[0]. '".');
+                            $this->app()->httpResponse()->redirect('/admin/lecture/index.html');
+                        }
+
+                        $date = new Date;
+                        $date->setFromString($lineDatas[5]);
+
+                        $startTime = new Time;
+                        $startTime->setFromString($lineDatas[6]);
+
+                        $endTime = new Time;
+                        $endTime->setFromString($lineDatas[7]);
+
+                        if(Time::compare($startTime, $endTime) > 0)
+                        {
+                            $this->app()->user()->setFlashError('Horaire de début > Horaire de fin pour la conférence ' . $lineDatas[0] . '.');
+                            $this->app()->httpResponse()->redirect('/admin/lecture/index.html');
+                        }
+        
+                        $lecture = new Lecture;
+                        $lecture->setIdPackage($request->postData('idPackage'));
+                        $lecture->setLecturer($lineDatas[0]);
+                        $lecture->setName('fr', $lineDatas[1]);
+                        $lecture->setName('en', $lineDatas[2]);
+                        $lecture->setDescription('fr', $lineDatas[3]);
+                        $lecture->setDescription('en', $lineDatas[4]);
+                        $lecture->setDate($date);
+                        $lecture->setStartTime($startTime);
+                        $lecture->setEndTime($endTime);
+
+                        array_push($lectures, $lecture);
+                    }
+
+                    fclose($file);
+
+                    // Save all lectures parsed
+                    $managerLectures = $this->m_managers->getManagerOf('lecture');
+                    $managerLectures->save($lectures);
+
+                    $flashMessage = 'Conférences uploadées.';
                 }
 
-                $date = new Date;
-                $date->setFromString($request->postData('Date'));
-
-                $startTime = new Time;
-                $startTime->setFromString($request->postData('StartTime'));
-
-                $endTime = new Time;
-                $endTime->setFromString($request->postData('EndTime'));
-
-                $lecture = new Lecture();
-
-                $lecture->setId($request->postData('lectureId'));
-                $lecture->setLecturer($request->postData('Lecturer'));
-                $lecture->setName('fr', $request->postData('NameFr'));
-                $lecture->setName('en', $request->postData('NameEn'));
-                $lecture->setDescription('fr', $request->postData('DescFr'));
-                $lecture->setDescription('en', $request->postData('DescEn'));
-
-                if(Time::compare($startTime, $endTime) > 0)
-                {
-                    $this->app()->user()->setFlashError('Horaire de début > Horaire de fin');
-                    $this->app()->httpResponse()->redirect('/admin/lectures/updateLectures.html');
-                }
-
-                $lecture->setDate($date);
-                $lecture->setStartTime($startTime);
-                $lecture->setEndTime($endTime);
-
-                $managerLectures = $this->m_managers->getManagerOf('lecture');
-                $managerLectures->update($lecture);
-
-                // Redirection
-                $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" modifiée.');
-                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
+                else
+                    $flashMessage = 'Impossible d\'uploader les conférences.';
             }
 
-            // Delete lecture
-            if($request->postData('Supprimer'))
-            {
-                $this->m_managers->getManagerOf('lecture')->delete($request->postData('lectureId'));
-
-                // Redirection
-                $this->app()->user()->setFlashInfo('Conférence "' . $request->postData('NameFr') . '" supprimée.');
-                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
-            }
-
-            // Else display the form
-            $managerLectures = $this->m_managers->getManagerOf('lecture');
-            $lectures = $managerLectures->get();
-
-            if(count($lectures) == 0)
-            {
-                $this->app()->user()->setFlashError('Il n\'y a pas de conférences dans la base de données.');
-                $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
-            }
-
-            $this->page()->addVar('lectures', $lectures);
+            $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
         }
-
 
         public function executeAddBadgingInformation(HTTPRequest $request)
         {

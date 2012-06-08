@@ -21,6 +21,7 @@
 								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'),
 								   'Questions' => array('Label_fr', 'Label_en', 'Status'),
 								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'),
+								   'Lectures' => array('Lecturer', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en', 'Date', 'StartTime', 'EndTime'),
                                    'DocumentsOfPackages' => array('Filename'),
                                    'ArchivesOfPackages' => array('Filename'));
 
@@ -29,6 +30,7 @@
 							  'Questions' => 'Id_question',
 							  'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package',
+							  'Lectures' => 'Id_lecture',
                               'DocumentsOfPackages' => 'Id_document',
                               'ArchivesOfPackages' => 'Id_archive');
 
@@ -114,12 +116,21 @@
 		{
 			$this->page()->setIsAjaxPage(TRUE);
 			
-			$allowedEntries = array('Classrooms', 'Packages', 'Questions', 'Answers', 'Availabilities', 'ArchivesOfPackages', 'DocumentsOfPackages', 'DocumentsOfUsers');
+			$allowedEntries = array('Classrooms', 
+                                    'Packages',
+                                    'Questions', 
+                                    'Answers', 
+                                    'Lectures', 
+                                    'Availabilities', 
+                                    'ArchivesOfPackages', 
+                                    'DocumentsOfPackages', 
+                                    'DocumentsOfUsers');
 
 			$idFields = array('Classrooms' => 'Id_classroom',
                               'Questions' => 'Id_question',
                               'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package',
+							  'Lectures' => 'Id_lecture',
 							  'Availabilities' => 'Id_availability',
                               'DocumentsOfPackages' => 'Id_document',
                               'ArchivesOfPackages' => 'Id_archive',
