@@ -102,5 +102,7 @@
     $TEXT['MCQ_Confirmation'] = "Etes-vous sûr de vouloir valider vos réponses?";
 
     $TEXT['Viewer_Index'] = "Visionneuse";
+    $TEXT['Viewer_NoPackage'] = "Il n'y a pas de package disponible.";
+    $TEXT['Viewer_NoArchive'] = "Il n'y a pas d'image disponible.";
     $TEXT['Viewer_GoTo'] = "Aller à la page";
 ?>

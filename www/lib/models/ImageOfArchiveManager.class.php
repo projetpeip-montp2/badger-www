@@ -51,21 +51,21 @@
 
         public function delete($idArchive)
         {
-            $req = $this->m_dao->prepare('DELETE FROM ImagesOfArchive WHERE Id_archive = ?');
+            $req = $this->m_dao->prepare('DELETE FROM ImagesOfArchives WHERE Id_archive = ?');
 
             $req->execute(array($idArchive));
         }
 
         public function count($idArchive = -1)
         {
-            $requestSQL = 'SELECT COUNT(*) FROM ImagesOfArchive';
+            $requestSQL = 'SELECT COUNT(*) FROM ImagesOfArchives';
 
             $paramsSQL = array();
 
             if($idArchive != -1)
             {
                 $requestSQL .= ' WHERE Id_archive = ?';
-                $paramsSQL[] = $idPackage;
+                $paramsSQL[] = $idArchive;
             }
 
             $req = $this->m_dao->prepare($requestSQL);
