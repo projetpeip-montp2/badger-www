@@ -55,7 +55,7 @@
                 $managerUser->updateStatus($logon, 'Taken');
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Taken');
 
-                $mark = $this->computeMark($logon, $answers, $answersOfUser);
+                $mark = $this->computeMark($logon, $questions, $answers, $answersOfUser);
                 $managerUser->updateMark($logon, $mark);
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMark($mark);
 
@@ -229,7 +229,7 @@
             return $answers;
         }
 
-        public function computeMark($logon, $answers, $answersOfUser)
+        public function computeMark($logon, $questions, $answers, $answersOfUser)
         {
             $mark = 0;
     
@@ -244,36 +244,50 @@
                     $mark += $presentMark / count($registrations);
             }
 
-            $remainingPoints = 20 - $presentMark;
-            $goodAnswersCount = 0;
-            $badAnswersCount = 0;
+            $QCMMark = 20 - $presentMark;
 
-            foreach($answers as $answer)
+            // Compute good and bad answers count per question
+            $goodAndBasAnswersCount = array();
+            foreach($questions as $question)
             {
-                if($answer->getTrueOrFalse() == 'T')
-                    $goodAnswersCount++;
-
-                else
-                    $badAnswersCount++;
-            }
-
-            foreach($answersOfUser as $answerOfUser)
-            {
-                $goodAnswer;
+                $goodAnswersCount = 0;
+                $badAnswersCount = 0;
 
                 foreach($answers as $answer)
                 {
-                    if($answerOfUser->getIdAnswer() == $answer->getId())
+                    if($answer->getIdQuestion() == $question->getId())
                     {
-                        $goodAnswer = ($answer->getTrueOrFalse() == 'T') ? true : false;
+                        if($answer->getTrueOrFalse() == 'T')
+                            $goodAnswersCount++;
+
+                        else
+                            $badAnswersCount++;
                     }
                 }
+                
+                $goodAndBasAnswersCount[] = array($goodAnswersCount, $badAnswersCount);
+            }
 
-                if($goodAnswer)
-                    $mark += $remainingPoints / $goodAnswersCount;
-
-                else
-                    $mark -= $remainingPoints / $badAnswersCount;
+            // Add points to mark from MCQ
+            for($i=0; $i<count($questions); ++$i)
+            {
+                foreach($answersOfUser as $answerOfUser)
+                {
+                    if($answerOfUser->getIdQuestion() == $questions[$i]->getId())
+                    {
+                        foreach($answers as $answer)
+                        {
+                            if($answerOfUser->getIdAnswer() == $answer->getId())
+                            {
+                                if($answer->getTrueOrFalse() == 'T')
+                                    $mark += $QCMMark / (count($questions) * $goodAndBasAnswersCount[$i][0]);
+        
+                                else
+                                    $mark -= $QCMMark / (count($questions) * $goodAndBasAnswersCount[$i][1]);
+                            }
+                        }
+                    }
+                }
             }
 
             return $mark;
