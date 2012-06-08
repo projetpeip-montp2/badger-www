@@ -3,7 +3,6 @@
 - Général:
     - UTF 8 sur tous les fichiers
 
-    - Entrée dans le test du FORM: PostExists à la place de PostData
     - Trouver pourquoi des horaires d'un même package peuvent se croiser
     - Centrer nom Frontend
     - Redirection: RequestURI()

@@ -1,5 +1,5 @@
 <div class="viewer">
-    <h1><?php echo $packageName; ?></h1>
+    <h1><?php echo $packageName . ' - ' . $archiveName; ?></h1>
 <?php
     $anchor = '#anchor';
 
@@ -7,6 +7,8 @@
 
     $form->add('hidden', 'idPackage')
          ->value($idPackage);
+    $form->add('hidden', 'idArchive')
+         ->value($idArchive);
     $form->add('label', 'Interval')
          ->label('Page ' . $imageNumber . '/' . $count);
     $form->add('text', 'imageNumber')
@@ -24,13 +26,13 @@
 
     if($imageNumber > 1)
     {
-        $first = $baseLink . $idPackage . '-1.html';
+        $first = $baseLink . $idPackage . '-' . $idArchive . '-1.html';
 ?>
 
     <a href="<?php echo $first . $anchor; ?>"><<</a>
 
 <?php
-       $previous = $baseLink . $idPackage . '-' . ($imageNumber - 1) .'.html';
+       $previous = $baseLink . $idPackage . '-' . $idArchive . '-' . ($imageNumber - 1) .'.html';
 ?>
 
     <a href="<?php echo $previous . $anchor; ?>"><</a>
@@ -40,13 +42,13 @@
 
     if($imageNumber < $count)
     {
-        $next = $baseLink . $idPackage . '-' . ($imageNumber + 1) .'.html';
+        $next = $baseLink . $idPackage . '-' . $idArchive . '-' . ($imageNumber + 1) .'.html';
 ?>
 
     <a href="<?php echo $next . $anchor; ?>">></a>
 
 <?php
-        $last = $baseLink . $idPackage . '-' . $count . '.html';
+        $last = $baseLink . $idPackage . '-' . $idArchive . '-' . $count . '.html';
 ?>
 
     <a href="<?php echo $last . $anchor; ?>">>></a>
@@ -55,7 +57,7 @@
     }
 
     // Generate image
-    $filePath = '/uploads/admin/images/' . $idPackage . '_' . $imageNumber . '.jpg';
+    $filePath = '/uploads/admin/images/' . $idPackage . '_' . $idArchive . '_' . $imageNumber . '.jpg';
     $fileName = basename($filePath);
 ?>
     <br/>

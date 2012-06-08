@@ -18,7 +18,7 @@
     <route url="/lectures/downloadDocuments-([0-9]+)\.html" module="lectures" action="downloadDocuments" vars="idPackage"/>
 
     <route url="/viewer/index\.html" module="viewer" action="index"/>
-    <route url="/viewer/viewImage-([0-9]+)-([0-9]+)\.html" module="viewer" action="viewImage" vars="idPackage,imageNumber"/>
+    <route url="/viewer/viewImage-([0-9]+)-([0-9]+)-([0-9]+)\.html" module="viewer" action="viewImage" vars="idPackage,idArchive,imageNumber"/>
     <route url="/viewer/redirectToImage\.html" module="viewer" action="redirectToImage"/>
 
     <route url="/mcq/index\.html" module="mcq" action="index"/>

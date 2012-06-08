@@ -133,7 +133,6 @@
                 $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
-
             // Display the form
 
             $packages = $this->m_managers->getManagerOf('package')->get();
