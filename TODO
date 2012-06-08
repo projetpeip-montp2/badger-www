@@ -13,17 +13,15 @@
 
 
 - Frontend:
-    - Correction visionneuse nouveau système
-
-    - Lors de la validations du QCM, tester que les questions/réponses passées par POST existent bel et bien
+    - Lors de la validation du QCM, tester que les questions/réponses passées par POST existent bel et bien
     - Notation QCM
-    - Mettre Instruction QCM
+    - Locker le planning
 
 
 - Backend:
     - Faire une interface contenant plein de contrôle et check points
     - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
-    - Envoie de mails contenant questions-réponses.
+    - Envoi de mails contenant questions-réponses.
     - Statistiques
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
