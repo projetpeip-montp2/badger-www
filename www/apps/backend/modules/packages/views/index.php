@@ -1,3 +1,21 @@
+<p>Uploader des packages<p>
+<?php
+    $form = new Form('/admin/packages/addPackages.html', 'post');
+
+    $form->add('file', 'vbmifarePackagesCSV')
+         ->isInParagraph(false)
+         ->label('Chemin du fichier : ');
+
+    $form->add('submit', 'Envoyer')
+         ->isInParagraph(false);
+
+    echo $form->toString();
+?>
+
+<br/>
+<br/>
+<br/>
+
 <script src="../../web/js/jquery-1.7.1.min.js"></script>
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>

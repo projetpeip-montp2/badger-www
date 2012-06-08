@@ -28,9 +28,19 @@
         Documents
     </div>
 </a>
+<a href="/admin/questionsanswers/index.html">
+    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
+        Questions Réponses
+    </div>
+</a>
 <a href="/admin/lectures/index.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
         Conférences
+    </div>
+</a>
+<a href="/admin/packages/index.html">
+    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
+        Packages
     </div>
 </a>
 <a href="/home/index.html">
