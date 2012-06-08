@@ -119,34 +119,29 @@
             }
 
             $packageName = $package[0]->getName($lang);
-            $documentsName = $this->m_managers->getManagerOf('documentofpackage')->get($idPackage);
+            $documents = $this->m_managers->getManagerOf('documentofpackage')->get($idPackage);
 
-            $zip = new ZipArchive;
-            $res = $zip->open('test.zip', ZipArchive::CREATE);
 
-            if($res === TRUE) 
+            $zip = new zipfile();
+
+            foreach($documents as $doc)
             {
-                foreach($documentsName as $name)
-                {
-                    $res = $zip->addFile('/uploads/admin/pdf/' . $name->getFilename(), $name->getFilename());
+                $filename = dirname(__FILE__).'/../../../../uploads/admin/pdf/' . $doc->getFilename();
 
-                    if($res === FALSE)
-                        throw new Exception('Impossible d\ajouter: ' . $name->getFilename());
-                }
+                $fo = fopen($filename, 'r');
+                if(!$fo)
+                    exit('Sad');
 
-                $fp = $zip->getStream('test');
-                if(!$fp)
-                    exit(":(");
+                $contenu = fread($fo, filesize($filename));
+                fclose($fo);
 
-                header('Content-Type: text/csv');
-                header('Content-Disposition: attachment; filename="' . $packageName . '.zip"');
-                echo 'aaaa';
-            } 
-
-            else 
-            {
-                var_dump('Impossible de créer l\'archive vide ' . $res); die();
+                $zip->addfile($contenu, $doc->getFilename());
             }
+
+            header('Content-Type: application/x-zip');
+            header('Content-Disposition: inline; filename=' . $packageName . '.zip');
+
+            echo $zip->file();;
         }
 
         public function executeShowAll(HTTPRequest $request)
