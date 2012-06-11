@@ -425,3 +425,39 @@ p.packageTitle
 {
 	color: #AAAAAA;
 }
+
+/* --------------------- Autocomplete --------------------- */
+#search 
+{
+    padding: 2px 4px;
+    width: 220px; height: 22px;
+    border: 1px solid #AAA;
+}
+
+#search:hover, #search:focus 
+{
+    border-color: #777;
+}
+
+#results 
+{
+    display: none;
+    width: 228px;
+    border: 1px solid #AAA;
+    border-top-width: 0;
+    background-color: #FFF;
+}
+
+#results div 
+{
+    width: 220px;
+    padding: 2px 4px;
+    text-align: left;
+    border: 0;
+    background-color: #FFF;
+}
+
+#results div:hover, .result_focus 
+{
+    background-color: #DDD !important;
+}
