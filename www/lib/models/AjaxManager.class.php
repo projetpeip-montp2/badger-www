@@ -74,10 +74,10 @@
 			$statement->execute(array($time->toStringMySQL(), $id));
 		}
 
-		private function checkAvailabilityCoherency($fieldName, $subField, $id, $value)
+		private function checkScheduleCoherency($fieldName, $subField, $id, $value, $tableName, $idName)
 		{
 			$otherFieldName = ($fieldName == 'StartTime') ? 'EndTime' : 'StartTime';
-			$statement = $this->m_dao->prepare("SELECT $fieldName, $otherFieldName FROM Availabilities WHERE Id_availability = ?");
+			$statement = $this->m_dao->prepare("SELECT $fieldName, $otherFieldName FROM $tableName WHERE $idName = ?");
 			$statement->execute(array($id));
 			$results = $statement->fetch();
 			
@@ -131,9 +131,9 @@
 			$subField = $ajaxInput->getData('subfield-name');
 			$value = $ajaxInput->getValue();
 			
-			// Cas spécifique pour availabilities
+			// Cas spécifique pour les tables contenant StartTime ou EndTime
 			if ($fieldName == 'StartTime' || $fieldName == 'EndTime')
-				$this->checkAvailabilityCoherency($fieldName, $subField, $id, $value);
+				$this->checkScheduleCoherency($fieldName, $subField, $id, $value, $tableName, $idName);
 			
 			switch ($fieldName)
 			{

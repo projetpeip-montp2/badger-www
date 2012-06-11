@@ -48,7 +48,7 @@
         public function setFromString($time)
         {
             if(!Time::check($time))
-                throw new InvalidArgumentException('Invalid time format in Time setFromString');
+                throw new InvalidArgumentException('Invalid time format in Time::setFromString : ' . $time);
 
             $timeArray = explode(':', $time);
             $this->set(intval($timeArray[0]), intval($timeArray[1]), intval($timeArray[2]));

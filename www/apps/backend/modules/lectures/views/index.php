@@ -7,7 +7,6 @@
 <script src="../../web/js/jquery-1.7.1.min.js"></script>
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
-<script src="../../web/js/questionsManagers.js"></script>
 
 
 <form id="form" method="post">
@@ -86,15 +85,15 @@
 
         echo '<tr>';
 
-        echo "<td><p class='editable' data-id='{$lecture->getId()}'  data-entry-name='Lectures' data-field-name='Lecturer' data-form-type='textbox'>{$lecture->getLecturer()}</p></td>";
+        echo "<td><p class='editable' data-id='$id'  data-entry-name='Lectures' data-field-name='Lecturer' data-form-type='textbox'>{$lecture->getLecturer()}</p></td>";
 
-        echo "<td><p class='editable' data-id='{$lecture->getId()}'  data-entry-name='Lectures' data-field-name='Name_fr' data-form-type='textbox'>{$lecture->getName('fr')}</p></td>";
+        echo "<td><p class='editable' data-id='$id'  data-entry-name='Lectures' data-field-name='Name_fr' data-form-type='textbox'>{$lecture->getName('fr')}</p></td>";
 
-        echo "<td><p class='editable' data-id='{$lecture->getId()}'  data-entry-name='Lectures' data-field-name='Name_en' data-form-type='textbox'>{$lecture->getName('en')}</p></td>";
+        echo "<td><p class='editable' data-id='$id'  data-entry-name='Lectures' data-field-name='Name_en' data-form-type='textbox'>{$lecture->getName('en')}</p></td>";
 
-        echo "<td><p class='editable' data-id='{$lecture->getId()}'  data-entry-name='Lectures' data-field-name='Description_fr' data-form-type='textbox'>{$lecture->getDescription('fr')}</p></td>";
+        echo "<td><p class='editable' data-id='$id'  data-entry-name='Lectures' data-field-name='Description_fr' data-form-type='textbox'>{$lecture->getDescription('fr')}</p></td>";
 
-        echo "<td><p class='editable' data-id='{$lecture->getId()}'  data-entry-name='Lectures' data-field-name='Description_en' data-form-type='textbox'>{$lecture->getDescription('en')}</p></td>";
+        echo "<td><p class='editable' data-id='$id'  data-entry-name='Lectures' data-field-name='Description_en' data-form-type='textbox'>{$lecture->getDescription('en')}</p></td>";
 
 
         // Date
@@ -115,7 +114,7 @@
         echo "<p class='editable' data-entry-name='Lectures' data-field-name='StartTime' data-subfield-name='Seconds' data-form-type='number' data-form-size='2' data-id='$id' >{$startTime->seconds(TRUE)}</p>";
         echo '</td>';
 
-        // Date
+        // EndTime
         echo '<td>';
         echo "<p class='editable' data-entry-name='Lectures' data-field-name='EndTime' data-subfield-name='Hours' data-form-type='number' data-form-size='2' data-id='$id' >{$endTime->hours(TRUE)}</p>";
         echo "<p class='separator'>:</p>";
