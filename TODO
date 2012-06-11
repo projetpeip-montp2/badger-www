@@ -4,6 +4,14 @@
     - UTF 8 sur tous les fichiers
     - Gros coup de Polish
 
+    - Clé étrangère sur la table UserPolytech
+    - Réplication + table historique + maj des requêtes à William
+
+
+- Frontend:
+    - Permettre les élèves d'avoir un rapport par conférence et pas par package (changement bd)
+    - Empécher un utilisateur de télécharger les rapports étudiants 
+
 
 - Backend:
     - Export CSV
@@ -26,3 +34,4 @@
     - Suppression d'une question ==> Réponses encore affichées
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
     - Lors de la suppression d'un QCM/inscription, mettre à jour le status des élèves
+
