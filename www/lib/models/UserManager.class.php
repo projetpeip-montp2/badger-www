@@ -61,6 +61,9 @@
 
             $data = $req->fetch();
 
+            if(!$data)
+                return NULL;
+
             $student = new Student;
             $student->setUsername($data['Username']);
             $student->setName($data['VraiPrenom']);

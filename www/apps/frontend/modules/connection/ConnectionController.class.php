@@ -7,10 +7,10 @@
         {
             $manager = $this->m_managers->getManagerOf('user');
             
-            // Load user's profile from the Polytech's database. If the user is 
-            // on this website, the user exists obligatory in the database, 
-            // because the website is on intranet
+            // If the user doesn't exist in Polytech db, he's redirected UM2 ENT.
             $student = $manager->retrieveStudentFromPolytech($this->app()->user()->getAttribute('logon'));
+            if(!$student)
+                $this->app()->httpResponse()->redirect('portail.univ-montp2.fr');
 
             // Default status
             $mcqStatus = 'Visitor';
