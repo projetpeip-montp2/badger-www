@@ -2,7 +2,7 @@
     class DocumentOfUser extends Record
     {
         private $m_idDocument;
-        private $m_idPackage;
+        private $m_idLecture;
         private $m_idUser;
         private $m_filename;
 
@@ -16,14 +16,14 @@
             return $this->m_idDocument;
         }
 
-        public function setIdPackage($idPackage)
+        public function setIdLecture($idLecture)
         {
-            $this->m_idPackage = $idPackage;
+            $this->m_idLecture = $idLecture;
         }
 
-        public function getIdPackage()
+        public function getIdLecture()
         {
-            return $this->m_idPackage;
+            return $this->m_idLecture;
         }
 
         public function setIdUser($idUser)

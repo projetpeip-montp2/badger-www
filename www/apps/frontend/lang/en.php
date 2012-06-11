@@ -49,13 +49,15 @@
     $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
     $TEXT['Flash_MCQTaken'] = 'You have validated your answers in the MCQ.';
     $TEXT['Flash_PackageUnknown'] = "The package doesn't exist!";
+    $TEXT['Flash_LectureUnknown'] = "The lecture doesn't exist!";
     $TEXT['Flash_NoPackage'] = "No package.";
     $TEXT['Flash_UploadError'] = "Error during file uploading";
     $TEXT['Flash_Uploaded'] = "File uploaded.";
-    $TEXT['Flash_AlreadyAReportForAPackage'] = "There is already a report for this package.";
+    $TEXT['Flash_AlreadyAReportForALecture'] = "There is already a report for this lecture.";
     $TEXT['Flash_ImageUnknown'] = "The image you are looking for doesn't exist.";
     $TEXT['Flash_NoReport'] = "You have not uploaded any report.";
     $TEXT['Flash_NoPlace'] = "No place.";
+    $TEXT['Flash_NoLecture'] = "No lecture.";
 
     $TEXT['Info_LimitDate'] = "Limit date of registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";

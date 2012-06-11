@@ -20,6 +20,8 @@
 
     - Configuration du site web (affichage planning, note de présence,etc)
 
+    - Récupération des rapports des élèves
+
     - Faire une interface contenant plein de contrôle et check points
         - Questions n'ayant pas de réponses.
         - Packages n'ayant pas de conf.
