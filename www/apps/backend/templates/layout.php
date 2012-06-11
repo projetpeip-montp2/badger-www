@@ -38,7 +38,7 @@
                         { 
                             echo '<div id="flash">';
                             echo '<p class="' . $user->getFlashType() . '">', $user->getFlash(), '</p>'; 
-                            echo '</div>';
+                            echo '</div><br/><br/>';
                         }
                     ?>
 

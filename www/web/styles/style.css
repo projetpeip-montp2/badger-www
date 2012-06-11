@@ -171,7 +171,7 @@ li {
 	width: 75%;
     padding: 5px;
 	margin: auto;
-    text-align: center; 
+    text-align: center;
 }
 
 /* ------------------------ Message Flash ------------------------ */
@@ -218,18 +218,21 @@ li {
 .error
 {
     font-size: 22px;
+    font-weight: bold;
     color: red;
 }
 
 .warning
 {
     font-size: 22px;
+    font-weight: bold;
     color: orange;
 }
 
 .info
 {
     font-size: 22px;
+    font-weight: bold;
     color: green;
 }
 

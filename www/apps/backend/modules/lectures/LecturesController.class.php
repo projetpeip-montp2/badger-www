@@ -139,9 +139,6 @@
 
         public function executeAddLectures(HTTPRequest $request)
         {
-            // Create a flash message because we can have more than one message.
-            $flashMessage = '';
-
             $idPackage = $request->postData('idPackage');
 
             // Upload lectures for a package
@@ -225,13 +222,14 @@
                     // Save all lectures parsed
                     $managerLectures->save($lectures);
 
-                    $flashMessage = 'Conférences uploadées.';
+                    $this->app()->user()->setFlashInfo('Conférences uploadées.');
                 }
 
                 else
-                    $flashMessage = 'Impossible d\'uploader les conférences.';
+                    $this->app()->user()->setFlashInfo('Impossible d\'uploader les conférences.');
             }
 
+            
             $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
         }
 
