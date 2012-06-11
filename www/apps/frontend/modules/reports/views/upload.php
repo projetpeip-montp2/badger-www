@@ -1,19 +1,24 @@
-<?php
-    $form = new Form('', 'post');
+<form action="" method="post" enctype="multipart/form-data">
+    <label for="idLecture">Selectionner une conférence: </label>
+    <br />
+    <select name="idLecture" id="idLecture">
+    <?php 
+        foreach($packages as $pack)
+        {
+            echo '<optgroup label="' . $pack->getName($lang) . '">';
+            
+            foreach($lectures as $lec)
+            {
+                if($lec->getIdPackage() == $pack->getId())
+                    echo '<option value="' . $lec->getId() . '">' . $lec->getName($lang) . '</option>';
+            }
 
-    $choices = array();
+            echo '</optgroup>';
+        }
+    ?>
+    </select>
 
-    foreach($packages as $package)
-        $choices[$package->getId()] = $package->getName($lang);
+    Chemin du rapport: <input type="file" name="reportFile"/>
+    <input type="submit" name="<?php echo $TEXT['Form_Send']?>" value="<?php echo $TEXT['Form_Send']?>"/>
+</form>
 
-    $form->add('select', 'vbmifarePackage')
-         ->label($TEXT['Reports_PackageSelection'] . ': ')
-         ->choices($choices);
-
-    $form->add('file', 'vbmifareReport')
-         ->label($TEXT['Reports_Path'] . ': ');
-
-    $form->add('submit', $TEXT['Form_Send']);
-
-    echo $form->toString();
-?>

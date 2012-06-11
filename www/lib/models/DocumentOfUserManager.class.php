@@ -1,24 +1,24 @@
 <?php
     class DocumentOfUserManager extends Manager
     {
-        public function get($idPackage = -1, $idUser = null)
+        public function get($idLecture = -1, $idUser = null)
         {
             $requestSQL = 'SELECT Id_document,
-                                  Id_package,
+                                  Id_lecture,
                                   Id_user,
                                   Filename FROM DocumentsOfUsers';
 
             $paramsSQL = array();
 
-            if($idPackage != -1)
+            if($idLecture != -1)
             {
-                $requestSQL .= ' WHERE Id_package = ?';
-                $paramsSQL[] = $idPackage;
+                $requestSQL .= ' WHERE Id_lecture = ?';
+                $paramsSQL[] = $idLecture;
             }
 
             if($idUser != null)
             {
-                $connect = ($idPackage != -1) ? 'AND' : 'WHERE';
+                $connect = ($idLecture != -1) ? 'AND' : 'WHERE';
                 $requestSQL .= ' ' . $connect .' Id_user = ?';
                 $paramsSQL[] = $idUser;
             }
@@ -32,7 +32,7 @@
             {
                 $doc = new DocumentOfUser;
                 $doc->setId($data['Id_document']);
-                $doc->setIdPackage($idPackage);
+                $doc->setIdLecture($idLecture);
                 $doc->setIdUser($idUser);
                 $doc->setFilename($data['Filename']);
 
@@ -44,22 +44,13 @@
 
         public function save(DocumentOfUser $doc)
         {
-            $req = $this->m_dao->prepare('INSERT INTO DocumentsOfUsers(Id_package,
+            $req = $this->m_dao->prepare('INSERT INTO DocumentsOfUsers(Id_lecture,
                                                                        Id_user, 
                                                                        Filename) VALUES(?, ?, ?)');
 
-            $req->execute(array($doc->getIdPackage(),
+            $req->execute(array($doc->getIdLecture(),
                                 $doc->getIdUser(),
                                 $doc->getFilename()));
-        }
-
-        public function delete($idPackage, $idUser)
-        {
-            $req = $this->m_dao->prepare('DELETE FROM DocumentsOfUsers WHERE Id_package = ? AND Id_user = ?');
-            var_dump($idPackage);
-            var_dump($idUser); die();
-
-            $req->execute(array($idPackage, $idUser));
         }
     }
 ?>

@@ -4,12 +4,10 @@
     - UTF 8 sur tous les fichiers
     - Gros coup de Polish
 
-    - Clé étrangère sur la table UserPolytech
     - Réplication + table historique + maj des requêtes à William
 
 
 - Frontend:
-    - Permettre les élèves d'avoir un rapport par conférence et pas par package (changement bd)
     - Empécher un utilisateur de télécharger les rapports étudiants 
 
 
@@ -19,6 +17,8 @@
     - Statistiques
 
     - Configuration du site web (affichage planning, note de présence,etc)
+
+    - Récupération des rapports des élèves
 
     - Faire une interface contenant plein de contrôle et check points
         - Questions n'ayant pas de réponses.

@@ -49,13 +49,15 @@
     $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
     $TEXT['Flash_MCQTaken'] = 'Vous avez validé vos réponses au QCM.';
     $TEXT['Flash_PackageUnknown'] = "Le package demandé n'existe pas!";
+    $TEXT['Flash_LectureUnknown'] = "La conférence demandée n'existe pas!";
     $TEXT['Flash_NoPackage'] = "Pas de package.";
     $TEXT['Flash_UploadError'] = "Erreur durant l'upload du rapport";
     $TEXT['Flash_Uploaded'] = "Fichier uploadé.";
-    $TEXT['Flash_AlreadyAReportForAPackage'] = "Vous avez déjà un rapport pour ce package.";
+    $TEXT['Flash_AlreadyAReportForALecture'] = "Vous avez déjà un rapport pour cette conférence.";
     $TEXT['Flash_ImageUnknown'] = "Cette image n'existe pas.";
     $TEXT['Flash_NoReport'] = "Vous n'avez uploadé aucune rapport.";
     $TEXT['Flash_NoPlace'] = "Plus de place disponible.";
+    $TEXT['Flash_NoLecture'] = "Pas de lecture.";
 
     $TEXT['Info_LimitDate'] = "Date limite des inscriptions: ";
     $TEXT['Info_RegistrationsCount'] = "Inscriptions: ";
