@@ -12,13 +12,13 @@ conférence. Pour cela:
     <li>Cliquer sur le bouton Envoyer.</li>
 </ul>
 
-<!-- Here we use our form because we need a div between two inputs -->
+<!-- Here we use our form because we need divs between two inputs -->
 <form action="" method="post">
-    <p><label for="username">Identifiant : </label><input type="text" name="username" class="username" autocomplete="off"/>
+    <input type="text" name="username" id="search" class="username" autocomplete="off"/>
 
-    <!-- Need for autocomplete system -->
-    <span id="results"></span>
-    </p>
+    <span id="infos"></span>
+
+    <div id="results"></div>
 </form>
 
 

@@ -5,6 +5,7 @@ var previousValue = searchElement.val();
 var selectedResult = -1;
 var previousRequest;
 var results = $('#results');
+var infos = $('#infos');
 
 
 function displayResults(response) 
@@ -16,32 +17,35 @@ function displayResults(response)
 
     if(autocompleteResults.length)
     {
-        results.css('display', 'inline');
+        results.css('display', 'block');
         results.empty();
+
+        infos.css('display', 'inline');
+        infos.empty();
 
         if(found)
         {
-            results.append('<img src="/web/images/tools/iconOk.png"/>');
+            infos.append('<img src="/web/images/tools/iconOk.png"/>');
     
-            results.append('<select name="selectedLecture" id="selectedLecture">');
+            infos.append('<select name="selectedLecture" id="selectedLecture">');
 
             for (var index in response.Lectures)
                 $('#selectedLecture').append('<option value="' + index + '">' + response.Lectures[index] + '</option>');
 
-            results.append('</select>');
+            infos.append('</select>');
 
-            results.append('<input type="submit" name="Envoyer" value="Envoyer"/>');
+            infos.append('<input type="submit" name="Envoyer" value="Envoyer"/>');
         }
 
         else
         {
-            results.append('<img src="/web/images/tools/iconError.png"/>');
+            infos.append('<img src="/web/images/tools/iconError.png"/>');
 
             autocompleteResults = autocompleteResults.split(';');
 
             for (var i=0; i<autocompleteResults.length ; i++) 
             {
-                results.append('<div class="autocompleteResults'+ i +'">' + '<a>' + autocompleteResults[i] + '</a>' + '</div>');
+                results.append('<div class="autocompleteResults'+ i +'">' + autocompleteResults[i] + '</div>');
 
                 $('.autocompleteResults' + i).bind('click',function(){
                     chooseResult( $(this) );

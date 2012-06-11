@@ -233,8 +233,7 @@
                     $this->app()->httpResponse()->redirect($request->requestURI());
                 }
 
-
-                $idLecture = $request->postData('vbmifareSelectedLecture');
+                $idLecture = $request->postData('selectedLecture');
                 $lectures = $this->m_managers->getManagerOf('lecture')->get(-1, $idLecture);
 
                 if(count($lectures) != 1)
