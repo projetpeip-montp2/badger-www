@@ -142,6 +142,8 @@
             // Create a flash message because we can have more than one message.
             $flashMessage = '';
 
+            $idPackage = $request->postData('idPackage');
+
             // Upload lectures for a package
             if($request->fileExists('CSVFile'))
             {
@@ -187,7 +189,7 @@
                         }
         
                         $lecture = new Lecture;
-                        $lecture->setIdPackage($request->postData('idPackage'));
+                        $lecture->setIdPackage($idPackage);
                         $lecture->setLecturer($lineDatas[0]);
                         $lecture->setName('fr', $lineDatas[1]);
                         $lecture->setName('en', $lineDatas[2]);
@@ -202,7 +204,12 @@
 
                     fclose($file);
 
-                    // Check all possible conflit
+                    $managerLectures = $this->m_managers->getManagerOf('lecture');
+
+                    // Include lectures already in this package for conflicts checking
+                    $lectures = array_merge($lectures, $managerLectures->get($idPackage));
+
+                    // Check all possible conflicts
                     for($i=0; $i<count($lectures); $i++)
                     {
                         for($j=($i+1); $j<count($lectures); $j++)
@@ -216,7 +223,6 @@
                     }
 
                     // Save all lectures parsed
-                    $managerLectures = $this->m_managers->getManagerOf('lecture');
                     $managerLectures->save($lectures);
 
                     $flashMessage = 'Conférences uploadées.';
