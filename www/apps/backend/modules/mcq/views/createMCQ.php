@@ -37,8 +37,6 @@
          ->value('HH:MM:SS')
          ->size(8);
 
-    $form->add('hidden', 'isSubmitted')
-         ->value('on');
     $form->add('submit', 'Envoyer');
 
     echo $form->toString();

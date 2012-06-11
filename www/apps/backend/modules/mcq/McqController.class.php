@@ -11,7 +11,7 @@
             $this->page()->addVar("viewTitle", "Ajouter une inscription");
 
             // Handle POST data
-            if($request->postExists('isSubmitted'))
+            if($request->postExists('Envoyer'))
             {
                 // Check Date and Time formats
                 if(!(Date::check($request->postData('Date')) &&
@@ -37,10 +37,19 @@
                     $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
                 }
 
+                // Real year to match the 'AnneeApogee' field in Polytech table
+                $realYear = $request->postData('SchoolYear') - 2;
+
+                if(($realYear < 1) || ($realYear > 3))
+                {
+                    $this->app()->user()->setFlashError('Erreur dans l\'année.');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
+                }
+
                 $mcq = new MCQ;
 
                 $mcq->setDepartment($request->postData('Department'));
-                $mcq->setSchoolYear($request->postData('SchoolYear'));
+                $mcq->setSchoolYear($realYear);
                 $mcq->setDate($date);
                 $mcq->setStartTime($startTime);
                 $mcq->setEndTime($endTime);
@@ -48,7 +57,7 @@
                 $managerMCQs = $this->m_managers->getManagerOf('mcq');
                 $managerMCQs->save($mcq);
 
-                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' =>$request->postData('SchoolYear'));
+                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' => $realYear);
 
                 $this->updateStudents($mcqId, 'CanTakeMCQ');
 
@@ -99,6 +108,9 @@
                     $this->app()->httpResponse()->redirect('/admin/mcq/updateMCQs.html');
                 }
 
+                // Real year to match the 'AnneeApogee' field in Polytech table
+                $realYear = $request->postData('SchoolYear') - 2;
+
                 $mcq = new MCQ;
 
                 $mcq->setDepartment($request->postData('Department'));
@@ -121,8 +133,11 @@
             // Delete MCQ
             if($request->postExists('Supprimer'))
             {
+                // Real year to match the 'AnneeApogee' field in Polytech table
+                $realYear = $request->postData('SchoolYear') - 2;
+
                 // MCQ identificated by Department & Schoolyear ==> Send an array containing both information to manager
-                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' =>$request->postData('SchoolYear'));
+                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' => $realYear);
 
                 $this->updateStudents($mcqId, 'Visitor');
                 $this->m_managers->getManagerOf('mcq')->delete(array($mcqId));
