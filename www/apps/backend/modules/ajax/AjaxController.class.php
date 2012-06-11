@@ -134,7 +134,7 @@
                               'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package',
 							  'Lectures' => 'Id_lecture',
-							  'MCQs' => 'Id_mcqs',
+							  'MCQs' => 'Id_mcq',
 							  'Availabilities' => 'Id_availability',
                               'DocumentsOfPackages' => 'Id_document',
                               'ArchivesOfPackages' => 'Id_archive',

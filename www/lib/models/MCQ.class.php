@@ -1,11 +1,22 @@
 <?php
     class MCQ extends Record
     {
+        private $m_idMCQ;
         private $m_department;
         private $m_schoolYear;
         private $m_date;
         private $m_startTime;
         private $m_endTime;
+
+        public function setId($idMCQ)
+        {
+            $this->m_idMCQ = $idMCQ;
+        }
+
+        public function getId()
+        {
+            return $this->m_idMCQ;
+        }
 
         public function setDepartment($department)
         {
