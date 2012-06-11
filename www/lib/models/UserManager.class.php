@@ -1,7 +1,7 @@
 <?php
     class UserManager extends Manager
     {
-        public function getAllFromvbMifare()
+        public function get()
         {
             $req = $this->m_dao->prepare('SELECT * FROM Users');
             $req->execute();
