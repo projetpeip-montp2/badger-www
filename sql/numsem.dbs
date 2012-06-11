@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="vbmifare" database="MySql" >
-	<schema name="vbmifare" schemaname="vbmifare" >
+	<schema name="numsem" schemaname="numsem" >
 		<table name="Answers" >
 			<column name="Id_answer" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Id_question" type="SMALLINT" jt="5" unsigned="y" />
@@ -13,7 +13,7 @@
 			<index name="idx_answers" unique="NORMAL" >
 				<column name="Id_question" />
 			</index>
-			<fk name="fk_answers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
+			<fk name="fk_answers_questions" to_schema="numsem" to_table="Questions" delete_action="CASCADE" >
 				<fk_column name="Id_question" pk="Id_question" />
 			</fk>
 		</table>
@@ -30,13 +30,13 @@
 			<index name="idx_answersofusers_1" unique="NORMAL" >
 				<column name="Id_question" />
 			</index>
-			<fk name="fk_answersofusers_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+			<fk name="fk_answersofusers_users" to_schema="numsem" to_table="Users" delete_action="CASCADE" >
 				<fk_column name="Id_user" pk="Id_user" />
 			</fk>
-			<fk name="fk_answersofusers_answers" to_schema="vbmifare" to_table="Answers" delete_action="CASCADE" >
+			<fk name="fk_answersofusers_answers" to_schema="numsem" to_table="Answers" delete_action="CASCADE" >
 				<fk_column name="Id_answer" pk="Id_answer" />
 			</fk>
-			<fk name="fk_answersofusers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
+			<fk name="fk_answersofusers_questions" to_schema="numsem" to_table="Questions" delete_action="CASCADE" >
 				<fk_column name="Id_question" pk="Id_question" />
 			</fk>
 		</table>
@@ -50,7 +50,7 @@
 			<index name="idx_archivesofimages" unique="NORMAL" >
 				<column name="Id_package" />
 			</index>
-			<fk name="fk_archivesofimages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+			<fk name="fk_archivesofimages" to_schema="numsem" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
 		</table>
@@ -66,7 +66,7 @@
 			<index name="idx_availabilities" unique="NORMAL" >
 				<column name="Id_classroom" />
 			</index>
-			<fk name="fk_availabilities_classrooms" to_schema="vbmifare" to_table="Classrooms" delete_action="CASCADE" >
+			<fk name="fk_availabilities_classrooms" to_schema="numsem" to_table="Classrooms" delete_action="CASCADE" >
 				<fk_column name="Id_classroom" pk="Id_classroom" />
 			</fk>
 		</table>
@@ -97,7 +97,7 @@
 			<index name="idx_documentsofpackages" unique="NORMAL" >
 				<column name="Id_package" />
 			</index>
-			<fk name="fk_documentsofpackages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+			<fk name="fk_documentsofpackages" to_schema="numsem" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
 		</table>
@@ -115,10 +115,10 @@
 			<index name="pk_documentsofusers" unique="PRIMARY_KEY" >
 				<column name="Id_document" />
 			</index>
-			<fk name="fk_documentsofusers_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+			<fk name="fk_documentsofusers_packages" to_schema="numsem" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
-			<fk name="fk_documentsofusers_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+			<fk name="fk_documentsofusers_users" to_schema="numsem" to_table="Users" delete_action="CASCADE" >
 				<fk_column name="Id_user" pk="Id_user" />
 			</fk>
 		</table>
@@ -132,7 +132,7 @@
 			<index name="idx_imagesofpackages_0" unique="NORMAL" >
 				<column name="Id_archive" />
 			</index>
-			<fk name="fk_imagesofarchives" to_schema="vbmifare" to_table="ArchivesOfPackages" delete_action="CASCADE" >
+			<fk name="fk_imagesofarchives" to_schema="numsem" to_table="ArchivesOfPackages" delete_action="CASCADE" >
 				<fk_column name="Id_archive" pk="Id_archive" />
 			</fk>
 		</table>
@@ -157,16 +157,20 @@
 			<index name="idx_lectures_0" unique="NORMAL" >
 				<column name="Id_availability" />
 			</index>
-			<fk name="fk_lectures_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+			<fk name="fk_lectures_packages" to_schema="numsem" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
 		</table>
 		<table name="MCQs" >
+			<column name="Id_mcq" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Department" type="TEXT" jt="-1" />
 			<column name="SchoolYear" type="SMALLINT" jt="5" unsigned="y" />
 			<column name="Date" type="DATE" jt="91" />
 			<column name="StartTime" type="TIME" jt="92" />
 			<column name="EndTime" type="TIME" jt="92" />
+			<index name="pk_mcqs" unique="PRIMARY_KEY" >
+				<column name="Id_mcq" />
+			</index>
 		</table>
 		<table name="Packages" >
 			<column name="Id_package" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
@@ -193,7 +197,7 @@
 			<index name="idx_questions" unique="NORMAL" >
 				<column name="Id_package" />
 			</index>
-			<fk name="fk_questions_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+			<fk name="fk_questions_packages" to_schema="numsem" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
 		</table>
@@ -206,10 +210,10 @@
 			<index name="idx_questionsofusers_0" unique="NORMAL" >
 				<column name="Id_question" />
 			</index>
-			<fk name="fk_questionsofusers_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+			<fk name="fk_questionsofusers_users" to_schema="numsem" to_table="Users" delete_action="CASCADE" >
 				<fk_column name="Id_user" pk="Id_user" />
 			</fk>
-			<fk name="fk_questionsofusers_questions" to_schema="vbmifare" to_table="Questions" delete_action="CASCADE" >
+			<fk name="fk_questionsofusers_questions" to_schema="numsem" to_table="Questions" delete_action="CASCADE" >
 				<fk_column name="Id_question" pk="Id_question" />
 			</fk>
 		</table>
@@ -229,13 +233,13 @@
 			<index name="idx_registrations_1" unique="NORMAL" >
 				<column name="Id_user" />
 			</index>
-			<fk name="fk_registrations_lectures" to_schema="vbmifare" to_table="Lectures" delete_action="CASCADE" >
+			<fk name="fk_registrations_lectures" to_schema="numsem" to_table="Lectures" delete_action="CASCADE" >
 				<fk_column name="Id_lecture" pk="Id_lecture" />
 			</fk>
-			<fk name="fk_registrations_packages" to_schema="vbmifare" to_table="Packages" delete_action="CASCADE" >
+			<fk name="fk_registrations_packages" to_schema="numsem" to_table="Packages" delete_action="CASCADE" >
 				<fk_column name="Id_package" pk="Id_package" />
 			</fk>
-			<fk name="fk_registrations_users" to_schema="vbmifare" to_table="Users" delete_action="CASCADE" >
+			<fk name="fk_registrations_users" to_schema="numsem" to_table="Users" delete_action="CASCADE" >
 				<fk_column name="Id_user" pk="Id_user" />
 			</fk>
 		</table>
@@ -248,7 +252,7 @@
 			<index name="pk_users_0" unique="UNIQUE" >
 				<column name="Id_user" />
 			</index>
-			<fk name="fk_users_userspolytech" to_schema="vbmifare" to_table="UsersPolytech" delete_action="CASCADE" >
+			<fk name="fk_users_userspolytech" to_schema="numsem" to_table="UsersPolytech" delete_action="CASCADE" >
 				<fk_column name="Id_user" pk="Username" />
 			</fk>
 		</table>
@@ -272,42 +276,42 @@
 		</table>
 	</schema>
 	<layout name="vbmifare" >
-		<entity schema="vbmifare" name="Classrooms" x="70" y="56" />
-		<entity schema="vbmifare" name="BadgingInformations" x="714" y="56" />
-		<entity schema="vbmifare" name="Answers" x="826" y="308" />
-		<entity schema="vbmifare" name="AnswersOfUsers" x="784" y="532" />
-		<entity schema="vbmifare" name="Availabilities" x="252" y="42" />
-		<entity schema="vbmifare" name="Lectures" x="42" y="210" />
-		<entity schema="vbmifare" name="Registrations" x="56" y="630" />
-		<entity schema="vbmifare" name="QuestionsOfUsers" x="490" y="490" />
-		<entity schema="vbmifare" name="UsersPolytech" x="980" y="532" />
-		<entity schema="vbmifare" name="Users" x="602" y="644" />
-		<entity schema="vbmifare" name="MCQs" x="1050" y="266" />
-		<entity schema="vbmifare" name="Packages" x="322" y="294" />
-		<entity schema="vbmifare" name="DocumentsOfPackages" x="406" y="84" />
-		<entity schema="vbmifare" name="ArchivesOfPackages" x="588" y="196" />
-		<entity schema="vbmifare" name="Questions" x="602" y="322" />
-		<entity schema="vbmifare" name="DocumentsOfUsers" x="308" y="588" />
-		<entity schema="vbmifare" name="ImagesOfArchives" x="868" y="168" />
-		<entity schema="vbmifare" name="Config" x="1064" y="84" />
+		<entity schema="numsem" name="Classrooms" x="70" y="56" />
+		<entity schema="numsem" name="BadgingInformations" x="714" y="56" />
+		<entity schema="numsem" name="Answers" x="826" y="308" />
+		<entity schema="numsem" name="AnswersOfUsers" x="784" y="532" />
+		<entity schema="numsem" name="Availabilities" x="252" y="42" />
+		<entity schema="numsem" name="Lectures" x="42" y="210" />
+		<entity schema="numsem" name="Registrations" x="56" y="630" />
+		<entity schema="numsem" name="QuestionsOfUsers" x="490" y="490" />
+		<entity schema="numsem" name="UsersPolytech" x="980" y="532" />
+		<entity schema="numsem" name="Users" x="602" y="644" />
+		<entity schema="numsem" name="Packages" x="322" y="294" />
+		<entity schema="numsem" name="DocumentsOfPackages" x="406" y="84" />
+		<entity schema="numsem" name="ArchivesOfPackages" x="588" y="196" />
+		<entity schema="numsem" name="Questions" x="602" y="322" />
+		<entity schema="numsem" name="DocumentsOfUsers" x="308" y="588" />
+		<entity schema="numsem" name="ImagesOfArchives" x="868" y="168" />
+		<entity schema="numsem" name="Config" x="1064" y="84" />
+		<entity schema="numsem" name="MCQs" x="1050" y="294" />
 		<group name="numsem" color="c4e0f9" >
-			<entity schema="vbmifare" name="Answers" />
-			<entity schema="vbmifare" name="AnswersOfUsers" />
-			<entity schema="vbmifare" name="Availabilities" />
-			<entity schema="vbmifare" name="BadgingInformations" />
-			<entity schema="vbmifare" name="Classrooms" />
-			<entity schema="vbmifare" name="Config" />
-			<entity schema="vbmifare" name="DocumentsOfPackages" />
-			<entity schema="vbmifare" name="DocumentsOfUsers" />
-			<entity schema="vbmifare" name="ImagesOfArchives" />
-			<entity schema="vbmifare" name="Lectures" />
-			<entity schema="vbmifare" name="MCQs" />
-			<entity schema="vbmifare" name="Packages" />
-			<entity schema="vbmifare" name="Questions" />
-			<entity schema="vbmifare" name="QuestionsOfUsers" />
-			<entity schema="vbmifare" name="Registrations" />
-			<entity schema="vbmifare" name="Users" />
-			<entity schema="vbmifare" name="UsersPolytech" />
+			<entity schema="numsem" name="Answers" />
+			<entity schema="numsem" name="AnswersOfUsers" />
+			<entity schema="numsem" name="Availabilities" />
+			<entity schema="numsem" name="BadgingInformations" />
+			<entity schema="numsem" name="Classrooms" />
+			<entity schema="numsem" name="Config" />
+			<entity schema="numsem" name="DocumentsOfPackages" />
+			<entity schema="numsem" name="DocumentsOfUsers" />
+			<entity schema="numsem" name="ImagesOfArchives" />
+			<entity schema="numsem" name="Lectures" />
+			<entity schema="numsem" name="MCQs" />
+			<entity schema="numsem" name="Packages" />
+			<entity schema="numsem" name="Questions" />
+			<entity schema="numsem" name="QuestionsOfUsers" />
+			<entity schema="numsem" name="Registrations" />
+			<entity schema="numsem" name="Users" />
+			<entity schema="numsem" name="UsersPolytech" />
 		</group>
 	</layout>
 </project>

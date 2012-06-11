@@ -62,26 +62,5 @@
 
             $this->app()->httpResponse()->redirect('/admin/packages/index.html');
         }
-
-/*
-        private function deletePackageDocuments($packageId)
-        {
-            // Delete associated documents and images
-            $path = dirname(__FILE__).'/../../../../uploads/admin/';
-            
-            $managerDocuments = $this->m_managers->getManagerOf('documentofpackage');
-            $documents = $managerDocuments->get($packageId);
-
-            foreach($documents as $document)
-                unlink($path . 'pdf/' . $document->getFilename());
-
-            // Delete images on server
-            for($i = 1; $i <= $count; $i++)
-            {
-                $filename = 'images/' . $packageId . '_' . $i . '.jpg';
-                unlink($path . $filename);
-            }
-        }
-*/
     }
 ?>

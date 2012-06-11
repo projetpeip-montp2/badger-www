@@ -4,6 +4,11 @@
         public function executeIndex(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Gestion des QCM et des inscriptions");
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get();
+
+            $this->page()->addVar('mcqs', $mcqs);
         }
 
         public function executeCreateMCQ(HTTPRequest $request)
@@ -75,7 +80,7 @@
 
             $this->page()->addVar('departments', $departments);
         }
-
+/*
         public function executeUpdateMCQs(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Modifier une inscription");
@@ -168,7 +173,7 @@
 
             $this->page()->addVar('departments', $departments);
         }
-
+*/
         private function updateStudents($mcqId, $status)
         {
             $managerUsers = $this->m_managers->getManagerOf('user');

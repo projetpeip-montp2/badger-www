@@ -17,11 +17,13 @@ CREATE TABLE numsem.`Config` (
  );
 
 CREATE TABLE numsem.`MCQs` ( 
+	`Id_mcq`             SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Department`         TEXT,
 	`SchoolYear`         SMALLINT UNSIGNED,
 	`Date`               DATE,
 	`StartTime`          TIME,
-	`EndTime`            TIME
+	`EndTime`            TIME,
+	CONSTRAINT pk_mcqs PRIMARY KEY ( `Id_mcq` )
  );
 
 CREATE TABLE numsem.`Packages` ( 

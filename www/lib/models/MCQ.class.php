@@ -3,6 +3,7 @@
     {
         private $m_department;
         private $m_schoolYear;
+        private $m_date;
         private $m_startTime;
         private $m_endTime;
 

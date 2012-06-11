@@ -3,7 +3,8 @@
     {
         public function get()
         {
-            $requestSQL = 'SELECT Department,
+            $requestSQL = 'SELECT Id_mcq,
+                                  Department,
                                   SchoolYear,
                                   Date,
                                   StartTime,
@@ -26,6 +27,7 @@
                 $endTime->setFromString($data['EndTime']);
 
                 $mcq = new MCQ;
+                $mcq->setId($data['Id_mcq']);
                 $mcq->setDepartment($data['Department']);
                 $mcq->setSchoolYear($data['SchoolYear']);;
                 $mcq->setDate($date);
@@ -51,31 +53,6 @@
                                 $mcq->getDate()->toStringMySQL(),
                                 $mcq->getStartTime()->toStringMySQL(),
                                 $mcq->getEndTime()->toStringMySQL()));
-        }
-
-        public function update($mcq)
-        {
-            $req = $this->m_dao->prepare('UPDATE MCQs SET Department = ?,
-                                                          SchoolYear = ?,
-                                                          Date = ?,
-                                                          StartTime = ?,
-                                                          EndTime = ? WHERE Department = ? AND SchoolYear = ?');
-
-            $req->execute(array($mcq->getDepartment(),
-                                $mcq->getSchoolYear(),
-                                $mcq->getDate()->toStringMySQL(),
-                                $mcq->getStartTime()->toStringMySQL(),
-                                $mcq->getEndTime()->toStringMySQL(),
-                                $mcq->getDepartment(),
-                                $mcq->getSchoolYear()));
-        }
-
-        public function delete($mcqs)
-        {
-            $req = $this->m_dao->prepare('DELETE FROM MCQs WHERE Department = ? AND SchoolYear = ?');
-
-            foreach($mcqs as $mcq)
-                $req->execute(array($mcq['Department'],$mcq['SchoolYear']));
         }
 
         public function deleteQuestions($idPackage)

@@ -23,6 +23,7 @@
 								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'),
 								   'Lectures' => array('Lecturer', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en', 'Date', 'StartTime', 'EndTime'),
                                    'DocumentsOfPackages' => array('Filename'),
+                                   'MCQs' => array('Department', 'SchoolYear', 'Date', 'StartTime', 'EndTime'),
                                    'ArchivesOfPackages' => array('Filename'));
 
 			$idFields = array('Classrooms' => 'Id_classroom',
@@ -32,6 +33,7 @@
 							  'Packages' => 'Id_package',
 							  'Lectures' => 'Id_lecture',
                               'DocumentsOfPackages' => 'Id_document',
+                              'MCQs' => 'Id_mcq',
                               'ArchivesOfPackages' => 'Id_archive');
 
 			$allowedFormType = array('text', 'number', 'textbox');
@@ -124,6 +126,7 @@
                                     'Availabilities', 
                                     'ArchivesOfPackages', 
                                     'DocumentsOfPackages', 
+                                    'MCQs', 
                                     'DocumentsOfUsers');
 
 			$idFields = array('Classrooms' => 'Id_classroom',
@@ -131,6 +134,7 @@
                               'Answers' => 'Id_answer',
 							  'Packages' => 'Id_package',
 							  'Lectures' => 'Id_lecture',
+							  'MCQs' => 'Id_mcqs',
 							  'Availabilities' => 'Id_availability',
                               'DocumentsOfPackages' => 'Id_document',
                               'ArchivesOfPackages' => 'Id_archive',
