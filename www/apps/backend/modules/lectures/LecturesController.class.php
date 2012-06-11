@@ -202,6 +202,19 @@
 
                     fclose($file);
 
+                    // Check all possible conflit
+                    for($i=0; $i<count($lectures); $i++)
+                    {
+                        for($j=($i+1); $j<count($lectures); $j++)
+                        {
+                            if(Lecture::conflict($lectures[$i], $lectures[$j]))
+                            {
+                                $this->app()->user()->setFlashError('Conflit entre les horaires de conférences.');
+                                $this->app()->httpResponse()->redirect($request->requestURI());
+                            }
+                        }
+                    }
+
                     // Save all lectures parsed
                     $managerLectures = $this->m_managers->getManagerOf('lecture');
                     $managerLectures->save($lectures);

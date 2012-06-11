@@ -115,14 +115,11 @@
                 $t3 = $rht->getStartTime();
                 $t4 = $rht->getEndTime();
 
-                $result = (Time::compare($t4, $t1) == 1) && 
-                          (Time::compare($t3, $t2) == -1);
+                return (Time::compare($t4, $t1) == 1) && 
+                       (Time::compare($t3, $t2) == -1);
             }
         
-            else
-                $result = false;
-
-            return $result;
+            return false;
         }
     }
 ?>
