@@ -3,9 +3,6 @@
 - Général:
     - UTF 8 sur tous les fichiers
 
-    - Trouver pourquoi des horaires d'un même package peuvent se croiser (CSV)
-    - Centrer nom Frontend
-
     - Demander DSI sup répertoire vbMifare
 
     - Gros coup de Polish
@@ -17,11 +14,11 @@
 
 
 - Backend:
+    - Trouver pourquoi des horaires d'un même package peuvent se croiser (CSV)
     - Faire une interface contenant plein de contrôle et check points
-    - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins un réponse
+    - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins une réponse
     - Envoi de mails contenant questions-réponses.
     - Statistiques
-    - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
     - Configuration du site web (affichage planning, note de présence,etc)
