@@ -38,7 +38,6 @@
 
                 $questions = $this->selectQuestions();
             }
-
             else
                 $questions = $this->loadUsersQuestions();
 
@@ -112,15 +111,13 @@
 
         private function selectQuestions()
         {
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
+
             $maxQuestionNumber = $this->m_managers->getManagerOf('config')->get('MCQMaxQuestions');
 
             $username = $this->app()->user()->getAttribute('logon');
 
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
-
-            $managerRegistration = $this->m_managers->getManagerOf('registration');
-
-            $registrations = $managerRegistration->getRegistrationsFromUser($username);
+            $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
             $questionManager = $this->m_managers->getManagerOf('question');
 
@@ -129,14 +126,14 @@
             $packagesIdDo = array();
             foreach($registrations as $reg)
             {
-                $id = $reg->getIdPackage();
+                $idPackage = $reg->getIdPackage();
 
-                if(! in_array($id, $packagesIdDo) )
+                if(! in_array($idPackage, $packagesIdDo) )
                 {
-                    $packagesIdDo[] = $id;      
+                    $packagesIdDo[] = $idPackage;      
 
-                    $questionOneLecture = $questionManager->get($id, 'Obligatory');
-                    $questions = array_merge($questions, $questionOneLecture);
+                    $questionOnePackage = $questionManager->get($idPackage, 'Obligatory');
+                    $questions = array_merge($questions, $questionOnePackage);
                 }
             }
 
@@ -157,14 +154,14 @@
             $packagesIdDo = array();
             foreach($registrations as $reg)
             {
-                $id = $reg->getIdPackage();
+                $idPackage = $reg->getIdPackage();
 
-                if(! in_array($id, $packagesIdDo) )
+                if(! in_array($idPackage, $packagesIdDo) )
                 {
-                    $packagesIdDo[] = $id;      
+                    $packagesIdDo[] = $idPackage;      
 
-                    $questionsOneLecture = $questionManager->getQuestionsFromPackage($id, 'Possible');
-                    $questions = array_merge($questions, $questionsOneLecture);
+                    $questionOnePackage = $questionManager->get($idPackage, 'Possible');
+                    $questions = array_merge($questions, $questionOnePackage);
                 }
             }
             shuffle($questions);
@@ -218,7 +215,7 @@
             $answers = array();
             foreach($questions as $question)
             {
-                $answersOneQuestion = $answerManager->getAnswersFromQuestion($question->getId());
+                $answersOneQuestion = $answerManager->get($question->getId());
                 $answers = array_merge($answers, $answersOneQuestion);
             }
 

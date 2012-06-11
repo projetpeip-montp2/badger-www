@@ -7,10 +7,6 @@
     - Demander DSI sup répertoire vbMifare
 
 
-- Frontend:
-    - Note rapport, poser la question
-
-
 - Backend:
     - Export CSV
     - Envoi de mails contenant questions-réponses.
@@ -35,8 +31,4 @@
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
     - Double alert réduction capacity
-
-
-- Victor:
-    - Refaire le MCQ manager
 
