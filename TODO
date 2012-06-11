@@ -15,8 +15,6 @@
 
 - Backend:
     - Trouver pourquoi des horaires d'un même package peuvent se croiser (CSV)
-    - Faire une interface contenant plein de contrôle et check points
-    - Vérifier avant d'inclure une question dans le QCM qu'elle à au moins une réponse
     - Envoi de mails contenant questions-réponses.
     - Statistiques
 
@@ -25,7 +23,11 @@
 
     - Champs non cliquables Dates conférences
 
-    - Info badging ==> Update registrations
+    - Faire une interface contenant plein de contrôle et check points
+        - Questions n'ayant pas de réponses.
+        - Packages n'ayant pas de conf.
+        - Packages ayant moins de N élèves inscrits
+        - Nombre d'élèves n'ayant pas assez d'inscriptions
 
 
 - William:

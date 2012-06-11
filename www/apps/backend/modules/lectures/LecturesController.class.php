@@ -244,18 +244,14 @@
 
 
                 // TODO: Vérifier que la requête à William pour mettre à jour prenne >= pour l'heure
-
                 $this->m_managers->getManagerOf('badginginformation')->insert($mifares[0],
                                                                               $lectures[0]->getDate(),
                                                                               $lectures[0]->getStartTime());
 
-                // TODO: Maintenant doit-on mettre à jour le status des ses inscriptions?
-                // En effet, si personne ne rapelle le badger ensuite ça se fera pas tout seul..
+                $this->m_managers->getManagerOf('registration')->updateRegistrationsToPresent($username, $idLecture);
                 
                 $this->app()->user()->setFlashInfo('Infos de badging ajouté pour ' . $username . '.');
-
-                // TODO: La redirection empêche de l'affichage du flash...
-                //$this->app()->httpResponse()->redirect($request->requestURI());
+                $this->app()->httpResponse()->redirect($request->requestURI());
             }
 
             // Else display the form

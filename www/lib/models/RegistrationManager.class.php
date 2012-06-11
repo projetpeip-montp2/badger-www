@@ -45,6 +45,12 @@
             $req->execute(array($idUser));
         }
 
+        public function updateRegistrationsToPresent($idUser, $idLecture)
+        {
+            $req = $this->m_dao->prepare("UPDATE Registrations SET Status = \'Present\' WHERE Id_user = ? AND Id_lecture = ?");
+            $req->execute(array($idUser, $idLecture));
+        }
+
         public function subscribe($idPackage, $idLecture, $username, $yesOrNo)
         {
             $req = $this->m_dao->prepare('SELECT Id_lecture FROM Registrations WHERE Id_lecture = ? AND Id_user = ?');
