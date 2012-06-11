@@ -84,8 +84,6 @@
             $schoolYear = $student->getSchoolYear();
             $mcqStatus = $student->getMCQStatus();
 
-            // TODO: Sélectionner que les bons QCMs, fonctionne pas avec PEIP 2
-
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
             $mcqs = $managerMCQ->get();
 
@@ -124,7 +122,7 @@
 
             $registrations = $managerRegistration->getRegistrationsFromUser($username);
 
-            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $questionManager = $this->m_managers->getManagerOf('question');
 
             // Get obligatory questions
             $questions = array();
@@ -137,7 +135,7 @@
                 {
                     $packagesIdDo[] = $id;      
 
-                    $questionOneLecture = $managerMCQ->getQuestionsFromPackage($id, 'Obligatory');
+                    $questionOneLecture = $questionManager->get($id, 'Obligatory');
                     $questions = array_merge($questions, $questionOneLecture);
                 }
             }
@@ -146,8 +144,7 @@
             if(count($questions) > $maxQuestionNumber)
             {
                 $finalQuestions = array_splice($questions, $maxQuestionNumber);
-                $managerMCQ->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
-                print_r($finalQuestions);
+                $questionManager->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
                 return $finalQuestions;
             }
 
@@ -166,7 +163,7 @@
                 {
                     $packagesIdDo[] = $id;      
 
-                    $questionsOneLecture = $managerMCQ->getQuestionsFromPackage($id, 'Possible');
+                    $questionsOneLecture = $questionManager->getQuestionsFromPackage($id, 'Possible');
                     $questions = array_merge($questions, $questionsOneLecture);
                 }
             }
@@ -174,7 +171,7 @@
             array_splice($questions, $remaining);
 
             $result = array_merge($finalQuestions, $questions);
-            $managerMCQ->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
+            $questionManager->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $result);
             return $result;
         }
 
@@ -182,9 +179,9 @@
         {
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $questionManager = $this->m_managers->getManagerOf('question');
 
-            return $managerMCQ->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername());
+            return $questionManager->loadQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername());
         }
 
         private function computeAndSaveUserAnswers(HTTPRequest $request, $logon, $answersInForm)
@@ -206,8 +203,8 @@
             }
 
             // Save them
-            $managerMcq = $this->m_managers->getManagerOf('mcq');
-            $managerMcq->saveAnswersOfUser($answersOfUser);
+            $answerManager = $this->m_managers->getManagerOf('answer');
+            $answerManager->saveAnswersOfUser($answersOfUser);
 
             return $answersOfUser;
         }
@@ -216,12 +213,12 @@
         {
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
-            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $answerManager = $this->m_managers->getManagerOf('answer');
 
             $answers = array();
             foreach($questions as $question)
             {
-                $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId());
+                $answersOneQuestion = $answerManager->getAnswersFromQuestion($question->getId());
                 $answers = array_merge($answers, $answersOneQuestion);
             }
 

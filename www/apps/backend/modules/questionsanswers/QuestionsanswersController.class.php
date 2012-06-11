@@ -10,7 +10,8 @@
             $questions = array();
             $answers = array();
 
-            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $questionManager = $this->m_managers->getManagerOf('question');
+            $answerManager = $this->m_managers->getManagerOf('answer');
 
             $packageRequested = false;
             if($request->postExists('packageIdRequested'))
@@ -32,12 +33,12 @@
                 if($packageRequested && $packageIdRequested == $package->getId())
                     $found = true;
 
-                $questionOnePackage = $managerMCQ->getQuestionsFromPackage($package->getId());
+                $questionOnePackage = $questionManager->get($package->getId());
                 $questions = array_merge($questions, $questionOnePackage);
 
                 foreach($questionOnePackage as $question)
                 {
-                    $answersOneQuestion = $managerMCQ->getAnswersFromQuestion($question->getId());
+                    $answersOneQuestion = $answerManager->get($question->getId());
                     $answers = array_merge($answers, $answersOneQuestion);
                 }
             }
@@ -72,7 +73,8 @@
                     $readQuestion = true;
                     $lastQuestionID;
 
-                    $managerMCQ = $this->m_managers->getManagerOf('mcq');
+                    $questionManager = $this->m_managers->getManagerOf('question');
+                    $answerManager = $this->m_managers->getManagerOf('answer');
 
                     while(($line = fgets($file)) !== FALSE) 
                     {
@@ -97,7 +99,7 @@
                                 $question->setLabel('en', $datas[1]);
                                 $question->setStatus($datas[2]);
 
-                                $lastQuestionID = $managerMCQ->saveQuestion($question);
+                                $lastQuestionID = $questionManager->save(array($question));
 
                                 $readQuestion = false;
                             }
@@ -124,7 +126,7 @@
                     fclose($file);
 
                     // Save all questions/answers parsed
-                    $managerMCQ->saveAnswers($answers);
+                    $answerManager->saveAnswers($answers);
 
                     if($flashMessage != '')
                         $flashMessage .= '<br/>';

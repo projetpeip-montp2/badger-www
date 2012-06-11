@@ -131,7 +131,6 @@
 
             $data = $req->fetch();
 
-            // TODO: Greg quand tu liras ça, factorise le return en return $data; non? :D
             if(!$data)
                 return false;
             else

@@ -268,11 +268,6 @@
         {
             $managerLecture = $this->m_managers->getManagerOf('lecture');
 
-            // TODO: En créant une fonction dans le LectureManager prenant un
-            // tableau d'id de package on doit pouvoir optimiser toutes ces
-            // requêtes SQL.
-            // De la même façon on doit pouvoir améliorer la qualité du code ci-dessous.
-
             $lectures = array();
             foreach($registrationsOfUser as $reg)
             {
@@ -294,7 +289,6 @@
                 {
                     if(Lecture::conflict($lectures[$i], $lectures[$j]))
                     {
-                        // TODO: Ajouter dans le message flash avec qui y a conflit.
                         $messageFlash = $this->m_TEXT['Flash_SubscribeConflict'];
 
                         $this->app()->user()->setFlashError($messageFlash);
