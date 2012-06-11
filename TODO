@@ -2,18 +2,17 @@
 
 - Général:
     - UTF 8 sur tous les fichiers
+    - Gros coup de Polish
 
     - Demander DSI sup répertoire vbMifare
 
-    - Gros coup de Polish
-
 
 - Frontend:
-    - Lors de la validation du QCM, tester que les questions/réponses passées par POST existent bel et bien
-    - Note rapport ? (Sûr que non)
+    - Note rapport, poser la question
 
 
 - Backend:
+    - Export CSV
     - Trouver pourquoi des horaires d'un même package peuvent se croiser (CSV)
     - Envoi de mails contenant questions-réponses.
     - Statistiques
@@ -32,7 +31,6 @@
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
-
     - Double alert réduction capacity
 
 
