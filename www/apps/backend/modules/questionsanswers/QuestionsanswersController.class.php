@@ -99,7 +99,7 @@
                                 $question->setLabel('en', $datas[1]);
                                 $question->setStatus($datas[2]);
 
-                                $lastQuestionID = $questionManager->save(array($question));
+                                $lastQuestionID = $questionManager->save($question);
 
                                 $readQuestion = false;
                             }
@@ -126,7 +126,7 @@
                     fclose($file);
 
                     // Save all questions/answers parsed
-                    $answerManager->saveAnswers($answers);
+                    $answerManager->save($answers);
 
                     if($flashMessage != '')
                         $flashMessage .= '<br/>';
