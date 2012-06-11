@@ -47,22 +47,23 @@ CREATE TABLE numsem.`Questions` (
 
 CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
 
+
 CREATE TABLE numsem.`UsersPolytech` ( 
-	`Username`           VARCHAR( 60 ) NOT NULL,
-	`Num_Etudiant`       CHAR( 8 ),
-	`Mifare`             CHAR( 8 ),
-	`MifareControleAcces` INT,
-	`Actif`              CHAR( 1 ),
-	`Nom`                CHAR( 30 ),
-	`Prenom`             CHAR( 20 ),
-	`VraiNom`            CHAR( 30 ),
-	`VraiPrenom`         CHAR( 20 ),
-	`Status`             ENUM,
-	`Departement`        ENUM,
-	`Complement_Departement` ENUM,
-	`anApogee`           TINYINT,
-	CONSTRAINT pk_users PRIMARY KEY ( `Username` )
- );
+    `Username`               VARCHAR(60) NOT NULL,
+    `Num_Etudiant`           CHAR(8),
+    `Mifare`                 CHAR(8),
+    `MifareControleAcces`    INT(8),
+    `Actif`                  CHAR(1),
+    `Nom`                    VARCHAR(30),
+    `Prenom`                 VARCHAR(20),
+    `VraiNom`                VARCHAR(30),
+    `VraiPrenom`             VARCHAR(20),
+    `Statut`                 ENUM('Ater','Contractuel','EJ','Etudiant','Hébergé','Moniteur','Permanent','Utilitaire','Visiteur','Special'),
+    `Departement`            ENUM('ADISIM','ADM','CRIP','DGAB','DGPIM','DI','DOGPP','DTE','ENR','GASTE','INFO','IUT-NIMES','EJ','LANGUES','PEIP','MAT','MI','ERII','MEC','MECA','MGFA','MICSI','MIE','SHEJS','STE','STIA','These/IG','TOUT_DEPARTEMENT','CNFM','Autre'),
+    `Complement_Departement` ENUM('AOC','BIO','EC','Int','STI','PROD'),
+    `anApogee`               tinyint(1),
+    CONSTRAINT pk_users PRIMARY KEY ( `Username` )
+);
 
 CREATE TABLE numsem.`Answers` ( 
 	`Id_answer`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
