@@ -23,7 +23,7 @@
         - Packages ayant moins de N élèves inscrits
         - Nombre d'élèves n'ayant pas assez d'inscriptions
 
-    - mcqId à modifier
+    - Lors de la suppression d'un QCM/inscription, mettre à jour le status des élèves
 
     - Suppression d'une question ==> Réponses encore affichées
 
