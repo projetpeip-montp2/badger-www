@@ -62,9 +62,7 @@
                 $managerMCQs = $this->m_managers->getManagerOf('mcq');
                 $managerMCQs->save($mcq);
 
-                $mcqId = array('Department' => $request->postData('Department'), 'SchoolYear' => $realYear);
-
-                $this->updateStudents($mcqId, 'CanTakeMCQ');
+                $this->updateStudents($request->postData('Department'), $realYear, 'CanTakeMCQ');
 
                 // Redirection
                 $flashMessage = 'Séance de QCM pour le département ' .
@@ -82,21 +80,26 @@
         }
 
 
-        private function updateStudents($mcqId, $status)
+        private function updateStudents($department, $schoolYear, $status)
         {
             $managerUsers = $this->m_managers->getManagerOf('user');
-            $students = $managerUsers->getFromDepartmentAndSchoolYear($mcqId['Department'], $mcqId['SchoolYear']);
+            $students = $managerUsers->getFromDepartmentAndSchoolYear($department, $schoolYear);
 
             foreach($students as $student)
             {
                 $username = $student->getUsername();
                 if($managerUsers->isInDatabase($username))
                 {
-                    // Update his status
-                    $managerUsers->updateStatus($username, $status);
+                    $MCQStatus = $managerUsers->getMCQStatus($username);
+                    if($MCQStatus == 'Visitor' || $MCQStatus == 'CanTakeMCQ')
+                    {
 
-                    // Delete his registrations
-                    $this->m_managers->getManagerOf('registration')->deleteFromUser($username);
+                        // Update his status
+                        $managerUsers->updateStatus($username, $status);
+
+                        // Delete his registrations
+                        $this->m_managers->getManagerOf('registration')->deleteFromUser($username);
+                    }
                 }
             }
         }

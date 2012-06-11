@@ -74,6 +74,19 @@
             return $student;
         }
 
+        public function getMCQStatus($username)
+        {
+            $req = $this->m_dao->prepare('SELECT MCQStatus FROM Users WHERE Id_user = ?');
+            $req->execute(array($username));
+
+            $data = $req->fetch();
+
+            if(!$data)
+                throw new RuntimeException('Unkown user : ' . $username);            
+
+            return $data['MCQStatus'];
+        }
+
         public function insertOrLoadIfFirstVisit(Student $student, $status)
         {
             $this->checkStatus($status);
