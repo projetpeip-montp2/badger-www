@@ -37,7 +37,7 @@ CREATE TABLE numsem.`Packages` (
  );
 
 CREATE TABLE numsem.`Questions` ( 
-	`Id_question`       SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Id_question`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Label_fr`           TEXT,
 	`Label_en`           TEXT,
@@ -46,6 +46,24 @@ CREATE TABLE numsem.`Questions` (
  );
 
 CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
+
+
+CREATE TABLE numsem.`UsersPolytech` ( 
+    `Username`               VARCHAR(60) NOT NULL,
+    `Num_Etudiant`           CHAR(8),
+    `Mifare`                 CHAR(8),
+    `MifareControleAcces`    INT(8),
+    `Actif`                  CHAR(1),
+    `Nom`                    VARCHAR(30),
+    `Prenom`                 VARCHAR(20),
+    `VraiNom`                VARCHAR(30),
+    `VraiPrenom`             VARCHAR(20),
+    `Statut`                 ENUM('Ater','Contractuel','EJ','Etudiant','Hébergé','Moniteur','Permanent','Utilitaire','Visiteur','Special'),
+    `Departement`            ENUM('ADISIM','ADM','CRIP','DGAB','DGPIM','DI','DOGPP','DTE','ENR','GASTE','INFO','IUT-NIMES','EJ','LANGUES','PEIP','MAT','MI','ERII','MEC','MECA','MGFA','MICSI','MIE','SHEJS','STE','STIA','These/IG','TOUT_DEPARTEMENT','CNFM','Autre'),
+    `Complement_Departement` ENUM('AOC','BIO','EC','Int','STI','PROD'),
+    `anApogee`               tinyint(1),
+    CONSTRAINT pk_users PRIMARY KEY ( `Username` )
+);
 
 CREATE TABLE numsem.`Answers` ( 
 	`Id_answer`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -59,7 +77,7 @@ CREATE TABLE numsem.`Answers` (
 CREATE INDEX idx_answers ON numsem.`Answers` ( `Id_question` );
 
 CREATE TABLE numsem.`ArchivesOfPackages` ( 
-	`Id_archive`         SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Id_archive`         SMALLINT UNSIGNED NOT NULL,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Filename`           TEXT,
 	CONSTRAINT pk_zipofimages PRIMARY KEY ( `Id_archive` )
@@ -86,6 +104,12 @@ CREATE TABLE numsem.`DocumentsOfPackages` (
  );
 
 CREATE INDEX idx_documentsofpackages ON numsem.`DocumentsOfPackages` ( `Id_package` );
+
+CREATE TABLE numsem.`HistoryMifare` ( 
+	`Id_user`            VARCHAR( 60 ) NOT NULL,
+	`Mifare`             CHAR( 8 ),
+	CONSTRAINT pk_historymifare PRIMARY KEY ( `Id_user` )
+ );
 
 CREATE TABLE numsem.`ImagesOfArchives` ( 
 	`Id_image`           SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -136,13 +160,13 @@ CREATE INDEX idx_answersofusers_1 ON numsem.`AnswersOfUsers` ( `Id_question` );
 
 CREATE TABLE numsem.`DocumentsOfUsers` ( 
 	`Id_document`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	`Id_package`         SMALLINT UNSIGNED,
+	`Id_lecture`         SMALLINT UNSIGNED,
 	`Id_user`            VARCHAR( 60 ),
 	`Filename`           TEXT,
 	CONSTRAINT pk_documentsofusers PRIMARY KEY ( `Id_document` )
  );
 
-CREATE INDEX idx_documentsofusers ON numsem.`DocumentsOfUsers` ( `Id_package` );
+CREATE INDEX idx_documentsofusers ON numsem.`DocumentsOfUsers` ( `Id_lecture` );
 
 CREATE INDEX idx_documentsofusers_0 ON numsem.`DocumentsOfUsers` ( `Id_user` );
 
@@ -182,9 +206,11 @@ ALTER TABLE numsem.`Availabilities` ADD CONSTRAINT fk_availabilities_classrooms 
 
 ALTER TABLE numsem.`DocumentsOfPackages` ADD CONSTRAINT fk_documentsofpackages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_packages FOREIGN KEY ( `Id_package` ) REFERENCES numsem.`Packages`( `Id_package` ) ON DELETE CASCADE ON UPDATE NO ACTION;
-
 ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_lectures FOREIGN KEY ( `Id_lecture` ) REFERENCES numsem.`Lectures`( `Id_lecture` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE numsem.`HistoryMifare` ADD CONSTRAINT fk_historymifare_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`ImagesOfArchives` ADD CONSTRAINT fk_imagesofarchives FOREIGN KEY ( `Id_archive` ) REFERENCES numsem.`ArchivesOfPackages`( `Id_archive` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
@@ -202,13 +228,7 @@ ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_packages FORE
 
 ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-
-
--- TODO: Voir comment faire pour cette clés étrangère.
--- ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
-
-
-
+ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
