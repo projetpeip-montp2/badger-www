@@ -24,7 +24,6 @@
             $this->page()->addVar("viewTitle", "Remise à zéro");
         }
 
-
         public function executeTruncate(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Vider les tables");
@@ -67,11 +66,80 @@
                     $flashMessage .= '<br/>' . $emptyTable;
 
                 $this->app()->user()->setFlashInfo($flashMessage);
-                //$this->app()->httpResponse()->redirect('/admin/reset/truncate.html');
+                $this->app()->httpResponse()->redirect('/admin/reset/truncate.html');
             }
 
             // Else we display the form
             $this->page()->addVar('checkboxes', self::$m_tables);
+        }
+
+        public function executeDelete(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Suppression des fichiers physiques");
+
+            // List of directories containing admin's and student's files
+            $directories = array('admin/pdf' => dirname(__FILE__).'/../../../../uploads/admin/pdf/',
+                                  'admin/images' => dirname(__FILE__).'/../../../../uploads/admin/images/',
+                                  'students' => dirname(__FILE__).'/../../../../uploads/students/');
+
+            // If the form is submitted
+            if($request->postExists('Vider'))
+            {
+                $directoriesSelectedArray = array();
+                $directoriesSelected = '';
+
+                // Retrieve the list of directory(ies) selected
+                foreach(array_keys($directories) as $directory)
+                {
+                    if($request->postExists($directory))
+                    {
+                        $directoriesSelectedArray[] = $directory;
+
+                        $directoriesSelected .= $directory . ';';
+                    }
+                }
+
+                // Check that there is at least one directory selected
+                if(count($directoriesSelectedArray) == 0)
+                {
+                    $this->app()->user()->setFlashError('Aucun répertoire sélectionné.');
+                    $this->app()->httpResponse()->redirect('/admin/reset/delete.html');
+                }
+
+                // Delete files from directories selected
+                foreach($directoriesSelectedArray as $dirName)
+                    $this->deletePhysicalFiles($directories[$dirName]);
+
+                // Display directories emptied in the next flash message
+                $emptyDirectories = explode(';', substr($directoriesSelected, 0, strlen($directoriesSelected)-1));
+
+                $flashMessage = 'Répertoire(s) vidé(s) :';
+                foreach($emptyDirectories as $emptyDirectory)
+                    $flashMessage .= '<br/>' . $emptyDirectory;
+
+                $this->app()->user()->setFlashInfo($flashMessage);
+                $this->app()->httpResponse()->redirect('/admin/reset/delete.html');
+            }
+
+            // Else we display the form
+            $this->page()->addVar('checkboxes', array_keys($directories));
+        }
+
+        private function deletePhysicalFiles($dirName)
+        {
+            // Files not to be deleted
+            $specificFiles = array('.', '..', 'README');
+
+            // Open directory
+            if ($directory = opendir($dirName))
+            {
+                while (false !== ($file = readdir($directory)))
+                {
+                    if (!in_array($file, $specificFiles))
+                        unlink($dirName . $file);
+                }
+                closedir($directory);
+            }
         }
     }
 ?>

@@ -29,6 +29,7 @@
 
     <route url="/admin/reset/index\.html" module="reset" action="index"/>
     <route url="/admin/reset/truncate\.html" module="reset" action="truncate"/>
+    <route url="/admin/reset/delete\.html" module="reset" action="delete"/>
 
     <route url="/admin/settings/index\.html" module="settings" action="index"/>
     <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
