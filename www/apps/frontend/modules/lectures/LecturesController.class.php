@@ -201,6 +201,9 @@
                     $result[$lecture[0]->getDate()->__toString()][] = $lecture[0];
             }
 
+            $canViewPlanning = ($this->m_managers->getManagerOf('config')->get('canViewPlanning') != 0);
+            $this->page()->addVar('canViewPlanning', $canViewPlanning);
+
             $this->page()->addVar('classrooms', $this->m_managers->getManagerOf('classroom')->get());
             $this->page()->addVar('availabilities', $this->m_managers->getManagerOf('availability')->get());
 

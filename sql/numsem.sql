@@ -211,6 +211,7 @@ ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN
 INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
+('canViewPlanning', '0'),
 ('presentMark', '5'),
 ('adminsList', 'victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),

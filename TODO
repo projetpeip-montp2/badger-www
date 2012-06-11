@@ -14,7 +14,6 @@
 - Frontend:
     - Lors de la validation du QCM, tester que les questions/réponses passées par POST existent bel et bien
     - Note rapport ? (Sûr que non)
-    - Locker le planning
 
 
 - Backend:
@@ -25,13 +24,15 @@
     - Lors d'une RAZ supprimer aussi les fichiers physiques uploadés
 
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
-    - Configuration du site web
+    - Configuration du site web (affichage planning, note de présence,etc)
 
     - Champs non cliquables Dates conférences
 
     - Curseur ajout info badging
 
     - Info badging ==> Update registrations
+
+    - Trouver pourquoi après ajout d'un QCM, les élèves déjà connus ne passent pas en CanTakeMCQ
 
 
 - William:
