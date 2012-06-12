@@ -1,1 +1,1 @@
-Guide fr
+Mentions légales
