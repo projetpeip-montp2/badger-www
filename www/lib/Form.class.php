@@ -666,35 +666,6 @@
             return $output;
         }
 
-        public function toTr()
-        {
-            $this->disableParagraphs();
-
-            if($this->m_fieldsetNumber > 0)
-                throw new RuntimeException('A fieldset is always open');
-            if(!$this->m_hasSubmit)
-                throw new RuntimeException('No submit input in the form');
-
-            $output = '';
-            $output .= '<tr>';
-            $output .= '<form action="' .  $this->m_action . '" method="' . $this->m_method . '">';
-
-            foreach($this->m_formComponents as $component)
-            {
-                if(get_class($component) != 'FormComponentHidden')
-                    $output .= "\n" . '<td>' . $component->getOutput() . '</td>';
-            }
-            foreach($this->m_formComponents as $component)
-            {
-                if(get_class($component) == 'FormComponentHidden')
-                    $output .= "\n" . $component->getOutput();
-            }
-
-            $output .= "\n" . '</form></tr>';
-
-            return $output;
-        }
-
         public function disableParagraphs()
         {
             foreach($this->m_formComponents as $component)

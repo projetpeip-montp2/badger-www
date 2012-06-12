@@ -113,7 +113,7 @@
             $csv = '// "Department","SchoolYear","Username","Mark","Comment" ' . PHP_EOL;
 
             $managerUser = $this->m_managers->getManagerOf('user');
-            $students = $managerUser->getAllFromvbMifare();
+            $students = $managerUser->get();
 
             foreach($students as $student)
             {

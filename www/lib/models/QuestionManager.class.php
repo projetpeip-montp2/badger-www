@@ -1,20 +1,29 @@
 <?php
     class QuestionManager extends Manager
     {
-        public function get($idPackage, $status = NULL)
+        public function get($idPackage = -1, $status = NULL)
         {
             $SQLreq = 'SELECT Id_question,
                               Id_package,
                               Label_fr,
                               Label_en,
-                              Status FROM Questions WHERE Id_package = ?';
-            $SQLparams = array($idPackage);
+                              Status FROM Questions';
+
+            $SQLparams = array();
+
+            if($idPackage != -1)
+            {
+                $SQLreq .= ' WHERE Id_package = ?';
+                $SQLparams[] = $idPackage;
+            }
+
             if($status)
             {
                 if(!in_array($status, array('Impossible', 'Possible', 'Obligatory')))
                     throw new InvalidArgumentException('Invalid status in QuestionManager::getQuestionsFromLecture');
 
-                $SQLreq .= ' AND Status = ?';
+                $connect = ($idPackage != -1) ? 'AND' : 'WHERE';
+                $SQLreq .= ' ' . $connect .' Status = ?';
                 $SQLparams[] = $status;
             }
 
