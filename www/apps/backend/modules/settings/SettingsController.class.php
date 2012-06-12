@@ -6,6 +6,22 @@
             $this->page()->addVar("viewTitle", "Configuration générale");
         }
 
+        public function executeReplicate(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Réplication de la base de données Polytech'");
+
+            if($request->postExists('Exécuter'))
+            {
+                $startTime = time();
+
+                system('php ' . dirname(__FILE__).'/../../../../scripts/replicate.php');
+
+                $elapsedTime = time() - $startTime;
+
+                $this->app()->user()->setFlashInfo('Réplication terminée en ' . $elapsedTime . ' seconde(s).');
+            }
+        }
+
         public function executeExport(HTTPRequest $request)
         {
             // Hack to don't display the layout :)

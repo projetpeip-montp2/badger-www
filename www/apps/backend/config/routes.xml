@@ -36,6 +36,7 @@
 
     <route url="/admin/settings/index\.html" module="settings" action="index"/>
     <route url="/admin/settings/export\.html" module="settings" action="export"/>
+    <route url="/admin/settings/replicate\.html" module="settings" action="replicate"/>
     <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
     <route url="/admin/settings/changeSubscribesStatus\.html" module="settings" action="changeSubscribesStatus"/>
 	
