@@ -10,6 +10,7 @@
                                          'Classrooms', 
                                          'DocumentsOfPackages', 
                                          'DocumentsOfUsers',
+                                         'HistoryMifare', 
                                          'ImagesOfArchives', 
                                          'MCQs', 
                                          'Lectures', 
@@ -17,7 +18,9 @@
                                          'Questions',
                                          'QuestionsOfUsers',
                                          'Registrations',
-                                         'Users');
+                                         'ReplicationLogs',
+                                         'Users',
+                                         'UsersPolytech');
 
         public function executeIndex(HTTPRequest $request)
         {
