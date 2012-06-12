@@ -9,6 +9,7 @@
     - Réplication + table historique + maj des requêtes à William
     - Redirection autres que Polytech'
 
+    - Rapport => lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
 
 - Frontend:
     - Empécher un utilisateur de télécharger les rapports étudiants 
