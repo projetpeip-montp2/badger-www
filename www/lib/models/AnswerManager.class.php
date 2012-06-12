@@ -56,5 +56,25 @@
                                     $answer->getIdQuestion(),
                                     $answer->getIdAnswer()));
         }
+
+        public function loadAnswersOfUser($idUser)
+        {
+            $req = $this->m_dao->prepare('SELECT Id_question, Id_answer FROM AnswersOfUsers WHERE Id_user = ?');
+
+            $req->execute(array($idUser));
+
+            $result = array();
+            while($data = $req->fetch())
+            {
+                $answer = new AnswerOfUser;
+                $answer->setIdUser($idUser);
+                $answer->setIdQuestion($data['Id_question']);
+                $answer->setIdAnswer($data['Id_answer']);
+
+                $result[] = $answer;
+            }
+
+            return $result;
+        }
     }
 ?>

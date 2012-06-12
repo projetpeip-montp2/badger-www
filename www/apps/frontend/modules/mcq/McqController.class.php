@@ -58,7 +58,6 @@
                 $managerUser->updateMark($logon, $mark);
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMark($mark);
 
-
                 // Redirection
                 $this->app()->user()->setFlashInfo($this->m_TEXT['Flash_MCQTaken']);
                 $this->app()->httpResponse()->redirect('/home/index.html');

@@ -4,22 +4,21 @@
     - UTF 8 sur tous les fichiers
     - Gros coup de Polish
 
+    - Activer l'envoi de mail depuis le serveur
+
     - Réplication + table historique + maj des requêtes à William
     - Redirection autres que Polytech'
+
 
 - Frontend:
     - Empécher un utilisateur de télécharger les rapports étudiants 
 
 
 - Backend:
-    - Export CSV
-    - Envoi de mails contenant questions-réponses.
     - Statistiques
     - Configuration du site web (affichage planning, note de présence,etc)
 
     - Récupération des rapports des élèves
-
-    - Vérifier les croisements d'horaires (availability) (CSV)
 
 
 - William:

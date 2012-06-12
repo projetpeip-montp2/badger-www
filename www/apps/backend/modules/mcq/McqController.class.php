@@ -104,6 +104,72 @@
             }
         }
 
+        public function executeSendMails(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Envoi de mails");
+
+            if($request->postExists('Envoyer'))
+            {
+                $students = $this->m_managers->getManagerOf('user')->get();
+
+                foreach($students as $student)
+                {
+                    if($student->getMCQStatus() == 'Taken')
+                    {
+                        // Get questions of the students
+                        $questions = $this->m_managers->getManagerOf('question')->loadQuestionsOfUser($student->getUsername());
+
+                        // Get the associated answers
+                        $answers = array();
+                        foreach($questions as $question)
+                            $answers = array_merge($answers, $this->m_managers->getManagerOf('answer')->get($question->getId()));
+
+                        $answersOfUser = $this->m_managers->getManagerOf('answer')->loadAnswersOfUser($student->getUsername());
+
+                        $mail = 'Bonjour ' . $student->getName() . ' ' . $student->getSurname() . ',<br/>
+                                 Le mail ci-dessous contient vos questions et réponses au QCM de la Semaine du Numérique.<br/>';
+
+                        $mail .= '<ul>';
+                        foreach($questions as $question)
+                        {
+                            $answered = false;
+
+                            $mail .= '<li>' . $question->getLabel('fr') . '</li>';
+                            $mail .= '<ul>';
+                            foreach($answers as $answer)
+                            {
+                                if($answer->getIdQuestion() == $question->getId())
+                                {
+                                    foreach($answersOfUser as $answerOfUser)
+                                    {
+                                        if($answerOfUser->getIdAnswer() == $answer->getId())
+                                        {
+                                            $answered = true;
+                                            $mail .= '<li>' . $answer->getLabel('fr') . '</li>';
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(!$answered)
+                                $mail .= '<li>Pas de réponse à cette question.</li>';
+                            $mail .= '</ul>';
+                        }
+
+                        $mail .= '</ul>';
+
+                        $mailAdress = $student->getUsername() . '@polytech.univ-montp2.fr';
+
+                        // TODO: Décommenter cette ligne
+                        //mail($mailAdress, 'Semaine du Numérique - Réponses au QCM', $mail);
+                    }
+                }
+
+                $this->app()->user()->setFlashInfo('Mail envoyé aux étudiants.');
+                $this->app()->httpResponse()->redirect('/admin/mcq/index.html');
+            }
+        }
+
 
         public function executeGetMarks(HTTPRequest $request)
         {

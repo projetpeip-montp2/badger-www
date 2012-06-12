@@ -24,6 +24,7 @@
     <route url="/admin/mcq/createMCQ\.html" module="mcq" action="createMCQ"/>
     <route url="/admin/mcq/updateMCQs\.html" module="mcq" action="updateMCQs"/>
     <route url="/admin/mcq/getMarks\.html" module="mcq" action="getMarks"/>
+    <route url="/admin/mcq/sendMails\.html" module="mcq" action="sendMails"/>
 
     <route url="/admin/statistics/index\.html" module="statistics" action="index"/>
 
