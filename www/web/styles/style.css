@@ -1,7 +1,13 @@
-body {
+body
+{
 	margin:0;
 	background:url(/web/images/design/background.png) repeat-x top;
 	background-attachment:fixed;
+}
+
+img
+{
+    border: none;
 }
 
 *
@@ -18,19 +24,22 @@ h1
 
 /* ------------------------ Header ------------------------  */
 
-#top {
+#top
+{
 	background:#1F3B62;
 	width:100%;
 	height:20px;
 	margin-bottom:10px;
 }
 
-#top-content {
+#top-content
+{
 	margin:auto;
 	width:1000px;
 }
 
-#top-content a {
+#top-content a
+{
 	color:#FFF;
 	font-size:13px;
 	font-family: "Tiraille";
@@ -40,11 +49,13 @@ h1
 	padding-right:5px;
 }
 
-#top-content a:hover {
+#top-content a:hover
+{
 	color:#09F;
 }
 
-#header {
+#header
+{
 	width:100%;
 	height:130px;
 	background:url(/web/images/design/bg-header.png) no-repeat;
@@ -52,17 +63,20 @@ h1
     border-radius: 10px 10px 0 0;
 }
 
-#header-logo {
+#header-logo
+{
 	padding: 10px 0 0 20px;
 	float:left;
 }
 
-#header-content {
+#header-content
+{
 	float:right;
 	padding: 10px 10px 0 0;
 }
 
-#header-info {
+#header-info
+{
 	background:#1F3B62;
 	width:300px;
 	height:65px;
@@ -78,13 +92,15 @@ h1
 
 /* ------------------------ Wrapper ------------------------  */
 
-#wrapper {
+#wrapper
+{
 	margin:auto;
 	width:1048px;
 	background-attachment:fixed;
 }
 
-#wrapper-body {
+#wrapper-body
+{
 	margin:auto;
 	width:1000px;
 	background:url(/web/images/design/bg-wrapper-body.png) repeat-x top;
@@ -94,12 +110,14 @@ h1
     border-radius: 10px 10px 10px 10px;
 }
 
-a {
+a
+{
 	text-decoration:none;
 	color:#06F;
 }
 
-a:hover {
+a:hover
+{
 	font-weight:bold;
 	color:#0E3463;
 }
@@ -108,22 +126,26 @@ a:hover {
 
 /* ------------------------ Content ------------------------ */
 
-#content {
+#content
+{
 	background:url(/web/images/design/bg-content.png) no-repeat top center;
 	width:100%;
 	border-top:1px solid #0166BF;
 }
 
-ul {
+ul
+{
 	list-style:none;
 }
 
-li {
+li
+{
 	padding-left:30px;
 	background:url(/web/images/tools/puce-li.png) no-repeat;
 }
 
-#registrations-infos {
+#registrations-infos
+{
 	background:#1F3B62;
     width:240px;
     margin: 30px 0 30px 10px;
@@ -134,18 +156,21 @@ li {
 
 /* ------------------------ Menu ------------------------ */
 
-#menu {
+#menu
+{
 	text-align:right;
 	margin-bottom:100px;
 	margin-top:10px;
 }
 
-#menu a {
+#menu a
+{
 	color: white;
     font-weight:normal;
 }
 
-#menu .itemmenu {
+#menu .itemmenu
+{
 	display:block;
 	float:right;
 	height:25px;
@@ -153,7 +178,8 @@ li {
 	padding:0 10px 0 10px;
 }
 
-#menu .overitemmenu {
+#menu .overitemmenu
+{
 	display:block;
 	float:right;
 	height:25px;
@@ -178,18 +204,21 @@ li {
 
 /* ------------------------ Module Textuel ------------------------ */
 
-.module-text {
+.module-text 
+{
 	margin:auto;
 	width:900px;
 	background:url(/web/images/design/module-text/bg-module-text.png) no-repeat top center;
 	padding: 5px 0 0 0;
 }
 
-.module-text-content {
+.module-text-content
+{
 	margin: 5px 20px 15px 20px;
 }
 
-.module-text-header {
+.module-text-header
+{
 	background:url(/web/images/design/module-text/bg-title.png) repeat-x bottom right;
     -moz-border-radius: 0 10px 0 10px;
     border-radius: 10px 10px 0 0;
@@ -202,7 +231,8 @@ li {
 	height:30px;
 }
 
-.module-text-info {
+.module-text-info
+{
 	border-bottom: 1px solid #999;
 	border-left: 1px solid #999;
 	border-right: 1px solid #999;
@@ -240,20 +270,23 @@ li {
 
 /* ------------------------ QCM ------------------------ */
 
-.block-question {
+.block-question
+{
 	border:1px solid #999;
 	background:url(/web/images/design/bg-qcm.png) repeat-x bottom;
 	padding: 0 8px 8px 0;
 	margin-bottom:20px;
 }
 
-.title-question {
+.title-question
+{
 	margin-bottom:15px;
 	padding-left:8px;
 	color:#0F3360;
 }
 
-.num-question {
+.num-question
+{
 	background:url(/web/images/design/bg_num-question.png) no-repeat;
 	height:35px;
 	width:285px;
@@ -262,7 +295,8 @@ li {
 	padding-top:3px;
 }
 
-.block-question form {
+.block-question form
+{
 	padding-left:8px;
 }
 
@@ -270,7 +304,8 @@ li {
 
 /* ------------------------ Package ------------------------ */
 
-.doc-dispo {
+.doc-dispo
+{
 	float:right;
 	border:1px solid #000;
 	padding-left:5px;
@@ -279,7 +314,8 @@ li {
     border-radius: 10px 10px 10px 10px;
 }
 
-.lecture {
+.lecture
+{
 	width:450px;
 	margin:5px 0 5px 0;
 	border:1px solid #999;
@@ -289,41 +325,32 @@ li {
     border-radius: 10px 10px 10px 10px;
 }
 
-.lecture .title {
+.lecture .title
+{
 	font-weight:bold;
 	font-size:24px;
 }
 
-.lecture .description {
+.lecture .description
+{
 	font-size:14px;
 	color:#999;
 }
 
-.lecture .lecturer {
+.lecture .lecturer
+{
 	margin:5px 0 5px 0;
 }
 
-.lecture .date, .hour{
+.lecture .date, .hour
+{
 	font-style:italic;
 	font-size:16px;
 }
 
-
-
 /* ------------------------ Package ------------------------ */
 
 /* ------------------------ Edit ------------------------ */
-
-.FormTable
-{
-    border-collapse: collapse;
-}
-
-.FormTable th, .FormTable td
-{
-    border: 1px solid black;
-    text-align: center;
-}
 
 table#editableTable
 {
@@ -413,7 +440,8 @@ p.packageTitle
 
 /* ------------------------ Footer ------------------------ */
 
-#footer, #footer a {
+#footer, #footer a
+{
 	margin-top:100px;
 	padding:5px;
 	color:#FFF;

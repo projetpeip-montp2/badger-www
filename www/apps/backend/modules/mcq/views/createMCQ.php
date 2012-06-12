@@ -27,15 +27,15 @@
     $form->add('text', 'Date')
          ->label('Date : ')
          ->value('JJ-MM-AAAA')
-         ->size(10);
+         ->size(12);
     $form->add('text', 'StartTime')
          ->label('Horaire de début : ')
          ->value('HH:MM:SS')
-         ->size(8);
+         ->size(10);
     $form->add('text', 'EndTime')
          ->label('Horaire de fin : ')
          ->value('HH:MM:SS')
-         ->size(8);
+         ->size(10);
 
     $form->add('submit', 'Envoyer');
 

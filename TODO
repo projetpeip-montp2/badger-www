@@ -7,9 +7,8 @@
     - Activer l'envoi de mail depuis le serveur
 
     - Réplication + table historique + maj des requêtes à William
-    - Redirection autres que Polytech'
 
-    - Rapport => lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
+    - Rapport << lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
 
 - Frontend:
     - Empécher un utilisateur de télécharger les rapports étudiants 
@@ -18,6 +17,7 @@
 - Backend:
     - Statistiques
     - Configuration du site web (affichage planning, note de présence,etc)
+    - Affichage des logs de réplication
 
     - Récupération des rapports des élèves
 
