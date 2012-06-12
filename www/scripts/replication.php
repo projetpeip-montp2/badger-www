@@ -63,7 +63,7 @@
         }
 
         // Retrieve students and Mifare from Polytech
-        $req = $daoPoly->prepare('SELECT Username, Mifare FROM Polytech');
+        $req = $daoPoly->prepare('SELECT Username, Mifare FROM Users');
         $req->execute();
         $usersPoly = $req->fetchAll();
 
