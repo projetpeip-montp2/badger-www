@@ -56,7 +56,7 @@
 
         public function retrieveStudentFromPolytech($logon)
         {
-            $req = $this->m_dao->prepare('SELECT Username, VraiPrenom, VraiNom, Departement, anApogee, Mifare, Actif, Statut FROM UsersPolytech WHERE Username = ?');
+            $req = $this->m_dao->prepare('SELECT Username, VraiPrenom, VraiNom, Departement, anApogee, Mifare, Actif FROM UsersPolytech WHERE Username = ?');
             $req->execute(array($logon));
 
             $data = $req->fetch();
@@ -70,7 +70,6 @@
             $student->setSurname($data['VraiNom']);
             $student->setDepartment($data['Departement']);
             $student->setActive($data['Actif']);
-            $student->setStatus($data['Statut']);
             $student->setSchoolYear($data['anApogee']);
             $student->setMifare($data['Mifare']);
 

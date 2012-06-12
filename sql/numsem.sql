@@ -57,15 +57,10 @@ CREATE TABLE numsem.`UsersPolytech` (
     `Username`               VARCHAR(60) NOT NULL,
     `Num_Etudiant`           CHAR(8),
     `Mifare`                 CHAR(8),
-    `MifareControleAcces`    INT(8),
     `Actif`                  CHAR(1),
-    `Nom`                    VARCHAR(30),
-    `Prenom`                 VARCHAR(20),
     `VraiNom`                VARCHAR(30),
     `VraiPrenom`             VARCHAR(20),
-    `Statut`                 ENUM('Ater','Contractuel','EJ','Etudiant','Hébergé','Moniteur','Permanent','Utilitaire','Visiteur','Special'),
     `Departement`            ENUM('ADISIM','ADM','CRIP','DGAB','DGPIM','DI','DOGPP','DTE','ENR','GASTE','INFO','IUT-NIMES','EJ','LANGUES','PEIP','MAT','MI','ERII','MEC','MECA','MGFA','MICSI','MIE','SHEJS','STE','STIA','These/IG','TOUT_DEPARTEMENT','CNFM','Autre'),
-    `Complement_Departement` ENUM('AOC','BIO','EC','Int','STI','PROD'),
     `anApogee`               tinyint(1),
     CONSTRAINT pk_users PRIMARY KEY ( `Username` )
 );
@@ -246,5 +241,6 @@ INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('registrationsDateLimit', '23-08-2012'),
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
-('zipFileSizeLimitBackend', '10000000');
+('zipFileSizeLimitBackend', '10000000'),
+('minRegistrationsPerPackage', '1');
 

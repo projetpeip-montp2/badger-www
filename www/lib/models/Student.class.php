@@ -6,7 +6,6 @@
         private $m_surname;
         private $m_departement; 
         private $m_active;
-        private $m_statut;
         private $m_schoolYear;
         private $m_mifare;
         private $m_studentNumber;
@@ -62,16 +61,6 @@
         public function getActive()
         {
             return $this->m_active;
-        }
-
-        public function setStatus($status)
-        {
-            $this->m_status = $status;
-        }
-
-        public function getStatus()
-        {
-            return $this->m_status;
         }
 
         public function setSchoolYear($schoolYear)

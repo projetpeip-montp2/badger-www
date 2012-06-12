@@ -23,8 +23,6 @@
 
     try
     {
-
-        // TODO: Mettre les bons paramètres
         $daoPoly = new Database('localhost', 'vbMifare', 'vbMifare2012', 'poly_repli');
         $daoENT = new Database('localhost', 'vbMifare', 'vbMifare2012', 'numsem');
 
@@ -92,7 +90,29 @@
 
             if(!$foundUser)
             {
-                // TODO: Inserer dans la table UsersPolytech que s'il est actif!
+                // Load completely the student from Polytech db
+                $req = $daoPoly->prepare('SELECT Username, Num_Etudiant, Mifare, Actif, VraiNom, VraiPrenom, Departement, anApogee FROM Users WHERE Id_user = ?');
+                $req->execute(array($userPoly['Username']));
+
+                $data = $req->fetch();
+
+                // Now save the new student in our db
+                $req = $daoENT->prepare('INSERT INTO UsersPolytech(Username, 
+                                                                   Num_Etudiant, 
+                                                                   Mifare, 
+                                                                   Actif, 
+                                                                   VraiNom, 
+                                                                   VraiPrenom, 
+                                                                   Departement, 
+                                                                   anApogee) VALUES(?, ?, ?, ?, ?, ?, ?, ?)');
+                $req->execute(array($data['Username'],
+                                    $data['Num_Etudiant'],
+                                    $data['Mifare'],
+                                    $data['Actif'],
+                                    $data['VraiNom'],
+                                    $data['VraiPrenom'],
+                                    $data['Departement'],
+                                    $data['anApogee']));
             }
 
             if($foundUser && $mifareDifferent)

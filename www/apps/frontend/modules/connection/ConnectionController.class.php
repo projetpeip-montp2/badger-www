@@ -10,7 +10,7 @@
             // If the user doesn't exist in Polytech db, he's redirected UM2 ENT.
             $student = $manager->retrieveStudentFromPolytech($this->app()->user()->getAttribute('logon'));
             if(!$student)
-                $this->app()->httpResponse()->redirect('portail.univ-montp2.fr');
+                $this->app()->httpResponse()->redirect('http://portail.univ-montp2.fr');
 
             // Default status
             $mcqStatus = 'Visitor';
