@@ -13,43 +13,28 @@
         Statistiques
     </div>
 </a>
-<a href="/admin/classrooms/index.html">
-    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-        Salles
-    </div>
-</a>
 <a href="/admin/mcq/index.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
         QCM et inscriptions
     </div>
 </a>
-<a href="/admin/documents/index.html">
+<a href="/admin/home/edit.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-        Documents
+        Edition
     </div>
 </a>
-<a href="/admin/questionsanswers/index.html">
+<a href="/admin/home/showInfos.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-        Questions Réponses
-    </div>
-</a>
-<a href="/admin/lectures/index.html">
-    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-        Conférences
-    </div>
-</a>
-<a href="/admin/packages/index.html">
-    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-        Packages
-    </div>
-</a>
-<a href="/home/index.html">
-    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
-        Partie utilisateur
+        Informations
     </div>
 </a>
 <a href="/admin/home/index.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
         Accueil
+    </div>
+</a>
+<a href="/home/index.html">
+    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
+        Partie utilisateur
     </div>
 </a>

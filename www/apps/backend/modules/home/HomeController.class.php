@@ -3,7 +3,17 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-            $this->page()->addVar("viewTitle", "Accueil administration");
+            $this->page()->addVar('viewTitle', 'Accueil administration');
+        }
+
+        public function executeEdit(HTTPRequest $request)
+        {
+            $this->page()->addVar('viewTitle', 'Edition');
+        }
+
+        public function executeShowInfos(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Informations");
 
             $packagesManager = $this->m_managers->getManagerOf('package');
             $lecturesManager = $this->m_managers->getManagerOf('lecture');
@@ -48,6 +58,7 @@
                     $incompleteStudents[] = $user;
             }
 
+            $this->page()->addVar('allPackages', $packages);
             $this->page()->addVar('noLecturePackages', $noLecturePackages);
             $this->page()->addVar('notEnoughRegPackages', $notEnoughRegPackages);
             $this->page()->addVar('noAnswerQuestions', $noAnswerQuestions);
