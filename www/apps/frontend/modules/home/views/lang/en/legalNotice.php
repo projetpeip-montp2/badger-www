@@ -1,1 +1,1 @@
-Guide en
+Legal notice
