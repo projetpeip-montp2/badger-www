@@ -47,6 +47,11 @@ CREATE TABLE numsem.`Questions` (
 
 CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
 
+CREATE TABLE numsem.`ReplicationLogs` ( 
+	`Date`               DATE,
+	`Time`               TIME,
+	`StatusCode`         ENUM( 'Success','ConnectionPolytechError','RetrieveDatasError','ProcessingError' ) 
+ );
 
 CREATE TABLE numsem.`UsersPolytech` ( 
     `Username`               VARCHAR(60) NOT NULL,
