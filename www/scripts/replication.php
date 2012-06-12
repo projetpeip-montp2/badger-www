@@ -91,10 +91,12 @@
             if(!$foundUser)
             {
                 // Load completely the student from Polytech db
-                $req = $daoPoly->prepare('SELECT Username, Num_Etudiant, Mifare, Actif, VraiNom, VraiPrenom, Departement, anApogee FROM Users WHERE Id_user = ?');
+                $req = $daoPoly->prepare('SELECT Username, Num_Etudiant, Mifare, Actif, VraiNom, VraiPrenom, Departement, anApogee FROM Users WHERE Username = ?');
                 $req->execute(array($userPoly['Username']));
 
                 $data = $req->fetch();
+
+                // TODO: Doit-on aussi charger les personnes non actives
 
                 // Now save the new student in our db
                 $req = $daoENT->prepare('INSERT INTO UsersPolytech(Username, 
