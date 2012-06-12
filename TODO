@@ -25,7 +25,7 @@
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
     - Double alert réduction capacity
-    - Champs non cliquables Dates conférences
+    - Champs non cliquables à vérifier ! (Dates, nom_fr, etc...)
     - Suppression d'une question ==> Réponses encore affichées
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
     - Lors de la suppression d'un QCM/inscription, mettre à jour le status des élèves

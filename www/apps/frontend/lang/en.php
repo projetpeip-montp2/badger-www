@@ -58,6 +58,7 @@
     $TEXT['Flash_NoReport'] = "You have not uploaded any report.";
     $TEXT['Flash_NoPlace'] = "No place.";
     $TEXT['Flash_NoLecture'] = "No lecture.";
+    $TEXT['Flash_DownloadDocumentsError'] = "Error on documents.";
 
     $TEXT['Info_LimitDate'] = "Limit date of registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";

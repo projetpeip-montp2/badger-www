@@ -130,7 +130,10 @@
 
                 $fo = fopen($filename, 'r');
                 if(!$fo)
-                    exit('Sad');
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_DownloadDocumentsError']);
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
 
                 $contenu = fread($fo, filesize($filename));
                 fclose($fo);
@@ -141,7 +144,7 @@
             header('Content-Type: application/x-zip');
             header('Content-Disposition: inline; filename=' . $packageName . '.zip');
 
-            echo $zip->file();;
+            echo $zip->file();
         }
 
         public function executeShowAll(HTTPRequest $request)
