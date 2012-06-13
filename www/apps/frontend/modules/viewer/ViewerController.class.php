@@ -8,7 +8,6 @@
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ViewerIndex']);
 
             // Display the form
-
             $packages = $this->m_managers->getManagerOf('package')->get();
 
             if(count($packages) == 0)
@@ -19,7 +18,7 @@
 
             $idPackage = $request->postExists('packageIdRequested') ? $request->postData('packageIdRequested') : $packages[0]->getId();
 
-            // Check idPackageRequested validity
+            // TODO: Check idPackageRequested validity
 
             $archives = $this->m_managers->getManagerOf('archiveofpackage')->get($idPackage);
 
@@ -69,6 +68,8 @@
 
         public function executeRedirectToImage(HTTPRequest $request)
         {
+			$this->page()->setIsAjaxPage(TRUE);
+
             $idPackage = $request->postData('idPackage');
             $idArchive = $request->postData('idArchive');
             $imageNumber = $request->postData('imageNumber');
