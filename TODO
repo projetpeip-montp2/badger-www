@@ -15,7 +15,6 @@
 
 
 - Backend:
-    - Statistiques (Moyenne dpts, générale)
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
 
