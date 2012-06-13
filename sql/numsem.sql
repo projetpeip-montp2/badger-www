@@ -241,14 +241,14 @@ ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `
 
 INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
+('packageRegistrationsCount', '5'),
+('minRegistrationsPerPackage', '3'),
+('mailAppendix', '@polytech.univ-montp2.fr'),
 ('canSubscribe', '1'),
 ('canViewPlanning', '0'),
-('mailAppendix', '@polytech.univ-montp2.fr'),
-('adminsList', 'victor.hiairrassary;gregoire.guisez'),
-('availablesLanguagesList', 'fr;en'),
-('packageRegistrationsCount', '5'),
 ('registrationsDateLimit', '23-08-2012'),
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
 ('zipFileSizeLimitBackend', '10000000'),
-('minRegistrationsPerPackage', '1');
+('adminsList', 'victor.hiairrassary;gregoire.guisez'),
+('availablesLanguagesList', 'fr;en');

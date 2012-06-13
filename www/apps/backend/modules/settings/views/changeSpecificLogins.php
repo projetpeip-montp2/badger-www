@@ -2,6 +2,25 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
+<?php
+    $form = new Form('', 'post');
+
+    $form->add('text', 'loginUM2')
+         ->isInParagraph(true)
+         ->label('Login um2: ');
+
+    $form->add('text', 'loginPoly')
+         ->isInParagraph(true)
+         ->label('Login Polytech: ');
+
+    $form->add('submit', 'Ajouter');
+
+    echo $form->toString();
+?>
+
+<br/>
+<br/>
+
 <table id="editableTable">
     <tr>
         <th>Login UM2</th>

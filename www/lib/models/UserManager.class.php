@@ -191,5 +191,11 @@
             $req->execute();
             return $req->fetchAll();
         }
+
+        public function insertSpecificLogins($um2, $poly)
+        {
+            $req = $this->m_dao->prepare('INSERT INTO SpecificLogins (UsernameUM2, Username) VALUES(?, ?)');
+            $req->execute(array($um2, $poly));
+        }
     }
 ?>
