@@ -41,7 +41,7 @@
 			</fk>
 		</table>
 		<table name="ArchivesOfPackages" >
-			<column name="Id_archive" type="SMALLINT" jt="5" mandatory="y" unsigned="y" />
+			<column name="Id_archive" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
 			<column name="Id_package" type="SMALLINT" jt="5" unsigned="y" />
 			<column name="Filename" type="TEXT" length="100" jt="-1" />
 			<index name="pk_zipofimages" unique="PRIMARY_KEY" >
@@ -294,7 +294,6 @@
 		<entity schema="numsem" name="Lectures" x="42" y="210" />
 		<entity schema="numsem" name="Packages" x="322" y="294" />
 		<entity schema="numsem" name="DocumentsOfPackages" x="406" y="84" />
-		<entity schema="numsem" name="ArchivesOfPackages" x="588" y="196" />
 		<entity schema="numsem" name="Registrations" x="252" y="518" />
 		<entity schema="numsem" name="Users" x="504" y="644" />
 		<entity schema="numsem" name="DocumentsOfUsers" x="70" y="630" />
@@ -308,6 +307,7 @@
 		<entity schema="numsem" name="HistoryMifare" x="1022" y="658" />
 		<entity schema="numsem" name="ReplicationLogs" x="1008" y="210" />
 		<entity schema="numsem" name="UsersPolytech" x="952" y="378" />
+		<entity schema="numsem" name="ArchivesOfPackages" x="588" y="196" />
 		<group name="numsem" color="c4e0f9" >
 			<entity schema="numsem" name="Answers" />
 			<entity schema="numsem" name="AnswersOfUsers" />

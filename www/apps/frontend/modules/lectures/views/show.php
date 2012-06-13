@@ -2,7 +2,7 @@
     <?php
         $documentsLink = '/lectures/showDocuments-' . $package->getId() . '.html';
         $downloadDocumentsLink = '/lectures/downloadDocuments-' . $package->getId() . '.html';
-        $imagesLink = '/viewer/viewImage-' . $package->getId() . '-' . '1.html';
+        $imagesLink = '/viewer/index-' . $package->getId() . '.html';
 
         $noDisplay = true;
     ?>

@@ -15,7 +15,7 @@
 
 
 - Frontend:
-    - Empécher un utilisateur de télécharger les rapports étudiants 
+    - Revoir le viewer, notament accèss depuis l'index
 
 
 - Backend:
@@ -23,8 +23,6 @@
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
     - Interface récup de rapports par conférences
-
-    - Récupération des rapports des élèves
 
 
 - William:

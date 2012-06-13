@@ -77,7 +77,7 @@ CREATE TABLE numsem.`Answers` (
 CREATE INDEX idx_answers ON numsem.`Answers` ( `Id_question` );
 
 CREATE TABLE numsem.`ArchivesOfPackages` ( 
-	`Id_archive`         SMALLINT UNSIGNED NOT NULL,
+	`Id_archive`         SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Filename`           TEXT,
 	CONSTRAINT pk_zipofimages PRIMARY KEY ( `Id_archive` )
