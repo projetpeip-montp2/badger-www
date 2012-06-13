@@ -5,13 +5,14 @@
     - Gros coup de Polish
 
     - Réplication + table historique + maj des requêtes à William
-    - Table correspondance entre adresse um2 et login
 
     - Activer l'envoi de mail depuis le serveur
     - Rapport << lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
 
 
 - Frontend:
+    -Fixer le bug lors de l'inscription à un package vide
+    - Voir si unset logon en cas de logout
 
 
 - Backend:
@@ -20,6 +21,7 @@
     - Affichage des logs de réplication
     - Lors de la suppr des fichiers physiques, vider aussi les tables correspondantes   
     - Envoie de mail, changer @polytech.univ-montp2.fr 
+    - Pouvoir ajouter des logins spécifiques
 
 
 - William:

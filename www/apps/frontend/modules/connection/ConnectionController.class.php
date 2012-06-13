@@ -6,9 +6,17 @@
         public function executeIndex(HTTPRequest $request)
         {
             $manager = $this->m_managers->getManagerOf('user');
+            $logon = $this->app()->user()->getAttribute('logon');
+
+            $associatedLogon = $manager->isSpecificLogon($logon);
+            if($associatedLogon !== FALSE)
+            {
+                $logon = $associatedLogon;
+                $this->app()->user()->setAttribute('logon', $associatedLogon);
+            }
             
-            // If the user doesn't exist in Polytech db, he's redirected UM2 ENT.
-            $student = $manager->retrieveStudentFromPolytech($this->app()->user()->getAttribute('logon'));
+            // If the user doesn't exist in Polytech db, he's redirected to UM2 ENT.
+            $student = $manager->retrieveStudentFromPolytech($logon);
             if(!$student)
                 $this->app()->httpResponse()->redirect('http://portail.univ-montp2.fr');
 

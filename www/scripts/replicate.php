@@ -4,10 +4,10 @@
     foreach($classes as $class)
         require_once( dirname(__FILE__).'/../lib/' . $class . '.class.php' );
 
-    function logReplication(&$daoENT, $statusCode)
+    function logReplication(&$daoENT, $statusCode, $comment)
     {
-        $req = $daoENT->prepare('INSERT INTO ReplicationLogs(Date, Time, StatusCode) VALUES(CURDATE(), CURTIME(), ?)');
-        $req->execute(array($statusCode));
+        $req = $daoENT->prepare('INSERT INTO ReplicationLogs(Date, Time, StatusCode, Comment) VALUES(CURDATE(), CURTIME(), ?, ?)');
+        $req->execute(array($statusCode, $comment));
     }
 
     function getDepartments(&$dao, $tableName)
@@ -41,7 +41,7 @@
 
         if(!$include)
         {
-            logReplication($daoENT, 'DepartmentRemoveError');
+            logReplication($daoENT, 'DepartmentRemoveError', '');
             exit();
         }
 
@@ -130,7 +130,7 @@
             }
         }
 
-        logReplication($daoENT, 'Success');
+        logReplication($daoENT, 'Success', '');
     }
 
     catch(Exception $e)

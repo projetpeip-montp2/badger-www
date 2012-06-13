@@ -256,10 +256,18 @@
 		<table name="ReplicationLogs" >
 			<column name="Date" type="DATE" jt="91" />
 			<column name="Time" type="TIME" jt="92" />
-			<column name="StatusCode" type="ENUM" jt="12" >
-				<enumeration>&#039;a&#039;,&#039;b&#039;,&#039;c&#039;</enumeration>
+			<column name="StatusCode" type="ENUM" length="1" jt="12" >
+				<enumeration>&#039;Success&#039;,&#039;DepartmentRemoveError&#039;</enumeration>
 			</column>
 			<column name="Comment" type="TEXT" jt="-1" />
+		</table>
+		<table name="SpecificLogins" >
+			<column name="Id_login" type="SMALLINT" jt="5" mandatory="y" unsigned="y" autoincrement="y" />
+			<column name="UsernameUM2" type="VARCHAR" length="60" jt="12" />
+			<column name="Username" type="VARCHAR" length="60" jt="12" />
+			<index name="pk_specificlogins" unique="PRIMARY_KEY" >
+				<column name="Id_login" />
+			</index>
 		</table>
 		<table name="Users" >
 			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
@@ -287,10 +295,6 @@
 			<index name="pk_users" unique="PRIMARY_KEY" >
 				<column name="Username" />
 			</index>
-		</table>
-		<table name="SpecificLogins" >
-			<column name="UsernameUM2" type="VARCHAR" length="60" jt="12" />
-			<column name="Username" type="VARCHAR" length="60" jt="12" />
 		</table>
 	</schema>
 	<layout name="vbmifare" >
