@@ -172,5 +172,24 @@
 
             return $assocArray;
         }
+
+        public function isSpecificLogon($logon)
+        {
+            $req = $this->m_dao->prepare('SELECT Username FROM SpecificLogins WHERE UsernameUM2 = ?');
+            $req->execute(array($logon));
+            $result = $req->fetch();
+
+            if($result)
+                return $result['Username'];
+
+            return FALSE;
+        }
+
+        public function getSpecificLogins()
+        {
+            $req = $this->m_dao->prepare('SELECT * FROM SpecificLogins');
+            $req->execute();
+            return $req->fetchAll();
+        }
     }
 ?>

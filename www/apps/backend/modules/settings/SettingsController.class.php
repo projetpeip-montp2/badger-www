@@ -22,6 +22,15 @@
             }
         }
 
+        public function executeChangeSpecificLogins(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Gestion des logins spécifiques");
+
+            $specificLogins = $this->m_managers->getManagerOf('user')->getSpecificLogins('adminsList');
+
+            $this->page()->addVar('specificLogins', $specificLogins);
+        }
+
         public function executeChangeAvailableAdmins(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Gestion des administrateurs");

@@ -50,13 +50,15 @@ CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
 CREATE TABLE numsem.`ReplicationLogs` ( 
 	`Date`               DATE,
 	`Time`               TIME,
-	`StatusCode`         ENUM( 'a','b','c' ) ,
+	`StatusCode`         ENUM( 'Success','DepartmentRemoveError' ) ,
 	`Comment`            TEXT
  );
 
 CREATE TABLE numsem.`SpecificLogins` ( 
+	`Id_login`           SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`UsernameUM2`        VARCHAR( 60 ),
-	`Username`           VARCHAR( 60 )
+	`Username`           VARCHAR( 60 ),
+	CONSTRAINT pk_specificlogins PRIMARY KEY ( `Id_login` )
  );
 
 CREATE TABLE numsem.`UsersPolytech` ( 
