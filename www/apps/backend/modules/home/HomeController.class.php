@@ -68,8 +68,10 @@
 
         public function executeLogout(HTTPRequest $request)
         {
+            // Absolutely don't remove it!
             $user = $this->app()->user();
             $user->unsetAttribute('logon');
+            $user->unsetAttribute('logDone');
             $user->unsetAttribute('vbmifareStudent');
             $user->unsetAttribute('vbmifareLang');
             phpCAS::logout();
