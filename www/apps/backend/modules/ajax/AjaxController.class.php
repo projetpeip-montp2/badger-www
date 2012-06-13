@@ -18,6 +18,7 @@
 		{
 			$allowedFields = array('Classrooms' => array('Name', 'Size'),
 								   'Availabilities' => array('Date', 'StartTime', 'EndTime'),
+								   'Config' => array('Value'),
 								   'Packages' => array('Capacity', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en'),
 								   'Questions' => array('Label_fr', 'Label_en', 'Status'),
 								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'),
@@ -30,6 +31,7 @@
 							  'Availabilities' => 'Id_availability',
 							  'Questions' => 'Id_question',
 							  'Answers' => 'Id_answer',
+       						  'Config' => 'Name',  
 							  'Packages' => 'Id_package',
 							  'Lectures' => 'Id_lecture',
                               'DocumentsOfPackages' => 'Id_document',

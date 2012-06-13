@@ -4,6 +4,27 @@
         public function executeIndex(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Configuration générale");
+
+            // Warning: be sure before you change this array!
+            $configNames = array('MCQMaxQuestions' => 'number',
+                                 'packageRegistrationsCount' => 'number',
+                                 'minRegistrationsPerPackage' => 'number',
+                                 'mailAppendix' => 'textbox',
+                                 'canSubscribe' => 'binary',
+                                 'canViewPlanning' => 'binary',
+                                 //'registrationsDateLimit' => 'date',
+                                 'reportSizeLimitFrontend' => 'number',
+                                 'documentSizeLimitBackend' => 'number',
+                                 'zipFileSizeLimitBackend' => 'number');
+            $configValues = array();
+
+            $configManager = $this->m_managers->getManagerOf('config');
+
+            foreach($configNames as $name => $type)
+                $configValues[$name] = $configManager->get($name); 
+
+            $this->page()->addVar('configNames', $configNames);
+            $this->page()->addVar('configValues', $configValues);
         }
 
         public function executeReplicate(HTTPRequest $request)
@@ -106,25 +127,6 @@
 
             // Else we display the form
             $this->page()->addVar('currentAdminList', $currentAdminList);
-        }
-
-        public function executeChangeSubscribesStatus(HTTPRequest $request)
-        {
-            $this->page()->addVar("viewTitle", "Statut des inscriptions");
-
-            // Retrieve current registrations status
-            $authorized = $this->m_managers->getManagerOf('config')->get('canSubscribe') != 0;
-
-            // If the form is submitted, we replace the current registration
-            // status by the new
-            if($request->postExists('Interdire') || $request->postExists('Autoriser'))
-            {
-                $this->m_managers->getManagerOf('config')->replace('canSubscribe', $authorized ? 0 : 1);
-                $this->app()->httpResponse()->redirect($request->requestURI());
-            }
-
-            // Else we display the form
-            $this->page()->addVar('authorized', $authorized);
         }
     }
 ?>
