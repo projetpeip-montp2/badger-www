@@ -70,6 +70,8 @@
         $req->execute();
         $usersEnt =$req->fetchAll();
 
+        $counter = 0;
+
         foreach($usersPoly as $userPoly)
         {
             $foundUser = false;
@@ -97,6 +99,7 @@
                 $data = $req->fetch();
 
                 // TODO: Doit-on aussi charger les personnes non actives
+                $counter++;
 
                 // Now save the new student in our db
                 $req = $daoENT->prepare('INSERT INTO UsersPolytech(Username, 
@@ -130,7 +133,7 @@
             }
         }
 
-        logReplication($daoENT, 'Success', '');
+        logReplication($daoENT, 'Success', $counter . ' addition(s) dans la base de données.');
     }
 
     catch(Exception $e)
