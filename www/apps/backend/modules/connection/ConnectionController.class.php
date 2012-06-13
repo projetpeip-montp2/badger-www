@@ -19,6 +19,9 @@
 
             $this->app()->user()->setAttribute('admin', true);
 
+            // Absolutely don't remove it!
+            $_SESSION['logDone'] = true;
+
             $this->app()->httpResponse()->redirect('/admin/home/index.html');
         }
     }

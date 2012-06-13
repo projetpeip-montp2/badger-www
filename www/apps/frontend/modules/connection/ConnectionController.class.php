@@ -39,6 +39,9 @@
 
             $this->app()->user()->setAttribute('vbmifareStudent', $student);
 
+            // Absolutely don't remove it!
+            $_SESSION['logDone'] = true;
+
             $this->app()->httpResponse()->redirect('/home/index.html');
         }
     }
