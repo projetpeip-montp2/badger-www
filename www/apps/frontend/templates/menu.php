@@ -13,6 +13,11 @@
         <?php echo $TEXT['Menu_MCQ']; ?>
     </div>
 </a>
+<a href="/viewer/index.html">
+    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
+        <?php echo $TEXT['Menu_Viewer']; ?>
+    </div>
+</a>
 <a href="/lectures/index.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
         <?php echo $TEXT['Menu_Lectures']; ?>
