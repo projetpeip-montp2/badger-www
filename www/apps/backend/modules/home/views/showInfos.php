@@ -82,3 +82,35 @@ $(document).ready(function() {
         </ul>
     </div>
 </div>
+
+<div class="clicker">
+<h1>Logs de réplication</h1>
+    <div id="div5" class="hide">
+    <?php
+        if(empty($incompleteStudents))
+            echo '<p>Pas de log de réplication.</p>';
+        else
+        {
+        ?>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>Heure</td>
+                    <td>Statut</td>
+                    <td>Informations</td>
+                </tr>
+            </thead>
+            <tbody>
+        <?php
+            foreach($logs as $log)
+                echo '<tr><td>' . $log->getDate() .
+                     '</td><td>' . $log->getTime() .
+                     '</td><td>' . $log->getStatusCode() .
+                     '</td><td>' . $log->getComment() . '</td></tr>';
+        }
+    ?>
+            </tbody>
+        <table>
+    </div>
+</div>
