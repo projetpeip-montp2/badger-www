@@ -11,15 +11,12 @@
 
 
 - Frontend:
-    -Fixer le bug lors de l'inscription à un package vide
-    - Voir si unset logon en cas de logout
 
 
 - Backend:
     - Statistiques (Moyenne dpts, générale)
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
-    - Pouvoir ajouter des logins spécifiques
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement

@@ -67,6 +67,10 @@
 
         public function executeLogout(HTTPRequest $request)
         {
+            $user = $this->app()->user();
+            $user->unsetAttribute('logon');
+            $user->unsetAttribute('vbmifareStudent');
+            $user->unsetAttribute('vbmifareLang');
             phpCAS::logout();
         }
 

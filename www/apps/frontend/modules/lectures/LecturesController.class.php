@@ -48,6 +48,12 @@
             // If the form is submitted, do the registration
             if($request->postExists('isSubmitted'))
             {
+                if( count($lectures) == 0 )
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Package_NoLecture']);
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
                 $this->checkSubscribe($request);
 
                 if($wantSubscribe)
