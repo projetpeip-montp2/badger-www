@@ -24,13 +24,11 @@
                 {
                     $filename = dirname(__FILE__).'/../../../../uploads/students/' . $report->getFilename();
 
-                    $errorFiles = array();
-                    $flashMessage = '';
-
                     $fo = fopen($filename, 'r');
                     if(!$fo)
-                        $flashMessage .= $report->getFilename() . '<br/>';
-                        //$errorFiles[] = $doc->getFilename();
+                    {
+                        // TODO: Trouver une solution
+                    }
 
                     $contenu = fread($fo, filesize($filename));
                     fclose($fo);
@@ -43,13 +41,6 @@
                 header('Content-Disposition: inline; filename=' . $lectureName . '.zip');
 
                 echo $zip->file();
-
-                /*
-                if($flashMessage != '')
-                    $this->app()->user()->setFlashError($flashMessage);
-
-                $this->app()->httpResponse()->redirect('/admin/retrieval/index.html');
-                */
             }
 
             $managerPackages = $this->m_managers->getManagerOf('package');
