@@ -40,7 +40,7 @@
                         	<?php
                                 $student = $user->getAttribute('vbmifareStudent');
                                 echo $student->getName() . ' ' . $student->getSurname() . '<br/>' .
-                                     $student->getDepartment() . ' ' . $student->getSchoolYear();
+                                     $student->getDepartment() . ' ' . intval($student->getSchoolYear() + 2);
                             ?>
                         </div>
                     </div>
