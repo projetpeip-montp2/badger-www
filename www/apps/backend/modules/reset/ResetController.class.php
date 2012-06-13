@@ -19,6 +19,7 @@
                                          'QuestionsOfUsers',
                                          'Registrations',
                                          'ReplicationLogs',
+                                         'SpecificLogins', 
                                          'Users',
                                          'UsersPolytech');
 
