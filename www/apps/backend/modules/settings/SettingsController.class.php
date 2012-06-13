@@ -26,7 +26,25 @@
         {
             $this->page()->addVar("viewTitle", "Gestion des logins spécifiques");
 
-            $specificLogins = $this->m_managers->getManagerOf('user')->getSpecificLogins('adminsList');
+            $userManager = $this->m_managers->getManagerOf('user');
+            $specificLogins = $userManager->getSpecificLogins('adminsList');
+
+            if($request->postExists('Ajouter'))
+            {
+                $um2 = $request->postData('loginUM2');
+                $poly = $request->postData('loginPoly');
+
+                if( empty($um2) || empty($poly) )
+                {
+                    $this->app()->user()->setFlashError('Un des deux champs est vide!');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                $userManager->insertSpecificLogins($um2, $poly);
+
+                $this->app()->user()->setFlashInfo('Nouveau login spécifique ajouté: ' . $um2 . ' => ' . $poly . '.');
+                $this->app()->httpResponse()->redirect($request->requestURI());
+            }
 
             $this->page()->addVar('specificLogins', $specificLogins);
         }
