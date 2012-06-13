@@ -12,14 +12,14 @@
 
 
 - Frontend:
-    - Revoir le viewer, notament accèss depuis l'index
 
 
 - Backend:
     - Statistiques (Moyenne dpts, générale)
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
-    - Lors de la suppr des fichiers physiques, vider aussi les tables correspondantes    
+    - Lors de la suppr des fichiers physiques, vider aussi les tables correspondantes   
+    - Envoie de mail, changer @polytech.univ-montp2.fr 
 
 
 - William:

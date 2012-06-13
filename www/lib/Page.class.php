@@ -61,10 +61,10 @@
             
             $user = $this->app()->user();
 			
-            foreach($this->m_filesToInclude as $filename)
+            foreach($this->m_filesToInclude as $fileToInclude)
             {
-				if(!empty($filename))
-                    require $filename;
+				if(!empty($fileToInclude))
+                    require $fileToInclude;
             }
 
             extract($this->m_vars);

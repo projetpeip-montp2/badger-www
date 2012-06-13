@@ -61,5 +61,5 @@
     $fileName = basename($filePath);
 ?>
     <br/>
-    <img src="<?php echo $filePath; ?>" alt="<?php echo $filename; ?>"/>
+    <img src="<?php echo $filePath; ?>" alt="<?php echo $fileName; ?>"/>
 </div>

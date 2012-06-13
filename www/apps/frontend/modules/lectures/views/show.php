@@ -1,12 +1,26 @@
-<div class="doc-dispo">
-    <?php
-        $documentsLink = '/lectures/showDocuments-' . $package->getId() . '.html';
-        $downloadDocumentsLink = '/lectures/downloadDocuments-' . $package->getId() . '.html';
-        $imagesLink = '/viewer/index-' . $package->getId() . '.html';
+<script src="../../web/js/jquery-1.7.1.min.js"></script>
 
-        $noDisplay = true;
-    ?>
-    
+<?php
+    $documentsLink = '/lectures/showDocuments-' . $package->getId() . '.html';
+    $downloadDocumentsLink = '/lectures/downloadDocuments-' . $package->getId() . '.html';
+    $imagesLink = '/viewer/index.html';
+
+    $noDisplay = true;
+?>
+
+<form id="linker" action="<?php echo $imagesLink; ?>" method="post">
+    <input type="hidden" name="packageIdRequested" value="<?php echo $package->getId() ?>"/>
+</form>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#viewerLink').click(function(){
+     $('#linker').submit();
+   });
+});
+</script>
+
+<div class="doc-dispo">    
     <?php
         // Display ShowDocument link
         if($showDocuments)
@@ -27,7 +41,7 @@
             if($showDocuments)
                 echo '<br/>';
     ?>
-        <a href="<?php echo $imagesLink; ?>"><?php echo $TEXT['Package_ImagesLink']; ?></a>
+        <a style="cursor: pointer" id="viewerLink"><?php echo $TEXT['Package_ImagesLink']; ?></a>
     <?php
         $noDisplay = false;
         }

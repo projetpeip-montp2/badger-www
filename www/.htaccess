@@ -4,7 +4,6 @@ Options FollowSymLinks
 RewriteRule ^admin web/backend.php [QSA,L]
 
 RewriteRule ^uploads/students - [F]
-RewriteRule ^uploads/admin/images - [F]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ web/frontend.php [QSA,L]
