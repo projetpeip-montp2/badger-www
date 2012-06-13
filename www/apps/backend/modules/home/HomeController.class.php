@@ -63,6 +63,7 @@
             $this->page()->addVar('notEnoughRegPackages', $notEnoughRegPackages);
             $this->page()->addVar('noAnswerQuestions', $noAnswerQuestions);
             $this->page()->addVar('incompleteStudents', $incompleteStudents);
+            $this->page()->addVar('logs', $this->m_managers->getManagerOf('replicationlog')->get());
         }
 
         public function executeLogout(HTTPRequest $request)

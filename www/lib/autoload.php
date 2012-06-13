@@ -39,6 +39,8 @@
   'imageofarchivemanager' => 'lib/models/ImageOfArchiveManager.class.php',
   'archiveofpackage' => 'lib/models/ArchiveOfPackage.class.php',
   'lecture' => 'lib/models/Lecture.class.php',
+  'replicationlog' => 'lib/models/ReplicationLog.class.php',
+  'replicationlogmanager' => 'lib/models/ReplicationLogManager.class.php',
   'imageofarchive' => 'lib/models/ImageOfArchive.class.php',
   'availabilitymanager' => 'lib/models/AvailabilityManager.class.php',
   'registration' => 'lib/models/Registration.class.php',
