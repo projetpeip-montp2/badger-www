@@ -6,7 +6,63 @@
             $this->page()->addVar('viewTitle', 'Récupération de données');
         }
 
-                public function executeGetMarks(HTTPRequest $request)
+        public function executeGetReports(HTTPRequest $request)
+        {
+            $this->page()->addVar('viewTitle', 'Récupération des rapports');
+
+            if($request->postExists('Récupérer'))
+            {
+                $idLecture = $request->postData('idLecture');
+                $lecture = $this->m_managers->getManagerOf('lecture')->get($idLecture);
+                $lectureName = $lecture[0]->getName('fr');
+
+                $reports = $this->m_managers->getManagerOf('documentofuser')->get($idLecture);
+
+                $zip = new zipfile();
+
+                foreach($reports as $report)
+                {
+                    $filename = dirname(__FILE__).'/../../../../uploads/students/' . $report->getFilename();
+
+                    $errorFiles = array();
+                    $flashMessage = '';
+
+                    $fo = fopen($filename, 'r');
+                    if(!$fo)
+                        $flashMessage .= $report->getFilename() . '<br/>';
+                        //$errorFiles[] = $doc->getFilename();
+
+                    $contenu = fread($fo, filesize($filename));
+                    fclose($fo);
+
+                    $zip->addfile($contenu, $report->getFilename());
+                }
+
+
+                header('Content-Type: application/x-zip');
+                header('Content-Disposition: inline; filename=' . $lectureName . '.zip');
+
+                echo $zip->file();
+
+                /*
+                if($flashMessage != '')
+                    $this->app()->user()->setFlashError($flashMessage);
+
+                $this->app()->httpResponse()->redirect('/admin/retrieval/index.html');
+                */
+            }
+
+            $managerPackages = $this->m_managers->getManagerOf('package');
+            $packages = $managerPackages->get();
+
+            $managerLectures = $this->m_managers->getManagerOf('lecture');
+            $lectures = $managerLectures->get();
+
+            $this->page()->addVar('packages', $packages);
+            $this->page()->addVar('lectures', $lectures);
+        }
+
+        public function executeGetMarks(HTTPRequest $request)
         {
             // Hack to don't display the layout :)
 			$this->page()->setIsAjaxPage(TRUE);
