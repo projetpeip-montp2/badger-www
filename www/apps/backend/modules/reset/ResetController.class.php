@@ -81,9 +81,9 @@
             $this->page()->addVar("viewTitle", "Suppression des fichiers physiques");
 
             // List of directories containing admin's and student's files
-            $directories = array('admin/pdf' => dirname(__FILE__).'/../../../../uploads/admin/pdf/',
-                                  'admin/images' => dirname(__FILE__).'/../../../../uploads/admin/images/',
-                                  'students' => dirname(__FILE__).'/../../../../uploads/students/');
+            $directories = array('DocumentsOfPackages' => dirname(__FILE__).'/../../../../uploads/admin/pdf/',
+                                  'ArchivesOfPackages' => dirname(__FILE__).'/../../../../uploads/admin/images/',
+                                  'DocumentsOfUsers' => dirname(__FILE__).'/../../../../uploads/students/');
 
             // If the form is submitted
             if($request->postExists('Vider'))
@@ -112,6 +112,8 @@
                 // Delete files from directories selected
                 foreach($directoriesSelectedArray as $dirName)
                     $this->deletePhysicalFiles($directories[$dirName]);
+
+                $this->m_managers->getManagerOf('reset')->truncate($directoriesSelectedArray);
 
                 // Display directories emptied in the next flash message
                 $emptyDirectories = explode(';', substr($directoriesSelected, 0, strlen($directoriesSelected)-1));
