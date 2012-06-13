@@ -13,6 +13,11 @@
         Statistiques
     </div>
 </a>
+<a href="/admin/retrieval/index.html">
+    <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
+        Récupération de données
+    </div>
+</a>
 <a href="/admin/mcq/index.html">
     <div class="itemmenu" onmouseover="this.className='overitemmenu'" onmouseout="this.className='itemmenu'">
         QCM et inscriptions
