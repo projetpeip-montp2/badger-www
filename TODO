@@ -4,9 +4,13 @@
     - UTF 8 sur tous les fichiers
     - Gros coup de Polish
 
-    - Activer l'envoi de mail depuis le serveur
     - Réplication + table historique + maj des requêtes à William
+    - Table correspondance entre adresse um2 et login
+    - Changer la table ReplicationLogs pour ajouter des le nombre d'ajouts 
 
+    - Séparation des notes QCM et présence
+
+    - Activer l'envoi de mail depuis le serveur
     - Rapport << lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
 
 
@@ -15,9 +19,10 @@
 
 
 - Backend:
-    - Statistiques
+    - Statistiques (Moyenne dpts, générale)
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
+    - Interface récup de rapports par conférences
 
     - Récupération des rapports des élèves
 
@@ -29,4 +34,3 @@
     - Suppression d'une question ==> Réponses encore affichées
     - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
     - Lors de la suppression d'un QCM/inscription, mettre à jour le status des élèves
-
