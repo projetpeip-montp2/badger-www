@@ -19,7 +19,7 @@
     - Statistiques (Moyenne dpts, générale)
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
-    - Interface récup de rapports par conférences
+    - Lors de la suppr des fichiers physiques, vider aussi les tables correspondantes    
 
 
 - William:
