@@ -14,7 +14,7 @@
 
 
 - Backend:
-    - Configuration du site web (affichage planning, note de présence,etc)
+    - Permettre le changement de date dans la conf du site web
     - Affichage des logs de réplication
 
 
