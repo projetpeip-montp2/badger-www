@@ -3,7 +3,7 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
-            $this->page()->addVar("viewTitle", "Gestion des salles et disponilités");
+            $this->page()->addVar("viewTitle", "Gestion des salles et disponilitÃ©s");
 
 			$classrooms = $this->m_managers->getManagerOf('classroom')->getWithAvailabilities();
 			$this->Page()->addVar('classrooms', $classrooms);
@@ -48,7 +48,7 @@
                     // Save all packages parsed
                     $this->m_managers->getManagerOf('classroom')->save($classrooms);
 
-                    $this->app()->user()->setFlashInfo('Fichier uploadé.');
+                    $this->app()->user()->setFlashInfo('Fichier uploadÃ©.');
                 }
 
                 else
@@ -59,7 +59,7 @@
 
         public function executeAddAvailabilities(HTTPRequest $request)
         {
-            $this->page()->addVar("viewTitle", "Uploader des disponilités");
+            $this->page()->addVar("viewTitle", "Uploader des disponilitÃ©s");
 
             $flashMessage = '';
 
@@ -106,11 +106,11 @@
                     // Save all lectures parsed
                     $this->m_managers->getManagerOf('availability')->save($availabilities);
 
-                    $this->app()->user()->setFlashInfo('Disponibilités uploadées.');
+                    $this->app()->user()->setFlashInfo('DisponibilitÃ©s uploadÃ©es.');
                 }
 
                 else
-                    $this->app()->user()->setFlashError('Impossible d\'uploader les disponibilités.');
+                    $this->app()->user()->setFlashError('Impossible d\'uploader les disponibilitÃ©s.');
             }
 
             // Else display the form
@@ -118,7 +118,7 @@
 
             if(count($classrooms) == 0)
             {
-                $this->app()->user()->setFlashError('Il faut au moins une salle pour uploader des disponibilités.');
+                $this->app()->user()->setFlashError('Il faut au moins une salle pour uploader des disponibilitÃ©s.');
                 $this->app()->httpResponse()->redirect('/admin/classrooms/index.html');
             }
 
