@@ -11,7 +11,7 @@
     $TEXT['Menu_Home'] = "Home";
     $TEXT['Menu_Guide'] = "User guide";
     $TEXT['Menu_Lectures'] = "Lectures";
-    $TEXT['Menu_Viewer'] = "Online documents";
+    $TEXT['Menu_Viewer'] = "Online viewer";
     $TEXT['Menu_MCQ'] = "M.C.Q";
     $TEXT['Menu_Reports'] = "Reports";
 
