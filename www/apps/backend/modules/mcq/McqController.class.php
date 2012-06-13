@@ -158,7 +158,7 @@
 
                         $mail .= '</ul>';
 
-                        $mailAdress = $student->getUsername() . '@polytech.univ-montp2.fr';
+                        $mailAdress = $student->getUsername() . $this->m_managers->getManagerOf('config')->get('mailAppendix');
 
                         // TODO: Décommenter cette ligne
                         //mail($mailAdress, 'Semaine du Numérique - Réponses au QCM', $mail);

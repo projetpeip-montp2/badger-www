@@ -241,6 +241,7 @@ INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
 ('canViewPlanning', '0'),
+('mailAppendix', '@polytech.univ-montp2.fr'),
 ('adminsList', 'victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
 ('packageRegistrationsCount', '5'),
