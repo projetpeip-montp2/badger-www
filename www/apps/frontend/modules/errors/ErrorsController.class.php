@@ -7,5 +7,10 @@
         {
             $this->page()->addVar('viewTitle', 'Error 403');
         }
+
+        public function execute404(HTTPRequest $request)
+        {
+            $this->page()->addVar('viewTitle', 'Error 404');
+        }
     }
 ?>

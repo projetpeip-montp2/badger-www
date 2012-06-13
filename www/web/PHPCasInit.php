@@ -13,8 +13,8 @@
     $logon = substr($username, 0, $pos);
 
     if( !isset($_SESSION['logDone']) )
-    (
+    {
         // Emulate Polytech' Montpellier Intranet
         $_SESSION['logon'] = strtolower($logon);
-    )
+    }
 ?>

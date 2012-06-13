@@ -1,20 +1,44 @@
     TODO list
 
 - Général:
-    - Gros coup de Polish
+    - Gros coup de Polish (traduction, erreur, home, guide, etc)
+    - Vérifier messages flash et vues frontend
 
-    - Réplication + table historique + maj des requêtes à William
+    - Faire une check list pour mardi pour tout tester
 
     - Activer l'envoi de mail depuis le serveur
     - Rapport << lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
+    - Centrer les liens dans les onglets
+
+    - Changer le mdp
+
+
+- Réplication
+    - Meilleure gestion des erreurs, commentaires et prendre en compte plusieurs mifare différents
+    - Maj des requêtes à William
 
 
 - Frontend:
     - Afficher quelque chose quand pas de packages
+    - Lors de l'upload de rapports, ne pouvoir le faire que pour ses conférences
+    - Désinscription => Suppr des rapports de l'élève
+    - Upload de rapports => mettre en anglais
+    - Mettre le footer en anglais
+    - Ajouter un lien pour le viewer
+    - Design du viewer
+
 
 - Backend:
-    - Permettre le changement de date dans la conf du site web
+    - Permettre le changement de date dans la confiuration du site web
+    - Bloquer l'upload et la suppr de rapport
+    - Les availabilities ne correspondent pas aux bonnes salles dans l'export csv
+    - Les lectures ne correspondent pas aux bon packages dans l'export csv
+    - Les questions/réponses ne correspondent pas aux bon packages dans l'export csv
 
+    - Revoir le téléchargement des rapports d'élèves (undefined offset)
+    - Affichage des informations à revoir (design)
+    - Moyenne des élèves : regarder s'il existe un QCM en bd + school year à prendre en compte
+    
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
@@ -24,3 +48,4 @@
     - Callback:
         - Suppression d'une question ==> Réponses encore affichées
         - Lors de la suppression d'un QCM/inscription, mettre à jour le status des élèves
+

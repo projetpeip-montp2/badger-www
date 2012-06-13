@@ -48,12 +48,7 @@
         ////////////////////////////////////////////////////////////
         public function redirect404()
         {
-            $this->m_page = new Page($this->app());
-            $this->m_page->setContentFile(dirname(__FILE__).'/../errors/404.html');
-            
-            $this->addHeader('HTTP/1.0 404 Not Found');
-            
-            $this->send();
+            $this->redirect('/errors/404.html');
         }
 
         ////////////////////////////////////////////////////////////
