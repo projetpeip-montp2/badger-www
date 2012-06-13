@@ -17,6 +17,7 @@
     - Configuration du site web (affichage planning, note de présence,etc)
     - Affichage des logs de réplication
 
+
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
     - Double alert réduction capacity
