@@ -8,6 +8,7 @@
     <route url="/home/logout\.html" module="home" action="logout"/>
 
     <route url="/errors/403\.html" module="errors" action="403"/>
+    <route url="/errors/404\.html" module="errors" action="404"/>
 
     <route url="/lectures/index\.html" module="lectures" action="index"/>
     <route url="/lectures/show-([0-9]+)\.html" module="lectures" action="show" vars="idPackage"/>

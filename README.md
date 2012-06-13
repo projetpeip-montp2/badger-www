@@ -20,7 +20,7 @@ Afin de pouvoir tester le serveur en local, il faut avoir:
 Pour pouvoir changer les fichiers de configurations des applications, il faut
 penser à donner les droits d'écritures sur ceux-ci au serveur web.
 
-Scripts
+Script
 -------
 
 - scripts/build_autoload.php
@@ -33,19 +33,8 @@ La marche à suivre pour le lancer et la suivante:
 
 - scripts/envoyerTout.sh
 
-Ce script permet quant à lui de mettre le contenu du dossier www/ sur
-le serveur Polytech. Pour cela il faut avoir lftp d'installé. Les commandes
-pour l'utiliser sont:
-
-    cd scripts/  
-    chmod u+x envoyerTout.sh  
-    ./envoyerTout.sh  
-
-Le script demandera alors le mot de passe du compte vbmifare pour éffectuer 
-le transfert.  
-
 Attention: Il faut obligatoirement être dans le dossier scripts/ pour que
-les scripts puissent fonctionner correctement!
+le script puissent fonctionner correctement!
 
 Contacts
 --------
