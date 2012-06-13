@@ -16,7 +16,8 @@
 
                 $student = new Student;
                 $student->setUsername($data['Id_user']);
-                $student->setMark($data['Mark']);
+                $student->setMCQMark($data['MCQMark']);
+                $student->setPresentMark($data['PresentMark']);
                 $student->setMCQStatus($data['MCQStatus']);
 
                 $student->setName($dataNext['VraiPrenom']);
@@ -100,16 +101,18 @@
 
             if(!$data)
             {
-                $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, MCQStatus, Mark) VALUES(?, ?, 0)');
+                $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, MCQStatus, MCQMark, PresentMark) VALUES(?, ?, 0, 0)');
                 $req->execute(array($student->getUsername(), $status));
                 $student->setMCQStatus($status);
-                $student->setMark(0);
+                $student->setMCQMark(0);
+                $student->setPresentMark(0);
             }
             
             else
             {
                 $student->setMCQStatus($data['MCQStatus']);
-                $student->setMark($data['Mark']);
+                $student->setMCQMark($data['MCQMark']);
+                $student->setPresentMark($data['PresentMark']);
             }
         }
 
@@ -121,10 +124,10 @@
             $req->execute(array($status, $logon));
         }
 
-        public function updateMark($logon, $mark)
+        public function updateMarks($logon, $mcqMark, $presentMark)
         {
-            $req = $this->m_dao->prepare('UPDATE Users SET Mark = ? WHERE Id_user = ?');
-            $req->execute(array($mark, $logon));
+            $req = $this->m_dao->prepare('UPDATE Users SET MCQMark = ?, PresentMark = ? WHERE Id_user = ?');
+            $req->execute(array($mcqMark, $presentMark, $logon));
         }
 
         public function retrieveMifare($logon)

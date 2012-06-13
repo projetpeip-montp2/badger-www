@@ -11,7 +11,7 @@
             // Hack to don't display the layout :)
 			$this->page()->setIsAjaxPage(TRUE);
 
-            $csv = '// "Department","SchoolYear","Username","Mark","Comment" ' . PHP_EOL;
+            $csv = '"Département","Année d\'étude","Username","Note de présence","Note QCM","Commentaire"' . PHP_EOL;
 
             $managerUser = $this->m_managers->getManagerOf('user');
             $students = $managerUser->get();
@@ -28,7 +28,8 @@
                                   $shoolYear . '","' . 
                                   $student->getStudentNumber() . '","' . 
                                   $student->getUsername() . '","' . 
-                                  $student->getMark() . '"';
+                                  $student->getPresentMark() . '","' . 
+                                  $student->getMCQMark() . '"';
 
                     $csv .= (($status == 'Taken') ? ',""' : ',"Absent"');
 

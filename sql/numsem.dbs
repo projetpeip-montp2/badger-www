@@ -259,13 +259,15 @@
 			<column name="StatusCode" type="ENUM" jt="12" >
 				<enumeration>&#039;a&#039;,&#039;b&#039;,&#039;c&#039;</enumeration>
 			</column>
+			<column name="Comment" type="TEXT" jt="-1" />
 		</table>
 		<table name="Users" >
 			<column name="Id_user" type="VARCHAR" length="60" jt="12" />
 			<column name="MCQStatus" type="ENUM" length="1" jt="12" >
 				<enumeration>&#039;Visitor&#039;,&#039;CanTakeMCQ&#039;,&#039;Generated&#039;,&#039;Taken&#039;</enumeration>
 			</column>
-			<column name="Mark" type="FLOAT" jt="7" />
+			<column name="MCQMark" type="FLOAT" jt="7" />
+			<column name="PresentMark" type="FLOAT" jt="7" />
 			<index name="pk_users_0" unique="UNIQUE" >
 				<column name="Id_user" />
 			</index>
@@ -286,6 +288,10 @@
 				<column name="Username" />
 			</index>
 		</table>
+		<table name="SpecificLogins" >
+			<column name="UsernameUM2" type="VARCHAR" length="60" jt="12" />
+			<column name="Username" type="VARCHAR" length="60" jt="12" />
+		</table>
 	</schema>
 	<layout name="vbmifare" >
 		<entity schema="numsem" name="Classrooms" x="70" y="56" />
@@ -295,7 +301,6 @@
 		<entity schema="numsem" name="Packages" x="322" y="294" />
 		<entity schema="numsem" name="DocumentsOfPackages" x="406" y="84" />
 		<entity schema="numsem" name="Registrations" x="252" y="518" />
-		<entity schema="numsem" name="Users" x="504" y="644" />
 		<entity schema="numsem" name="DocumentsOfUsers" x="70" y="630" />
 		<entity schema="numsem" name="Answers" x="798" y="308" />
 		<entity schema="numsem" name="QuestionsOfUsers" x="476" y="476" />
@@ -305,9 +310,11 @@
 		<entity schema="numsem" name="MCQs" x="1022" y="42" />
 		<entity schema="numsem" name="ImagesOfArchives" x="826" y="168" />
 		<entity schema="numsem" name="HistoryMifare" x="1022" y="658" />
-		<entity schema="numsem" name="ReplicationLogs" x="1008" y="210" />
-		<entity schema="numsem" name="UsersPolytech" x="952" y="378" />
 		<entity schema="numsem" name="ArchivesOfPackages" x="588" y="196" />
+		<entity schema="numsem" name="Users" x="504" y="644" />
+		<entity schema="numsem" name="UsersPolytech" x="966" y="448" />
+		<entity schema="numsem" name="SpecificLogins" x="966" y="336" />
+		<entity schema="numsem" name="ReplicationLogs" x="1008" y="196" />
 		<group name="numsem" color="c4e0f9" >
 			<entity schema="numsem" name="Answers" />
 			<entity schema="numsem" name="AnswersOfUsers" />

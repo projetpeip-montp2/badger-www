@@ -50,20 +50,26 @@ CREATE INDEX idx_questions ON numsem.`Questions` ( `Id_package` );
 CREATE TABLE numsem.`ReplicationLogs` ( 
 	`Date`               DATE,
 	`Time`               TIME,
-	`StatusCode`         ENUM( 'Success','DepartmentRemoveError' ) 
+	`StatusCode`         ENUM( 'a','b','c' ) ,
+	`Comment`            TEXT
+ );
+
+CREATE TABLE numsem.`SpecificLogins` ( 
+	`UsernameUM2`        VARCHAR( 60 ),
+	`Username`           VARCHAR( 60 )
  );
 
 CREATE TABLE numsem.`UsersPolytech` ( 
-    `Username`               VARCHAR(60) NOT NULL,
-    `Num_Etudiant`           CHAR(8),
-    `Mifare`                 CHAR(8),
-    `Actif`                  CHAR(1),
-    `VraiNom`                VARCHAR(30),
-    `VraiPrenom`             VARCHAR(20),
-    `Departement`            ENUM('ADISIM','ADM','CRIP','DGAB','DGPIM','DI','DOGPP','DTE','ENR','GASTE','INFO','IUT-NIMES','EJ','LANGUES','PEIP','MAT','MI','ERII','MEC','MECA','MGFA','MICSI','MIE','SHEJS','STE','STIA','These/IG','TOUT_DEPARTEMENT','CNFM','Autre'),
-    `anApogee`               tinyint(1),
-    CONSTRAINT pk_users PRIMARY KEY ( `Username` )
-);
+	`Username`           VARCHAR( 60 ) NOT NULL,
+	`Num_Etudiant`       CHAR( 8 ),
+	`Mifare`             CHAR( 8 ),
+	`Actif`              CHAR( 1 ),
+	`VraiNom`            CHAR( 30 ),
+	`VraiPrenom`         CHAR( 20 ),
+	`Departement`        ENUM( 'ERII' ),
+	`anApogee`           TINYINT,
+	CONSTRAINT pk_users PRIMARY KEY ( `Username` )
+ );
 
 CREATE TABLE numsem.`Answers` ( 
 	`Id_answer`          SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -142,7 +148,8 @@ CREATE INDEX idx_lectures_0 ON numsem.`Lectures` ( `Id_availability` );
 CREATE TABLE numsem.`Users` ( 
 	`Id_user`            VARCHAR( 60 ),
 	`MCQStatus`          ENUM( 'Visitor','CanTakeMCQ','Generated','Taken' ) ,
-	`Mark`               FLOAT,
+	`MCQMark`            FLOAT,
+	`PresentMark`        FLOAT,
 	CONSTRAINT pk_users_0 UNIQUE ( `Id_user` )
  );
 
@@ -234,7 +241,6 @@ INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('MCQMaxQuestions', '10'),
 ('canSubscribe', '1'),
 ('canViewPlanning', '0'),
-('presentMark', '5'),
 ('adminsList', 'victor.hiairrassary;gregoire.guisez'),
 ('availablesLanguagesList', 'fr;en'),
 ('packageRegistrationsCount', '5'),
@@ -243,4 +249,3 @@ INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('documentSizeLimitBackend', '10000000'),
 ('zipFileSizeLimitBackend', '10000000'),
 ('minRegistrationsPerPackage', '1');
-

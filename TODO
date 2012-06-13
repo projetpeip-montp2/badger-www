@@ -6,9 +6,6 @@
 
     - Réplication + table historique + maj des requêtes à William
     - Table correspondance entre adresse um2 et login
-    - Changer la table ReplicationLogs pour ajouter des le nombre d'ajouts 
-
-    - Séparation des notes QCM et présence
 
     - Activer l'envoi de mail depuis le serveur
     - Rapport << lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php

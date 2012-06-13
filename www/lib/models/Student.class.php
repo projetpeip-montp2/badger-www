@@ -11,7 +11,8 @@
         private $m_studentNumber;
 
         private $m_mcqStatus;
-        private $m_mark;
+        private $m_mcqMark;
+        private $m_presentMark;
 
         public function setUsername($username)
         {
@@ -93,14 +94,24 @@
             return $this->m_studentNumber;
         }
 
-        public function setMark($mark)
+        public function setMCQMark($mcqMark)
         {
-            $this->m_mark = $mark;
+            $this->m_mcqMark = $mcqMark;
         }
 
-        public function getMark()
+        public function getMCQMark()
         {
-            return $this->m_mark;
+            return $this->m_mcqMark;
+        }
+
+        public function setPresentMark($presentMark)
+        {
+            $this->m_presentMark = $presentMark;
+        }
+
+        public function getPresentMark()
+        {
+            return $this->m_presentMark;
         }
 
         public function setMCQStatus($mcqStatus)
