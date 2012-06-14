@@ -155,20 +155,21 @@
 
         public function executeShowAll(HTTPRequest $request)
         {
-            if(count($package) == 0)
-            {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoPackage']);
-                $this->app()->httpResponse()->redirect('/lectures/index.html');
-            }
-
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureShowAll']);
 
             // Display all packages
             $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
             $managerPackage = $this->m_managers->getManagerOf('package');
+            $packages = $managerPackage->get();
 
-            $this->page()->addVar('packages', $managerPackage->get());
+            if(count($packages) == 0)
+            {
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoPackage']);
+                $this->app()->httpResponse()->redirect('/lectures/index.html');
+            }
+
+            $this->page()->addVar('packages', $packages);
             $this->page()->addVar('lang', $lang);
         }
 
