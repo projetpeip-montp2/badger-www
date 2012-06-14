@@ -39,13 +39,24 @@
 
             $lectures = array();
             foreach($registrations as $reg)
-                $lectures[] = $lecturesManager->get($reg->getIdLecture());
+            {
+                $tmp = $lecturesManager->get(-1, $reg->getIdLecture());
+                $lectures[] = $tmp[0];
+            }
 
+            $packageIds = array();
             $packages = array();
             foreach($lectures as $lecture)
-                $lectures[] = $packagesManager->get($lecture->getIdPackage());
+            {
+                if(!in_array($lecture->getIdPackage(), $packageIds))
+                {
+                    $packageIds[] = $lecture->getIdPackage();
+                    $tmp = $packagesManager->get($lecture->getIdPackage());
+                    $packages[] = $tmp[0];
+                }
+            }
 
-            if(count($lectures) == 0)
+            if(count($packages) == 0)
             {
                 $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoPackage']);
                 $this->app()->httpResponse()->redirect('/reports/index.html');
