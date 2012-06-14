@@ -1,5 +1,3 @@
-<script src="../../web/js/jquery-1.7.1.min.js"></script>
-
 <form id="form" method="post">
     Sélection du package: <select class="target" name="packageIdRequested">
 <?php

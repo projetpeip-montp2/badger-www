@@ -6,7 +6,6 @@
 <br/>
 <br/>
 
-<script src="../../web/js/jquery-1.7.1.min.js"></script>
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
