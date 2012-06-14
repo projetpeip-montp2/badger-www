@@ -159,9 +159,9 @@
                         $mail .= '</ul>';
 
                         $mailAdress = $student->getUsername() . $this->m_managers->getManagerOf('config')->get('mailAppendix');
+                        $headers = 'From: gregoire.guisez@gmail.com\r\n';
 
-                        // TODO: Décommenter cette ligne
-                        //mail($mailAdress, 'Semaine du Numérique - Réponses au QCM', $mail);
+                        mail($mailAdress, 'Semaine du Numérique - Réponses au QCM', $mail, $headers);
                     }
                 }
 
