@@ -12,6 +12,7 @@
                                  'mailAppendix' => 'textbox',
                                  'canSubscribe' => 'binary',
                                  'canViewPlanning' => 'binary',
+                                 'canHandleReports' => 'binary',
                                  'registrationsDateLimit' => 'date',
                                  'reportSizeLimitFrontend' => 'number',
                                  'documentSizeLimitBackend' => 'number',

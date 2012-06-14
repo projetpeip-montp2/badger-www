@@ -5,6 +5,12 @@
     {
         public function executeIndex(HTTPRequest $request)
         {
+            if($this->m_managers->getManagerOf('config')->get('canHandleReports') == 0)
+            {
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_ForbiddenToHandleReports']);
+                $this->app()->httpResponse()->redirect('/home/index.html');
+            }
+            
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsIndex']);
 
             $username = $this->app()->user()->getAttribute('logon');
@@ -15,6 +21,12 @@
 
         public function executeUpload(HTTPRequest $request)
         {
+            if($this->m_managers->getManagerOf('config')->get('canHandleReports') == 0)
+            {
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_ForbiddenToHandleReports']);
+                $this->app()->httpResponse()->redirect('/home/index.html');
+            }
+
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsUpload']);
 
             $managerPackages = $this->m_managers->getManagerOf('package');
