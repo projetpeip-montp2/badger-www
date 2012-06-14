@@ -48,7 +48,7 @@
         public function setFromString($date)
         {
             if(!Date::check($date))
-                throw new InvalidArgumentException('Invalid date format in Date setFromString');
+                throw new InvalidArgumentException('Invalid date format in Date setFromString: ' . $date);
             else
                 $dateArray = explode('-', $date);
                 $this->set(intval($dateArray[0]), intval($dateArray[1]), intval($dateArray[2]));
@@ -179,7 +179,7 @@
         ////////////////////////////////////////////////////////////
         public function toStringMySQL()
         {
-            return $this->m_year.'-'.$this->m_month.'-'.$this->m_day;
+            return $this->year().'-'.$this->month(TRUE) .'-'.$this->day(TRUE);
         }
 
         ////////////////////////////////////////////////////////////

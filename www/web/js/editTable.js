@@ -101,6 +101,8 @@ function modifyCell(element)
 			$(newElem).attr('data-subfield-name', $(element).attr('data-subfield-name'));
 			if ($(element).attr('data-verify-callback'))
 				$(newElem).attr('data-verify-callback', $(element).attr('data-verify-callback'));
+			if ($(element).attr('is-config-date'))
+				$(newElem).attr('is-config-date', $(element).attr('is-config-date'));
 			if ($(element).attr('data-form-size'))
 				$(newElem).attr('size', $(element).attr('data-form-size'));
 			if ($(element).attr('data-form-type') != 'textbox')

@@ -25,6 +25,7 @@
 			$result = $statement->fetch();
 			$date = new Date;
 			$date->setFromMySQLResult($result[$fieldName]);
+
 			switch ($subField)
 			{
 				case 'Day':
@@ -131,10 +132,19 @@
 			$subField = $ajaxInput->getData('subfield-name');
 			$value = $ajaxInput->getValue();
 			
+			$isConfigDate = $ajaxInput->getData('is-config-date');
+
 			// Cas spécifique pour les tables contenant StartTime ou EndTime
 			if ($fieldName == 'StartTime' || $fieldName == 'EndTime')
 				$this->checkScheduleCoherency($fieldName, $subField, $id, $value, $tableName, $idName);
 			
+            // Cas spécifique pour les date contenues dans les variables config: fieldName vaut Value
+            if($isConfigDate == 'true')
+            {
+				$newValue = $this->updateDate($tableName, $fieldName, $id, $idName, $idSub, $subField, $value);
+                return;
+            }
+
 			switch ($fieldName)
 			{
 				case 'Date':

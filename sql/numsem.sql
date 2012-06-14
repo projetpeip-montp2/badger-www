@@ -246,7 +246,7 @@ INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('mailAppendix', '@polytech.univ-montp2.fr'),
 ('canSubscribe', '1'),
 ('canViewPlanning', '0'),
-('registrationsDateLimit', '23-08-2012'),
+('registrationsDateLimit', '2012-08-23'),
 ('reportSizeLimitFrontend', '10000000'),
 ('documentSizeLimitBackend', '10000000'),
 ('zipFileSizeLimitBackend', '10000000'),

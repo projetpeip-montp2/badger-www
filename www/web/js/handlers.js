@@ -76,6 +76,7 @@ function finishSendTextForm(element, data, tagName)
 	$(newElem).attr('data-id-sub', $(element).attr('data-id-sub'));
 	$(newElem).attr('data-subfield-name', $(element).attr('data-subfield-name'));
     $(newElem).attr('data-verify-callback', $(element).attr('data-verify-callback'));
+    $(newElem).attr('is-config-date', $(element).attr('is-config-date'));
 	if (hasError(data))
 	{
 		$(newElem).html($(element).attr('oldValue'));
@@ -98,6 +99,7 @@ function sendTextForm(element, tagName)
 	'data-id-sub': $(element).attr('data-id-sub'),
 	'data-subfield-name': $(element).attr('data-subfield-name'),
     'data-verify-callback': $(element).attr('data-verify-callback'),
+    'is-config-date': $(element).attr('is-config-date'),
 	'value': $(element).val()}).error(onError).complete(function(data, textStatus)
 	{
 		finishSendTextForm(element, data.responseText, tagName);

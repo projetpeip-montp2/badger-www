@@ -12,7 +12,7 @@
                                  'mailAppendix' => 'textbox',
                                  'canSubscribe' => 'binary',
                                  'canViewPlanning' => 'binary',
-                                 //'registrationsDateLimit' => 'date',
+                                 'registrationsDateLimit' => 'date',
                                  'reportSizeLimitFrontend' => 'number',
                                  'documentSizeLimitBackend' => 'number',
                                  'zipFileSizeLimitBackend' => 'number');

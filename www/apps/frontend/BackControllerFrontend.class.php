@@ -44,7 +44,7 @@
         public function getInfos()
         {
             $limitDate = new Date;
-            $limitDate->setFromString($this->m_managers->getManagerOf('config')->get('registrationsDateLimit'));
+            $limitDate->setFromMySQLResult($this->m_managers->getManagerOf('config')->get('registrationsDateLimit'));
 
             $currentDate = Date::current();
 

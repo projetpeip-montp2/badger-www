@@ -25,11 +25,9 @@
     - Upload de rapports => mettre en anglais
     - Mettre le footer en anglais
     - Design du viewer
-    
 
 
 - Backend:
-    - Permettre le changement de date dans la confiuration du site web
     - Bloquer l'upload et la suppr de rapport
     - Les availabilities ne correspondent pas aux bonnes salles dans l'export csv
     - Les lectures ne correspondent pas aux bon packages dans l'export csv

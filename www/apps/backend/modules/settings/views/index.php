@@ -48,7 +48,16 @@
                 break;
 
             case 'date':
-                throw new RuntimeException('Non implemented');
+                $date = new Date();
+                $date->setFromMySQLResult($value);
+
+                echo '<td>';
+                echo "<p class='editable' is-config-date='true' data-entry-name='Config' data-field-name='Value' data-subfield-name='Day' data-form-type='number' data-form-size='2' data-id='{$name}' >{$date->day(TRUE)}</p>";
+                echo "<p class='separator'>-</p>";
+                echo "<p class='editable' is-config-date='true' data-entry-name='Config' data-field-name='Value' data-subfield-name='Month' data-form-type='number' data-form-size='2' data-id='{$name}' >{$date->month(TRUE)}</p>";
+                echo "<p class='separator'>-</p>";
+                echo "<p class='editable' is-config-date='true' data-entry-name='Config' data-field-name='Value' data-subfield-name='Year' data-form-type='number' data-form-size='2' data-id='{$name}' >{$date->year(TRUE)}</p>";
+                echo '</td>';
                 break;
 
             default:
