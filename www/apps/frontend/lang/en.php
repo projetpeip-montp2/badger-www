@@ -61,6 +61,7 @@
     $TEXT['Flash_NoPlace'] = "No place.";
     $TEXT['Flash_NoLecture'] = "No lecture.";
     $TEXT['Flash_DownloadDocumentsError'] = "Error on documents.";
+    $TEXT['Flash_ForbiddenToHandleReports'] = "You can't handle your reports";
 
     $TEXT['Info_LimitDate'] = "Limit date of registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";
