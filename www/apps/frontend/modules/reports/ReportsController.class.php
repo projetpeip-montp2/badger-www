@@ -21,19 +21,40 @@
 
         public function executeUpload(HTTPRequest $request)
         {
+            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsUpload']);
+
             if($this->m_managers->getManagerOf('config')->get('canHandleReports') == 0)
             {
                 $this->app()->user()->setFlashError($this->m_TEXT['Flash_ForbiddenToHandleReports']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
-            $this->page()->addVar('viewTitle', $this->m_TEXT['Title_ReportsUpload']);
+            $student = $this->app()->user()->getAttribute('vbmifareStudent');
+            $username = $student->getUsername();
 
-            $managerPackages = $this->m_managers->getManagerOf('package');
-            $packages = $managerPackages->get();
+            $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
-            $managerLectures = $this->m_managers->getManagerOf('lecture');
-            $lectures = $managerLectures->get();
+            $lecturesManager = $this->m_managers->getManagerOf('lecture');
+            $packagesManager = $this->m_managers->getManagerOf('package');
+
+            $lectures = array();
+            foreach($registrations as $reg)
+            {
+                $tmp = $lecturesManager->get(-1, $reg->getIdLecture());
+                $lectures[] = $tmp[0];
+            }
+
+            $packageIds = array();
+            $packages = array();
+            foreach($lectures as $lecture)
+            {
+                if(!in_array($lecture->getIdPackage(), $packageIds))
+                {
+                    $packageIds[] = $lecture->getIdPackage();
+                    $tmp = $packagesManager->get($lecture->getIdPackage());
+                    $packages[] = $tmp[0];
+                }
+            }
 
             if(count($packages) == 0)
             {
@@ -47,14 +68,11 @@
                 $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
-            $sizeLimit = $this->m_managers->getManagerOf('config')->get('reportSizeLimitFrontend');
-
-            $student = $this->app()->user()->getAttribute('vbmifareStudent');
-            $username = $student->getUsername();
-
             // Upload report for a package
             if($request->fileExists('reportFile'))
             {
+                $sizeLimit = $this->m_managers->getManagerOf('config')->get('reportSizeLimitFrontend');
+
                 $idLecture = $request->postData('idLecture');
 
                 $managerDoc = $this->m_managers->getManagerOf('documentofuser');
@@ -118,9 +136,7 @@
             }
 
             // Else display the form
-            $lang = $this->app()->user()->getAttribute('vbmifareLang');
-
-            $this->page()->addVar('lang', $lang);
+            $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
             $this->page()->addVar('packages', $packages);
             $this->page()->addVar('lectures', $lectures);
         }
