@@ -10,6 +10,7 @@
                                  'packageRegistrationsCount' => 'number',
                                  'minRegistrationsPerPackage' => 'number',
                                  'mailAppendix' => 'textbox',
+                                 'mailSender' => 'textbox',
                                  'canSubscribe' => 'binary',
                                  'canViewPlanning' => 'binary',
                                  'canHandleReports' => 'binary',

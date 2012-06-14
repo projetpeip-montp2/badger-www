@@ -27,8 +27,10 @@
                     <img src="/web/images/tools/english_flag.jpg" alt="Anglais"/> <?php echo $TEXT['Page_English']; ?>
                 </a>
 
+                <?php echo '   | '; ?>
+
                 <!-- Logout-->
-                <a href="/home/logout.html"><?php echo '   | ', $TEXT['Page_Logout']; ?></a>
+                <a href="/home/logout.html"><?php echo $TEXT['Page_Logout']; ?></a>
             </div>
         </div>
 

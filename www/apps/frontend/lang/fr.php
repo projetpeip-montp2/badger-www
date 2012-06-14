@@ -18,10 +18,10 @@
     $TEXT['Menu_Reports'] = "Rapports";
 
     $TEXT['Title_HomeIndex'] = "Accueil";
-    $TEXT['Title_HomeGuide'] = "Guide d'utilisateur";
+    $TEXT['Title_HomeGuide'] = "Guide d'utilisation";
     $TEXT['Title_HomeLegalNotice'] = "Mention légale";
 
-    $TEXT['Title_LectureIndex'] = "Packages";
+    $TEXT['Title_LectureIndex'] = "Conférences";
     $TEXT['Title_LectureShow'] = "Package";
     $TEXT['Title_LectureShowAll'] = "Liste des packages";
     $TEXT['Title_LectureShowDocuments'] = "Documents";
@@ -100,8 +100,8 @@
     $TEXT['Reports_Filename'] = "Nom du fichier";
     $TEXT['Reports_Name'] = "Nom du rapport";
     $TEXT['Reports_Action'] = "Action";
-    $TEXT['Reports_SelectLecture'] = "Select une conférence: ";
-    $TEXT['Reports_Path'] = "Chemin du rapport";
+    $TEXT['Reports_SelectLecture'] = "Selectionner une conférence: ";
+    $TEXT['Reports_Path'] = "Chemin du rapport: ";
 
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";
@@ -112,4 +112,5 @@
     $TEXT['Viewer_NoPackage'] = "Il n'y a pas de package disponible.";
     $TEXT['Viewer_NoArchive'] = "Il n'y a pas d'image disponible.";
     $TEXT['Viewer_GoTo'] = "Aller à la page";
+    $TEXT['Viewer_SelectPackage'] = "Selectioner un package: ";
 ?>
