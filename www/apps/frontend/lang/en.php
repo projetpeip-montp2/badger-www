@@ -58,6 +58,7 @@
     $TEXT['Flash_AlreadyAReportForALecture'] = "There is already a report for this lecture.";
     $TEXT['Flash_ImageUnknown'] = "The image you are looking for doesn't exist.";
     $TEXT['Flash_NoReport'] = "You have not uploaded any report.";
+    $TEXT['Flash_NoRegistration'] = "You have not subscribed to any package.";
     $TEXT['Flash_NoPlace'] = "There are no place left for this package.";
     $TEXT['Flash_NoLecture'] = "There is no available lecture.";
     $TEXT['Flash_DownloadDocumentsError'] = "Error during documents download.";

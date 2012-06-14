@@ -58,6 +58,7 @@
     $TEXT['Flash_AlreadyAReportForALecture'] = "Vous avez déjà un rapport pour cette conférence.";
     $TEXT['Flash_ImageUnknown'] = "Cette image n'existe pas.";
     $TEXT['Flash_NoReport'] = "Vous n'avez uploadé aucune rapport.";
+    $TEXT['Flash_NoRegistration'] = "Vous n'êtes inscrit à aucun package.";
     $TEXT['Flash_NoPlace'] = "Plus de place disponible.";
     $TEXT['Flash_NoLecture'] = "Pas de lecture.";
     $TEXT['Flash_DownloadDocumentsError'] = "Erreur sur un document.";

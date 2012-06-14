@@ -58,7 +58,7 @@
 
             if(count($packages) == 0)
             {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoPackage']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoRegistration']);
                 $this->app()->httpResponse()->redirect('/reports/index.html');
             }
 
