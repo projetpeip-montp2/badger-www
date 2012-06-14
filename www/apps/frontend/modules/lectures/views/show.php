@@ -1,5 +1,3 @@
-<script src="../../web/js/jquery-1.7.1.min.js"></script>
-
 <?php
     $documentsLink = '/lectures/showDocuments-' . $package->getId() . '.html';
     $downloadDocumentsLink = '/lectures/downloadDocuments-' . $package->getId() . '.html';

@@ -22,7 +22,6 @@ conférence. Pour cela:
 </form>
 
 
-<script type="text/javascript" src="/web/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="/web/js/autocompleteUsername.js"></script>
 
 

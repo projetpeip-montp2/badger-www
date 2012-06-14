@@ -1,5 +1,3 @@
-<script src="../../web/js/jquery-1.7.1.min.js"></script>
-
 <script type="text/javascript">
 	var jsonPackages = <?php echo json_encode($packages); ?>;
 	var jsonClassrooms = <?php echo json_encode($classrooms); ?>;

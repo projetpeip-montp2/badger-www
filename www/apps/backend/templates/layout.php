@@ -14,6 +14,7 @@
     </head>
     
     <body>
+        <script src="../../web/js/jquery-1.7.1.min.js"></script>
         <div id="top">
 	        <div id="top-content" align="right">
                 <!-- Logout-->

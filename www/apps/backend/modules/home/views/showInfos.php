@@ -1,4 +1,3 @@
-<script src="../../web/js/jquery-1.7.1.min.js"></script>
 <script>
 $(document).ready(function() {
    $('.informations').hide();

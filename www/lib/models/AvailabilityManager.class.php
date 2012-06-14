@@ -9,11 +9,15 @@
                                   StartTime,
                                   EndTime FROM Availabilities';
 
+            $arguments = array();
             if($idClassroom != -1)
+            {
                 $requestSQL .= ' WHERE Id_classroom = ?';
+                $arguments[] = $idClassroom;
+            }
 
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute(array($idClassroom)); 
+            $req->execute($arguments); 
 			
             $availabilities = array();
 
