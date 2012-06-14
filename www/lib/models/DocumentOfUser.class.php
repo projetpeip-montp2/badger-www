@@ -4,6 +4,7 @@
         private $m_idDocument;
         private $m_idLecture;
         private $m_idUser;
+        private $m_idRegistration;
         private $m_filename;
 
         public function setId($idDocument)
@@ -34,6 +35,16 @@
         public function getIdUser()
         {
             return $this->m_idUser;
+        }
+
+        public function setIdRegistration($idRegistration)
+        {
+            $this->m_idRegistration = $idRegistration;
+        }
+
+        public function getIdRegistration()
+        {
+            return $this->m_idRegistration;
         }
 
         public function setFilename($filename)

@@ -70,12 +70,7 @@
                 }
 
                 foreach($lectures as $lecture)
-                {
                     $managerRegistration->subscribe($request->getData('idPackage'), $lecture->getId(), $username, $wantSubscribe ? 1 : 0);
-
-                    if(!$wantSubscribe && $haveReportsForThisPackage)
-                        $managerDocOfUser->delete($lecture->getId(), $username);
-                }
 
                 $package->setRegistrationsCount($package->getRegistrationsCount() + ($wantSubscribe ? 1 : -1));
 

@@ -1,10 +1,21 @@
 <?php
     class Registration extends Record
     {
+        private $m_idRegistration;
         private $m_idPackage;
         private $m_idLecture;
         private $m_idUser;
         private $m_status;
+
+        public function setId($idRegistration)
+        {
+            $this->m_idRegistration = $idRegistration;
+        }
+
+        public function getId()
+        {
+            return $this->m_idRegistration;
+        }
 
         public function setIdPackage($idPackage)
         {

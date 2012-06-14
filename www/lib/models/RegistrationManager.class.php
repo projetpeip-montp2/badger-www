@@ -22,6 +22,7 @@
             while($data = $req->fetch())
             {
                 $reg = new Registration;
+                $reg->setId($data['Id_registration']);
                 $reg->setIdPackage($data['Id_package']);
                 $reg->setIdLecture($data['Id_lecture']);
                 $reg->setIdUser($data['Id_user']);

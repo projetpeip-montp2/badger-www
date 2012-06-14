@@ -115,9 +115,17 @@
                     $filename = $packageName . '_' . $lectureName . '_' .$student->getDepartment() . 
                                 $student->getSchoolYear() . '_' . $student->getUsername() .'.pdf';
 
+                    $idRegistration;
+                    foreach($registrations as $reg)
+                    {
+                        if($reg->getIdLecture() == $idLecture)
+                            $idRegistration = $reg->getId();
+                    }
+
                     $doc = new DocumentOfUser;
                     $doc->setIdLecture($idLecture);
                     $doc->setIdUser($username);
+                    $doc->setIdRegistration($idRegistration);
                     $doc->setFilename($filename);
 
                     $managerDoc->save($doc);

@@ -6,6 +6,7 @@
             $requestSQL = 'SELECT Id_document,
                                   Id_lecture,
                                   Id_user,
+                                  Id_registration,
                                   Filename FROM DocumentsOfUsers';
 
             $paramsSQL = array();
@@ -32,8 +33,9 @@
             {
                 $doc = new DocumentOfUser;
                 $doc->setId($data['Id_document']);
-                $doc->setIdLecture($idLecture);
-                $doc->setIdUser($idUser);
+                $doc->setIdLecture($data['Id_lecture']);
+                $doc->setIdUser($data['Id_user']);
+                $doc->setIdRegistration($data['Id_registration']);
                 $doc->setFilename($data['Filename']);
 
                 $docs[] = $doc;
@@ -46,17 +48,13 @@
         {
             $req = $this->m_dao->prepare('INSERT INTO DocumentsOfUsers(Id_lecture,
                                                                        Id_user, 
-                                                                       Filename) VALUES(?, ?, ?)');
+                                                                       Id_registration, 
+                                                                       Filename) VALUES(?, ?, ?, ?)');
 
             $req->execute(array($doc->getIdLecture(),
                                 $doc->getIdUser(),
+                                $doc->getIdRegistration(),
                                 $doc->getFilename()));
-        }
-
-        public function delete($idLecture, $idUser)
-        {
-            $req = $this->m_dao->prepare('DELETE FROM DocumentsOfUsers WHERE Id_lecture = ? AND Id_user = ?');
-            $req->execute(array($idLecture, $idUser));
         }
     }
 ?>

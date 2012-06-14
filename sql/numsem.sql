@@ -167,18 +167,6 @@ CREATE INDEX idx_answersofusers_0 ON numsem.`AnswersOfUsers` ( `Id_answer` );
 
 CREATE INDEX idx_answersofusers_1 ON numsem.`AnswersOfUsers` ( `Id_question` );
 
-CREATE TABLE numsem.`DocumentsOfUsers` ( 
-	`Id_document`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	`Id_lecture`         SMALLINT UNSIGNED,
-	`Id_user`            VARCHAR( 60 ),
-	`Filename`           TEXT,
-	CONSTRAINT pk_documentsofusers PRIMARY KEY ( `Id_document` )
- );
-
-CREATE INDEX idx_documentsofusers ON numsem.`DocumentsOfUsers` ( `Id_lecture` );
-
-CREATE INDEX idx_documentsofusers_0 ON numsem.`DocumentsOfUsers` ( `Id_user` );
-
 CREATE TABLE numsem.`QuestionsOfUsers` ( 
 	`Id_user`            VARCHAR( 60 ),
 	`Id_question`        SMALLINT UNSIGNED
@@ -189,10 +177,12 @@ CREATE INDEX idx_questionsofusers ON numsem.`QuestionsOfUsers` ( `Id_user` );
 CREATE INDEX idx_questionsofusers_0 ON numsem.`QuestionsOfUsers` ( `Id_question` );
 
 CREATE TABLE numsem.`Registrations` ( 
+	`Id_registration`    SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Id_lecture`         SMALLINT UNSIGNED,
 	`Id_package`         SMALLINT UNSIGNED,
 	`Id_user`            VARCHAR( 60 ),
-	`Status`             ENUM( 'Coming','Absent','Present' ) 
+	`Status`             ENUM( 'Coming','Absent','Present' ) ,
+	CONSTRAINT pk_registrations PRIMARY KEY ( `Id_registration` )
  );
 
 CREATE INDEX idx_registrations ON numsem.`Registrations` ( `Id_lecture` );
@@ -200,6 +190,21 @@ CREATE INDEX idx_registrations ON numsem.`Registrations` ( `Id_lecture` );
 CREATE INDEX idx_registrations_0 ON numsem.`Registrations` ( `Id_package` );
 
 CREATE INDEX idx_registrations_1 ON numsem.`Registrations` ( `Id_user` );
+
+CREATE TABLE numsem.`DocumentsOfUsers` ( 
+	`Id_document`        SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`Id_lecture`         SMALLINT UNSIGNED,
+	`Id_user`            VARCHAR( 60 ),
+	`Id_registration`    SMALLINT UNSIGNED,
+	`Filename`           TEXT,
+	CONSTRAINT pk_documentsofusers PRIMARY KEY ( `Id_document` )
+ );
+
+CREATE INDEX idx_documentsofusers ON numsem.`DocumentsOfUsers` ( `Id_lecture` );
+
+CREATE INDEX idx_documentsofusers_0 ON numsem.`DocumentsOfUsers` ( `Id_user` );
+
+CREATE INDEX idx_documentsofusers_1 ON numsem.`DocumentsOfUsers` ( `Id_registration` );
 
 ALTER TABLE numsem.`Answers` ADD CONSTRAINT fk_answers_questions FOREIGN KEY ( `Id_question` ) REFERENCES numsem.`Questions`( `Id_question` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
@@ -218,6 +223,8 @@ ALTER TABLE numsem.`DocumentsOfPackages` ADD CONSTRAINT fk_documentsofpackages F
 ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_users FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`Users`( `Id_user` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers_lectures FOREIGN KEY ( `Id_lecture` ) REFERENCES numsem.`Lectures`( `Id_lecture` ) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+ALTER TABLE numsem.`DocumentsOfUsers` ADD CONSTRAINT fk_documentsofusers FOREIGN KEY ( `Id_registration` ) REFERENCES numsem.`Registrations`( `Id_registration` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 ALTER TABLE numsem.`HistoryMifare` ADD CONSTRAINT fk_historymifare_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
