@@ -78,14 +78,14 @@ h1
 #header-info
 {
 	background:#1F3B62;
-	width:300px;
-	height:65px;
-	padding:15px 0 0 15px;
+    padding: 10px;
 	font-size:22px;
 	font-weight:bold;
 	font-family:"Tiraille";
     text-align:center;
 	color:#FFF;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ------------------------ Header ------------------------  */
@@ -146,10 +146,13 @@ li
 
 #registrations-infos
 {
+	float:left;
+    text-align:left;
 	background:#1F3B62;
-    width:260px;
-    margin: 30px 0 30px 10px;
-	padding:15px 15px 15px 15px;
+    margin-left: 10px;
+    margin-right: auto;
+    margin-bottom: 15px;
+	padding:15px;
 	font-weight:bold;
 	color:#FFF;
 }
@@ -214,6 +217,7 @@ li
 	width:900px;
 	background:url(/web/images/design/module-text/bg-module-text.png) no-repeat top center;
 	padding: 5px 0 0 0;
+    clear: both;
 }
 
 .module-text-content
