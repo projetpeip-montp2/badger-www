@@ -12,12 +12,10 @@
 
 
 - Frontend:
-    - Désinscription => Suppr des rapports de l'élève
     - Stocker la langue de l'utilisateur
 
 
 - Backend:
-    - Si suppr juste de la table registrations, les docOfUsers eux ne le sont pas
     
 
 - William:
