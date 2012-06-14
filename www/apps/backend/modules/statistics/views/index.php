@@ -6,6 +6,12 @@
 <p>
     Moyenne par département:
     <br/>
+    <?php
+        if(empty($departmentsAverage))
+            echo 'Aucune promotion n\'a passé le QCM.';
+        else
+        {
+    ?>
     <table border="1">
         <thead>
             <tr>
@@ -15,8 +21,9 @@
         </thead>
         <tbody>
     <?php
-        foreach($departmentsAverage as $name => $department)
-            echo '<tr><td>'. $name . '</td><td>' . $department . '</td></tr>';
+            foreach($departmentsAverage as $name => $department)
+                echo '<tr><td>'. $name . '</td><td>' . $department . '</td></tr>';
+        }
     ?>
         </tbody>
     </table>

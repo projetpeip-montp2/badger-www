@@ -20,15 +20,22 @@
 
                 $userPoly = $studentsManager->retrieveStudentFromPolytech($student->getUsername());
 
+                $departmentAndSchoolyear = $userPoly->getDepartment() . $userPoly->getSchoolyear();
+                $mcqExists = count($this->m_managers->getManagerOf('mcq')->get($userPoly->getDepartment(), $userPoly->getSchoolyear())) != 0 ? true : false;
+
                 // Create new element for the department
-                if(!array_key_exists($userPoly->getDepartment(), $departmentsAverage))
+                // Check that the department is in the array && has a MCQ in the database
+                if(!array_key_exists($departmentAndSchoolyear, $departmentsAverage) && $mcqExists)
                 {
-                    $departmentsAverage[$userPoly->getDepartment()] = 0;
-                    $departmentsCount[$userPoly->getDepartment()] = 0;
+                    $departmentsAverage[$departmentAndSchoolyear] = 0;
+                    $departmentsCount[$departmentAndSchoolyear] = 0;
                 }
 
-                $departmentsAverage[$userPoly->getDepartment()] += $student->getMCQMark();
-                $departmentsCount[$userPoly->getDepartment()]++;
+                if($mcqExists)
+                {
+                    $departmentsAverage[$departmentAndSchoolyear] += $student->getMCQMark();
+                    $departmentsCount[$departmentAndSchoolyear]++;
+                }
             }
 
             foreach($departmentsAverage as $name => &$department)
