@@ -18,7 +18,7 @@
     ?>
     </select>
 
-    Chemin du rapport: <input type="file" name="reportFile"/>
+    <?php echo $TEXT['Reports_Path']?><input type="file" name="reportFile"/>
     <input type="submit" name="<?php echo $TEXT['Form_Send']?>" value="<?php echo $TEXT['Form_Send']?>"/>
 </form>
 

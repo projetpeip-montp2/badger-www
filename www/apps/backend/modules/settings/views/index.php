@@ -10,6 +10,7 @@
 <script src="../../web/js/editTable.js"></script>
 <script src="../../web/js/selectable.js"></script>
 
+Edition des variables de configuration:
 <br/>
 <br/>
 

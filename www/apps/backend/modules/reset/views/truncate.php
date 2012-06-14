@@ -20,7 +20,8 @@
              ->label($checkboxes[$i]);
     }
 
-    $form->add('submit', 'Vider');
+    $form->add('submit', 'Vider')
+         ->onClick('return window.confirm(\'Vider les tables ?\');');
 
     $form->endFieldset();
 

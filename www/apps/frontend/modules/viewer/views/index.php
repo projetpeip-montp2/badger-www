@@ -1,5 +1,5 @@
 <form id="form" method="post">
-    Sélection du package: <select class="target" name="packageIdRequested">
+    <?php echo $TEXT['Viewer_SelectPackage']; ?><select class="target" name="packageIdRequested">
 <?php
     foreach($packages as $package)
     {

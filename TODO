@@ -1,9 +1,6 @@
     TODO list
 
 - Général:
-    - Gros coup de Polish (traduction, erreur, home, guide, etc)
-    - Vérifier messages flash et vues frontend
-
     - Faire une check list pour mardi pour tout tester
 
     - Changer le mdp
@@ -15,6 +12,8 @@
 
 
 - Frontend:
+    - Désinscription => Suppr des rapports de l'élève
+    - Stocker la langue de l'utilisateur
 
 
 - Backend:

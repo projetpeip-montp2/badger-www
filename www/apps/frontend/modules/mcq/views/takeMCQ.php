@@ -30,10 +30,7 @@
          ->value('on');
 
     $form->add('submit', $TEXT['MCQ_SubmitAnswers'])
-         ->onClick('return confirmation(\'' . $TEXT['MCQ_Confirmation'] . '\');');
+         ->onClick('return window.confirm(\'' . $TEXT['MCQ_Confirmation'] . '\');');
 
     echo $form->toString();
 ?>
-
-<script type="text/javascript" src="/web/js/confirmation.js"></script>
-

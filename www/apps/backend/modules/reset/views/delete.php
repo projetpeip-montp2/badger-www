@@ -18,7 +18,8 @@
              ->label($checkbox);
     }
 
-    $form->add('submit', 'Vider');
+    $form->add('submit', 'Vider')
+         ->onClick('return window.confirm(\'Supprimer les fichiers physiques ?\');');
 
     $form->endFieldset();
 
