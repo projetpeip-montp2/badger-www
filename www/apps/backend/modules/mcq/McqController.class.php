@@ -159,7 +159,12 @@
                         $mail .= '</ul>';
 
                         $mailAdress = $student->getUsername() . $this->m_managers->getManagerOf('config')->get('mailAppendix');
-                        $headers = 'From: gregoire.guisez@gmail.com\r\n';
+
+                        // Headers to send the mail correctly
+                        $headers = 'From: ' . $this->m_managers->getManagerOf('config')->get('mailSender') . "\r\n";
+                        $headers .= 'Mime-Version: 1.0'."\r\n";
+                        $headers .= 'Content-Type: text/html; charset=utf-8' . "\r\n";
+                        $headers .= "\r\n";
 
                         mail($mailAdress, 'Semaine du Numérique - Réponses au QCM', $mail, $headers);
                     }
