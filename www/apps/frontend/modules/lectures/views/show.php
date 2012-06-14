@@ -77,6 +77,8 @@ $(document).ready(function() {
     }
 ?>
 
+<script type="text/javascript" src="/web/js/confirmation.js"></script>
+
 <?php
     // Display the button only if registration is allowed
     if($registrationsAllowed)
@@ -88,7 +90,10 @@ $(document).ready(function() {
         $form->add('hidden', 'isSubmitted')
              ->value('on');
 
-        $form->add('submit', $buttonName);
+        $submtiComponent = $form->add('submit', $buttonName);
+
+        if(!$wantSubscribe && $haveReportsForThisPackage)
+            $submtiComponent->onClick('return confirmation(\'' . $TEXT['Lecture_ReportsDeletion'] . '\');');
 
         echo $form->toString();
     }

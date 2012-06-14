@@ -52,5 +52,11 @@
                                 $doc->getIdUser(),
                                 $doc->getFilename()));
         }
+
+        public function delete($idLecture, $idUser)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM DocumentsOfUsers WHERE Id_lecture = ? AND Id_user = ?');
+            $req->execute(array($idLecture, $idUser));
+        }
     }
 ?>
