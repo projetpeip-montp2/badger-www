@@ -244,6 +244,7 @@ INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
 ('packageRegistrationsCount', '5'),
 ('minRegistrationsPerPackage', '3'),
 ('mailAppendix', '@polytech.univ-montp2.fr'),
+('mailSender', 'no-reply@polytech.univ-montp2.fr'),
 ('canSubscribe', '1'),
 ('canViewPlanning', '0'),
 ('canHandleReports', '0'),
