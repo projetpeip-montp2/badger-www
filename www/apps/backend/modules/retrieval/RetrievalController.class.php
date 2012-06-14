@@ -103,8 +103,6 @@
             $answersManager = $this->m_managers->getManagerOf('answer');
 
             $packageCSV = '';
-            $lectureCSV = '';
-            $questionCSV = '';
 
             // Generate packages.csv
             foreach($packages as $package)
@@ -117,6 +115,7 @@
                 $packageCSV .= PHP_EOL;
 
                 // Generate lectures.csv
+                $lectureCSV = '';
                 $lectures = $lecturesManager->get($package->getId());
                 foreach($lectures as $lecture)
                 {
@@ -132,6 +131,7 @@
                 }
 
                 // Generate questions-answers.csv
+                $questionCSV = '';
                 $questions = $questionsManager->get($package->getId());
                 foreach($questions as $question)
                 {
@@ -154,7 +154,10 @@
                     $questionCSV .= PHP_EOL;
                 }
 
-                $zip->addfile($lectureCSV, 'packages/' . $package->getName('fr') . '/lectures.csv');
+                // Check if there is at least one element to save
+                if($lectureCSV != '')
+                    $zip->addfile($lectureCSV, 'packages/' . $package->getName('fr') . '/lectures.csv');
+                if($questionCSV != '')
                 $zip->addfile($questionCSV, 'packages/' . $package->getName('fr') . '/questions-answers.csv');
             }
 
@@ -163,7 +166,6 @@
             $availabilitesManager = $this->m_managers->getManagerOf('availability');
 
             $classroomCSV = '';
-            $availabilityCSV = '';
 
             // Generate classrooms.csv
             foreach($classrooms as $classroom)
@@ -173,6 +175,7 @@
                 $classroomCSV .= PHP_EOL;
 
                 // Generate availabilities.csv
+                $availabilityCSV = '';
                 $availabilities = $availabilitesManager->get($classroom->getId());
                 foreach($availabilities as $availability)
                 {
@@ -182,7 +185,9 @@
                     $availabilityCSV .= PHP_EOL;
                 }
 
-                $zip->addfile($availabilityCSV, 'classrooms/' . $classroom->getName() . '/availabilities.csv');
+                // Check if there is at least one element to save
+                if($availabilityCSV != '')
+                    $zip->addfile($availabilityCSV, 'classrooms/' . $classroom->getName() . '/availabilities.csv');
             }
 
             $zip->addfile($packageCSV, 'packages.csv');
