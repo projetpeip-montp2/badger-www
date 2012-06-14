@@ -25,9 +25,7 @@
 
 
 - Backend:
-    - Revoir le téléchargement des rapports d'élèves (undefined offset)
     - Affichage des informations à revoir (design)
-    - Moyenne des élèves : regarder s'il existe un QCM en bd + school year à prendre en compte
     
 
 - William:

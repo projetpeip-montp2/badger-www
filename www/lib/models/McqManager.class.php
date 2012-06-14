@@ -1,7 +1,7 @@
 <?php
     class McqManager extends Manager
     {
-        public function get()
+        public function get($department = null, $schoolYear = null)
         {
             $requestSQL = 'SELECT Id_mcq,
                                   Department,
@@ -10,8 +10,23 @@
                                   StartTime,
                                   EndTime FROM MCQs';
 
+            $paramsSQL = array();
+
+            if($department)
+            {
+                $requestSQL .= ' WHERE Department = ?';
+                $paramsSQL[] = $department;
+            }
+
+            if($schoolYear)
+            {
+                $connect = ($department) ? 'AND' : 'WHERE';
+                $requestSQL .= ' ' . $connect .' schoolYear = ?';
+                $paramsSQL[] = $schoolYear;
+            }
+
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute(); 
+            $req->execute($paramsSQL); 
 
             $mcqs = array();
 
