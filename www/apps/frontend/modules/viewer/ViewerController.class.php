@@ -18,7 +18,19 @@
 
             $idPackage = $request->postExists('packageIdRequested') ? $request->postData('packageIdRequested') : $packages[0]->getId();
 
-            // TODO: Check idPackageRequested validity
+            $found = false;
+            foreach($packages as $pack)
+            {
+                if($pack->getId() == $idPackage)
+                    $found = true;
+            }
+
+            if(!$found)
+            {
+                $this->app()->user()->setFlashInfo($this->m_TEXT['Viewer_PackageUnknown']);
+                $this->app()->httpResponse()->redirect('/home/index.html');
+            }
+
 
             $archives = $this->m_managers->getManagerOf('archiveofpackage')->get($idPackage);
 

@@ -5,11 +5,13 @@ $(document).ready(function() {
     $('.clicker').click(function(){
         $(this).children('.informations').toggle();
 
-        if(typeof state == 'undefined')
+        var img = $(this).children('.informationsTitle').children('.imgPlusMinus');
+        var state = true;                
+
+        if(img.attr('src') == '../../web/images/plus.png')
             state = false;
 
-        $(this).children('.informationsTitle').children('.imgPlusMinus').attr('src', '../../web/images/' + (state ? 'plus' : 'minus') + '.png');
-        state = !state;
+            img.attr('src', '../../web/images/' + (state ? 'plus' : 'minus') + '.png');
     });
 });
 </script>
