@@ -1,7 +1,7 @@
 <?php
     class AvailabilityManager extends Manager
     {
-        public function get($id = -1)
+        public function get($idClassroom = -1)
         {
             $requestSQL = 'SELECT Id_availability,
                                   Id_classroom,
@@ -9,11 +9,11 @@
                                   StartTime,
                                   EndTime FROM Availabilities';
 
-            if($id != -1)
-                $requestSQL .= ' WHERE Id_availability = ' . $id;
+            if($idClassroom != -1)
+                $requestSQL .= ' WHERE Id_classroom = ?';
 
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute(); 
+            $req->execute(array($idClassroom)); 
 			
             $availabilities = array();
 
@@ -75,12 +75,6 @@
 
             foreach($availabilityIds as $availabilityId)
                 $req->execute(array($availabilityId));
-        }
-
-        public function deleteFromClassroom($idClassroom)
-        {
-            $req = $this->m_dao->prepare('DELETE FROM Availabilities WHERE Id_classroom = ?');
-            $req->execute(array($idClassroom));
         }
     }
 ?>

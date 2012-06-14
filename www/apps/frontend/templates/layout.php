@@ -95,8 +95,8 @@
             </div>
     
                 <div id="footer">
-                    <a href="/home/legalNotice.html">Mentions légales</a>
-                    <p>Droits réservés &copy; 2011 - 2012 Polytech'Montpellier</p>
+                    <a href="/home/legalNotice.html"><?php echo $TEXT['Page_LegalNotice']; ?></a>
+                    <p><?php echo $TEXT['Page_Footer']; ?></p>
                 </div>
             </div>
         </div>

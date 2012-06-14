@@ -6,6 +6,8 @@
     $TEXT['Page_Logout'] = "Log out";
     $TEXT['Page_English'] = "English";
     $TEXT['Page_French'] = "French";
+    $TEXT['Page_LegalNotice'] = "Legal notice";
+    $TEXT['Page_Footer'] = "All rights reserved &copy; 2011 - 2012 Polytech'Montpellier";
 
     $TEXT['Menu'] = "Menu";
     $TEXT['Menu_Home'] = "Home";
@@ -97,7 +99,7 @@
     $TEXT['Reports_Filename'] = "Filename";
     $TEXT['Reports_Name'] = "Name of report";
     $TEXT['Reports_Action'] = "Action";
-    $TEXT['Reports_PackageSelection'] = "Select a package";
+    $TEXT['Reports_SelectLecture'] = "Select a lecture: ";
     $TEXT['Reports_Path'] = "Path of report";
 
     $TEXT['MCQ_StartMCQLink'] = "Take MCQ";

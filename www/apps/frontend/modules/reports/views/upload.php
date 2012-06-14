@@ -1,5 +1,5 @@
 <form action="" method="post" enctype="multipart/form-data">
-    <label for="idLecture">Selectionner une conférence: </label>
+    <label for="idLecture"><?php echo $TEXT['Reports_SelectLecture']; ?></label>
     <br />
     <select name="idLecture" id="idLecture">
     <?php 
