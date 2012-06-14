@@ -176,6 +176,8 @@ li
 	height:25px;
     background-color:#1F3B62;
 	padding:0 10px 0 10px;
+    line-height:23px;
+    text-align:center;
 }
 
 #menu .overitemmenu
@@ -185,6 +187,8 @@ li
 	height:25px;
     background-color:#0E56DB;
 	padding:0 10px 0 10px;
+    line-height:23px;
+    text-align:center;
 }
 
 /* ------------------------ Menu ------------------------ */

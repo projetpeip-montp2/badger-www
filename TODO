@@ -8,7 +8,6 @@
 
     - Activer l'envoi de mail depuis le serveur
     - Rapport << lors d'un déploiement, changer valeur db dans Managers.class.php et replication.php
-    - Centrer les liens dans les onglets
 
     - Changer le mdp
 
@@ -23,7 +22,6 @@
 
 
 - Backend:
-    - Affichage des informations à revoir (design)
     
 
 - William:
