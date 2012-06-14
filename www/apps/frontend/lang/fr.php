@@ -85,6 +85,7 @@
     $TEXT['Lecture_StartTime'] = "Horaire de début";
     $TEXT['Lecture_EndTime'] = "Horaire de fin";
     $TEXT['Lecture_Lecturer'] = "Conférencier";
+    $TEXT['Lecture_ReportsDeletion'] = "Vos rapports pour cette conférence vont être supprimés! Etes-vous sûr?";
 
     // Note: Don't change name of keys for planning text
     $TEXT['Planning_Classroom'] = "Salle";

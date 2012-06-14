@@ -35,11 +35,18 @@
             $managerLecture = $this->m_managers->getManagerOf('lecture');
             $lectures = $managerLecture->get( $package->getId() );
 
+            $managerDocOfUser = $this->m_managers->getManagerOf('documentofuser');
+
             $wantSubscribe = true;
+            $haveReportsForThisPackage = false;
             foreach($registrationsOfUser as $reg)
             {
                 foreach($lectures as $lec)
                 {
+                    $reports = $managerDocOfUser->get($lec->getId(), $username);
+                    if(!empty($reports))
+                        $haveReportsForThisPackage = true;
+
                     if($reg->getIdLecture() == $lec->getId() )
                         $wantSubscribe = false;
                 }
@@ -63,7 +70,12 @@
                 }
 
                 foreach($lectures as $lecture)
+                {
                     $managerRegistration->subscribe($request->getData('idPackage'), $lecture->getId(), $username, $wantSubscribe ? 1 : 0);
+
+                    if(!$wantSubscribe && $haveReportsForThisPackage)
+                        $managerDocOfUser->delete($lecture->getId(), $username);
+                }
 
                 $package->setRegistrationsCount($package->getRegistrationsCount() + ($wantSubscribe ? 1 : -1));
 
@@ -72,6 +84,9 @@
             }
 
             // Else display the form
+            $this->page()->addVar('haveReportsForThisPackage', $haveReportsForThisPackage);
+            $this->page()->addVar('wantSubscribe', $wantSubscribe);
+
             $this->page()->addVar('wantSubscribe', $wantSubscribe);
 
             $this->page()->addVar('package', $package);
