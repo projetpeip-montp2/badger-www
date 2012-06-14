@@ -13,7 +13,11 @@
             if($request->postExists('Récupérer'))
             {
                 $idLecture = $request->postData('idLecture');
-                $lecture = $this->m_managers->getManagerOf('lecture')->get($idLecture);
+
+                echo $idLecture;
+
+                $lecture = $this->m_managers->getManagerOf('lecture')->get(-1, $idLecture);
+
                 $lectureName = $lecture[0]->getName('fr');
 
                 $reports = $this->m_managers->getManagerOf('documentofuser')->get($idLecture);
