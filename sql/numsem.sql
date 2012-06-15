@@ -68,7 +68,7 @@ CREATE TABLE numsem.`UsersPolytech` (
 	`Actif`              CHAR( 1 ),
 	`VraiNom`            CHAR( 30 ),
 	`VraiPrenom`         CHAR( 20 ),
-	`Departement`        ENUM( 'ERII' ),
+	`Departement`        ENUM( 'ERII' ) ,
 	`anApogee`           TINYINT,
 	CONSTRAINT pk_users PRIMARY KEY ( `Username` )
  );
@@ -114,10 +114,11 @@ CREATE TABLE numsem.`DocumentsOfPackages` (
 CREATE INDEX idx_documentsofpackages ON numsem.`DocumentsOfPackages` ( `Id_package` );
 
 CREATE TABLE numsem.`HistoryMifare` ( 
-	`Id_user`            VARCHAR( 60 ) NOT NULL,
-	`Mifare`             CHAR( 8 ),
-	CONSTRAINT pk_historymifare PRIMARY KEY ( `Id_user` )
+	`Id_user`            VARCHAR( 60 ),
+	`Mifare`             CHAR( 8 )
  );
+
+CREATE INDEX idx_historymifare ON numsem.`HistoryMifare` ( `Id_user` );
 
 CREATE TABLE numsem.`ImagesOfArchives` ( 
 	`Id_image`           SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,

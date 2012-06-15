@@ -23,7 +23,10 @@
 
     try
     {
+        // Polytech database
         $daoPoly = new Database('localhost', 'vbMifare', 'vbMifare2012', 'poly_repli');
+
+        // Our database
         $daoENT = new Database('localhost', 'vbMifare', 'vbMifare2012', 'numsem');
 
         // Retrieve departments
@@ -122,7 +125,6 @@
 
             if($foundUser && $mifareDifferent)
             {
-                // TODO: Comment faire si il existe déjà une entrée dans la table
                 // Inserer dans la table HistoryMifare
                 $req = $daoENT->prepare('INSERT INTO HistoryMifare(Id_user, Mifare) VALUES(?, ?)');
                 $req->execute(array($userPoly['Username'], $oldMifare));
