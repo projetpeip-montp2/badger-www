@@ -38,10 +38,27 @@
                 $startTime = time();
 
                 system('php ' . dirname(__FILE__).'/../../../../scripts/replicate.php');
+                system('php ' . dirname(__FILE__).'/../../../../scripts/updateRegistrations.php');
 
                 $elapsedTime = time() - $startTime;
 
                 $this->app()->user()->setFlashInfo('Réplication terminée en ' . $elapsedTime . ' seconde(s).');
+            }
+        }
+
+        public function executeUpdateRegistrations(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Mise à jour des informations de présence");
+
+            if($request->postExists('Exécuter'))
+            {
+                $startTime = time();
+
+                system('php ' . dirname(__FILE__).'/../../../../scripts/updateRegistrations.php');
+
+                $elapsedTime = time() - $startTime;
+
+                $this->app()->user()->setFlashInfo('Mise à jour terminée en ' . $elapsedTime . ' seconde(s).');
             }
         }
 

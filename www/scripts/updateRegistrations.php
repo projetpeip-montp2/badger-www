@@ -1,4 +1,6 @@
 <?php
+    date_default_timezone_set('Europe/Paris');
+
     $classes = array('Database', 'Date', 'Time', 'Record', 'models/Lecture', 'models/BadgingInformation');
 
     foreach($classes as $class)
