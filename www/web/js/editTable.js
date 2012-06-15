@@ -91,6 +91,7 @@ function modifyCell(element)
 			else
 				newElem = $('<input />');
 			tagName = $(element).get(0).tagName;
+			$(newElem).attr('id', 'ajaxForm');
 			$(newElem).attr('value', previousValue);
 			$(newElem).attr('oldValue', previousValue);
 			$(newElem).attr('data-entry-name', $(element).attr('data-entry-name'));
@@ -116,10 +117,7 @@ function modifyCell(element)
 				sendTextForm(this, tagName);
 			});
 			$(element).replaceWith(newElem);
-			if ($(element).attr('data-form-type') == 'textbox')
-				$("textarea").focus().putCursorAtEnd();
-			else
-				$("input").focus().putCursorAtEnd();
+			$('#ajaxForm').focus().putCursorAtEnd();
 			break;
 		default:
 			alert('Error');
