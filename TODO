@@ -3,19 +3,22 @@
 - Général:
     - Faire une check list pour mardi pour tout tester
 
-    - Changer le mdp
+    - Couleurs message flash
+
+    - Insérer dans UsersPolytech au moins une personne
 
 
 - Réplication
-    - Meilleure gestion des erreurs, commentaires et prendre en compte plusieurs mifare différents
+    - Meilleure gestion des erreurs, commentaires
 
 
 - Frontend:
-    - Stocker la langue de l'utilisateur
+    - Note de présence action manuelle
+    - Marge sur l'horaire de badgage
 
 
 - Backend:
-    
+    - Informations ==> Rouge si problème
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement

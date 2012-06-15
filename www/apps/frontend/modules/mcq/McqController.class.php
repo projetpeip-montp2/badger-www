@@ -280,9 +280,8 @@
             }
 
             $managerUser = $this->m_managers->getManagerOf('user');
-            $managerUser->updateMarks($logon, $QCMMark, $presentMark);
+            $managerUser->updateMCQMark($logon, $QCMMark);
             $this->app()->user()->getAttribute('vbmifareStudent')->setMCQMark($QCMMark);
-            $this->app()->user()->getAttribute('vbmifareStudent')->setPresentMark($presentMark);
         }
     }
 ?>

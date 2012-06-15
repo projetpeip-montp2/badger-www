@@ -27,7 +27,7 @@
 
             if(!$found)
             {
-                $this->app()->user()->setFlashInfo($this->m_TEXT['Viewer_PackageUnknown']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Viewer_PackageUnknown']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
