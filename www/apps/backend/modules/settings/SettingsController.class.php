@@ -89,6 +89,34 @@
             $this->page()->addVar('specificLogins', $specificLogins);
         }
 
+        public function executeComputePresentMark(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Calcul de la note de présence");
+
+            if($request->postExists('Calculer'))
+            {
+                $studentsManager = $this->m_managers->getManagerOf('user');
+
+                $students = $studentsManager->get();
+
+                foreach($students as $student)
+                {
+                    $presentMark = 0;
+
+                    $managerRegistration = $this->m_managers->getManagerOf('registration');
+                    $registrations = $managerRegistration->getRegistrationsFromUser($student->getUsername());
+
+                    foreach($registrations as $reg)
+                    {
+                        if($reg->getStatus() == 'Present')
+                            $presentMark += 20 / count($registrations);
+                    }
+
+                    $studentsManager->updatePresentMark($student->getUsername(), $presentMark);
+                }
+            }
+        }
+
         public function executeChangeAvailableAdmins(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Gestion des administrateurs");

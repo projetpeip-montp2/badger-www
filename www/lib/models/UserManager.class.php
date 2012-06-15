@@ -124,10 +124,16 @@
             $req->execute(array($status, $logon));
         }
 
-        public function updateMarks($logon, $mcqMark, $presentMark)
+        public function updateMCQMark($logon, $mcqMark)
         {
-            $req = $this->m_dao->prepare('UPDATE Users SET MCQMark = ?, PresentMark = ? WHERE Id_user = ?');
-            $req->execute(array($mcqMark, $presentMark, $logon));
+            $req = $this->m_dao->prepare('UPDATE Users SET MCQMark = ? WHERE Id_user = ?');
+            $req->execute(array($mcqMark, $logon));
+        }
+
+        public function updatePresentMark($logon, $presentMark)
+        {
+            $req = $this->m_dao->prepare('UPDATE Users SET PresentMark = ? WHERE Id_user = ?');
+            $req->execute(array($presentMark, $logon));
         }
 
         public function retrieveMifare($logon)

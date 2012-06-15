@@ -152,9 +152,7 @@
 
             $badgingInformations = array();
             foreach($mifares as $mifare)
-            {
                 $badgingInformations = array_merge($badgingInformations, getBadgingInformations($database, $mifare));
-            }
 
             $registrations = getRegistrations($database, $username);
 
