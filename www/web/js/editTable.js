@@ -110,7 +110,10 @@ function modifyCell(element)
 				$(newElem).keydown(function(e)
 				{
 					if (e.keyCode == 13)
+                    {   
+                        $(this).unbind('blur');
 						sendTextForm(this, tagName);
+                    }
 				});
 			$(newElem).blur(function()
 			{
