@@ -8,7 +8,6 @@
 
 - Réplication
     - Meilleure gestion des erreurs, commentaires et prendre en compte plusieurs mifare différents
-    - Maj des requêtes à William
 
 
 - Frontend:
@@ -20,10 +19,8 @@
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
+
     - Double alert réduction capacity
     - Champs non cliquables à vérifier ! (Dates, nom_fr, etc...)
-    - Optimiser la requête SQL à William pour qu'elle n'update que les registrations à Coming
-    - Callback:
-        - Suppression d'une question ==> Réponses encore affichées
-        - Lors de la suppression d'un QCM/inscription, mettre à jour le status des élèves
+    - Suppression d'un QCM/inscription => mettre à jour le status des élèves
 

@@ -119,6 +119,16 @@ function finishDeleteEntry(element, data)
 				$(element).prev().remove();
 			$(element).remove();
 		}
+
+		else if ($(element).attr('data-entry-name') == 'Questions')
+		{
+            // Note: there is only on question per table
+
+            // Delete associated questions table before
+			$(element).parent().parent().parent().parent().next().remove();
+			$(element).parent().parent().parent().remove();
+        }
+
 		else
 			$(element).parent().parent().remove();
 	}

@@ -91,7 +91,7 @@
 	        echo "<td><p class='editable' data-id='{$questions[$i]->getId()}'  data-entry-name='Questions' data-field-name='Label_fr' data-form-type='text' data-form-size='{$sizeLabelFR}'>{$questions[$i]->getLabel('fr')}</p></td>";
 	        echo "<td><p class='editable' data-id='{$questions[$i]->getId()}'  data-entry-name='Questions' data-field-name='Label_en' data-form-type='text' data-form-size='{$sizeLabelEN}'>{$questions[$i]->getLabel('en')}</p></td>";
 	        echo "<td><select class='selectable' data-id='{$questions[$i]->getId()}'  data-entry-name='Questions' data-field-name='Status' data-form-size='{$sizeStatus}'>{$select}</select></td>";
-    		echo "<td><img class='deletable' data-entry-name='Questions' data-id='$idQuestion' src='../../web/images/delete.png' /></a></td>";
+    		echo "<td><img class='deletable' data-entry-name='Questions' data-id='$idQuestion' src='../../web/images/delete.png' /></td>";
 	        echo '</tr>';
 
         echo '</table>';
@@ -121,12 +121,12 @@
 		        echo '<tr>';
 		        echo "<td><p class='editable' data-id='{$answers[$j]->getId()}'  data-entry-name='Answers' data-field-name='Label_fr' data-form-type='text' data-form-size='{$sizeLabelFR}'>{$answers[$j]->getLabel('fr')}</p></td>";
 		        echo "<td><p class='editable' data-id='{$answers[$j]->getId()}'  data-entry-name='Answers' data-field-name='Label_en' data-form-type='text' data-form-size='{$sizeLabelEN}'>{$answers[$j]->getLabel('en')}</p></td>";
-		        echo "<td><select class='selectable' data-entry-name='Answers' data-field-name='TrueOrFalse' data-id='{$answers[$j]->getId()}' name='TrueOrFalse'>{$select}</select></p></td>";
-        		echo "<td><img class='deletable' data-entry-name='Answers' data-id='$idAnswer' src='../../web/images/delete.png' /></a></td>";
+		        echo "<td><select class='selectable' data-entry-name='Answers' data-field-name='TrueOrFalse' data-id='{$answers[$j]->getId()}' name='TrueOrFalse'>{$select}</select></td>";
+        		echo "<td><img class='deletable' data-entry-name='Answers' data-id='$idAnswer' src='../../web/images/delete.png' /></td>";
 		        echo '</tr>'; 
 	        }
         echo '</table>';
 
-        echo '<br/><br/><br/><br/>';
+        echo '<br/><br/>';
     }
 ?>
