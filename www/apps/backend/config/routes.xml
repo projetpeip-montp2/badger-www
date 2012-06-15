@@ -40,6 +40,7 @@
 
     <route url="/admin/settings/index\.html" module="settings" action="index"/>
     <route url="/admin/settings/replicate\.html" module="settings" action="replicate"/>
+    <route url="/admin/settings/updateRegistrations\.html" module="settings" action="updateRegistrations"/>
     <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
     <route url="/admin/settings/changeSpecificLogins\.html" module="settings" action="changeSpecificLogins"/>
 	
