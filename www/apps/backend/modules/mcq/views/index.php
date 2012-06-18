@@ -64,7 +64,7 @@
         echo '</td>';
 
         // Action
-        echo "<td><img src='../../web/images/delete.png' class='deletable' data-entry-name='MCQs' data-id='$id' /></p>";
+        echo "<td><img src='../../web/images/delete.png' class='deletable' post-delete='true' data-entry-name='MCQs' data-id='$id' /></td>";
 
         echo '</tr>';
 	}
