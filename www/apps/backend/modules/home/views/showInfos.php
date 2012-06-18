@@ -17,7 +17,7 @@ $(document).ready(function() {
 </script>
 
 <div class="clicker">
-<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Packages sans conférence</p>
+<p class="informationsTitle" style="color: <?php echo (empty($noLecturePackages) ? 'black' : 'red')?>"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Packages sans conférence</p>
     <div class="informations">
         <ul>
         <?php
@@ -34,7 +34,7 @@ $(document).ready(function() {
 </div>
 
 <div class="clicker">
-<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Packages avec trop peu d'inscriptions</p>
+<p class="informationsTitle" style="color: <?php echo (empty($notEnoughRegPackages) ? 'black' : 'red')?>"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Packages avec trop peu d'inscriptions</p>
     <div class="informations">
         <ul>
         <?php
@@ -51,7 +51,7 @@ $(document).ready(function() {
 </div>
 
 <div class="clicker">
-<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Questions sans réponse</p>
+<p class="informationsTitle" style="color: <?php echo (empty($noAnswerQuestions) ? 'black' : 'red')?>"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Questions sans réponse</p>
     <div class="informations">
         <ul>
         <?php
@@ -74,7 +74,7 @@ $(document).ready(function() {
 </div>
 
 <div class="clicker">
-<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Etudiants avec des inscriptions manquantes</p>
+<p class="informationsTitle" style="color: <?php echo (empty($incompleteStudents) ? 'black' : 'red')?>"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Etudiants avec des inscriptions manquantes</p>
     <div class="informations">
         <ul>
         <?php
