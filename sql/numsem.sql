@@ -69,7 +69,7 @@ CREATE TABLE numsem.`UsersPolytech` (
 	`Actif`              CHAR( 1 ),
 	`VraiNom`            CHAR( 30 ),
 	`VraiPrenom`         CHAR( 20 ),
-	`Departement`        ENUM( 'ERII' ) ,
+	`Departement`        ENUM( 'INFO' ) ,
 	`anApogee`           TINYINT,
 	CONSTRAINT pk_users PRIMARY KEY ( `Username` )
  );
@@ -248,6 +248,9 @@ ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN
 
 ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
+INSERT INTO numsem.`UsersPolytech` (`Username`, `VraiNom`, `VraiPrenom`, `Departement`, `anApogee`) VALUES
+('berry', 'Berry', 'Vincent', 'INFO', 0);
+
 INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
 ('MCQMaxQuestions', 'Nombre de questions dans le QCM', '5'),
 ('packageRegistrationsCount', 'Nombre de packages auxquels les étudiants doivent s''inscrire', '5'),
@@ -261,5 +264,5 @@ INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
 ('reportSizeLimitFrontend', 'Taille limite des rapports, en octets', '10000000'),
 ('documentSizeLimitBackend', 'Taille limite des documents, en octets', '10000000'),
 ('zipFileSizeLimitBackend', 'Taille limite des archives d''images, en octets', '10000000'),
-('adminsList', 'Liste des admins, séparés par des points-virgules', 'victor.hiairrassary;gregoire.guisez;Test'),
+('adminsList', 'Liste des admins, séparés par des points-virgules', 'victor.hiairrassary;gregoire.guisez;berry'),
 ('availablesLanguagesList', 'Liste des langues disponibles, séparées par des points-virgules', 'fr;en');

@@ -62,6 +62,10 @@
                 $managerReset = $this->m_managers->getManagerOf('reset');
                 $managerReset->truncate($tablesSelectedArray);
 
+                // At least one user in the database
+                if(in_array('UsersPolytech', $tablesSelectedArray))
+                    $this->m_managers->getManagerOf('user')->insertFirstUser();
+
                 // Display table(s) truncated in the next flash message
                 $emptyTables = explode(';', substr($tablesSelected, 0, strlen($tablesSelected)-1));
 

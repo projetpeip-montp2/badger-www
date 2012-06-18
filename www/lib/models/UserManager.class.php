@@ -203,5 +203,10 @@
             $req = $this->m_dao->prepare('INSERT INTO SpecificLogins (UsernameUM2, Username) VALUES(?, ?)');
             $req->execute(array($um2, $poly));
         }
+
+        public function insertFirstUser()
+        {
+            $req = $this->m_dao->query('INSERT INTO UsersPolytech (Username, VraiNom, VraiPrenom, Departement, anApogee) VALUES(\'berry\', \'Berry\', \'Vincent\', \'INFO\', 0)');
+        }
     }
 ?>
