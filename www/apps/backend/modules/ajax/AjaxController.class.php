@@ -8,10 +8,16 @@
 			$this->app()->httpResponse()->redirect('/admin/home/index.html');
         }
 		
-		public function verifyInput($ajaxInput)
+		private function verifyInput($ajaxInput)
 		{
 			if ($ajaxInput->getData('entry-name') == 'Packages' && $ajaxInput->getData('field-name') == 'Capacity')
 				$this->m_managers->getManagerOf('ajax')->verifyCapacity($ajaxInput);
+		}
+
+		private function postDelete($ajaxInput, $dataDeleted)
+		{
+			if ($ajaxInput->getData('entry-name') == 'MCQs')
+				$this->updateStudents($dataDeleted['Department'], $dataDeleted['SchoolYear'], 'Visitor');
 		}
 		
 		public function executeModifyText(HTTPRequest $request)
@@ -152,6 +158,7 @@
 				$ajaxInput = new AjaxInput;
 				$ajaxInput->setData('entry-name', $request->postData('data-entry-name'));
 				$ajaxInput->setData('id', $request->postData('data-id'));
+				$ajaxInput->setData('post-delete', $request->postExists('post-delete') ? $request->postData('post-delete') : '');
 
 				if (!in_array($ajaxInput->getData('entry-name'), $allowedEntries))
                     $this->addToAjaxContent('Erreur dans le formulaire.');
@@ -161,7 +168,12 @@
 					
 					try
 					{
+						$dataDeleted = $this->m_managers->getManagerOf('ajax')->getObjectToDelete($ajaxInput);
+
 						$this->m_managers->getManagerOf('ajax')->deleteEntry($ajaxInput);
+
+						if ($ajaxInput->getData('post-delete') == 'true')
+							$this->postDelete($ajaxInput, $dataDeleted);
 					}
 					catch (Exception $e)
 					{
@@ -249,6 +261,34 @@
 			}
 
 			echo $this->getAjaxContent();
+        }
+
+
+
+
+        // TODO: Find a better place for this function, because it is already in MCQ manager
+        private function updateStudents($department, $schoolYear, $status)
+        {
+            $managerUsers = $this->m_managers->getManagerOf('user');
+            $students = $managerUsers->getFromDepartmentAndSchoolYear($department, $schoolYear);
+
+            foreach($students as $student)
+            {
+                $username = $student->getUsername();
+                if($managerUsers->isInDatabase($username))
+                {
+                    $MCQStatus = $managerUsers->getMCQStatus($username);
+                    if($MCQStatus == 'Visitor' || $MCQStatus == 'CanTakeMCQ')
+                    {
+
+                        // Update his status
+                        $managerUsers->updateStatus($username, $status);
+
+                        // Delete his registrations
+                        $this->m_managers->getManagerOf('registration')->deleteFromUser($username);
+                    }
+                }
+            }
         }
 	}
 ?>

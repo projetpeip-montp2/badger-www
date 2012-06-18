@@ -1,8 +1,6 @@
     TODO list
 
 - Général:
-    - Faire une check list pour mardi pour tout tester
-
     - Insérer dans UsersPolytech au moins une personne
 
 
@@ -13,9 +11,8 @@
 - Frontend:
 
 - Backend:
-    - Informations ==> Rouge si problème
+
 
 - William:
     - Attribution des packages aux élèves pas inscrits totalement
-    - Suppression d'un QCM/inscription => mettre à jour le status des élèves
 

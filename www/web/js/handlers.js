@@ -77,6 +77,7 @@ function finishSendTextForm(element, data, tagName)
 	$(newElem).attr('data-subfield-name', $(element).attr('data-subfield-name'));
     $(newElem).attr('data-verify-callback', $(element).attr('data-verify-callback'));
     $(newElem).attr('is-config-date', $(element).attr('is-config-date'));
+    $(newElem).attr('post-delete', $(element).attr('post-delete'));
 	if (hasError(data))
 	{
 		$(newElem).html($(element).attr('oldValue'));
@@ -100,6 +101,7 @@ function sendTextForm(element, tagName)
 	'data-subfield-name': $(element).attr('data-subfield-name'),
     'data-verify-callback': $(element).attr('data-verify-callback'),
     'is-config-date': $(element).attr('is-config-date'),
+    'post-delete': $(element).attr('post-delete'),
 	'value': $(element).val()}).error(onError).complete(function(data, textStatus)
 	{
 		finishSendTextForm(element, data.responseText, tagName);
@@ -145,6 +147,7 @@ function deleteEntry(element)
 
 		$.post(url, {
 		'data-entry-name': $(element).attr('data-entry-name'),
+		'post-delete': $(element).attr('post-delete'),
 		'data-id': $(element).attr('data-id')}).error(onError).complete(function(data, textStatus)
 		{
 			finishDeleteEntry(element, data.responseText);

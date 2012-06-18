@@ -210,6 +210,18 @@
 			$statement = $this->m_dao->prepare("DELETE FROM $tableName WHERE $idName = ?");
 			$statement->execute(array($id));
 		}
+
+		public function getObjectToDelete($ajaxInput)
+		{
+			$tableName = $ajaxInput->getData('entry-name');
+			$id = $ajaxInput->getData('id');
+			$idName = $ajaxInput->getData('id-name');
+			
+			$statement = $this->m_dao->prepare("SELECT * FROM $tableName WHERE $idName = ?");
+			$statement->execute(array($id));
+    
+            return $statement->fetch();
+		}
 		
 		public function verifyCapacity($ajaxInput)
 		{
