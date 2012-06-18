@@ -248,18 +248,18 @@ ALTER TABLE numsem.`Registrations` ADD CONSTRAINT fk_registrations_users FOREIGN
 
 ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `Id_user` ) REFERENCES numsem.`UsersPolytech`( `Username` ) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-INSERT INTO numsem.`Config` (`Name`, `Value`) VALUES
-('MCQMaxQuestions', '10'),
-('packageRegistrationsCount', '5'),
-('minRegistrationsPerPackage', '3'),
-('mailAppendix', '@polytech.univ-montp2.fr'),
-('mailSender', 'no-reply@polytech.univ-montp2.fr'),
-('canSubscribe', '1'),
-('canViewPlanning', '0'),
-('canHandleReports', '0'),
-('registrationsDateLimit', '2012-08-23'),
-('reportSizeLimitFrontend', '10000000'),
-('documentSizeLimitBackend', '10000000'),
-('zipFileSizeLimitBackend', '10000000'),
-('adminsList', 'victor.hiairrassary;gregoire.guisez'),
-('availablesLanguagesList', 'fr;en');
+INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
+('MCQMaxQuestions', 'Nombre de questions dans le QCM', '5'),
+('packageRegistrationsCount', 'Nombre de packages auxquels les étudiants doivent s''inscrire', '5'),
+('minRegistrationsPerPackage', 'Nombre minimum d''inscrits par package', '3'),
+('mailAppendix', 'Portion finale de l''adresse mail des étudiants', '@polytech.univ-montp2.fr'),
+('mailSender', 'Adresse mail expéditrice', 'no-reply@polytech.univ-montp2.fr'),
+('canSubscribe', 'Accès aux inscriptions', '1'),
+('canViewPlanning', 'Accès au planning', '1'),
+('canHandleReports', 'Accès à l''upload de rapports', '1'),
+('registrationsDateLimit', 'Date limite des inscriptions', '2012-08-23'),
+('reportSizeLimitFrontend', 'Taille limite des rapports, en octets', '10000000'),
+('documentSizeLimitBackend', 'Taille limite des documents, en octets', '10000000'),
+('zipFileSizeLimitBackend', 'Taille limite des archives d''images, en octets', '10000000'),
+('adminsList', 'Liste des admins, séparés par des points-virgules', 'victor.hiairrassary;gregoire.guisez;Test'),
+('availablesLanguagesList', 'Liste des langues disponibles, séparées par des points-virgules', 'fr;en');
