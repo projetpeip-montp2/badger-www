@@ -24,6 +24,16 @@
             return $this->m_vars[$var];
         }
 
+        public function getDescription($var)
+        {
+            $req = $this->m_dao->prepare('SELECT Description FROM Config WHERE Name = ?');
+            $req->execute(array($var));
+
+            $result = $req->fetch();
+
+            return $result['Description'];
+        }
+
         public function replace($key, $value)
         {
             $req = $this->m_dao->prepare('UPDATE Config SET Value = ? WHERE Name = ?');

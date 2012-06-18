@@ -261,7 +261,7 @@ li
 {
     font-size: 22px;
     font-weight: bold;
-    color: red;
+    color: #F33;
 }
 
 .warning
@@ -275,7 +275,7 @@ li
 {
     font-size: 22px;
     font-weight: bold;
-    color: green;
+    color: #3F3;
 }
 
 /* ------------------------ Message typé ------------------------ */

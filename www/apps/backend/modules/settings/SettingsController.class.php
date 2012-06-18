@@ -18,14 +18,19 @@
                                  'reportSizeLimitFrontend' => 'number',
                                  'documentSizeLimitBackend' => 'number',
                                  'zipFileSizeLimitBackend' => 'number');
+            $configDescriptions = array();
             $configValues = array();
 
             $configManager = $this->m_managers->getManagerOf('config');
 
             foreach($configNames as $name => $type)
-                $configValues[$name] = $configManager->get($name); 
+            {
+                $configValues[$name] = $configManager->get($name);
+                $configDescriptions[$name] = $configManager->getDescription($name);
+            }
 
             $this->page()->addVar('configNames', $configNames);
+            $this->page()->addVar('configDescriptions', $configDescriptions);
             $this->page()->addVar('configValues', $configValues);
         }
 
