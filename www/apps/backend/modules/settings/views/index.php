@@ -18,7 +18,7 @@ Edition des variables de configuration:
 
 <table id="editableTable">
     <tr>
-        <th>Nom</th>
+        <th>Description</th>
         <th>Valeur</th>
     </tr>
 
@@ -29,7 +29,7 @@ Edition des variables de configuration:
         $size = strlen($value);
 
         echo '<tr>';
-            echo '<td>' . $name . '</td>';
+            echo '<td>' . utf8_encode($configDescriptions[$name]) . '</td>';
 
         switch ($type) 
         {
