@@ -131,10 +131,21 @@
     // Check badging information validity
     function checkBadgingInformation($badgingInformation, $lecture)
     {
+        $startTime = Time::overflowTime(
+                              $lecture->getStartTime()->hours() - 1,
+                              $lecture->getStartTime()->minutes(),
+                              $lecture->getStartTime()->seconds()
+                             );
+
+        $endTime = Time::overflowTime(
+                              $lecture->getEndTime()->hours() + 1,
+                              $lecture->getEndTime()->minutes(),
+                              $lecture->getEndTime()->seconds()
+                             );
         return (
             (Date::compare($badgingInformation->getDate(), $lecture->getDate()) == 0) &&
-            (Time::compare($badgingInformation->getTime(), $lecture->getStartTime()) >= 0) &&
-            (Time::compare($badgingInformation->getTime(), $lecture->getEndTime()) <= 0)
+            (Time::compare($badgingInformation->getTime(), $startTime) >= 0) &&
+            (Time::compare($badgingInformation->getTime(), $endTime) <= 0)
           );
     }
 

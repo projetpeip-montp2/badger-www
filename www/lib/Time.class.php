@@ -190,6 +190,28 @@
         }
 
         ////////////////////////////////////////////////////////////
+        /// \function overflowTime
+        ///
+        /// \brief
+        /// Returns a Time made with:
+        /// seconds > 60
+        /// minutes > 60
+        /// hours > 24
+        ///
+        /// \return Time
+        ////////////////////////////////////////////////////////////
+        static public function overflowTime($hours, $minutes, $seconds)
+        {
+            $time = new Time;
+
+            $time->setSeconds(intval($seconds % 60));
+            $time->setMinutes(intval(($minutes + ($seconds / 60)) % 60));
+            $time->setHours(intval(($hours + (($minutes + ($seconds / 60)) / 60)) % 24));
+
+            return $time;
+        }
+
+        ////////////////////////////////////////////////////////////
         /// \function check
         ///
         /// \brief
