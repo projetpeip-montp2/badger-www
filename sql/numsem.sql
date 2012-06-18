@@ -13,6 +13,7 @@ CREATE TABLE numsem.`Classrooms` (
 
 CREATE TABLE numsem.`Config` ( 
 	`Name`               TEXT,
+	`Description`        TEXT,
 	`Value`              TEXT
  );
 
