@@ -10,13 +10,6 @@
             {
                 $idPackage = $request->postData('idPackage');
 
-                // Check that a filename was typed
-                if($request->postData('filename') == '')
-                {
-                    $this->app()->user()->setFlashError('Il faut entrer un nom pour le fichier.');
-                    $this->app()->httpResponse()->redirect($request->requestURI());
-                }
-
                 $sizeLimit = $this->m_managers->getManagerOf('config')->get('zipFileSizeLimitBackend');
 
                 $fileData = $request->fileData('zipFile');
@@ -45,7 +38,7 @@
                     // Create the archive and insert it in the database
                     $archive = new ArchiveOfPackage;
                     $archive->setIdPackage($idPackage);
-                    $archive->setFilename($request->postData('filename'));
+                    $archive->setFilename($fileData['name']);
 
                     $this->m_managers->getManagerOf('archiveofpackage')->save($archive);
 

@@ -27,8 +27,6 @@
 
     - Texte de l'upload de package : "Ajouter des packages aux packages existant"
 
-    - Titre sur les "table" editable
-
     - Nom pour un QCM
     - Séparer les configurations semaine du num et site web
 
@@ -40,7 +38,10 @@
     - Afficher le nombre de question pour chaque package lors de l'upload
 
     - Information -> Afficher les confs qui n'ont pas de salle
+
     - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes
+    - Pareil lors du changement de la capacité d'une salle
+
     - Récupération rapport => mettre zip
     - Upload de disponibilité => empécher les croisements d'horaires
 

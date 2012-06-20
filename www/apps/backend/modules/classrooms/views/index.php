@@ -9,9 +9,10 @@
 </ul>
 
 <table id="editableTable">
+    <caption>Tableau d'édition des salles et des disponibilités</caption>
 	<tr>
 		<th>Nom</th>
-		<th>Contenance</th>
+		<th>Nombre de places</th>
 		<th>Disponibilités</th>
 		<th>Action</th>
 	</tr>
