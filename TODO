@@ -16,6 +16,8 @@
 
 
 - Backend:
+    - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
+
     - Configurer texte page accueil administration 
     - Ordre des variables de config
     - Upload des fichiers (spécifier format en exemple)
