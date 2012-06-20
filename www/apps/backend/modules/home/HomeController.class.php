@@ -23,6 +23,7 @@
             $configManager = $this->m_managers->getManagerOf('config');
 
             $packages = $packagesManager->get();
+            $lectures = $lecturesManager->get();
             $questions = $questionsManager->get();
             $users = $usersManager->get();
             
@@ -37,6 +38,13 @@
                 // Detect packages with not enough registrations
                 if($package->getRegistrationsCount() < $configManager->get('minRegistrationsPerPackage'))
                 $notEnoughRegPackages[] = $package;
+            }
+
+            $noClassroomLectures = array();
+            foreach($lectures as $lecture)
+            {
+                if($lecture->getIdAvailability() == 0)
+                    $noClassroomLectures[] = $lecture;
             }
 
             $noAnswerQuestions = array();
@@ -61,6 +69,7 @@
             $this->page()->addVar('allPackages', $packages);
             $this->page()->addVar('noLecturePackages', $noLecturePackages);
             $this->page()->addVar('notEnoughRegPackages', $notEnoughRegPackages);
+            $this->page()->addVar('noClassroomLectures', $noClassroomLectures);
             $this->page()->addVar('noAnswerQuestions', $noAnswerQuestions);
             $this->page()->addVar('incompleteStudents', $incompleteStudents);
             $this->page()->addVar('logs', $this->m_managers->getManagerOf('replicationlog')->get());

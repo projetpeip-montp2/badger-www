@@ -1,3 +1,8 @@
+<p>Format des fichiers CSV:
+<br/>
+"Capacité","Nom fr","Nom en","Description fr","Description en"
+</p>
+
 <p>Ajouter des packages aux packages existant:<p>
 <?php
     $form = new Form('/admin/packages/addPackages.html', 'post');
