@@ -60,7 +60,13 @@ $(document).ready(function() {
             else
             {
                 foreach($noClassroomLectures as $lecture)
-                    echo '<li>' . $lecture->getName('fr') . '</li>';
+                {
+                    foreach($allPackages as $pack)
+                    {
+                        if($lecture->getIdPackage() == $pack->getId())
+                            echo '<li>' . $pack->getName('fr') . ": " .$lecture->getName('fr') . '</li>';
+                    }
+                }
             }
         ?>
         </ul>
