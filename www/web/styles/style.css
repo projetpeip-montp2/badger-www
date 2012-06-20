@@ -259,21 +259,21 @@ li
 
 .error
 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     color: #F33;
 }
 
 .warning
 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     color: orange;
 }
 
 .info
 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     color: #3F3;
 }

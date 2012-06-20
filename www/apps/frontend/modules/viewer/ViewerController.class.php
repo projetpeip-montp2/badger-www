@@ -12,7 +12,7 @@
 
             if(count($packages) == 0)
             {
-                $this->app()->user()->setFlashInfo($this->m_TEXT['Viewer_NoPackage']);
+                $this->app()->user()->setFlashError($this->m_TEXT['Viewer_NoPackage']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
             }
 
