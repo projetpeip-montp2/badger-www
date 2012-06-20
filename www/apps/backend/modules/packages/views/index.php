@@ -1,10 +1,9 @@
-<p>Uploader des packages<p>
+<p>Ajouter des packages aux packages existant:<p>
 <?php
     $form = new Form('/admin/packages/addPackages.html', 'post');
 
     $form->add('file', 'CSVFile')
-         ->isInParagraph(false)
-         ->label('Chemin du fichier : ');
+         ->isInParagraph(false);
 
     $form->add('submit', 'Envoyer')
          ->isInParagraph(false);
@@ -20,9 +19,10 @@
 <script src="../../web/js/editTable.js"></script>
 
 <table id="editableTable">
+    <caption>Tableau d'édition des packages</caption>
 	<tr>
-		<th>Capacity</th>
-		<th>Registrations Count</th>
+		<th>Capacité</th>
+		<th>Nombre d'inscriptions</th>
 		<th>Nom Fr</th>
 		<th>Nom En</th>
 		<th>Description Fr</th>

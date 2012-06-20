@@ -30,13 +30,12 @@
 <br/>
 <br/>
 
-<p>Uploader des lectures pour ce package<p>
+<p>Ajouter des lectures pour ce package<p>
 <?php
     $form = new Form('/admin/lectures/addLectures.html', 'post');
 
     $form->add('file', 'CSVFile')
-         ->isInParagraph(false)
-         ->label('Chemin du fichier : ');
+         ->isInParagraph(false);
 
     $form->add('hidden', 'idPackage');
 
@@ -62,15 +61,17 @@
 
 
 <table id="editableTable">
+    <caption>Tableau d'édition des lectures</caption>
+
 	<tr>
-		<th>Lecturer</th>
+		<th>Conférencier</th>
 		<th>Nom Fr</th>
 		<th>Nom En</th>
 		<th>Description Fr</th>
 		<th>Description En</th>
 		<th>Date</th>
-		<th>StartTime</th>
-		<th>EndTime</th>
+		<th>Heure de début</th>
+		<th>Heure de fin</th>
 		<th>Action</th>
 	</tr>
 

@@ -14,7 +14,7 @@
 </form>
 
 <?php
-    echo '<br/><br/><div style="border-top: 1px solid black"></div><br/>';
+    echo '<br/><br/><div style="border-top: 1px solid black"></div><br/><br/>';
 ?>
 
 
@@ -47,19 +47,22 @@
     // Upload new archive
     $form = new Form('', 'post');
 
-    $form->add('text', 'filename')
-         ->label('Nom du fichier: ');
-
     $form->add('hidden', 'idPackage');
 
-    $form->add('file', 'zipFile');
+    $form->add('file', 'zipFile')
+          ->isInParagraph(false);
 
-    $form->add('submit', 'Envoyer');
+    $form->add('submit', 'Envoyer')
+         ->isInParagraph(false);
 
     echo $form->toString();
 
+    echo '<br/>';
+
     echo '
     <table id="editableTable">
+        <caption>Tableau d\'édition des archives d\'images</caption>
+
         <tr>
 	        <th>Nom</th>
 	        <th>Action</th>
@@ -88,23 +91,29 @@
     }
     echo '</table>';
 
-    echo '<br/><br/><div style="border-top: 1px solid black"></div><br/>';
+    echo '<br/><br/><br/><br/>';
 
     echo '<h1>Documents</h1>';
 
     // Upload new document
     $form = new Form('', 'post');
 
-    $form->add('file', 'PDFFile');
+    $form->add('file', 'PDFFile')
+         ->isInParagraph(false);
 
     $form->add('hidden', 'idPackage');
 
-    $form->add('submit', 'Envoyer');
+    $form->add('submit', 'Envoyer')
+         ->isInParagraph(false);
 
     echo $form->toString();
 
+    echo '<br/>';
+
     echo '
     <table id="editableTable">
+            <caption>Tableau d\'édition des documents</caption>
+
         <tr>
 	        <th>Nom</th>
 	        <th>Action</th>

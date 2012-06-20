@@ -21,8 +21,6 @@
     - Upload des fichiers (spécifier format en exemple)
     - Lors de l'upload de fichier (comme pour les confs par exemple) -> ramener sur le bon package après upload!! Pareil pour les erreurs
 
-    - Titre sur les "table" editable
-
     - Séparer les configurations semaine du num et site web
 
     - Lors de l'ajout de présence fictive, mieux afficher la liste des confs 
@@ -32,7 +30,10 @@
     - Rapeller le seuil mimimun lorsqu'il est utilisé.  
 
     - Information -> Afficher les confs qui n'ont pas de salle
+
     - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes
+    - Pareil lors du changement de la capacité d'une salle
+
     - Récupération rapport => mettre zip
     - Upload de disponibilité => empécher les croisements d'horaires
 

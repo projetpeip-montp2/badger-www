@@ -75,6 +75,8 @@
 
         echo'
         <table id="editableTable">
+            <caption>Tableau d\'édition des questions réponses</caption>
+
 	        <tr>
 		        <th>Label Fr</th>
 		        <th>Label En</th>

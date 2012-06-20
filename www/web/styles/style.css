@@ -379,6 +379,11 @@ table#editableTable
 	background-color: white;
 }
 
+table#editableTable caption
+{
+    text-align: left;
+}
+
 table#editableTable th
 {
 	text-align: left;
