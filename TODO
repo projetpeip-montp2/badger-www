@@ -1,6 +1,8 @@
     TODO list
 
 - Général:
+    - Lien depuis intranet Polytech
+    - Icône déconnexion
 
 
 - Réplication
@@ -8,9 +10,56 @@
 
 
 - Frontend:
+    - Par défaut la date limite des inscriptions: 1970
+    - Changer la taille du flash
+    - Nom -> "Package ou vous êtes enregistré"
+    - Visionneuse en ligne -> Pas de document -> Flash erreur et pas info
+    - Polycopiés en ligne / Lecture material
+    - Deadline en anglais
 
+    - Toujours afficher les registrations informations sur le frontent!!!
+    - Lors des conflits avec lors des incriptions dire qui est en conflit avec qui
+
+    - Empécher de s'inscrire à plus de packages que nécéssaire
+
+    - Lors de l'upload de rapport, garder l'extension souhaité par l'élève
+
+    - Visionneuse => rajouter les liens suivants et précedént aussi en bas
+                  => mettre en valeur les liens suivants et tout (infobulles, ...)
+
+    - Regrouper visionneuse et document
+    - Planning Status -> Statut
+    - Envoyer le planning par mail
+
+    - Rapport -> NomPrenom au lieu de login
 
 - Backend:
+    - Configurer texte page accueil administration 
+    - Edition des variables de configuration
+    - Date limite (indiquée aux étudiants)
+    - Ordre des variables de config
+    - Upload des fichiers (spécifier format en exemple)
+    - Upload de fichier "Enlever le label Chemin du fichier"
+    - Lors de l'upload de fichier (comme pour les confs par exemple) -> ramener sur le bon package après upload!! Pareil pour les erreurs
+
+    - Texte de l'upload de package : "Ajouter des packages aux packages existant"
+
+    - Titre sur les "table" editable
+
+    - Nom pour un QCM
+    - Séparer les configurations semaine du num et site web
+
+    - Lors de l'ajout de présence fictive, mieux afficher la liste des confs 
+
+    - Pouvoir changer l'heure des confs (penser à verifier, pour l'availability aussi)
+    
+    - Rapeller le seuil mimimun lorsqu'il est utilisé.  
+    - Afficher le nombre de question pour chaque package lors de l'upload
+
+    - Information -> Afficher les confs qui n'ont pas de salle
+    - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes
+    - Récupération rapport => mettre zip
+    - Upload de disponibilité => empécher les croisements d'horaires
 
 
 - William:
