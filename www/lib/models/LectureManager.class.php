@@ -124,5 +124,11 @@
 			$req = $this->m_dao->prepare('UPDATE Lectures SET Id_availability = ? WHERE Id_lecture = ? AND Id_package = ?');
 			$req->execute(array($array->idAvailability, $array->id, $array->idPackage));
 		}
+
+        public function unbindAvailability($idLecture)
+        {
+			$req = $this->m_dao->prepare('UPDATE Lectures SET Id_availability = 0 WHERE Id_lecture = ?');
+			$req->execute(array($idLecture));
+        }
     }
 ?>

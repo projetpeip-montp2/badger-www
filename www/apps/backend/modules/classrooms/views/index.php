@@ -43,7 +43,7 @@
 		
 		echo "<tr>";
 		echo "<td class='editable' data-entry-name='Classrooms' data-field-name='Name' data-form-type='text' data-id='$idClassroom'>$name</td>";
-		echo "<td class='editable' data-entry-name='Classrooms' data-field-name='Size' data-form-type='number' data-id='$idClassroom'>$size</td>";
+		echo "<td class='editable' data-verify-callback='true' data-entry-name='Classrooms' data-field-name='Size' data-form-type='number' data-id='$idClassroom'>$size</td>";
 		echo "<td>";
 		if (hasAvailabilities($classroom->getAvailabilities()))
 			foreach ($classroom->getAvailabilities() as $availability)

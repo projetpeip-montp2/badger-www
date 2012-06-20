@@ -10,8 +10,56 @@
 		
 		private function verifyInput($ajaxInput)
 		{
-			if ($ajaxInput->getData('entry-name') == 'Packages' && $ajaxInput->getData('field-name') == 'Capacity')
-				$this->m_managers->getManagerOf('ajax')->verifyCapacity($ajaxInput);
+            $entryName = $ajaxInput->getData('entry-name');
+            $fieldName = $ajaxInput->getData('field-name');
+            $id = $ajaxInput->getData('id');
+
+            $managerAjax = $this->m_managers->getManagerOf('ajax');
+            $managerLecture = $this->m_managers->getManagerOf('lecture');
+            $managerAvailability = $this->m_managers->getManagerOf('availability');
+            $managerClassroom = $this->m_managers->getManagerOf('classroom');
+
+			if ($entryName == 'Packages' && $fieldName == 'Capacity')
+            {
+                // Check if reduced capactify is inferior than registration count
+				$managerAjax->verifyCapacity($ajaxInput);
+                $newPackageCapacity = $ajaxInput->getValue();
+
+                $classrooms = $managerClassroom->get();
+                $availabilities = $managerAvailability->get();
+
+                $flag = false;
+                $lectures = $managerLecture->get($id);
+                foreach($lectures as $lec)
+                {
+                    if($lec->getIdPackage() == $id)
+                    foreach($availabilities as $avail)
+                    {
+                        if($lec->getIdAvailability() == $avail->getId())
+                        foreach($classrooms as $class)
+                        {
+                            if($avail->getIdClassroom() == $class->getId())
+                            {
+                                if($newPackageCapacity > $class->getSize())
+                                    $flag = true;
+                            }
+                        }
+                    }
+                }
+
+                if($flag)
+                foreach($lectures as $lec)
+                {
+                    if($lec->getIdPackage() == $id)
+                        $managerLecture->unbindAvailability($lec->getId());
+                }
+            }
+
+			if ($entryName == 'Classrooms' && $fieldName == 'Size')
+            {
+                // TODO: Si la nouvelle capacité est plus petite alors vérifier que les
+                // conf où elle intervient n'auront pas plus d'élève
+            }
 		}
 
 		private function postDelete($ajaxInput, $dataDeleted)
