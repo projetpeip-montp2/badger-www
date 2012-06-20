@@ -51,10 +51,19 @@
                     $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
                 }
 
+                $name = $request->postData('Name');
+
+                if($name == "")
+                {
+                    $this->app()->user()->setFlashError('Nom de QCM vide.');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
+                }
+
                 $mcq = new MCQ;
 
                 $mcq->setDepartment($request->postData('Department'));
                 $mcq->setSchoolYear($realYear);
+                $mcq->setName($name);
                 $mcq->setDate($date);
                 $mcq->setStartTime($startTime);
                 $mcq->setEndTime($endTime);

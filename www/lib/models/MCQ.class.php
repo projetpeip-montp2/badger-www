@@ -4,6 +4,7 @@
         private $m_idMCQ;
         private $m_department;
         private $m_schoolYear;
+        private $m_name;
         private $m_date;
         private $m_startTime;
         private $m_endTime;
@@ -36,6 +37,16 @@
         public function getSchoolYear()
         {
             return $this->m_schoolYear;
+        }
+
+        public function setName($name)
+        {
+            $this->m_name = $name;
+        }
+
+        public function getName()
+        {
+            return $this->m_name;
         }
 
         public function setDate(Date $date)

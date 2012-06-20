@@ -6,6 +6,7 @@
             $requestSQL = 'SELECT Id_mcq,
                                   Department,
                                   SchoolYear,
+                                  Name,
                                   Date,
                                   StartTime,
                                   EndTime FROM MCQs';
@@ -44,7 +45,8 @@
                 $mcq = new MCQ;
                 $mcq->setId($data['Id_mcq']);
                 $mcq->setDepartment($data['Department']);
-                $mcq->setSchoolYear($data['SchoolYear']);;
+                $mcq->setSchoolYear($data['SchoolYear']);
+                $mcq->setName($data['Name']);
                 $mcq->setDate($date);
                 $mcq->setStartTime($startTime);
                 $mcq->setEndTime($endTime);
@@ -59,12 +61,14 @@
         {
             $req = $this->m_dao->prepare('INSERT INTO MCQs(Department,
                                                            SchoolYear,
+                                                           Name,
                                                            Date,
                                                            StartTime,
-                                                           EndTime) VALUES(?, ?, ?, ?, ?)');
+                                                           EndTime) VALUES(?, ?, ?, ?, ?, ?)');
 
             $req->execute(array($mcq->getDepartment(),
                                 $mcq->getSchoolYear(),
+                                $mcq->getName(),
                                 $mcq->getDate()->toStringMySQL(),
                                 $mcq->getStartTime()->toStringMySQL(),
                                 $mcq->getEndTime()->toStringMySQL()));

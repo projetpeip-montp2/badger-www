@@ -21,6 +21,7 @@ CREATE TABLE numsem.`MCQs` (
 	`Id_mcq`             SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	`Department`         TEXT,
 	`SchoolYear`         SMALLINT UNSIGNED,
+	`Name`               TEXT,
 	`Date`               DATE,
 	`StartTime`          TIME,
 	`EndTime`            TIME,
