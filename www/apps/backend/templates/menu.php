@@ -20,7 +20,7 @@
 </a>
 <a href="/admin/mcq/index.html">
     <div class="itemmenu">
-        QCM et inscriptions
+        Notes
     </div>
 </a>
 <a href="/admin/home/edit.html">

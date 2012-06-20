@@ -137,7 +137,7 @@
             // Enough obligatory questions
             if(count($questions) > $maxQuestionNumber)
             {
-                $finalQuestions = array_splice($questions, $maxQuestionNumber);
+                $finalQuestions = array_slice($questions, 0, $maxQuestionNumber);
                 $questionManager->saveQuestionsOfUser($this->app()->user()->getAttribute('vbmifareStudent')->getUsername(), $finalQuestions);
                 return $finalQuestions;
             }

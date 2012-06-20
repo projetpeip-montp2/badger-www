@@ -4,7 +4,7 @@
         if($output != '<ul></ul>')
         {
         ?>
-        <form>
+        <form method="POST">
             <p><?php echo $TEXT['Lecture_GetMail']; ?>
             <input type="submit" name="<?php echo $TEXT['Form_Send']; ?>" onclick="return confirm('<?php echo $TEXT['Form_Send']; ?>');"/>
             </p>
