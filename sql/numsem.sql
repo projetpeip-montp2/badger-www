@@ -252,6 +252,9 @@ ALTER TABLE numsem.`Users` ADD CONSTRAINT fk_users_userspolytech FOREIGN KEY ( `
 INSERT INTO numsem.`UsersPolytech` (`Username`, `VraiNom`, `VraiPrenom`, `Departement`, `anApogee`) VALUES
 ('berry', 'Berry', 'Vincent', 'INFO', 0);
 
+INSERT INTO numsem.`SpecificLogins` (`UsernameUM2`, `Username`) VALUES
+('vincent.berry', 'berry');
+
 INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
 ('MCQMaxQuestions', 'Nombre de questions dans le QCM', '5'),
 ('packageRegistrationsCount', 'Nombre de packages auxquels les étudiants doivent s''inscrire', '5'),
