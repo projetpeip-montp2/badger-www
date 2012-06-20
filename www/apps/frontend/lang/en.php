@@ -87,6 +87,9 @@
     $TEXT['Lecture_EndTime'] = "End time";
     $TEXT['Lecture_Lecturer'] = "Lecturer";
     $TEXT['Lecture_ReportsDeletion'] = "Your reports for this lecture will be erase! Are you sure?";
+    $TEXT['Lecture_GetMail'] = "Get your schedule by mail";
+    $TEXT['Lecture_MailTitle'] = "Numerical Week - Schedule";
+    $TEXT['Lecture_MailIntro'] = "Hello, here is your schedule for the Numerical Week:<br/><br/>";
 
     // Note: Don't change name of keys for planning text
     $TEXT['Planning_Classroom'] = "Classroom";

@@ -55,14 +55,17 @@
             // If the form is submitted, do the registration
             if($request->postExists('isSubmitted'))
             {
-                $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
-                $packagesCount = $this->countSelectedPackages($registrations);
-
-                // The user cannot subscribe to more than the fixed number of packages
-                if($packagesCount >= $this->m_managers->getManagerOf('config')->get('packageRegistrationsCount'))
+                if($wantSubscribe)
                 {
-                    $this->app()->user()->setFlashError($this->m_TEXT['Package_MaxSubscriptions']);
-                    $this->app()->httpResponse()->redirect($request->requestURI());
+                    $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
+                    $packagesCount = $this->countSelectedPackages($registrations);
+
+                    // The user cannot subscribe to more than the fixed number of packages
+                    if($packagesCount >= $this->m_managers->getManagerOf('config')->get('packageRegistrationsCount'))
+                    {
+                        $this->app()->user()->setFlashError($this->m_TEXT['Package_MaxSubscriptions']);
+                        $this->app()->httpResponse()->redirect($request->requestURI());
+                    }
                 }
 
                 if( count($lectures) == 0 )
@@ -217,11 +220,13 @@
             $this->page()->addVar('lang', $lang);
         }
 
-        public function executeSchedule()
+        public function executeSchedule(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_LectureSchedule']);
 
             $username = $this->app()->user()->getAttribute('logon');
+
+            $lang = $this->app()->user()->getAttribute('vbmifareLang');
 
             $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
@@ -238,14 +243,57 @@
             }
 
             $canViewPlanning = ($this->m_managers->getManagerOf('config')->get('canViewPlanning') != 0);
+
+            $classrooms = $this->m_managers->getManagerOf('classroom')->get();
+            $availabilities = $this->m_managers->getManagerOf('availability')->get();
+            $lectures = $this->sort($result);
+
+            $output = '';
+            $output .= '<ul>';
+            // Display all day with lecture
+            foreach($lectures as $key => $lecture)
+            {
+                $output .= '<li>' . $key . '</li>';
+                $output .= '<ul>';
+                // Display lecture in this day
+                foreach($lecture as $lect)
+                {
+                    $output .= '<li>' . $lect->getName($lang) . '</li>';
+                    $output .= '<ul>';
+                    // Display informations for this lecture
+                    foreach($registrationsOfUser as $reg)
+                    {
+                        if($lect->getId() == $reg->getIdLecture())
+                            $output .= '<li>' . $this->m_TEXT['Planning_RegistrationStatus'] . ': ' . $this->m_TEXT['Planning_' . $reg->getStatus()] . '</li>';
+                    }
+                    
+                    $idAvailability = $lect->getIdAvailability();
+                    $room = ($idAvailability == 0) ? $this->m_TEXT['Planning_NoClassroom'] : $this->getClassroomName($classrooms, $availabilities, $idAvailability);
+
+                    $output .= '<li>' . $this->m_TEXT['Planning_Classroom'] . ': ' . $room . '</li>';
+                    $output .= '<li>' . $this->m_TEXT['Lecture_StartTime'] . ': ' . $lect->getStartTime() . '</li>';
+                    $output .= '<li>' . $this->m_TEXT['Lecture_EndTime'] . ': ' . $lect->getEndTime() . '</li>';
+                    $output .= '</ul>';
+                }
+                $output .= '</ul>';
+            }
+            $output .='</ul>';
+
+            if($canViewPlanning && $request->postExists($this->m_TEXT['Form_Send']))
+            {
+                $mailAdress = $username . $this->m_managers->getManagerOf('config')->get('mailAppendix');
+
+                // Headers to send the mail correctly
+                $headers = 'From: ' . $this->m_managers->getManagerOf('config')->get('mailSender') . "\r\n";
+                $headers .= 'Mime-Version: 1.0'."\r\n";
+                $headers .= 'Content-Type: text/html; charset=utf-8' . "\r\n";
+                $headers .= "\r\n";
+
+                mail($mailAdress, $this->m_TEXT['Lecture_MailTitle'], $this->m_TEXT['Lecture_MailIntro'] . $output, $headers);
+            }
+
             $this->page()->addVar('canViewPlanning', $canViewPlanning);
-
-            $this->page()->addVar('classrooms', $this->m_managers->getManagerOf('classroom')->get());
-            $this->page()->addVar('availabilities', $this->m_managers->getManagerOf('availability')->get());
-
-            $this->page()->addVar('registrations', $registrationsOfUser);
-            $this->page()->addVar('lectures', $this->sort($result));
-            $this->page()->addVar('lang', $this->app()->user()->getAttribute('vbmifareLang'));
+            $this->page()->addVar('output', $output);
         }
 
         private function checkSubscribe(HTTPRequest $request)
@@ -341,6 +389,25 @@
     	    uksort($array, "dateCompare");
             return $array;
 	    }
+
+        private function getClassroomName($classrooms, $availabilities, $idAvailability)
+        {
+            $result = 'Unknown classroom';
+
+            foreach($availabilities as $avail)
+            {
+                if($avail->getId() == $idAvailability)
+                {
+                    foreach($classrooms as $room)
+                    {
+                        if($room->getId() == $avail->getIdClassroom())
+                            $result = $room->getName();
+                    }
+                }
+            }
+
+            return $result;
+        }
     }
 
 function dateCompare($string1, $string2)
