@@ -1,4 +1,4 @@
-<p>Uploader des lectures pour ce package<p>
+<p>Uploader des informations de badgage<p>
 <?php
     $form = new Form('', 'post');
 
