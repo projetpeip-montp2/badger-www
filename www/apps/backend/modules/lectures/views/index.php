@@ -26,11 +26,12 @@
     });
 </script>
 
-
+<p>Format des fichiers CSV:
 <br/>
-<br/>
+"Nom conférencier","Nom fr","Nom en","Description fr","Description en","Date","Heure de début","Heure de fin"
+</p>
 
-<p>Ajouter des lectures pour ce package<p>
+<p>Ajouter des conférences aux conférences existantes<p>
 <?php
     $form = new Form('/admin/lectures/addLectures.html', 'post');
 

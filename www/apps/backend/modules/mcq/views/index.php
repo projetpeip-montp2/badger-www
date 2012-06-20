@@ -13,6 +13,7 @@
 	<tr>
 		<th>Departement</th>
 		<th>Année d'étude</th>
+        <th>Nom</th>
 		<th>Date</th>
 		<th>Horaire de début</th>
 		<th>Horaire de fin</th>
@@ -25,6 +26,7 @@
         
         $schoolYear = $mcq->getSchoolYear() + 2;
 
+        $name = $mcq->getName();
         $date = $mcq->getDate();
         $startTime = $mcq->getStartTime();
         $endTime = $mcq->getEndTime();
@@ -34,6 +36,8 @@
         echo "<td><p class='labelable' data-id='$id'  data-entry-name='MCQs' data-field-name='Department' data-form-type='textbox'>{$mcq->getDepartment()}</p></td>";
 
         echo "<td><p class='labelable' data-id='$id'  data-entry-name='MCQs' data-field-name='SchoolYear' data-form-type='textbox'>{$schoolYear}</p></td>";
+
+        echo "<td><p class='editable' data-id='$id'  data-entry-name='MCQs' data-field-name='Name' data-form-type='textbox'>{$name}</p></td>";
 
 
         // Date

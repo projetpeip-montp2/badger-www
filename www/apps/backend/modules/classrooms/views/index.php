@@ -1,6 +1,14 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
+<p>Format des fichiers CSV:
+<br/>
+"Nom","Taille"
+<br/>
+"Date","Heure de début","Heure de fin"
+</p>
+
+
 <ul>
     <li><a href="/admin/classrooms/addClassrooms.html">Uploader des salles</a></li>
     <li><a href="/admin/classrooms/addAvailabilities.html">Uploader des disponibilités</a></li>

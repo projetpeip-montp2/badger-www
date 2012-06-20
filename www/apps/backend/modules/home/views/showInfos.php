@@ -51,6 +51,23 @@ $(document).ready(function() {
 </div>
 
 <div class="clicker">
+<p class="informationsTitle" style="color: <?php echo (empty($noClassroomLectures) ? 'black' : 'red')?>"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Conférences sans salle associée</p>
+    <div class="informations">
+        <ul>
+        <?php
+            if(empty($noClassroomLectures))
+                echo '<p>Pas de conférence sans salle associée.</p>';
+            else
+            {
+                foreach($noClassroomLectures as $lecture)
+                    echo '<li>' . $lecture->getName('fr') . '</li>';
+            }
+        ?>
+        </ul>
+    </div>
+</div>
+
+<div class="clicker">
 <p class="informationsTitle" style="color: <?php echo (empty($noAnswerQuestions) ? 'black' : 'red')?>"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Questions sans réponse</p>
     <div class="informations">
         <ul>
