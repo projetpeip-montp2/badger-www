@@ -88,11 +88,11 @@ function generateOptionsHTML(lecture, size)
 			if (startTime >= availabilityStartTime && endTime <= availabilityEndTime && parseInt(jsonClassrooms[k].capacity) >= parseInt(size))
 			{
 				if (jsonClassrooms[k].availabilities[l].id == lecture.idAvailability)
-					html += '<option selected="selected" value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + '</option>';
+					html += '<option selected="selected" value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + ' (' + jsonClassrooms[k].capacity + ')</option>';
 				else if (jQuery.inArray(jsonClassrooms[k].availabilities[l].id, chosenAvailabilities) == -1)
-					html += '<option value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + '</option>';
+					html += '<option value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + ' (' + jsonClassrooms[k].capacity + ')</option>';
 				else
-					html +=  '<option disabled="disabled" value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + '</option>';
+					html +=  '<option disabled="disabled" value="' + jsonClassrooms[k].availabilities[l].id + '">' + jsonClassrooms[k].name + ' (' + jsonClassrooms[k].capacity + ')</option>';
 			}
 		}
 	}

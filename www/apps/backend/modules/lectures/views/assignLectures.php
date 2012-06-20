@@ -9,7 +9,7 @@
 <?php
 	foreach ($packages as $package)
 	{
-		echo "<p class='packageTitle'>Package: {$package['name']}</p>";
+		echo "<p class='packageTitle'>Package: {$package['name']} ({$package['registrationsCount']}/{$package['capacity']})</p>";
 		echo "<table id='editableTable'>";
 		echo "<tr><th>Nom de la conférence</th><th>Date</th><th>Heure de début</th><th>Heure de fin</th><th>Salle</th></tr>";
 		

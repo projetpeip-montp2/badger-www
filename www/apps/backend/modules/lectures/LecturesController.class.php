@@ -102,6 +102,7 @@
 					$packages[$i]['id'] = $packageClass->getId();
 					$packages[$i]['name'] = $packageClass->getName('fr');
 					$packages[$i]['capacity'] = $packageClass->getCapacity();
+					$packages[$i]['registrationsCount'] = $packageClass->getRegistrationsCount();
 					$packages[$i]['lectures'] = $lectures;
 					++$i;
 				}
