@@ -131,6 +131,7 @@
     // Check badging information validity
     function checkBadgingInformation($badgingInformation, $lecture)
     {
+        // Modifier l'offset pour les conférences ici
         $startTime = Time::overflowTime(
                               $lecture->getStartTime()->hours() - 1,
                               $lecture->getStartTime()->minutes(),

@@ -16,6 +16,11 @@
 
 - Backend:
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
+    - Déplacer "Ajouter les infos de badge CSV" vers Conférences
+    - Message flash Upload infos de présences
+    - Page regroupant toutes les infos de l'étudiant
+
+    - Déplacer parties de configuration vers QCM
 
     - Configurer texte page accueil administration 
 

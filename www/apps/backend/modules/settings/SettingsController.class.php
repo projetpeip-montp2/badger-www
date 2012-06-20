@@ -118,6 +118,7 @@
                     }
 
                     $studentsManager->updatePresentMark($student->getUsername(), $presentMark);
+                    $this->app()->user()->setFlashInfo('Calcul effectué.');
                 }
             }
         }
