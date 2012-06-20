@@ -236,12 +236,24 @@
                         $result['Lectures'] = array(); 
                         $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($input);
 
+                        $packagesManager = $this->m_managers->getManagerOf('package');
+
+                        $packageIds = array();
+                        $packages = array();
+
                         foreach($registrations as $reg)
                         {
                             $lectures = $this->m_managers->getManagerOf('lecture')->get($reg->getIdPackage());
 
+                            if(!in_array($reg->getIdPackage(), $packageIds))
+                            {
+                                $packageIds[] = $reg->getIdPackage();
+                                $pack = $packagesManager->get($reg->getIdPackage());
+                                $result['Packages'][$reg->getIdPackage()] = $pack[0]->getName('fr');
+                            }
+
                             foreach($lectures as $lec)
-                                $result['Lectures'][$lec->getId()] = $lec->getName('fr');
+                                $result['Lectures'][$lec->getId()] = array($lec->getName('fr'), $lec->getIdPackage());
                         }
 
                     }

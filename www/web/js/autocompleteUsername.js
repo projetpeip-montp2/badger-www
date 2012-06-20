@@ -29,8 +29,18 @@ function displayResults(response)
     
             infos.append('<select name="selectedLecture" id="selectedLecture">');
 
-            for (var index in response.Lectures)
-                $('#selectedLecture').append('<option value="' + index + '">' + response.Lectures[index] + '</option>');
+            for(var indexPack in response.Packages)
+            {
+                $('#selectedLecture').append('<optgroup label="' + response.Packages[indexPack] + '">');
+
+                for(var index in response.Lectures)
+                {
+                    if(response.Lectures[index][1] == indexPack)
+                        $('#selectedLecture').append('<option value="' + index + '">' + response.Lectures[index][0] + '</option>');
+                }
+
+                $('#selectedLecture').append('</optgroup>');
+            }
 
             infos.append('</select>');
 
