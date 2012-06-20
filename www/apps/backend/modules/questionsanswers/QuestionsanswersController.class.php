@@ -137,7 +137,8 @@
                     $flashMessage .= 'Impossible d\'uploader les questions/réponses.';
             }
 
-            $this->app()->httpResponse()->redirect('/admin/questionsanswers/index.html');
+            // Allow a redirection to the good package
+            $this->page()->addVar('idPackage', $request->postData('idPackage'));
         }
     }
 ?>

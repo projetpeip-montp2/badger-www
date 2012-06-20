@@ -88,6 +88,9 @@
     $TEXT['Lecture_EndTime'] = "Horaire de fin";
     $TEXT['Lecture_Lecturer'] = "Conférencier";
     $TEXT['Lecture_ReportsDeletion'] = "Vos rapports pour cette conférence vont être supprimés! Etes-vous sûr?";
+    $TEXT['Lecture_GetMail'] = "Obtenir le planning par mail";
+    $TEXT['Lecture_MailTitle'] = "Semaine du Numérique - Planning";
+    $TEXT['Lecture_MailIntro'] = "Bonjour, voici votre planning pour la Semaine du Numérique:<br/><br/>";
 
     // Note: Don't change name of keys for planning text
     $TEXT['Planning_Classroom'] = "Salle";
@@ -109,7 +112,7 @@
     $TEXT['MCQ_StartMCQLink'] = "Passer le QCM";
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";
     $TEXT['MCQ_SubmitAnswers'] = "Valider les réponses";
-    $TEXT['MCQ_Confirmation'] = "Etes-vous sûr de vouloir valider vos réponses?";
+    $TEXT['MCQ_Confirmation'] = "Etes-vous sûr de vouloir valider vos réponses ?";
 
     $TEXT['Viewer_Index'] = "Visionneuse";
     $TEXT['Viewer_NoPackage'] = "Il n'y a pas de package disponible.";

@@ -19,15 +19,9 @@
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
 
     - Configurer texte page accueil administration 
-    - Ordre des variables de config
-    - Lors de l'upload de fichier (comme pour les confs par exemple) -> ramener sur le bon package après upload!! Pareil pour les erreurs
-
-    - Séparer les configurations semaine du num et site web
 
     - Pouvoir changer l'heure des confs (penser à verifier, pour l'availability aussi)
     
-    - Rapeller le seuil mimimun lorsqu'il est utilisé.  
-
     - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes
     - Pareil lors du changement de la capacité d'une salle
 
