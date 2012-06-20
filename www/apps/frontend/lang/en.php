@@ -13,7 +13,7 @@
     $TEXT['Menu_Home'] = "Home";
     $TEXT['Menu_Guide'] = "User guide";
     $TEXT['Menu_Lectures'] = "Lectures";
-    $TEXT['Menu_Viewer'] = "Online viewer";
+    $TEXT['Menu_Viewer'] = "Lecture material";
     $TEXT['Menu_MCQ'] = "M.C.Q";
     $TEXT['Menu_Reports'] = "Reports";
 
@@ -64,7 +64,7 @@
     $TEXT['Flash_DownloadDocumentsError'] = "Error during documents download.";
     $TEXT['Flash_ForbiddenToHandleReports'] = "You cannot upload/delete your reports.";
 
-    $TEXT['Info_LimitDate'] = "Limit date for registrations: ";
+    $TEXT['Info_LimitDate'] = "Deadline for registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";
 
     $TEXT['Package_ShowAll'] = "Show all packages";
@@ -79,6 +79,7 @@
     $TEXT['Package_ImagesLink'] = "Online images viewer";
     $TEXT['Package_NoDisplay'] = "There is no available online documents.";
     $TEXT['Package_NoLecture'] = "There is no available lecture.";
+    $TEXT['Package_MaxSubscriptions'] = "You have already subscribed to all your packages, unsubscribe to select other ones.";
 
     $TEXT['Lecture_Schedule'] = "Schedule";
     $TEXT['Lecture_Date'] = "Date";
@@ -114,4 +115,8 @@
     $TEXT['Viewer_NoArchive'] = "There are no available images.";
     $TEXT['Viewer_GoTo'] = "Go to page";
     $TEXT['Viewer_SelectPackage'] = "Select a package: ";
+    $TEXT['Viewer_First'] = "First page";
+    $TEXT['Viewer_Previous'] = "Previous page";
+    $TEXT['Viewer_Next'] = "Next page";
+    $TEXT['Viewer_Last'] = "Last page";
 ?>

@@ -64,20 +64,11 @@
                         }
                     ?>
 
-                    <?php
-                        if($displayInfos)
-                        {
-                    ?>
-
                     <div id="registrations-infos">
                         <?php echo $TEXT['Info_LimitDate'] .$limitDate; ?>
                         <br/>
                         <?php echo $TEXT['Info_RegistrationsCount'] . $packagesChosen . '/' . $packagesToChoose; ?>
                     </div>
-
-                    <?php
-                        }
-                    ?>
 
                     <div class="module-text">
                     	<div class="module-text-content">

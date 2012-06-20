@@ -55,6 +55,16 @@
             // If the form is submitted, do the registration
             if($request->postExists('isSubmitted'))
             {
+                $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
+                $packagesCount = $this->countSelectedPackages($registrations);
+
+                // The user cannot subscribe to more than the fixed number of packages
+                if($packagesCount >= $this->m_managers->getManagerOf('config')->get('packageRegistrationsCount'))
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Package_MaxSubscriptions']);
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
                 if( count($lectures) == 0 )
                 {
                     $this->app()->user()->setFlashError($this->m_TEXT['Package_NoLecture']);

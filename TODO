@@ -10,28 +10,11 @@
 
 
 - Frontend:
-    - Par défaut la date limite des inscriptions: 1970
-    - Changer la taille du flash
-    - Nom -> "Package ou vous êtes enregistré"
-    - Visionneuse en ligne -> Pas de document -> Flash erreur et pas info
-    - Polycopiés en ligne / Lecture material
-    - Deadline en anglais
-
-    - Toujours afficher les registrations informations sur le frontent!!!
     - Lors des conflits avec lors des incriptions dire qui est en conflit avec qui
 
-    - Empécher de s'inscrire à plus de packages que nécéssaire
-
-    - Lors de l'upload de rapport, garder l'extension souhaité par l'élève
-
-    - Visionneuse => rajouter les liens suivants et précedént aussi en bas
-                  => mettre en valeur les liens suivants et tout (infobulles, ...)
-
     - Regrouper visionneuse et document
-    - Planning Status -> Statut
     - Envoyer le planning par mail
 
-    - Rapport -> NomPrenom au lieu de login
 
 - Backend:
     - Configurer texte page accueil administration 

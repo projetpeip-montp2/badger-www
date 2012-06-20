@@ -13,7 +13,7 @@
     $TEXT['Menu_Home'] = "Accueil";
     $TEXT['Menu_Guide'] = "Guide d'utilisation";
     $TEXT['Menu_Lectures'] = "Conférences";
-    $TEXT['Menu_Viewer'] = "Visionneuse en ligne";
+    $TEXT['Menu_Viewer'] = "Polycopiés en ligne";
     $TEXT['Menu_MCQ'] = "Q.C.M";
     $TEXT['Menu_Reports'] = "Rapports";
 
@@ -68,7 +68,7 @@
     $TEXT['Info_RegistrationsCount'] = "Inscriptions: ";
 
     $TEXT['Package_ShowAll'] = "Afficher tous les packages";
-    $TEXT['Package_ShowSubscribed'] = "Afficher les packages enregistrés";
+    $TEXT['Package_ShowSubscribed'] = "Afficher les packages où vous êtes inscrit";
     $TEXT['Package_NoSubscribtion'] = "Aucune inscription.";
     $TEXT['Package_Description'] = "Description";
     $TEXT['Package_Tags'] = "Tags";
@@ -80,6 +80,7 @@
     $TEXT['Package_ImagesLink'] = "Visionneuse en ligne";
     $TEXT['Package_NoDisplay'] = "Pas de documents disponibles";
     $TEXT['Package_NoLecture'] = "Aucune conférence.";
+    $TEXT['Package_MaxSubscriptions'] = "Vous avez déjà sélectionné tout vos packages, désinscrivez vous pour en choisir d'autres.";
 
     $TEXT['Lecture_Schedule'] = "Planning";
     $TEXT['Lecture_Date'] = "Date";
@@ -91,7 +92,7 @@
     // Note: Don't change name of keys for planning text
     $TEXT['Planning_Classroom'] = "Salle";
     $TEXT['Planning_NoClassroom'] = "Pas de salle associée encore";
-    $TEXT['Planning_RegistrationStatus'] = "Status";
+    $TEXT['Planning_RegistrationStatus'] = "Statut";
     $TEXT['Planning_Coming'] = "A venir";
     $TEXT['Planning_Present'] = "Présent";
     $TEXT['Planning_Absent'] = "Absent";
@@ -115,4 +116,8 @@
     $TEXT['Viewer_NoArchive'] = "Il n'y a pas d'image disponible.";
     $TEXT['Viewer_GoTo'] = "Aller à la page";
     $TEXT['Viewer_SelectPackage'] = "Selectioner un package: ";
+    $TEXT['Viewer_First'] = "Première page";
+    $TEXT['Viewer_Previous'] = "Page précédente";
+    $TEXT['Viewer_Next'] = "Page suivante";
+    $TEXT['Viewer_Last'] = "Dernière page";
 ?>

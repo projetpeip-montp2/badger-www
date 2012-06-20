@@ -110,10 +110,12 @@
                         $this->app()->httpResponse()->redirect('/reports/index.html');
                     }
 
+                    // Get file extension
+                    $extension = end(explode('.', $fileData['name']));
 
                     $path = dirname(__FILE__).'/../../../../uploads/students/';
                     $filename = $packageName . '_' . $lectureName . '_' .$student->getDepartment() . 
-                                $student->getSchoolYear() . '_' . $student->getUsername() .'.pdf';
+                                $student->getSchoolYear() . '_' . $student->getName() . $student->getSurname() .'.' . $extension;
 
                     $idRegistration;
                     foreach($registrations as $reg)

@@ -29,13 +29,13 @@
         $first = $baseLink . $idPackage . '-' . $idArchive . '-1.html';
 ?>
 
-    <a href="<?php echo $first . $anchor; ?>"><<</a>
+    <a href="<?php echo $first . $anchor; ?>" title="<?php echo $TEXT['Viewer_First']; ?>"><<</a> |
 
 <?php
        $previous = $baseLink . $idPackage . '-' . $idArchive . '-' . ($imageNumber - 1) .'.html';
 ?>
 
-    <a href="<?php echo $previous . $anchor; ?>"><</a>
+    <a href="<?php echo $previous . $anchor; ?>" title="<?php echo $TEXT['Viewer_Previous']; ?>">< </a> |
 
 <?php
     }
@@ -45,13 +45,13 @@
         $next = $baseLink . $idPackage . '-' . $idArchive . '-' . ($imageNumber + 1) .'.html';
 ?>
 
-    <a href="<?php echo $next . $anchor; ?>">></a>
+    | <a href="<?php echo $next . $anchor; ?>" title="<?php echo $TEXT['Viewer_Next']; ?>">></a>
 
 <?php
         $last = $baseLink . $idPackage . '-' . $idArchive . '-' . $count . '.html';
 ?>
 
-    <a href="<?php echo $last . $anchor; ?>">>></a>
+    | <a href="<?php echo $last . $anchor; ?> title="<?php echo $TEXT['Viewer_Last']; ?>"">>></a>
 
 <?php
     }
@@ -62,4 +62,40 @@
 ?>
     <br/>
     <img src="<?php echo $filePath; ?>" alt="<?php echo $fileName; ?>"/>
+    <br/>
+
+<?php
+    if($imageNumber > 1)
+    {
+        $first = $baseLink . $idPackage . '-' . $idArchive . '-1.html';
+?>
+
+    <a href="<?php echo $first . $anchor; ?>" title="<?php echo $TEXT['Viewer_First']; ?>"><<</a> |
+
+<?php
+       $previous = $baseLink . $idPackage . '-' . $idArchive . '-' . ($imageNumber - 1) .'.html';
+?>
+
+    <a href="<?php echo $previous . $anchor; ?>" title="<?php echo $TEXT['Viewer_Previous']; ?>"><</a> |
+
+<?php
+    }
+
+    if($imageNumber < $count)
+    {
+        $next = $baseLink . $idPackage . '-' . $idArchive . '-' . ($imageNumber + 1) .'.html';
+?>
+
+    | <a href="<?php echo $next . $anchor; ?>" title="<?php echo $TEXT['Viewer_Next']; ?>">></a>
+
+<?php
+        $last = $baseLink . $idPackage . '-' . $idArchive . '-' . $count . '.html';
+?>
+
+    | <a href="<?php echo $last . $anchor; ?>" title="<?php echo $TEXT['Viewer_Last']; ?>">>></a>
+
+<?php
+    }
+?>
+
 </div>

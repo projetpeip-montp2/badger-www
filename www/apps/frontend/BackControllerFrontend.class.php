@@ -48,23 +48,15 @@
 
             $currentDate = Date::current();
 
-            if(Date::compare($limitDate, $currentDate) > 0)
-            {
-                $this->page()->addVar('displayInfos', true);
+            $this->page()->addVar('limitDate', $limitDate);
 
-                $this->page()->addVar('limitDate', $limitDate);
-
-                $username = $this->app()->user()->getAttribute('logon');
-                $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
-                $count = $this->countSelectedPackages($registrations);
-                $this->page()->addVar('packagesChosen', $count);
-                $this->page()->addVar('packagesToChoose', $this->m_managers->getManagerOf('config')->get('packageRegistrationsCount'));
-            }
-            else
-                $this->page()->addVar('displayInfos', false);
+            $username = $this->app()->user()->getAttribute('logon');
+            $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
+            $this->page()->addVar('packagesChosen', $this->countSelectedPackages($registrations));
+            $this->page()->addVar('packagesToChoose', $this->m_managers->getManagerOf('config')->get('packageRegistrationsCount'));
         }
 
-        private function countSelectedPackages($registrations)
+        protected function countSelectedPackages($registrations)
         {
             $existingPackages = array();
             foreach($registrations as $reg)
