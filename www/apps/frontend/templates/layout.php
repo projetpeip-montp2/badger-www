@@ -30,7 +30,9 @@
                 <?php echo '   | '; ?>
 
                 <!-- Logout-->
-                <a href="/home/logout.html"><?php echo $TEXT['Page_Logout']; ?></a>
+                <a href="/home/logout.html">
+                    <img src="/web/images/tools/door.png" alt="Logout"/><?php echo $TEXT['Page_Logout']; ?>
+                </a>
             </div>
         </div>
 

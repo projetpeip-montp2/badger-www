@@ -260,7 +260,7 @@ INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
 ('canSubscribe', 'Accès aux inscriptions', '1'),
 ('canViewPlanning', 'Accès au planning', '1'),
 ('canHandleReports', 'Accès à l''upload de rapports', '1'),
-('registrationsDateLimit', 'Date limite des inscriptions', '1970-01-01'),
+('registrationsDateLimit', 'Date limite des inscriptions (indiquée aux étudiants)', '1970-01-01'),
 ('reportSizeLimitFrontend', 'Taille limite des rapports, en octets', '10000000'),
 ('documentSizeLimitBackend', 'Taille limite des documents, en octets', '10000000'),
 ('zipFileSizeLimitBackend', 'Taille limite des archives d''images, en octets', '10000000'),

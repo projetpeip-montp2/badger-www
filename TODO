@@ -2,7 +2,6 @@
 
 - Général:
     - Lien depuis intranet Polytech
-    - Icône déconnexion
 
 
 - Réplication
@@ -18,14 +17,9 @@
 
 - Backend:
     - Configurer texte page accueil administration 
-    - Edition des variables de configuration
-    - Date limite (indiquée aux étudiants)
     - Ordre des variables de config
     - Upload des fichiers (spécifier format en exemple)
-    - Upload de fichier "Enlever le label Chemin du fichier"
     - Lors de l'upload de fichier (comme pour les confs par exemple) -> ramener sur le bon package après upload!! Pareil pour les erreurs
-
-    - Texte de l'upload de package : "Ajouter des packages aux packages existant"
 
     - Titre sur les "table" editable
 
@@ -37,7 +31,6 @@
     - Pouvoir changer l'heure des confs (penser à verifier, pour l'availability aussi)
     
     - Rapeller le seuil mimimun lorsqu'il est utilisé.  
-    - Afficher le nombre de question pour chaque package lors de l'upload
 
     - Information -> Afficher les confs qui n'ont pas de salle
     - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes

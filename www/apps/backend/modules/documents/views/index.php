@@ -52,8 +52,7 @@
 
     $form->add('hidden', 'idPackage');
 
-    $form->add('file', 'zipFile')
-         ->label('Chemin du fichier zip : ');
+    $form->add('file', 'zipFile');
 
     $form->add('submit', 'Envoyer');
 
@@ -96,8 +95,7 @@
     // Upload new document
     $form = new Form('', 'post');
 
-    $form->add('file', 'PDFFile')
-         ->label('Chemin du fichier PDF: ');
+    $form->add('file', 'PDFFile');
 
     $form->add('hidden', 'idPackage');
 

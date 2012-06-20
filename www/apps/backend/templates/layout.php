@@ -18,7 +18,9 @@
         <div id="top">
 	        <div id="top-content" align="right">
                 <!-- Logout-->
-                <a href="/home/logout.html">Déconnexion</a>
+                <a href="/home/logout.html">
+                    <img src="/web/images/tools/door.png" alt="Logout"/>Déconnexion
+                </a>
             </div>
         </div>
 

@@ -23,6 +23,7 @@
 
 
 <br/>
+<?php echo count($questions); ?> questions pour ce package.
 <br/>
 
 

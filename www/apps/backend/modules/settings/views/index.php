@@ -13,9 +13,8 @@
 <script src="../../web/js/editTable.js"></script>
 <script src="../../web/js/selectable.js"></script>
 
-Edition des variables de configuration:
 <br/>
-<br/>
+<h1>Edition des variables de configuration:</h1>
 
 <table id="editableTable">
     <tr>

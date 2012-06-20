@@ -13,12 +13,17 @@ img
 
 *
 {
-	font-size: 12px;
+	font-size: 13px;
+}
+
+li
+{
+	font-size: 15px;
 }
 
 h1
 {
-	font-size: 24px;
+	font-size: 18px;
 }
 
 /* ------------------------ Header ------------------------  */
