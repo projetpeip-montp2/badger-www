@@ -180,5 +180,63 @@
             // Else we display the form
             $this->page()->addVar('currentAdminList', $currentAdminList);
         }
+
+        public function executeUploadBadgingInformations(HTTPRequest $request)
+        {
+            // Upload lectures for a package
+            if($request->fileExists('CSVFile'))
+            {
+                $fileData = $request->fileData('CSVFile');
+
+                // Check if the file is sucefully uploaded
+                if($fileData['error'] == 0)
+                {
+                    $file = fopen($fileData['tmp_name'], 'r');
+
+                    $badging = array();
+
+                    while (($lineDatas = fgetcsv($file)) !== FALSE) 
+                    {
+                        if(count($lineDatas) != 3)
+                        {
+                            $this->app()->user()->setFlashError('Le fichier n\'a pas 3 colonnes');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
+                        }
+
+                        // Check Date and Time formats
+                        if(!(Date::check($lineDatas[0]) && Time::check($lineDatas[1]) ))
+                        {
+                            $this->app()->user()->setFlashError('Erreur dans le format de date ou d\'heure.');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
+                        }
+
+                        $date = new Date;
+                        $date->setFromString($lineDatas[0]);
+
+                        $time = new Time;
+                        $time->setFromString($lineDatas[1]);
+        
+                        $badge = new BadgingInformation;
+                        $badge->setDate($date);
+                        $badge->setTime($time);
+                        $badge->setMifare($lineDatas[2]);
+
+                        array_push($badging, $badge);
+                    }
+
+                    fclose($file);
+
+                    $manager = $this->m_managers->getManagerOf('badginginformation');
+                    $manager->save($badging);
+
+                    $this->app()->user()->setFlashInfo('Informations de badgage uploadées uploadées.');
+                }
+
+                else
+                    $this->app()->user()->setFlashInfo('Impossible d\'uploader les badging informations.');
+
+                $this->app()->httpResponse()->redirect('/admin/settings/index.html');
+            }
+        }
     }
 ?>
