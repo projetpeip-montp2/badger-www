@@ -1,6 +1,7 @@
 <ul>
     <li><a href="/admin/lectures/assignLectures.html">Assigner les salles aux conférences</a></li>
     <li><a href="/admin/lectures/addBadgingInformation.html">Ajouter la présence d'un élève à une conférence</a></li>
+    <li><a href="/admin/lectures/uploadBadgingInformations.html">Uploader des informations de badgage</a></li>
 </ul>
 
 

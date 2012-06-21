@@ -2,9 +2,6 @@
     <li><a href="/admin/settings/changeAvailableAdmins.html">Configurations des admins</a></li>
     <li><a href="/admin/settings/changeSpecificLogins.html">Configurer les logins spéciaux</a></li>
     <li><a href="/admin/settings/replicate.html">Exécuter la réplication</a></li>
-    <li><a href="/admin/settings/updateRegistrations.html">Mettre à jour les informations de présence</a></li>
-    <li><a href="/admin/settings/uploadBadgingInformations.html">Uploader des informations de badgage</a></li>
-    <li><a href="/admin/settings/computePresentMark.html">Calculer la note de présence</a></li>
 </ul>
 
 

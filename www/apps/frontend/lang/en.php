@@ -13,7 +13,6 @@
     $TEXT['Menu_Home'] = "Home";
     $TEXT['Menu_Guide'] = "User guide";
     $TEXT['Menu_Lectures'] = "Lectures";
-    $TEXT['Menu_Viewer'] = "Lecture material";
     $TEXT['Menu_MCQ'] = "M.C.Q";
     $TEXT['Menu_Reports'] = "Reports";
 
@@ -112,6 +111,7 @@
     $TEXT['MCQ_Introduction'] = "From this page, you will be able to take the MCQ during the time slot given by your teachers.";
     $TEXT['MCQ_SubmitAnswers'] = "Submit answers";
     $TEXT['MCQ_Confirmation'] = "Are you sure?";
+    $TEXT['MCQ_Warning'] = "Be careful, if you leave this page without validating your MCQ, you will lose all your answers.";
 
     $TEXT['Viewer_Index'] = "Viewer";
     $TEXT['Viewer_NoPackage'] = "There are no available package.";
