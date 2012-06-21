@@ -13,6 +13,8 @@
 
     - Regrouper visionneuse et document
 
+    - Warning (Page fermée) sur les QCM
+
 
 - Backend:
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
@@ -28,9 +30,13 @@
     
     - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes
     - Pareil lors du changement de la capacité d'une salle
+    - Pareil lorsque l'on change une availability
 
     - Récupération rapport => mettre zip
     - Upload de disponibilité => empécher les croisements d'horaires
+
+    - Empêcher d'ajouter des availabilities
+    - Ajouter sur package question réponse
 
 
 - William:
