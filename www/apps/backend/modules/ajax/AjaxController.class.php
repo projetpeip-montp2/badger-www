@@ -1,28 +1,33 @@
 <?php
+/*
+    Toi qui lit ce fichier, perd tout espoir, car ton âme est déjà perdu dans les
+    limbes de PHP, Javascript, et AJAX.
+    En d'autres termes, si tu touches ici, t'es foutu, et tu trouveras jamais l'erreur!
+    Bon courage ! :D
+    G & V.
+*/
     class AjaxController extends BackController
     {
 		private $m_ajaxContent = '';
-		
-        public function executeIndex(HTTPRequest $request)
+
+        private function verifyInput($ajaxInput)
         {
-			$this->app()->httpResponse()->redirect('/admin/home/index.html');
-        }
-		
-		private function verifyInput($ajaxInput)
-		{
             $entryName = $ajaxInput->getData('entry-name');
             $fieldName = $ajaxInput->getData('field-name');
             $id = $ajaxInput->getData('id');
 
+            $managerUser = $this->m_managers->getManagerOf('user');
+            $managerPackage = $this->m_managers->getManagerOf('package');
             $managerAjax = $this->m_managers->getManagerOf('ajax');
             $managerLecture = $this->m_managers->getManagerOf('lecture');
+            $managerRegistration = $this->m_managers->getManagerOf('registration');
             $managerAvailability = $this->m_managers->getManagerOf('availability');
             $managerClassroom = $this->m_managers->getManagerOf('classroom');
 
-			if ($entryName == 'Packages' && $fieldName == 'Capacity')
+	        if ($entryName == 'Packages' && $fieldName == 'Capacity')
             {
                 // Check if reduced capactify is inferior than registration count
-				$managerAjax->verifyCapacity($ajaxInput);
+		        $managerAjax->verifyCapacity($ajaxInput);
                 $newPackageCapacity = $ajaxInput->getValue();
 
                 $classrooms = $managerClassroom->get();
@@ -55,25 +60,129 @@
                 }
             }
 
-			if ($entryName == 'Classrooms' && $fieldName == 'Size')
+	        if ($entryName == 'Classrooms' && $fieldName == 'Size')
             {
-                // TODO: Si la nouvelle capacité est plus petite alors vérifier que les
-                // conf où elle intervient n'auront pas plus d'élève
+                $newClassroomCapacity = $ajaxInput->getValue();
+
+                $availabilities = $managerAvailability->get($id);
+                $lectures = $managerLecture->get();
+
+                $packagesDone = array();
+                $lecturesToChange = array();
+                foreach($lectures as $lecture)
+                {
+                    foreach($availabilities as $availability)
+                    {
+                        if($lecture->getIdAvailability() == $availability->getId())
+                        {
+                            $package = $managerPackage->get($lecture->getIdPackage());
+                            if($newClassroomCapacity < $package[0]->getCapacity())
+                                $lecturesToChange[] = $lecture->getId();
+                        }
+                    }
+                }
+
+                foreach($lecturesToChange as $idLec)
+                    $managerLecture->unbindAvailability($idLec);
             }
 
-			if ($entryName == 'Lectures' && (($fieldName == 'Date') || ($fieldName == 'StartTime') || ($fieldName == 'EndTime')) )
+            $isDateOrTime = ($fieldName == 'Date');
+            $isDateOrTime |= ($fieldName == 'StartTime');
+            $isDateOrTime |= ($fieldName == 'EndTime');
+	        if ($entryName == 'Lectures' && $isDateOrTime)        
             {
-                // TODO: Si on change l'heure ou la date vérifié qu'il n'y a pas de conflit engendré.
-                // Pareil déassigner l'availability associée si elle ne passe plus
+                $subName = $ajaxInput->getData('subfield-name');
+
+                $getter = 'get' . $fieldName;
+                $setter = 'set' . $subName;
+
+                $tmp = $managerLecture->get(-1, $id);
+                $lectureToCheck = $tmp[0];
+                $element = $tmp[0]->$getter();
+                $element->$setter(intval($ajaxInput->getValue()));
+
+                $users = $managerUser->get();
+                $atLeastOneUserRegistered = false;
+                foreach($users as $user)
+                {
+                    $registrations = $managerRegistration->getRegistrationsFromUser($user->getUsername());
+
+                    $flag = false;
+                    $lectures = array();
+                    foreach($registrations as $reg)
+                    {
+                        $tmp = $managerLecture->get(-1, $reg->getIdLecture());
+
+                        if($tmp[0]->getId() == $id)
+                            $flag = $atLeastOneUserRegistered = true;
+                        else
+                            $lectures[] = $tmp[0];
+                    }
+
+                    if($flag)
+                    {
+                        $lectures[] = $lectureToCheck;
+                        for($i=0; $i<count($lectures); $i++)
+                        {
+                            for($j=($i+1); $j<count($lectures); $j++)
+                            {
+                                if(Tools::conflict($lectures[$i], $lectures[$j]))
+                                    throw new Exception('Conflit causé par le changement de date ou d\'heure.');
+                            }
+                        }
+                    }
+                }
+
+                if(!$atLeastOneUserRegistered)
+                {
+                    $allLectures = $managerLecture->get();
+
+                    $lectures = array();
+                    foreach($allLectures as $lec)
+                    {
+                        if(($lec->getIdPackage() == $lectureToCheck->getIdPackage()) && ($lec->getId() != $id))
+                            $lectures[] = $lec;
+                    }
+                    $lectures[] = $lectureToCheck;
+
+                    for($i=0; $i<count($lectures); $i++)
+                    {
+                        for($j=($i+1); $j<count($lectures); $j++)
+                        {
+                            if(Tools::conflict($lectures[$i], $lectures[$j]))
+                                throw new Exception('Conflit causé par le changement de date ou d\'heure, dans le package.');
+                        }
+                    }
+                }
+
+                $idAvailability = $lectureToCheck->getIdAvailability();
+                if($idAvailability != 0)
+                {
+                    $tmp = $managerAvailability->get(-1, $idAvailability);
+                    $availability = $tmp[0];
+
+                    if
+                    (
+                        (Date::compare($lectureToCheck->getDate(), $availability->getDate()) != 0) ||
+                        (Time::compare($lectureToCheck->getStartTime(), $availability->getStartTime()) >= 0) ||
+                        (Time::compare($lectureToCheck->getEndTime(), $availability->getEndTime()) <= 0)
+                    )
+                      $managerLecture->unbindAvailability($lectureToCheck->getId());  
+                }
             }
 
-			if ($entryName == 'Availabilities' && (($fieldName == 'Date') || ($fieldName == 'StartTime') || ($fieldName == 'EndTime')) )
+	        if ($entryName == 'Availabilities' && (($fieldName == 'Date') || ($fieldName == 'StartTime') || ($fieldName == 'EndTime')) )
             {
                 // TODO: Si on change l'heure et la date, vérifi que ça passe bien dans les conférences,
                 // sinon on désassigne
             }
-		}
-
+        }
+		
+        public function executeIndex(HTTPRequest $request)
+        {
+			$this->app()->httpResponse()->redirect('/admin/home/index.html');
+        }
+		
 		private function postDelete($ajaxInput, $dataDeleted)
 		{
 			if ($ajaxInput->getData('entry-name') == 'MCQs')
@@ -144,7 +253,7 @@
 						}
 						catch (Exception $e)
 						{
-							$this->addToAjaxContent($e->getMessage());
+							$this->addToAjaxContent('Erreur: ' . $e->getMessage());
 						}
 					}
 				}
@@ -332,9 +441,6 @@
 
 			echo $this->getAjaxContent();
         }
-
-
-
 
         // TODO: Find a better place for this function, because it is already in MCQ manager
         private function updateStudents($department, $schoolYear, $status)

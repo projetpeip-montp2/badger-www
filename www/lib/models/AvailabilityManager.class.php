@@ -1,7 +1,7 @@
 <?php
     class AvailabilityManager extends Manager
     {
-        public function get($idClassroom = -1)
+        public function get($idClassroom = -1, $idAvailability = -1)
         {
             $requestSQL = 'SELECT Id_availability,
                                   Id_classroom,
@@ -9,15 +9,23 @@
                                   StartTime,
                                   EndTime FROM Availabilities';
 
-            $arguments = array();
+            $paramsSQL = array();
+
             if($idClassroom != -1)
             {
                 $requestSQL .= ' WHERE Id_classroom = ?';
-                $arguments[] = $idClassroom;
+                $paramsSQL[] = $idClassroom;
+            }
+
+            if($idAvailability != -1)
+            {
+                $connect = ($idClassroom != -1) ? 'AND' : 'WHERE';
+                $requestSQL .= ' ' . $connect .' Id_availability = ?';
+                $paramsSQL[] = $idAvailability;
             }
 
             $req = $this->m_dao->prepare($requestSQL);
-            $req->execute($arguments); 
+            $req->execute($paramsSQL); 
 			
             $availabilities = array();
 
