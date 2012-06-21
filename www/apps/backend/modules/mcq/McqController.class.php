@@ -228,5 +228,41 @@
                 $this->app()->user()->setFlashInfo('Mise à jour terminée en ' . $elapsedTime . ' seconde(s).');
             }
         }
+
+        public function executeGetMarks(HTTPRequest $request)
+        {
+            // Hack to don't display the layout :)
+			$this->page()->setIsAjaxPage(TRUE);
+
+            $csv = '"Département","Année d\'étude","Username","Note de présence","Note QCM","Commentaire"' . PHP_EOL;
+
+            $managerUser = $this->m_managers->getManagerOf('user');
+            $students = $managerUser->get();
+
+            foreach($students as $student)
+            {
+                $status = $student->getMCQStatus();
+
+                if($status != 'Visitor')
+                {
+                    $shoolYear = intval($student->getSchoolYear()) + 2;
+
+                    $csv .= '"' . $student->getDepartment() . '","' . 
+                                  $shoolYear . '","' . 
+                                  $student->getStudentNumber() . '","' . 
+                                  $student->getUsername() . '","' . 
+                                  $student->getPresentMark() . '","' . 
+                                  $student->getMCQMark() . '"';
+
+                    $csv .= (($status == 'Taken') ? ',""' : ',"Absent"');
+
+                    $csv .= PHP_EOL;
+                }
+            }
+
+            header('Content-Type: text/csv');
+            header('Content-Disposition: attachment; filename="marks.csv"');
+            echo $csv;
+        }        
     }
 ?>

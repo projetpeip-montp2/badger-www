@@ -27,10 +27,10 @@
     <route url="/admin/mcq/sendMails\.html" module="mcq" action="sendMails"/>
     <route url="/admin/mcq/updateRegistrations\.html" module="mcq" action="updateRegistrations"/>
     <route url="/admin/mcq/computePresentMark\.html" module="mcq" action="computePresentMark"/>
+    <route url="/admin/mcq/getMarks\.html" module="mcq" action="getMarks"/>
 
     <route url="/admin/retrieval/index\.html" module="retrieval" action="index"/>
     <route url="/admin/retrieval/export\.html" module="retrieval" action="export"/>
-    <route url="/admin/retrieval/getMarks\.html" module="retrieval" action="getMarks"/>
     <route url="/admin/retrieval/getReports\.html" module="retrieval" action="getReports"/>
 
     <route url="/admin/statistics/index\.html" module="statistics" action="index"/>
