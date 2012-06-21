@@ -57,12 +57,10 @@ function addForm(element)
 {	
 	switch ($(element).attr('data-entry-name'))
 	{
-		case "Availabilities":
-			addAvailabilityEntry(element);
-			break;
 		case "Classrooms":
 			addClassroomEntry(element);
 			break;
+
 		default:
 			alert("Error on addForm data-entry-name value");
 			break;

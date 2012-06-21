@@ -154,15 +154,13 @@
 				{
 					switch ($ajaxInput->getData('entry-name'))
 					{
-							case 'Availabilities':
-								$this->addToAjaxContent($this->m_managers->getManagerOf('ajax')->addAvailability($ajaxInput));
-								break;
-							case 'Classrooms':
-								$this->addToAjaxContent($this->m_managers->getManagerOf('ajax')->addClassroom($ajaxInput));
-								break;
-							default:
-								$this->addToAjaxContent('Erreur dans le formulaire.');
-								break;
+						case 'Classrooms':
+							$this->addToAjaxContent($this->m_managers->getManagerOf('ajax')->addClassroom($ajaxInput));
+							break;
+
+						default:
+							$this->addToAjaxContent('Erreur dans le formulaire.');
+							break;
 					}
 				}
 				catch (Exception $e)
