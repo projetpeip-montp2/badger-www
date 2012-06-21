@@ -13,6 +13,7 @@
   'application' => 'lib/Application.class.php',
   'applicationcomponent' => 'lib/ApplicationComponent.class.php',
   'httpresponse' => 'lib/HTTPResponse.class.php',
+  'tools' => 'lib/Tools.class.php',
   'page' => 'lib/Page.class.php',
   'httprequest' => 'lib/HTTPRequest.class.php',
   'date' => 'lib/Date.class.php',

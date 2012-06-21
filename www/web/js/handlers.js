@@ -12,36 +12,6 @@ function hasError(data)
 	return (false);
 }
 
-function addAvailabilityHTML(element, data)
-{
-	if (hasError(data))
-		alert(data);
-	else
-	{
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Day" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Month" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">01</p><p class="separator">-</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="Date" data-subfield-name="Year" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">2012</p><p class="separator"> | </p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="StartTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> -> </p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Hours" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">23</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Minutes" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator">:</p>').insertBefore(element);
-		$('<p class="editable" data-entry-name="Availabilities" data-field-name="EndTime" data-subfield-name="Seconds" data-form-type="number" data-form-size="2" data-id="' + data + '" data-id-sub="' + $(element).attr('data-id') + '">00</p><p class="separator"> </p>').insertBefore(element);
-		$('<img src="../../web/images/delete_small.png" class="deletable" data-entry-name="Availabilities" data-id="' + data + '" /><br />').insertBefore(element);
-	}
-}
-
-function addAvailabilityEntry(element)
-{
-	$.post("/admin/ajax/addEntry.html", {
-	'data-id': $(element).attr('data-id'),
-	'data-entry-name': $(element).attr('data-entry-name')
-	}).error(onError).complete(function(data)
-	{
-		addAvailabilityHTML(element, data.responseText);
-	});
-}
-
 function addClassroomHTML(element, data)
 {
 	if (hasError(data))

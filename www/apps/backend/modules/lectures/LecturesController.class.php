@@ -212,7 +212,7 @@
                     {
                         for($j=($i+1); $j<count($lectures); $j++)
                         {
-                            if(Lecture::conflict($lectures[$i], $lectures[$j]))
+                            if(Tools::conflict($lectures[$i], $lectures[$j]))
                             {
                                 $this->app()->user()->setFlashError('Conflit entre les horaires de conférences.');
                                 $this->app()->httpResponse()->redirect($request->requestURI());

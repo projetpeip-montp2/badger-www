@@ -73,7 +73,6 @@
 					echo "<p class='separator'> </p>";
 					echo "<img src='../../web/images/delete_small.png' class='deletable' data-entry-name='Availabilities' data-id='$id' /><br />";
 				}
-		echo "<a class='addable' data-entry-name='Availabilities' data-id='$idClassroom'>Insérer une nouvelle disponibilité</a>";
 		echo "</td>";
 		echo "<td><img class='deletable' data-entry-name='Classrooms' data-id='$idClassroom' src='../../web/images/delete.png' /></a></td>";
 		echo "</tr>";
