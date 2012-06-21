@@ -27,10 +27,14 @@
     });
 </script>
 
-<p>Format des fichiers CSV:
-<br/>
-"Nom conférencier","Nom fr","Nom en","Description fr","Description en","Date","Heure de début","Heure de fin"
-</p>
+<div class="clicker">
+<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Format CSV pour les conférences</p>
+    <div class="informations">
+        <p>"Nom conférencier","Nom fr","Nom en","Description fr","Description en","Date","Heure de début","Heure de fin"</p>
+    </div>
+</div>
+
+<script src="../../web/js/plusMinus.js"></script>
 
 <p>Ajouter des conférences aux conférences existantes<p>
 <?php

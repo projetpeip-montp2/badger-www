@@ -18,10 +18,7 @@
 
     - Configurer texte page accueil administration 
     
-    - Pouvoir changer l'heure des confs (penser à verifier, pour l'availability aussi)
-    - Lors du changement de la capacité d'un package vérifié que les salles des confs sont toujours assez grandes
-    - Pareil lors du changement de la capacité d'une salle
-    - Pareil lorsque l'on change une availability
+    - Implémenter la vérification des inputs dans l'ajax manager
 
     - Récupération rapport => mettre zip
 

@@ -26,15 +26,19 @@
 <?php echo count($questions); ?> questions pour ce package.
 <br/>
 
-<p>Format des fichiers CSV:
-<br/>
-<pre>
-"Label fr","Label en","Statut"              Question 1<br/>
-"Label fr","Label en","Vrai ou faux"        Réponse 1 pour question 1<br/>
-"Label fr","Label en","Vrai ou faux"        Réponse 2 pour question 1<br/>
-__vbmifare*                                 Separateur pour la prochaine question<br/>
-</p>
-</pre>
+<div class="clicker">
+<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Format CSV pour les questions/réponses</p>
+    <div class="informations">
+        <pre>
+        "Label fr","Label en","Statut"              Question 1<br/>
+        "Label fr","Label en","Vrai ou faux"        Réponse 1 pour question 1<br/>
+        "Label fr","Label en","Vrai ou faux"        Réponse 2 pour question 1<br/>
+        __vbmifare*                                 Separateur pour la prochaine question<br/>
+        </pre>
+    </div>
+</div>
+
+<script src="../../web/js/plusMinus.js"></script>
 
 <p>Uploader des questions-réponses pour ce package<p>
 <?php
