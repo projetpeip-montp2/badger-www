@@ -371,7 +371,7 @@
             {
                 for($j=($i+1); $j<count($lectures); $j++)
                 {
-                    if(Lecture::conflict($lectures[$i], $lectures[$j]))
+                    if(Tools::conflict($lectures[$i], $lectures[$j]))
                     {
                         $messageFlash = $this->m_TEXT['Flash_SubscribeConflict'];
 

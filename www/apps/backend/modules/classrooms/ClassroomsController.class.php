@@ -68,6 +68,8 @@
             {
                 $fileData = $request->fileData('CSVFile');
 
+                $idClassroom = $request->postData('idClassroom');
+
                 // Check if the file is sucefully uploaded
                 if($fileData['error'] == 0)
                 {
@@ -93,7 +95,7 @@
                         $endTime->setFromString($lineDatas[2]);
         
                         $availability = new Availability;
-                        $availability->setIdClassroom($request->postData('idClassroom'));
+                        $availability->setIdClassroom($idClassroom);
                         $availability->setDate($date);
                         $availability->setStartTime($startTime);
                         $availability->setEndTime($endTime);
@@ -103,8 +105,26 @@
 
                     fclose($file);
 
+                    $managerAvailabilities = $this->m_managers->getManagerOf('availability');
+
+                    // Include lectures already in this package for conflicts checking
+                    $availabilities = array_merge($availabilities, $managerAvailabilities->get($idClassroom));
+
+                    // Check all possible conflicts
+                    for($i=0; $i<count($availabilities); $i++)
+                    {
+                        for($j=($i+1); $j<count($availabilities); $j++)
+                        {
+                            if(Tools::conflict($availabilities[$i], $availabilities[$j]))
+                            {
+                                $this->app()->user()->setFlashError('Conflit entre les horaires de disponibilitées.');
+                                $this->app()->httpResponse()->redirect($request->requestURI());
+                            }
+                        }
+                    }
+
                     // Save all lectures parsed
-                    $this->m_managers->getManagerOf('availability')->save($availabilities);
+                    $managerAvailabilities->save($availabilities);
 
                     $this->app()->user()->setFlashInfo('Disponibilités uploadées.');
                 }
