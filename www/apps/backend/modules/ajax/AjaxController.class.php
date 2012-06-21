@@ -61,13 +61,13 @@
                 // conf où elle intervient n'auront pas plus d'élève
             }
 
-			if ($entryName == 'Lectures' && ($fieldName == 'Date' || $fieldName == 'StartTime' || $fieldName == 'EndTime') )
+			if ($entryName == 'Lectures' && (($fieldName == 'Date') || ($fieldName == 'StartTime') || ($fieldName == 'EndTime')) )
             {
                 // TODO: Si on change l'heure ou la date vérifié qu'il n'y a pas de conflit engendré.
                 // Pareil déassigner l'availability associée si elle ne passe plus
             }
 
-			if ($entryName == 'Availabilities' && ($fieldName == 'Date' || $fieldName == 'StartTime' || $fieldName == 'EndTime') )
+			if ($entryName == 'Availabilities' && (($fieldName == 'Date') || ($fieldName == 'StartTime') || ($fieldName == 'EndTime')) )
             {
                 // TODO: Si on change l'heure et la date, vérifi que ça passe bien dans les conférences,
                 // sinon on désassigne

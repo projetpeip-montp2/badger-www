@@ -26,7 +26,7 @@
         $size = strlen($value);
 
         echo '<tr>';
-            echo '<td>' . utf8_encode($configDescriptions[$name]) . '</td>';
+            echo '<td>' . $configDescriptions[$name] . '</td>';
 
         switch ($type) 
         {
