@@ -1,7 +1,11 @@
-<p>Format des fichiers CSV:
-<br/>
-"Capacité","Nom fr","Nom en","Description fr","Description en"
-</p>
+<div class="clicker">
+<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Format CSV pour les packages</p>
+    <div class="informations">
+        <p>"Capacité","Nom fr","Nom en","Description fr","Description en"</p>
+    </div>
+</div>
+
+<script src="../../web/js/plusMinus.js"></script>
 
 <p>Ajouter des packages aux packages existant:<p>
 <?php

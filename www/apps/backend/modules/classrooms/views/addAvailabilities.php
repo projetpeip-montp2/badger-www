@@ -1,3 +1,12 @@
+<div class="clicker">
+<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Format CSV pour les disponibilitées</p>
+    <div class="informations">
+        <p>"Date","Heure de début","Heure de fin"</p>
+    </div>
+</div>
+
+<script src="../../web/js/plusMinus.js"></script>
+
 <?php
     $form = new Form('', 'post');
 
@@ -11,9 +20,10 @@
          ->choices($choices);
 
     $form->add('file', 'CSVFile')
-         ->label('Chemin des disponibilités : ');
+         ->isInParagraph(false);
 
-    $form->add('submit', 'Envoyer');
+    $form->add('submit', 'Envoyer')
+         ->isInParagraph(false);
 
     echo $form->toString();
 ?>

@@ -1,13 +1,14 @@
 <script src="../../web/js/handlers.js"></script>
 <script src="../../web/js/editTable.js"></script>
 
-<p>Format des fichiers CSV:
-<br/>
-"Nom","Taille"
-<br/>
-"Date","Heure de début","Heure de fin"
-</p>
+<div class="clicker">
+<p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Format CSV pour les salles</p>
+    <div class="informations">
+        <p>"Nom","Taille"</p>
+    </div>
+</div>
 
+<script src="../../web/js/plusMinus.js"></script>
 
 <ul>
     <li><a href="/admin/classrooms/addClassrooms.html">Uploader des salles</a></li>
