@@ -6,7 +6,13 @@
             $this->page()->addVar("viewTitle", "Configuration générale");
 
             // Warning: be sure before you change this array!
-            $configNames = array('MCQMaxQuestions' => 'number',
+            $configNames = array('HomepageTextfr' => 'textbox',
+                                 'HomepageTexten' => 'textbox',
+                                 'UserGuideTextfr' => 'textbox',
+                                 'UserGuideTexten' => 'textbox',
+                                 'LegalNoticeTextfr' => 'textbox',
+                                 'LegalNoticeTexten' => 'textbox',
+                                 'MCQMaxQuestions' => 'number',
                                  'packageRegistrationsCount' => 'number',
                                  'minRegistrationsPerPackage' => 'number',
                                  'mailAppendix' => 'textbox',

@@ -256,6 +256,12 @@ INSERT INTO numsem.`SpecificLogins` (`UsernameUM2`, `Username`) VALUES
 ('vincent.berry', 'berry');
 
 INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
+('HomepageTextfr', 'Texte français de la page d\'accueil', 'Texte de page d\'accueil'),
+('HomepageTexten', 'Texte anglais de la page d\'accueil', 'Homepage text'),
+('UserGuideTextfr', 'Texte français du guide d\'utilisateur', 'Texte du guide d\'utilisateur'),
+('UserGuideTexten', 'Texte anglais du guide d\'utilisateur', 'User guide text'),
+('LegalNoticeTextfr', 'Texte français des mentions légales', 'Texte des mentions légales'),
+('LegalNoticeTexten', 'Texte anglais des mentions légales', 'Legal notice text'),
 ('MCQMaxQuestions', 'Nombre de questions dans le QCM', '5'),
 ('packageRegistrationsCount', 'Nombre de packages auxquels les étudiants doivent s''inscrire', '5'),
 ('minRegistrationsPerPackage', 'Nombre minimum d''inscrits par package', '3'),

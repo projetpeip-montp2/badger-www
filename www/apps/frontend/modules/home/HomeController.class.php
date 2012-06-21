@@ -6,16 +6,28 @@
         public function executeIndex(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_HomeIndex']);
+
+            $variableName = 'HomepageText' . $this->app()->user()->getAttribute('vbmifareLang');
+
+            $this->page()->addVar('text', $this->m_managers->getManagerOf('config')->get($variableName));
         }
 
         public function executeGuide(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_HomeGuide']);
+
+            $variableName = 'UserGuideText' . $this->app()->user()->getAttribute('vbmifareLang');
+
+            $this->page()->addVar('text', $this->m_managers->getManagerOf('config')->get($variableName));
         }
 
         public function executeLegalNotice(HTTPRequest $request)
         {
             $this->page()->addVar('viewTitle', $this->m_TEXT['Title_HomeLegalNotice']);
+
+            $variableName = 'LegalNoticeText' . $this->app()->user()->getAttribute('vbmifareLang');
+
+            $this->page()->addVar('text', $this->m_managers->getManagerOf('config')->get($variableName));
         }
 
         public function executeLogout(HTTPRequest $request)

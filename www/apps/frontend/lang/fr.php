@@ -18,7 +18,7 @@
 
     $TEXT['Title_HomeIndex'] = "Accueil";
     $TEXT['Title_HomeGuide'] = "Guide d'utilisation";
-    $TEXT['Title_HomeLegalNotice'] = "Mention légale";
+    $TEXT['Title_HomeLegalNotice'] = "Mentions légales";
 
     $TEXT['Title_LectureIndex'] = "Conférences";
     $TEXT['Title_LectureShow'] = "Package";
