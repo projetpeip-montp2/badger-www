@@ -115,7 +115,7 @@
 
                     $path = dirname(__FILE__).'/../../../../uploads/students/';
                     $filename = $packageName . '_' . $lectureName . '_' .$student->getDepartment() . 
-                                $student->getSchoolYear() . '_' . $student->getName() . $student->getSurname() .'.' . $extension;
+                                intval($student->getSchoolYear() + 2) . '_' . $student->getUsername() .'.' . $extension;
 
                     $idRegistration;
                     foreach($registrations as $reg)

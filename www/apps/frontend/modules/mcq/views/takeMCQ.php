@@ -1,3 +1,7 @@
+<p class="error">
+    <?php echo $TEXT['MCQ_Warning']; ?>
+</p>
+
 <?php
     $form = new Form('', 'post');
 

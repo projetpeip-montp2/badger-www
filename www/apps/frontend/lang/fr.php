@@ -13,7 +13,6 @@
     $TEXT['Menu_Home'] = "Accueil";
     $TEXT['Menu_Guide'] = "Guide d'utilisation";
     $TEXT['Menu_Lectures'] = "Conférences";
-    $TEXT['Menu_Viewer'] = "Polycopiés en ligne";
     $TEXT['Menu_MCQ'] = "Q.C.M";
     $TEXT['Menu_Reports'] = "Rapports";
 
@@ -113,6 +112,7 @@
     $TEXT['MCQ_Introduction'] = "Depuis cette page, vous pourrez passer le QCM lors de l'horaire que vos enseignants vous ont donné.";
     $TEXT['MCQ_SubmitAnswers'] = "Valider les réponses";
     $TEXT['MCQ_Confirmation'] = "Etes-vous sûr de vouloir valider vos réponses ?";
+    $TEXT['MCQ_Warning'] = "Attention, si vous quittez cette page sans valider le QCM, vous perdrez toutes vos réponses.";
 
     $TEXT['Viewer_Index'] = "Visionneuse";
     $TEXT['Viewer_NoPackage'] = "Il n'y a pas de package disponible.";

@@ -183,5 +183,50 @@
                 $this->app()->httpResponse()->redirect('/admin/mcq/index.html');
             }
         }
+
+        public function executeComputePresentMark(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Calcul de la note de présence");
+
+            if($request->postExists('Calculer'))
+            {
+                $studentsManager = $this->m_managers->getManagerOf('user');
+
+                $students = $studentsManager->get();
+
+                foreach($students as $student)
+                {
+                    $presentMark = 0;
+
+                    $managerRegistration = $this->m_managers->getManagerOf('registration');
+                    $registrations = $managerRegistration->getRegistrationsFromUser($student->getUsername());
+
+                    foreach($registrations as $reg)
+                    {
+                        if($reg->getStatus() == 'Present')
+                            $presentMark += 20 / count($registrations);
+                    }
+
+                    $studentsManager->updatePresentMark($student->getUsername(), $presentMark);
+                    $this->app()->user()->setFlashInfo('Calcul effectué.');
+                }
+            }
+        }
+
+        public function executeUpdateRegistrations(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Mise à jour des informations de présence");
+
+            if($request->postExists('Exécuter'))
+            {
+                $startTime = time();
+
+                system('php ' . dirname(__FILE__).'/../../../../scripts/updateRegistrations.php');
+
+                $elapsedTime = time() - $startTime;
+
+                $this->app()->user()->setFlashInfo('Mise à jour terminée en ' . $elapsedTime . ' seconde(s).');
+            }
+        }
     }
 ?>

@@ -16,6 +16,7 @@
     <route url="/admin/lectures/addLectures\.html" module="lectures" action="addLectures"/>
     <route url="/admin/lectures/addBadgingInformation\.html" module="lectures" action="addBadgingInformation"/>
     <route url="/admin/lectures/assignLectures\.html" module="lectures" action="assignLectures"/>
+    <route url="/admin/lectures/uploadBadgingInformations\.html" module="lectures" action="uploadBadgingInformations"/>
 
     <route url="/admin/questionsanswers/index\.html" module="questionsanswers" action="index"/>
     <route url="/admin/questionsanswers/addQuestionsAnswers\.html" module="questionsanswers" action="addQuestionsAnswers"/>
@@ -24,6 +25,8 @@
     <route url="/admin/mcq/createMCQ\.html" module="mcq" action="createMCQ"/>
     <route url="/admin/mcq/updateMCQs\.html" module="mcq" action="updateMCQs"/>
     <route url="/admin/mcq/sendMails\.html" module="mcq" action="sendMails"/>
+    <route url="/admin/mcq/updateRegistrations\.html" module="mcq" action="updateRegistrations"/>
+    <route url="/admin/mcq/computePresentMark\.html" module="mcq" action="computePresentMark"/>
 
     <route url="/admin/retrieval/index\.html" module="retrieval" action="index"/>
     <route url="/admin/retrieval/export\.html" module="retrieval" action="export"/>
@@ -40,11 +43,8 @@
 
     <route url="/admin/settings/index\.html" module="settings" action="index"/>
     <route url="/admin/settings/replicate\.html" module="settings" action="replicate"/>
-    <route url="/admin/settings/updateRegistrations\.html" module="settings" action="updateRegistrations"/>
-    <route url="/admin/settings/computePresentMark\.html" module="settings" action="computePresentMark"/>
     <route url="/admin/settings/changeAvailableAdmins\.html" module="settings" action="changeAvailableAdmins"/>
     <route url="/admin/settings/changeSpecificLogins\.html" module="settings" action="changeSpecificLogins"/>
-    <route url="/admin/settings/uploadBadgingInformations\.html" module="settings" action="uploadBadgingInformations"/>
 	
 	<route url="/admin/ajax/index\.html" module="ajax" action="index" />
 	<route url="/admin/ajax/modifyText\.html" module="ajax" action="modifyText" />
