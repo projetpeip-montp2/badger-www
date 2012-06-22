@@ -161,20 +161,35 @@
                     $tmp = $managerAvailability->get(-1, $idAvailability);
                     $availability = $tmp[0];
 
-                    if
-                    (
-                        (Date::compare($lectureToCheck->getDate(), $availability->getDate()) != 0) ||
-                        (Time::compare($lectureToCheck->getStartTime(), $availability->getStartTime()) >= 0) ||
-                        (Time::compare($lectureToCheck->getEndTime(), $availability->getEndTime()) <= 0)
-                    )
-                      $managerLecture->unbindAvailability($lectureToCheck->getId());  
+                    if(!$lectureToCheck->canUseAvailabilitiy($availability))
+                        $managerLecture->unbindAvailability($lectureToCheck->getId());  
                 }
             }
 
-	        if ($entryName == 'Availabilities' && (($fieldName == 'Date') || ($fieldName == 'StartTime') || ($fieldName == 'EndTime')) )
+            $isDateOrTime = ($fieldName == 'Date');
+            $isDateOrTime |= ($fieldName == 'StartTime');
+            $isDateOrTime |= ($fieldName == 'EndTime');
+	        if ($entryName == 'Availabilities' && $isDateOrTime)   
             {
-                // TODO: Si on change l'heure et la date, vérifi que ça passe bien dans les conférences,
-                // sinon on désassigne
+                $subName = $ajaxInput->getData('subfield-name');
+
+                $getter = 'get' . $fieldName;
+                $setter = 'set' . $subName;
+
+                $tmp = $managerAvailability->get(-1, $id);
+                $availabilityToCheck = $tmp[0];
+                $element = $tmp[0]->$getter();
+                $element->$setter(intval($ajaxInput->getValue()));
+
+                $lectures = $managerLecture->get();
+                foreach($lectures as $lec)
+                {
+                    if($lec->getIdAvailability() == $availabilityToCheck->getId())
+                    {
+                        if(!$lec->canUseAvailabilitiy($availabilityToCheck))
+                            $managerLecture->unbindAvailability($lec->getId());  
+                    }
+                }
             }
         }
 		

@@ -18,7 +18,7 @@ function addClassroomHTML(element, data)
 		alert(data);
 	else
 	{
-		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td><a data-id="' + data + '" data-entry-name="Availabilities" class="addable">Insérer une nouvelle disponibilité</a></td><td><img class="deletable" data-id="' + data + '" data-entry-name="Classrooms" src="../../web/images/delete.png" /></td></tr>';
+		var object = '<tr><td data-id="' + data + '" data-form-type="text" data-field-name="Name" data-entry-name="Classrooms" class="editable">Nouvelle salle</td><td data-id="' + data + '" data-form-type="number" data-field-name="Size" data-entry-name="Classrooms" class="editable">30</td><td></td><td><img class="deletable" data-id="' + data + '" data-entry-name="Classrooms" src="../../web/images/delete.png" /></td></tr>';
 		$('#editableTable').append(object);
 	}
 }

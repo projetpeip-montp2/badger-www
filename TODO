@@ -12,7 +12,6 @@
 
 
 - Backend:
-    - Implémenter la vérification des inputs dans l'ajax manager
     - Assignation des packages aux élèves
     - Message flash upload confs
 

@@ -100,5 +100,22 @@
         {
             return $this->m_endTime;
         }
+
+        public function canUseAvailabilitiy(Availability $avail)
+        {
+            if(Date::compare($this->getDate(), $avail->getDate()) == 0)
+            {
+                $t1 = $this->getStartTime();
+                $t2 = $this->getEndTime();
+
+                $t3 = $avail->getStartTime();
+                $t4 = $avail->getEndTime();
+
+                return (Time::compare($t1, $t3) >= 0) && 
+                       (Time::compare($t2, $t4) <= 0);
+            }
+        
+            return false;
+        }
     }
 ?>

@@ -3,8 +3,6 @@
     {
         static public function conflict($lft, $rht)
         {
-            $result;
-
             if(Date::compare($lft->getDate(), $rht->getDate()) == 0)
             {
                 $t1 = $lft->getStartTime();
