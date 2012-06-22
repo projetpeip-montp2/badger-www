@@ -2,6 +2,7 @@
 
 - Général:
     - Lien depuis intranet Polytech
+    - Se sortir de la liste des admins du dump
 
 
 - Réplication
@@ -13,6 +14,6 @@
 
 - Backend:
     - Assignation des packages aux élèves
-    - Message flash upload confs
+    - Lors de l'upload de confs, de question/réponses et de documents, ramener sur le bon bon package proprement
 
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox

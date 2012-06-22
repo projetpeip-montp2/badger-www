@@ -230,8 +230,7 @@
                     $this->app()->user()->setFlashError('Impossible d\'uploader les conférences.');
             }
 
-            // Allows a redirection to the correct package
-            $this->page()->addVar('idPackage', $idPackage);
+            $this->app()->httpResponse()->redirect('/admin/lectures/index.html');
         }
 
         public function executeAddBadgingInformation(HTTPRequest $request)

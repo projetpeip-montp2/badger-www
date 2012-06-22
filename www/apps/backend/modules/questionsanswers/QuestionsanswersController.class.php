@@ -128,17 +128,14 @@
                     // Save all questions/answers parsed
                     $answerManager->save($answers);
 
-                    if($flashMessage != '')
-                        $flashMessage .= '<br/>';
-                    $flashMessage .= 'Questions/Réponses uploadées.';
+                    $this->app()->user()->setFlashInfo('Questions/Réponses uploadées.');
                 }
 
                 else
-                    $flashMessage .= 'Impossible d\'uploader les questions/réponses.';
+                    $this->app()->user()->setFlashError('Impossible d\'uploader les questions/réponses.');
             }
 
-            // Allow a redirection to the good package
-            $this->page()->addVar('idPackage', $request->postData('idPackage'));
+            $this->app()->httpResponse()->redirect('/admin/questionsanswers/index.html');
         }
     }
 ?>
