@@ -250,6 +250,8 @@
 
                 $students = $studentsManager->get();
 
+                $maxBadQuestionPoints = $this->m_managers->getManagerOf('config')->get('maxBadQuestionPoints');
+
                 foreach($students as $student)
                 {
                     $questions = $questionManager->loadQuestionsOfUser($student->getUsername());
@@ -295,7 +297,7 @@
                                             $QCMMark += 20 / (count($questions) * $goodAndBadAnswersCount[$i][0]);
                 
                                         else
-                                            $QCMMark -= 20 / (count($questions) * $goodAndBadAnswersCount[$i][1]);
+                                            $QCMMark -= $maxBadQuestionPoints / $goodAndBadAnswersCount[$i][1];
                                     }
                                 }
                             }

@@ -13,6 +13,7 @@
                                  'LegalNoticeTextfr' => 'textbox',
                                  'LegalNoticeTexten' => 'textbox',
                                  'MCQMaxQuestions' => 'number',
+                                 'maxBadQuestionPoints' => 'number',
                                  'packageRegistrationsCount' => 'number',
                                  'minRegistrationsPerPackage' => 'number',
                                  'mailAppendix' => 'textbox',

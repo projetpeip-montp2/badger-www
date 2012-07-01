@@ -277,4 +277,5 @@ INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
 ('documentSizeLimitBackend', 'Taille limite des documents, en octets', '10000000'),
 ('zipFileSizeLimitBackend', 'Taille limite des archives d''images, en octets', '10000000'),
 ('adminsList', 'Liste des admins, séparés par des points-virgules', 'victor.hiairrassary;gregoire.guisez;berry'),
+('maxBadQuestionPoints', 'Nombre maximun de points enlévé par question', '3'),
 ('availablesLanguagesList', 'Liste des langues disponibles, séparées par des points-virgules', 'fr;en');
