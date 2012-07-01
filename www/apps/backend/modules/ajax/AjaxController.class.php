@@ -23,6 +23,7 @@
             $managerRegistration = $this->m_managers->getManagerOf('registration');
             $managerAvailability = $this->m_managers->getManagerOf('availability');
             $managerClassroom = $this->m_managers->getManagerOf('classroom');
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
 
 	        if ($entryName == 'Packages' && $fieldName == 'Capacity')
             {
@@ -188,6 +189,50 @@
                     {
                         if(!$lec->canUseAvailabilitiy($availabilityToCheck))
                             $managerLecture->unbindAvailability($lec->getId());  
+                    }
+                }
+            }
+
+            $isDateOrTime = ($fieldName == 'Date');
+            $isDateOrTime |= ($fieldName == 'StartTime');
+            $isDateOrTime |= ($fieldName == 'EndTime');
+	        if ($entryName == 'MCQs' && $isDateOrTime)   
+            {
+                $subName = $ajaxInput->getData('subfield-name');
+
+                $getter = 'get' . $fieldName;
+                $setter = 'set' . $subName;
+
+                $allMCQs = $managerMCQ->get();
+                $mcqToCheck;
+                foreach($allMCQs as $mcq)
+                {
+                    if($mcq->getId() == $id)
+                    {
+                        $mcqToCheck = $mcq;
+                        $element = $mcqToCheck->$getter();
+                        $element->$setter(intval($ajaxInput->getValue()));
+                    }
+                }
+
+                // Include mcqs already with the same department and school year for conflicts checking
+                $tmp = array_merge(array($mcqToCheck), $managerMCQ->get($mcqToCheck->getDepartment(), $mcqToCheck->getSchoolYear()));
+
+                // Remove the old mcq
+                $mcqs = array($mcqToCheck);
+                foreach($tmp as $t)
+                {
+                    if($t->getId() != $id)
+                        $mcqs[] = $t;
+                }
+
+                // Check all possible conflicts
+                for($i=0; $i<count($mcqs); $i++)
+                {
+                    for($j=($i+1); $j<count($mcqs); $j++)
+                    {
+                        if(Tools::conflict($mcqs[$i], $mcqs[$j]))
+                            throw new Exception('Conflit causé par le changement de date ou d\'heure, dans le QCM.');
                     }
                 }
             }
