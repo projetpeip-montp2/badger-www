@@ -13,6 +13,7 @@
         private $m_mcqStatus;
         private $m_mcqMark;
         private $m_presentMark;
+        private $m_generateTime;
 
         public function setUsername($username)
         {
@@ -122,6 +123,16 @@
         public function getMCQStatus()
         {
             return $this->m_mcqStatus;
+        }
+
+        public function setGenerateTime(Time $generateTime)
+        {
+            $this->m_generateTime = $generateTime;
+        }
+
+        public function getGenerateTime()
+        {
+            return $this->m_generateTime;
         }
     }
 ?>

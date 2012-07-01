@@ -24,7 +24,19 @@
             if(!$this->canTakeMCQ())
             {
                 $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoTakeMCQ']);
-                $this->page()->addVar('showMCQLink', false);
+                $this->app()->httpResponse()->redirect('/mcq/index.html');
+            }
+
+            if(!$request->postExists('password'))
+            {
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
+                $this->app()->httpResponse()->redirect('/mcq/index.html');
+            }
+
+            $password = $request->postData('password');
+            if(!$this->checkPassword($password))
+            {
+                $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
                 $this->app()->httpResponse()->redirect('/mcq/index.html');
             }
 
@@ -33,8 +45,11 @@
             $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
             if($mcqStatus != 'Generated')
             {
-                $managerUser->updateStatus($this->app()->user()->getAttribute('logon'), 'Generated');
+                $managerUser->updateStatus($logon, 'Generated');
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Generated');
+
+                $managerUser->updateGenerateTime($logon);
+                $this->app()->user()->getAttribute('vbmifareStudent')->setGenerateTime( Time::current() );
 
                 $questions = $this->selectQuestions();
             }
@@ -48,6 +63,8 @@
             // Impossible to check button because it depends of the language used
             if($request->postExists('isSubmitted'))
             {
+                // TODO: Vérifier qu'il à le droit de valider le QCM encore!!!!
+
                 $answersOfUser = $this->computeAndSaveUserAnswers($request, $logon, $answers);
 
                 // Update the user status
@@ -81,20 +98,16 @@
             $mcqStatus = $student->getMCQStatus();
 
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
-            $mcqs = $managerMCQ->get();
+            $mcqs = $managerMCQ->get($department, $schoolYear);
 
             $goodDate = false;
             $goodTime = false;
-            $goodDptYear = false;
 
             $currentDate = Date::current();
             $currentTime = Time::current();
 
             foreach($mcqs as $mcq)
             {
-                if($department == $mcq->getDepartment() && $schoolYear == $mcq->getSchoolYear())
-                    $goodDptYear = true;
-
                 if(Date::compare($currentDate, $mcq->getDate()) == 0)
                     $goodDate = true;
 
@@ -103,7 +116,27 @@
                     $goodTime = true;
             }
 
-            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime && $goodDptYear);
+            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime);
+        }
+
+        private function checkPassword($password)
+        {
+            $student = $this->app()->user()->getAttribute('vbmifareStudent');
+
+            $department = $student->getDepartment();
+            $schoolYear = $student->getSchoolYear();
+            $mcqStatus = $student->getMCQStatus();
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get($department, $schoolYear);
+
+            foreach($mcqs as $mcq)
+            {
+                if($password == $mcq->getPassword())
+                    return true;
+            }
+
+            return false;
         }
 
         private function selectQuestions()
