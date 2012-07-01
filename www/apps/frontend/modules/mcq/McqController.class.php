@@ -79,8 +79,6 @@
                 $managerUser->updateStatus($logon, 'Taken');
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Taken');
 
-                $this->computeMarkAndUpdateMark($logon, $questions, $answers, $answersOfUser);
-
                 // Redirection
                 $this->app()->user()->setFlashInfo($this->m_TEXT['Flash_MCQTaken']);
                 $this->app()->httpResponse()->redirect('/home/index.html');
@@ -289,70 +287,6 @@
 
             shuffle($answers);
             return $answers;
-        }
-
-        public function computeMarkAndUpdateMark($logon, $questions, $answers, $answersOfUser)
-        {    
-            $presentMark = 0;
-
-            $managerRegistration = $this->m_managers->getManagerOf('registration');
-            $registrations = $managerRegistration->getRegistrationsFromUser($logon);
-
-            foreach($registrations as $reg)
-            {
-                if($reg->getStatus() == 'Present')
-                    $presentMark += 20 / count($registrations);
-            }
-
-            $QCMMark = 0;
-
-            // Compute good and bad answers count per question
-            $goodAndBasAnswersCount = array();
-            foreach($questions as $question)
-            {
-                $goodAnswersCount = 0;
-                $badAnswersCount = 0;
-
-                foreach($answers as $answer)
-                {
-                    if($answer->getIdQuestion() == $question->getId())
-                    {
-                        if($answer->getTrueOrFalse() == 'T')
-                            $goodAnswersCount++;
-
-                        else
-                            $badAnswersCount++;
-                    }
-                }
-                
-                $goodAndBasAnswersCount[] = array($goodAnswersCount, $badAnswersCount);
-            }
-
-            // Add points to mark from MCQ
-            for($i=0; $i<count($questions); ++$i)
-            {
-                foreach($answersOfUser as $answerOfUser)
-                {
-                    if($answerOfUser->getIdQuestion() == $questions[$i]->getId())
-                    {
-                        foreach($answers as $answer)
-                        {
-                            if($answerOfUser->getIdAnswer() == $answer->getId())
-                            {
-                                if($answer->getTrueOrFalse() == 'T')
-                                    $QCMMark += 20 / (count($questions) * $goodAndBasAnswersCount[$i][0]);
-        
-                                else
-                                    $QCMMark -= 20 / (count($questions) * $goodAndBasAnswersCount[$i][1]);
-                            }
-                        }
-                    }
-                }
-            }
-
-            $managerUser = $this->m_managers->getManagerOf('user');
-            $managerUser->updateMCQMark($logon, $QCMMark);
-            $this->app()->user()->getAttribute('vbmifareStudent')->setMCQMark($QCMMark);
         }
     }
 ?>
