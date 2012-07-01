@@ -76,6 +76,23 @@
                 $mcq->setEndTime($endTime);
 
                 $managerMCQs = $this->m_managers->getManagerOf('mcq');
+
+                // Include mcqs already with the same department and school year for conflicts checking
+                $mcqs = array_merge(array($mcq), $managerMCQs->get($request->postData('Department'), $realYear));
+
+                // Check all possible conflicts
+                for($i=0; $i<count($mcqs); $i++)
+                {
+                    for($j=($i+1); $j<count($mcqs); $j++)
+                    {
+                        if(Tools::conflict($mcqs[$i], $mcqs[$j]))
+                        {
+                            $this->app()->user()->setFlashError('Conflit d\'horaires entre les QCMs déjà présents pour ce département et cette année.');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
+                        }
+                    }
+                }
+
                 $managerMCQs->save($mcq);
 
                 $this->updateStudents($request->postData('Department'), $realYear, 'CanTakeMCQ');
