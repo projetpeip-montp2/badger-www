@@ -5,6 +5,7 @@
         private $m_department;
         private $m_schoolYear;
         private $m_name;
+        private $m_password;
         private $m_date;
         private $m_startTime;
         private $m_endTime;
@@ -47,6 +48,16 @@
         public function getName()
         {
             return $this->m_name;
+        }
+
+        public function setPassword($password)
+        {
+            $this->m_password = $password;
+        }
+
+        public function getPassword()
+        {
+            return $this->m_password;
         }
 
         public function setDate(Date $date)

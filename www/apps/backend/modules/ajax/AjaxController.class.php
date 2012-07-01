@@ -214,7 +214,7 @@
 								   'Answers' => array('Label_fr', 'Label_en', 'TrueOrFalse'),
 								   'Lectures' => array('Lecturer', 'Name_fr', 'Name_en', 'Description_fr', 'Description_en', 'Date', 'StartTime', 'EndTime'),
                                    'DocumentsOfPackages' => array('Filename'),
-                                   'MCQs' => array('Department', 'SchoolYear', 'Name', 'Date', 'StartTime', 'EndTime'),
+                                   'MCQs' => array('Department', 'SchoolYear', 'Name', 'Password', 'Date', 'StartTime', 'EndTime'),
                                    'ArchivesOfPackages' => array('Filename'));
 
 			$idFields = array('Classrooms' => 'Id_classroom',

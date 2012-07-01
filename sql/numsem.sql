@@ -22,6 +22,7 @@ CREATE TABLE numsem.`MCQs` (
 	`Department`         TEXT,
 	`SchoolYear`         SMALLINT UNSIGNED,
 	`Name`               TEXT,
+	`Password`           TEXT,
 	`Date`               DATE,
 	`StartTime`          TIME,
 	`EndTime`            TIME,
@@ -155,6 +156,7 @@ CREATE TABLE numsem.`Users` (
 	`MCQStatus`          ENUM( 'Visitor','CanTakeMCQ','Generated','Taken' ) ,
 	`MCQMark`            FLOAT,
 	`PresentMark`        FLOAT,
+	`GenerateTime`       TIME,
 	CONSTRAINT pk_users_0 UNIQUE ( `Id_user` )
  );
 

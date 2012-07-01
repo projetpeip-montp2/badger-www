@@ -52,10 +52,16 @@
                 }
 
                 $name = $request->postData('Name');
-
-                if($name == "")
+                if(empty($name))
                 {
                     $this->app()->user()->setFlashError('Nom de QCM vide.');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
+                }
+
+                $password = $request->postData('Password');
+                if(empty($password))
+                {
+                    $this->app()->user()->setFlashError('Mot de passe vide.');
                     $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
                 }
 
@@ -64,6 +70,7 @@
                 $mcq->setDepartment($request->postData('Department'));
                 $mcq->setSchoolYear($realYear);
                 $mcq->setName($name);
+                $mcq->setPassword($password);
                 $mcq->setDate($date);
                 $mcq->setStartTime($startTime);
                 $mcq->setEndTime($endTime);
