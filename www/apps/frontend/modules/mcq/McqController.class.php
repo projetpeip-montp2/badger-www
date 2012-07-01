@@ -21,23 +21,27 @@
 
             $logon = $this->app()->user()->getAttribute('logon');
 
-            if(!$this->canTakeMCQ())
+            // Check password only if the mcq is not submitted
+            if(!$request->postExists('isSubmitted'))
             {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoTakeMCQ']);
-                $this->app()->httpResponse()->redirect('/mcq/index.html');
-            }
+                if(!$this->canTakeMCQ())
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoTakeMCQ']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
 
-            if(!$request->postExists('password'))
-            {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
-                $this->app()->httpResponse()->redirect('/mcq/index.html');
-            }
+                if(!$request->postExists('password'))
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
 
-            $password = $request->postData('password');
-            if(!$this->checkPassword($password))
-            {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
-                $this->app()->httpResponse()->redirect('/mcq/index.html');
+                $password = $request->postData('password');
+                if(!$this->checkPassword($password))
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
             }
 
             $managerUser = $this->m_managers->getManagerOf('user');
@@ -63,7 +67,11 @@
             // Impossible to check button because it depends of the language used
             if($request->postExists('isSubmitted'))
             {
-                // TODO: Vérifier qu'il à le droit de valider le QCM encore!!!!
+                if(!$this->canValidate())
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_CannotValidate']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
 
                 $answersOfUser = $this->computeAndSaveUserAnswers($request, $logon, $answers);
 
@@ -134,6 +142,36 @@
             {
                 if($password == $mcq->getPassword())
                     return true;
+            }
+
+            return false;
+        }
+
+        private function canValidate()
+        {
+            $student = $this->app()->user()->getAttribute('vbmifareStudent');
+
+            $department = $student->getDepartment();
+            $schoolYear = $student->getSchoolYear();
+            $mcqStatus = $student->getMCQStatus();
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get($department, $schoolYear);
+
+            $currentDate = Date::current();
+            $currentTime = Time::current();
+
+            $generateTime = $student->getGenerateTime();
+
+            foreach($mcqs as $mcq)
+            {
+                if( (Date::compare($currentDate, $mcq->getDate()) == 0) &&
+                    (Time::compare($generateTime, $mcq->getStartTime()) >= 0) &&
+                    (Time::compare($generateTime, $mcq->getEndTime()) == -1) 
+                  )
+                  {
+                      return (Time::compare($currentTime, $mcq->getEndTime()) == -1);                    
+                  }
             }
 
             return false;

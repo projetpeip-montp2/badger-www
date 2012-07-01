@@ -63,6 +63,7 @@
     $TEXT['Flash_NoLecture'] = "There is no available lecture.";
     $TEXT['Flash_DownloadDocumentsError'] = "Error during documents download.";
     $TEXT['Flash_ForbiddenToHandleReports'] = "You cannot upload/delete your reports.";
+    $TEXT['Flash_CannotValidate'] = "You cannot validate your mcq because it is finished.";
 
     $TEXT['Info_LimitDate'] = "Deadline for registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";
