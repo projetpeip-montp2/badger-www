@@ -202,6 +202,18 @@
 		{
 			if ($ajaxInput->getData('entry-name') == 'MCQs')
 				$this->updateStudents($dataDeleted['Department'], $dataDeleted['SchoolYear'], 'Visitor');
+
+            if ($ajaxInput->getData('entry-name') == 'Availabilities')
+            {
+                $managerLecture = $this->m_managers->getManagerOf('lecture');
+
+                $lectures = $managerLecture->get();
+                foreach($lectures as $lec)
+                {
+                    if($lec->getIdAvailability() == $dataDeleted['Id_availability'])
+                        $managerLecture->unbindAvailability($lec->getId());  
+                }
+            }
 		}
 		
 		public function executeModifyText(HTTPRequest $request)

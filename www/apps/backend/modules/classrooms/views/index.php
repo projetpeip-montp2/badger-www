@@ -72,7 +72,7 @@
 					echo "<p class='separator'>:</p>";
 					echo "<p class='editable' data-entry-name='Availabilities' data-field-name='EndTime' data-verify-callback='true' data-subfield-name='Seconds' data-form-type='number' data-form-size='2' data-id='$id' data-id-sub='$idClassroom'>{$endTime->seconds(TRUE)}</p> ";
 					echo "<p class='separator'> </p>";
-					echo "<img src='../../web/images/delete_small.png' class='deletable' data-entry-name='Availabilities' data-id='$id' /><br />";
+					echo "<img src='../../web/images/delete_small.png' class='deletable' post-delete='true' data-entry-name='Availabilities' data-id='$id' /><br />";
 				}
 		echo "</td>";
 		echo "<td><img class='deletable' data-entry-name='Classrooms' data-id='$idClassroom' src='../../web/images/delete.png' /></a></td>";

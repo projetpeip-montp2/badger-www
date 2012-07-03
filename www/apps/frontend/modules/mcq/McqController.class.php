@@ -222,16 +222,8 @@
 
         public function computeMarkAndUpdateMark($logon, $questions, $answers, $answersOfUser)
         {    
-            $presentMark = 0;
-
             $managerRegistration = $this->m_managers->getManagerOf('registration');
             $registrations = $managerRegistration->getRegistrationsFromUser($logon);
-
-            foreach($registrations as $reg)
-            {
-                if($reg->getStatus() == 'Present')
-                    $presentMark += 20 / count($registrations);
-            }
 
             $QCMMark = 0;
 

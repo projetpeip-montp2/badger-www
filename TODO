@@ -6,14 +6,26 @@
 
 
 - Réplication
-    - Meilleure gestion des erreurs, commentaires
+    - Meilleure gestion des erreurs, commentaires (exec)
 
 
 - Frontend:
 
 
 - Backend:
+    - Lors du changement de l'availability, vérifier qu'il n'y a pas de conflit avec les dispos de cette même salle
     - Assignation des packages aux élèves
     - Lors de l'upload de confs, de question/réponses et de documents, ramener sur le bon bon package proprement
+    - Suppression d'un QCM ==> Vérifier qu'il n'y a pas d'autre QCM avant de les passer en Visitor
+    - Action permettant de remettre les étudiants d'une promo en CanTakeMCQ
+    - Vérifier quand l'étudiant génére son QCM pour qu'il le valide dans l'heure
+    - Prendre tous les élèves pour GetMarks (sauf Visitor)
+    - Empécher que les QCMs se chevauchent pour une même promo
+    - Ajouter un système de mot de passe pour passer le QCM
+    - Afficher les questions/réponses d'un élève
+
+    - Max entre note qcm et 0
+    - Calculer la note de QCM devient une action manuelle
+    - Remplacer dans le calcul du QCM => pour les mauvaises réponses, remplacer le 20/nbQuestion par une variable de config
 
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
