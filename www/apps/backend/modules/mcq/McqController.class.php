@@ -52,10 +52,16 @@
                 }
 
                 $name = $request->postData('Name');
-
-                if($name == "")
+                if(empty($name))
                 {
                     $this->app()->user()->setFlashError('Nom de QCM vide.');
+                    $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
+                }
+
+                $password = $request->postData('Password');
+                if(empty($password))
+                {
+                    $this->app()->user()->setFlashError('Mot de passe vide.');
                     $this->app()->httpResponse()->redirect('/admin/mcq/createMCQ.html');
                 }
 
@@ -64,11 +70,29 @@
                 $mcq->setDepartment($request->postData('Department'));
                 $mcq->setSchoolYear($realYear);
                 $mcq->setName($name);
+                $mcq->setPassword($password);
                 $mcq->setDate($date);
                 $mcq->setStartTime($startTime);
                 $mcq->setEndTime($endTime);
 
                 $managerMCQs = $this->m_managers->getManagerOf('mcq');
+
+                // Include mcqs already with the same department and school year for conflicts checking
+                $mcqs = array_merge(array($mcq), $managerMCQs->get($request->postData('Department'), $realYear));
+
+                // Check all possible conflicts
+                for($i=0; $i<count($mcqs); $i++)
+                {
+                    for($j=($i+1); $j<count($mcqs); $j++)
+                    {
+                        if(Tools::conflict($mcqs[$i], $mcqs[$j]))
+                        {
+                            $this->app()->user()->setFlashError('Conflit d\'horaires entre les QCMs déjà présents pour ce département et cette année.');
+                            $this->app()->httpResponse()->redirect($request->requestURI());
+                        }
+                    }
+                }
+
                 $managerMCQs->save($mcq);
 
                 $this->updateStudents($request->postData('Department'), $realYear, 'CanTakeMCQ');
@@ -208,8 +232,82 @@
                     }
 
                     $studentsManager->updatePresentMark($student->getUsername(), $presentMark);
-                    $this->app()->user()->setFlashInfo('Calcul effectué.');
                 }
+
+                $this->app()->user()->setFlashInfo('Calcul effectué.');
+            }
+        }
+
+        public function executeComputeMCQMark(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Calcul de la note de présence");
+
+            if($request->postExists('Calculer'))
+            {
+                $studentsManager = $this->m_managers->getManagerOf('user');
+                $questionManager = $this->m_managers->getManagerOf('question');
+                $answerManager = $this->m_managers->getManagerOf('answer');
+
+                $students = $studentsManager->get();
+
+                $maxBadQuestionPoints = $this->m_managers->getManagerOf('config')->get('maxBadQuestionPoints');
+
+                foreach($students as $student)
+                {
+                    $questions = $questionManager->loadQuestionsOfUser($student->getUsername());
+                    $answers = $this->getAssociatedAnswers($questions);
+                    $answersOfUser = $answerManager->loadAnswersOfUser($student->getUsername());
+
+                    $QCMMark = 0;
+
+                    // Compute good and bad answers count per question
+                    $goodAndBadAnswersCount = array();
+                    foreach($questions as $question)
+                    {
+                        $goodAnswersCount = 0;
+                        $badAnswersCount = 0;
+
+                        foreach($answers as $answer)
+                        {
+                            if($answer->getIdQuestion() == $question->getId())
+                            {
+                                if($answer->getTrueOrFalse() == 'T')
+                                    $goodAnswersCount++;
+
+                                else
+                                    $badAnswersCount++;
+                            }
+                        }
+                        
+                        $goodAndBadAnswersCount[] = array($goodAnswersCount, $badAnswersCount);
+                    }
+
+                    // Add points to mark from MCQ
+                    for($i=0; $i<count($questions); ++$i)
+                    {
+                        foreach($answersOfUser as $answerOfUser)
+                        {
+                            if($answerOfUser->getIdQuestion() == $questions[$i]->getId())
+                            {
+                                foreach($answers as $answer)
+                                {
+                                    if($answerOfUser->getIdAnswer() == $answer->getId())
+                                    {
+                                        if($answer->getTrueOrFalse() == 'T')
+                                            $QCMMark += 20 / (count($questions) * $goodAndBadAnswersCount[$i][0]);
+                
+                                        else
+                                            $QCMMark -= $maxBadQuestionPoints / $goodAndBadAnswersCount[$i][1];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    $studentsManager->updateMCQMark($student->getUsername(), $QCMMark);
+                }
+
+                $this->app()->user()->setFlashInfo('Calcul effectué.');
             }
         }
 
@@ -234,7 +332,7 @@
             // Hack to don't display the layout :)
 			$this->page()->setIsAjaxPage(TRUE);
 
-            $csv = '"Département","Année d\'étude","Username","Note de présence","Note QCM","Commentaire"' . PHP_EOL;
+            $csv = '"Département","Année d\'étude","Numéro étudiant","Username","Note de présence","Note QCM","Commentaire"' . PHP_EOL;
 
             $managerUser = $this->m_managers->getManagerOf('user');
             $students = $managerUser->get();
@@ -263,6 +361,23 @@
             header('Content-Type: text/csv');
             header('Content-Disposition: attachment; filename="marks.csv"');
             echo $csv;
-        }        
+        }  
+
+
+
+
+        private function getAssociatedAnswers($questions)
+        {
+            $answerManager = $this->m_managers->getManagerOf('answer');
+
+            $answers = array();
+            foreach($questions as $question)
+            {
+                $answersOneQuestion = $answerManager->get($question->getId());
+                $answers = array_merge($answers, $answersOneQuestion);
+            }
+
+            return $answers;
+        }      
     }
 ?>

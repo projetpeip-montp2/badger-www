@@ -7,6 +7,7 @@
                                   Department,
                                   SchoolYear,
                                   Name,
+                                  Password,
                                   Date,
                                   StartTime,
                                   EndTime FROM MCQs';
@@ -47,6 +48,7 @@
                 $mcq->setDepartment($data['Department']);
                 $mcq->setSchoolYear($data['SchoolYear']);
                 $mcq->setName($data['Name']);
+                $mcq->setPassword($data['Password']);
                 $mcq->setDate($date);
                 $mcq->setStartTime($startTime);
                 $mcq->setEndTime($endTime);
@@ -62,13 +64,15 @@
             $req = $this->m_dao->prepare('INSERT INTO MCQs(Department,
                                                            SchoolYear,
                                                            Name,
+                                                           Password,
                                                            Date,
                                                            StartTime,
-                                                           EndTime) VALUES(?, ?, ?, ?, ?, ?)');
+                                                           EndTime) VALUES(?, ?, ?, ?, ?, ?, ?)');
 
             $req->execute(array($mcq->getDepartment(),
                                 $mcq->getSchoolYear(),
                                 $mcq->getName(),
+                                $mcq->getPassword(),
                                 $mcq->getDate()->toStringMySQL(),
                                 $mcq->getStartTime()->toStringMySQL(),
                                 $mcq->getEndTime()->toStringMySQL()));

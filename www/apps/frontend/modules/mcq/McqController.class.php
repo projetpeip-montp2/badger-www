@@ -21,11 +21,27 @@
 
             $logon = $this->app()->user()->getAttribute('logon');
 
-            if(!$this->canTakeMCQ())
+            // Check password only if the mcq is not submitted
+            if(!$request->postExists('isSubmitted'))
             {
-                $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoTakeMCQ']);
-                $this->page()->addVar('showMCQLink', false);
-                $this->app()->httpResponse()->redirect('/mcq/index.html');
+                if(!$this->canTakeMCQ())
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_NoTakeMCQ']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
+
+                if(!$request->postExists('password'))
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
+
+                $password = $request->postData('password');
+                if(!$this->checkPassword($password))
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_BadPassword']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
             }
 
             $managerUser = $this->m_managers->getManagerOf('user');
@@ -33,8 +49,11 @@
             $mcqStatus = $this->app()->user()->getAttribute('vbmifareStudent')->getMCQStatus();
             if($mcqStatus != 'Generated')
             {
-                $managerUser->updateStatus($this->app()->user()->getAttribute('logon'), 'Generated');
+                $managerUser->updateStatus($logon, 'Generated');
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Generated');
+
+                $managerUser->updateGenerateTime($logon);
+                $this->app()->user()->getAttribute('vbmifareStudent')->setGenerateTime( Time::current() );
 
                 $questions = $this->selectQuestions();
             }
@@ -48,13 +67,17 @@
             // Impossible to check button because it depends of the language used
             if($request->postExists('isSubmitted'))
             {
+                if(!$this->canValidate())
+                {
+                    $this->app()->user()->setFlashError($this->m_TEXT['Flash_CannotValidate']);
+                    $this->app()->httpResponse()->redirect('/mcq/index.html');
+                }
+
                 $answersOfUser = $this->computeAndSaveUserAnswers($request, $logon, $answers);
 
                 // Update the user status
                 $managerUser->updateStatus($logon, 'Taken');
                 $this->app()->user()->getAttribute('vbmifareStudent')->setMCQStatus('Taken');
-
-                $this->computeMarkAndUpdateMark($logon, $questions, $answers, $answersOfUser);
 
                 // Redirection
                 $this->app()->user()->setFlashInfo($this->m_TEXT['Flash_MCQTaken']);
@@ -81,20 +104,16 @@
             $mcqStatus = $student->getMCQStatus();
 
             $managerMCQ = $this->m_managers->getManagerOf('mcq');
-            $mcqs = $managerMCQ->get();
+            $mcqs = $managerMCQ->get($department, $schoolYear);
 
             $goodDate = false;
             $goodTime = false;
-            $goodDptYear = false;
 
             $currentDate = Date::current();
             $currentTime = Time::current();
 
             foreach($mcqs as $mcq)
             {
-                if($department == $mcq->getDepartment() && $schoolYear == $mcq->getSchoolYear())
-                    $goodDptYear = true;
-
                 if(Date::compare($currentDate, $mcq->getDate()) == 0)
                     $goodDate = true;
 
@@ -103,7 +122,57 @@
                     $goodTime = true;
             }
 
-            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime && $goodDptYear);
+            return (in_array($mcqStatus, array('CanTakeMCQ','Generated')) && $goodDate && $goodTime);
+        }
+
+        private function checkPassword($password)
+        {
+            $student = $this->app()->user()->getAttribute('vbmifareStudent');
+
+            $department = $student->getDepartment();
+            $schoolYear = $student->getSchoolYear();
+            $mcqStatus = $student->getMCQStatus();
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get($department, $schoolYear);
+
+            foreach($mcqs as $mcq)
+            {
+                if($password == $mcq->getPassword())
+                    return true;
+            }
+
+            return false;
+        }
+
+        private function canValidate()
+        {
+            $student = $this->app()->user()->getAttribute('vbmifareStudent');
+
+            $department = $student->getDepartment();
+            $schoolYear = $student->getSchoolYear();
+            $mcqStatus = $student->getMCQStatus();
+
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get($department, $schoolYear);
+
+            $currentDate = Date::current();
+            $currentTime = Time::current();
+
+            $generateTime = $student->getGenerateTime();
+
+            foreach($mcqs as $mcq)
+            {
+                if( (Date::compare($currentDate, $mcq->getDate()) == 0) &&
+                    (Time::compare($generateTime, $mcq->getStartTime()) >= 0) &&
+                    (Time::compare($generateTime, $mcq->getEndTime()) == -1) 
+                  )
+                  {
+                      return (Time::compare($currentTime, $mcq->getEndTime()) == -1);                    
+                  }
+            }
+
+            return false;
         }
 
         private function selectQuestions()
@@ -218,62 +287,6 @@
 
             shuffle($answers);
             return $answers;
-        }
-
-        public function computeMarkAndUpdateMark($logon, $questions, $answers, $answersOfUser)
-        {    
-            $managerRegistration = $this->m_managers->getManagerOf('registration');
-            $registrations = $managerRegistration->getRegistrationsFromUser($logon);
-
-            $QCMMark = 0;
-
-            // Compute good and bad answers count per question
-            $goodAndBasAnswersCount = array();
-            foreach($questions as $question)
-            {
-                $goodAnswersCount = 0;
-                $badAnswersCount = 0;
-
-                foreach($answers as $answer)
-                {
-                    if($answer->getIdQuestion() == $question->getId())
-                    {
-                        if($answer->getTrueOrFalse() == 'T')
-                            $goodAnswersCount++;
-
-                        else
-                            $badAnswersCount++;
-                    }
-                }
-                
-                $goodAndBasAnswersCount[] = array($goodAnswersCount, $badAnswersCount);
-            }
-
-            // Add points to mark from MCQ
-            for($i=0; $i<count($questions); ++$i)
-            {
-                foreach($answersOfUser as $answerOfUser)
-                {
-                    if($answerOfUser->getIdQuestion() == $questions[$i]->getId())
-                    {
-                        foreach($answers as $answer)
-                        {
-                            if($answerOfUser->getIdAnswer() == $answer->getId())
-                            {
-                                if($answer->getTrueOrFalse() == 'T')
-                                    $QCMMark += 20 / (count($questions) * $goodAndBasAnswersCount[$i][0]);
-        
-                                else
-                                    $QCMMark -= 20 / (count($questions) * $goodAndBasAnswersCount[$i][1]);
-                            }
-                        }
-                    }
-                }
-            }
-
-            $managerUser = $this->m_managers->getManagerOf('user');
-            $managerUser->updateMCQMark($logon, $QCMMark);
-            $this->app()->user()->getAttribute('vbmifareStudent')->setMCQMark($QCMMark);
         }
     }
 ?>

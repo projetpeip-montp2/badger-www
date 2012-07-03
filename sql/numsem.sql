@@ -22,6 +22,7 @@ CREATE TABLE numsem.`MCQs` (
 	`Department`         TEXT,
 	`SchoolYear`         SMALLINT UNSIGNED,
 	`Name`               TEXT,
+	`Password`           TEXT,
 	`Date`               DATE,
 	`StartTime`          TIME,
 	`EndTime`            TIME,
@@ -155,6 +156,7 @@ CREATE TABLE numsem.`Users` (
 	`MCQStatus`          ENUM( 'Visitor','CanTakeMCQ','Generated','Taken' ) ,
 	`MCQMark`            FLOAT,
 	`PresentMark`        FLOAT,
+	`GenerateTime`       TIME,
 	CONSTRAINT pk_users_0 UNIQUE ( `Id_user` )
  );
 
@@ -275,4 +277,5 @@ INSERT INTO numsem.`Config` (`Name`, `Description`, `Value`) VALUES
 ('documentSizeLimitBackend', 'Taille limite des documents, en octets', '10000000'),
 ('zipFileSizeLimitBackend', 'Taille limite des archives d''images, en octets', '10000000'),
 ('adminsList', 'Liste des admins, séparés par des points-virgules', 'victor.hiairrassary;gregoire.guisez;berry'),
+('maxBadQuestionPoints', 'Nombre maximun de points enlévé par question', '3'),
 ('availablesLanguagesList', 'Liste des langues disponibles, séparées par des points-virgules', 'fr;en');

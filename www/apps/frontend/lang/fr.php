@@ -48,6 +48,7 @@
     $TEXT['Flash_SubscribeOk'] = "Votre incription est prise en compte.";
     $TEXT['Flash_UnsubscribeOk'] = "Votre désincription est prise en compte.";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible de passer le QCM.";
+    $TEXT['Flash_BadPassword'] = "Mauvais mot de passe";
     $TEXT['Flash_MCQTaken'] = 'Vous avez validé vos réponses au QCM.';
     $TEXT['Flash_PackageUnknown'] = "Le package demandé n'existe pas!";
     $TEXT['Flash_LectureUnknown'] = "La conférence demandée n'existe pas!";
@@ -62,6 +63,7 @@
     $TEXT['Flash_NoLecture'] = "Pas de lecture.";
     $TEXT['Flash_DownloadDocumentsError'] = "Erreur sur un document.";
     $TEXT['Flash_ForbiddenToHandleReports'] = "La gestion des rapports est désactivée.";
+    $TEXT['Flash_CannotValidate'] = "Vous ne pouvez plus valider votre QCM car il est fini.";
 
     $TEXT['Info_LimitDate'] = "Date limite des inscriptions: ";
     $TEXT['Info_RegistrationsCount'] = "Inscriptions: ";
@@ -113,6 +115,7 @@
     $TEXT['MCQ_SubmitAnswers'] = "Valider les réponses";
     $TEXT['MCQ_Confirmation'] = "Etes-vous sûr de vouloir valider vos réponses ?";
     $TEXT['MCQ_Warning'] = "Attention, si vous quittez cette page sans valider le QCM, vous perdrez toutes vos réponses.";
+    $TEXT['MCQ_Password'] = "Mot de passe";
 
     $TEXT['Viewer_Index'] = "Visionneuse";
     $TEXT['Viewer_NoPackage'] = "Il n'y a pas de package disponible.";

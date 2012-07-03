@@ -20,6 +20,10 @@
                 $student->setPresentMark($data['PresentMark']);
                 $student->setMCQStatus($data['MCQStatus']);
 
+                $generateTime = new Time;
+                $generateTime->setFromString($data['GenerateTime']);
+                $student->setGenerateTime($generateTime);
+
                 $student->setName($dataNext['VraiPrenom']);
                 $student->setSurname($dataNext['VraiNom']);
                 $student->setDepartment($dataNext['Departement']);
@@ -99,13 +103,18 @@
             
             $data = $req->fetch();
 
+            $generateTime = new Time;
+
             if(!$data)
             {
-                $req = $this->m_dao->prepare('INSERT INTO Users(Id_user, MCQStatus, MCQMark, PresentMark) VALUES(?, ?, 0, 0)');
+                $req = $this->m_dao->prepare("INSERT INTO Users(Id_user, MCQStatus, MCQMark, PresentMark, GenerateTime) VALUES(?, ?, 0, 0, NOW())");
                 $req->execute(array($student->getUsername(), $status));
                 $student->setMCQStatus($status);
                 $student->setMCQMark(0);
                 $student->setPresentMark(0);
+                $student->setPresentMark(0);
+                $generateTime->setFromString('00:00:00');
+                $student->setGenerateTime($generateTime);
             }
             
             else
@@ -113,6 +122,9 @@
                 $student->setMCQStatus($data['MCQStatus']);
                 $student->setMCQMark($data['MCQMark']);
                 $student->setPresentMark($data['PresentMark']);
+
+                $generateTime->setFromString($data['GenerateTime']);
+                $student->setGenerateTime($generateTime);
             }
         }
 
@@ -122,6 +134,12 @@
 
             $req = $this->m_dao->prepare('UPDATE Users SET MCQStatus = ? WHERE Id_user = ?');
             $req->execute(array($status, $logon));
+        }
+
+        public function updateGenerateTime($logon)
+        {
+            $req = $this->m_dao->prepare('UPDATE Users SET GenerateTime = NOW() WHERE Id_user = ?');
+            $req->execute(array($logon));
         }
 
         public function updateMCQMark($logon, $mcqMark)

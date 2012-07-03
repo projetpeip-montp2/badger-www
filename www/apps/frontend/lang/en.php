@@ -48,6 +48,7 @@
     $TEXT['Flash_SubscribeOk'] = "You have been successfully subscribed.";
     $TEXT['Flash_UnsubscribeOk'] = "You have been successfully unsubscribed.";
     $TEXT['Flash_NoTakeMCQ'] = "Impossible to take MCQ.";
+    $TEXT['Flash_BadPassword'] = "Bad password";
     $TEXT['Flash_MCQTaken'] = 'You have validated your answers for the MCQ.';
     $TEXT['Flash_PackageUnknown'] = "The requested package does not exist.";
     $TEXT['Flash_LectureUnknown'] = "The requested lecture does not exist.";
@@ -62,6 +63,7 @@
     $TEXT['Flash_NoLecture'] = "There is no available lecture.";
     $TEXT['Flash_DownloadDocumentsError'] = "Error during documents download.";
     $TEXT['Flash_ForbiddenToHandleReports'] = "You cannot upload/delete your reports.";
+    $TEXT['Flash_CannotValidate'] = "You cannot validate your mcq because it is finished.";
 
     $TEXT['Info_LimitDate'] = "Deadline for registrations: ";
     $TEXT['Info_RegistrationsCount'] = "Registrations: ";
@@ -112,6 +114,7 @@
     $TEXT['MCQ_SubmitAnswers'] = "Submit answers";
     $TEXT['MCQ_Confirmation'] = "Are you sure?";
     $TEXT['MCQ_Warning'] = "Be careful, if you leave this page without validating your MCQ, you will lose all your answers.";
+    $TEXT['MCQ_Password'] = "Password";
 
     $TEXT['Viewer_Index'] = "Viewer";
     $TEXT['Viewer_NoPackage'] = "There are no available package.";

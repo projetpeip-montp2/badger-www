@@ -1,10 +1,20 @@
 <?php
     echo $TEXT['MCQ_Introduction'];
+   
     if($showMCQLink)
     {
-?>
-    <br/>
-    <a id='StartMCQ' href='/mcq/takeMCQ.html'><?php echo $TEXT['MCQ_StartMCQLink']; ?></a>
-<?php
+        echo '<br/>';
+        echo '<br/>';
+
+        $form = new Form('/mcq/takeMCQ.html', 'post');
+
+        $form->add('text', 'password')
+             ->label($TEXT['MCQ_Password'] . ': ')
+             ->isInParagraph(false);
+
+        $form->add('submit', $TEXT['MCQ_StartMCQLink'])
+             ->isInParagraph(false);
+
+        echo $form->toString();
     }
 ?>
