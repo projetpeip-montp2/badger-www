@@ -514,9 +514,18 @@
 			echo $this->getAjaxContent();
         }
 
-        // TODO: Find a better place for this function, because it is already in MCQ manager
+
+        // Change student status when a mcq is remove
         private function updateStudents($department, $schoolYear, $status)
         {
+            $managerMCQ = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $managerMCQ->get($department, $schoolYear);
+
+            // Change status only if there is only ONE mcq for this dpt and school year
+            // after erasing one
+            if( count($mcqs) > 0)
+                return;
+
             $managerUsers = $this->m_managers->getManagerOf('user');
             $students = $managerUsers->getFromDepartmentAndSchoolYear($department, $schoolYear);
 

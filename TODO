@@ -6,7 +6,7 @@
 
 
 - Réplication
-    - Meilleure gestion des erreurs, commentaires (exec)
+    - Meilleure gestion des erreurs, commentaires (exec => permet de récupérer toute la sortie standard)
 
 
 - Frontend:
@@ -16,9 +16,7 @@
     - Assignation des packages aux élèves
 
     - Lors de l'upload de confs, de question/réponses et de documents, ramener sur le bon bon package proprement
-    - Suppression d'un QCM ==> Vérifier qu'il n'y a pas d'autre QCM avant de les passer en Visitor
     - Action permettant de remettre les étudiants d'une promo en CanTakeMCQ
-    - Prendre tous les élèves pour GetMarks (sauf Visitor)
     - Afficher les questions/réponses d'un élève
 
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
