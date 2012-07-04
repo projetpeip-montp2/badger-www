@@ -20,6 +20,5 @@
     - Action permettant de remettre les étudiants d'une promo en CanTakeMCQ
     - Prendre tous les élèves pour GetMarks (sauf Visitor)
     - Afficher les questions/réponses d'un élève
-    - Max entre note qcm et 0
 
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox

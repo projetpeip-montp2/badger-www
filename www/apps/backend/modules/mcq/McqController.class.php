@@ -304,6 +304,7 @@
                         }
                     }
 
+                    $QCMMark = max($QCMMark, 0);
                     $studentsManager->updateMCQMark($student->getUsername(), $QCMMark);
                 }
 
