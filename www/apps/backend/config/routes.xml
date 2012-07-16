@@ -11,6 +11,7 @@
 
     <route url="/admin/packages/index\.html" module="packages" action="index"/>
     <route url="/admin/packages/addPackages\.html" module="packages" action="addPackages"/>
+    <route url="/admin/packages/registrationBatch\.html" module="packages" action="registrationBatch"/>
 
     <route url="/admin/lectures/index\.html" module="lectures" action="index"/>
     <route url="/admin/lectures/addLectures\.html" module="lectures" action="addLectures"/>

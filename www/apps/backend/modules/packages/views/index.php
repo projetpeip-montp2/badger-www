@@ -1,3 +1,7 @@
+<ul>
+    <li><a href="/admin/packages/registrationBatch.html">Inscrire des promos entières à un package</a></li>
+</ul>
+
 <div class="clicker">
 <p class="informationsTitle"><img class="imgPlusMinus" src='../../web/images/plus.png'>  Format CSV pour les packages</p>
     <div class="informations">
