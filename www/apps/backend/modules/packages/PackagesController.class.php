@@ -96,6 +96,11 @@
                 }
 
                 $subscribe = 0;
+                $studentsCanTakeMCQ = 0;
+                $studentsFinish = 0;
+                $studentsAlreadyRegistered = 0;
+                $noPlace = false;
+                $studentsConflict = 0;
 
                 $registrationManager = $this->m_managers->getManagerOf('registration');
                 $lectureManager = $this->m_managers->getManagerOf('lecture');
@@ -110,22 +115,41 @@
                     $username = $student->getUsername();
                     $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
+                    // Student must be CanTakeMCQ
+                    if($student->getMCQStatus() != 'CanTakeMCQ')
+                        continue;
+
+                    else
+                        $studentsCanTakeMCQ++;
+
                     // The user cannot subscribe to more than the fixed number of packages
                     $packagesCount = $this->countSelectedPackages($registrationsOfUser);
                     if($packagesCount >= $this->m_managers->getManagerOf('config')->get('packageRegistrationsCount'))
+                    {
+                        $studentsFinish++;
                         continue;
+                    }
 
                     // Don't register the student if he is already registered
                     if( $this->alreadyRegistered($idPackage, $registrationsOfUser) )
+                    {
+                        $studentsAlreadyRegistered++;
                         continue;
+                    }
 
                     // Stop if there isn't no place in the package
                     if($packageResgistrationsCount + 1 > $packageNeeded->getCapacity())
+                    {
+                        $noPlace = true;
                         break;
+                    }
 
                     // Don't register the student if there is conflicts
-                    if( !$this->checkConflict($registrationsOfUser, $packageNeeded) )
+                    if( !$this->checkConflict($registrationsOfUser, $packageNeeded) )   
+                    {
+                        $studentsConflict++;
                         continue;
+                    }
         
                     // Registration
                     $lectures = $lectureManager->get($idPackage);
@@ -137,7 +161,20 @@
                     $subscribe++;
                 }
 
-                $this->app()->user()->setFlashInfo('Sur ' . count($students) . ' élèves de la promo (' . $department . ' ' . $schoolYear . '), ' . $subscribe . ' ont été inscrits au package demandé.');
+                $message = '';
+
+                if($noPlace)
+                    $message .= 'La simulation a été arrété par manque de place dans le package. ';
+
+                $message .= 'Sur ' . count($students) . ' élèves de la promo (' . $department . ' ' . $schoolYear . '), 
+                            dont ' . $studentsCanTakeMCQ . ' pouvant être inscrits, ' . $subscribe . 
+                            ' ont été inscrits au package demandé. ';
+
+                $message .= 'Sur les étudiants non inscrits : ' . $studentsFinish . ' ont finis leurs inscriptions, ' . 
+                            $studentsAlreadyRegistered . ' sont déjà inscrit au package, ' . $studentsConflict . 
+                            ' sont en conflicts avec ce package.';
+    
+                $this->app()->user()->setFlashInfo($message);
                 $this->app()->httpResponse()->redirect($request->requestURI());  
             }
         }

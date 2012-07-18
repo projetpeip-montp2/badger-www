@@ -41,11 +41,17 @@
             $req = $this->m_dao->prepare('SELECT Username FROM UsersPolytech WHERE Departement = ? AND anApogee = ?');
             $req->execute(array($department, $schoolYear));
 
+            $reqNext = $this->m_dao->prepare('SELECT MCQStatus FROM Users WHERE Id_User = ?');
+
             $students = array();
             while($data = $req->fetch())
             {
                 $student = new Student;
                 $student->setUsername($data['Username']);
+
+                $reqNext->execute( array($data['Username']) );
+                $dataNext = $reqNext->fetch();
+                $student->setMCQStatus($dataNext['MCQStatus']);
 
                 $students[] = $student;
             }
