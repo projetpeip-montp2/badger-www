@@ -16,7 +16,5 @@
     - Assignation des packages aux élèves
 
     - Lors de l'upload de confs, de question/réponses et de documents, ramener sur le bon bon package proprement
-    - Action permettant de remettre les étudiants d'une promo en CanTakeMCQ
-    - Afficher les questions/réponses d'un élève
 
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox

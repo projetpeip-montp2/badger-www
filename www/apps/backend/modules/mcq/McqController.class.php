@@ -11,6 +11,43 @@
             $this->page()->addVar('mcqs', $mcqs);
         }
 
+        public function executeSeeAnswersOfStudent(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Questions/Réponses d'un étudiant");
+
+            $selectedStudent = null;
+
+            // If form is submitted
+            if($request->postExists('Envoyer'))
+            {
+                $username = $request->postData('username');
+
+                $selectedStudent = $username;
+
+                $mifares = $this->m_managers->getManagerOf('user')->retrieveMifare($username);
+
+                if(count($mifares) != 1)
+                {
+                    $this->app()->user()->setFlashError('Le username envoyé n\'existe pas: ' . $username . '.');
+                    $this->app()->httpResponse()->redirect($request->requestURI());
+                }
+
+                $questions = $this->m_managers->getManagerOf('question')->loadQuestionsOfUser($username);
+
+                $answers = array();
+                foreach($questions as $question)
+                    array_merge($answers, $this->m_managers->getManagerOf('answer')->get($question->getId()));
+
+                $answersOfUser = $this->m_managers->getManagerOf('answer')->loadAnswersOfUser($username);
+
+                $this->page()->addVar("questions", $questions);
+                $this->page()->addVar("answers", $answers);
+                $this->page()->addVar("answersOfUser", $answersOfUser);
+            }
+
+            $this->page()->addVar("selectedStudent", $selectedStudent);
+        }
+
         public function executeRestartMCQ(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Gestion des QCM et des inscriptions");

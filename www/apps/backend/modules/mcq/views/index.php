@@ -2,6 +2,7 @@
     <li><a href="/admin/mcq/createMCQ.html">Inscrire une promotion</a></li>
     <li><a href="/admin/mcq/sendMails.html">Envoyer par mail les questions réponses aux étudiants</a></li>
     <li><a href="/admin/mcq/restartMCQ.html">Permettre à une promotion de repasser le QCM</a></li>
+    <li><a href="/admin/mcq/seeAnswersOfStudent.html">Voir les questions et réponses d'un étudiant</a></li>
     <li><a href="/admin/mcq/updateRegistrations.html">Mettre à jour les informations de présence</a></li>
     <li><a href="/admin/mcq/computePresentMark.html">Calculer la note de présence</a></li>
     <li><a href="/admin/mcq/computeMCQMark.html">Calculer la note de QCM</a></li>
