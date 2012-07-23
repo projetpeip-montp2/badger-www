@@ -11,6 +11,33 @@
             $this->page()->addVar('mcqs', $mcqs);
         }
 
+        public function executeRestartMCQ(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Gestion des QCM et des inscriptions");
+
+            $mcqManager = $this->m_managers->getManagerOf('mcq');
+            $mcqs = $mcqManager->get();
+
+            $departmentChoices = array();
+            foreach($mcqs as $mcq)
+                $departmentChoices[$mcq->getDepartment()] = $mcq->getDepartment();
+
+            $this->page()->addVar('departmentChoices', $departmentChoices);
+
+            // Handle POST data
+            if($request->postExists('Envoyer'))
+            {
+                $userManager = $this->m_managers->getManagerOf('user');
+
+                $students = $userManager->getFromDepartmentAndSchoolYear($request->postData('department'), $request->postData('schoolYear'));
+
+                foreach($students as $student)
+                    $userManager->updateStatus($student->getUsername(), 'CanTakeMCQ');
+
+                $this->app()->user()->setFlashInfo('La promotion peut repasser le QCM.');
+            }
+        }
+
         public function executeCreateMCQ(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Ajouter une inscription");
