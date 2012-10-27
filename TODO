@@ -2,7 +2,6 @@
 
 - Général:
     - Lien depuis intranet Polytech
-    - Se sortir de la liste des admins du dump
 
 
 - Réplication
@@ -13,8 +12,18 @@
 
 
 - Backend:
-    - Assignation des packages aux élèves
-
     - Lors de l'upload de confs, de question/réponses et de documents, ramener sur le bon bon package proprement
 
     - Mettre en place le processus de création des archives depuis des pdf en passant par PDFBox
+
+
+Vacances de Toussain:    
+    - Assignation des packages aux élèves
+
+    - Lors du batch d'inscription, inscrire même les élèves n'étant jamais venu sur le site web
+    (et donc création dans la table Users)
+
+    - Affichage de la promo lors du batch d'inscription, ainsi que dans les informations partie Admin
+
+    - Lors du repassage du QCM par une promo, enlever les questions/réponses des élèves de cette promo
+    (ceux qui auraient déjà passer le QCM)
