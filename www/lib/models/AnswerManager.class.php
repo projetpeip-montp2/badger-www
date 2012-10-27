@@ -76,5 +76,13 @@
 
             return $result;
         }
+
+        public function removeAnswersOfUsers($students)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM AnswersOfUsers WHERE Id_user = ?');
+
+            foreach($students as $student)
+                $req->execute(array($student->getUsername()));
+        }
     }
 ?>

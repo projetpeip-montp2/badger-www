@@ -71,6 +71,13 @@
                 foreach($students as $student)
                     $userManager->updateStatus($student->getUsername(), 'CanTakeMCQ');
 
+                // Don't forget to remove questions and answers of these users
+                $answerManager = $this->m_managers->getManagerOf('answer');
+                $answerManager->removeAnswersOfUsers($students);
+
+                $questionManager = $this->m_managers->getManagerOf('question');
+                $questionManager->removeQuestionsOfUsers($students);
+
                 $this->app()->user()->setFlashInfo('La promotion peut repasser le QCM.');
             }
         }

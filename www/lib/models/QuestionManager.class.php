@@ -99,5 +99,14 @@
 
             return $result;
         }
+
+
+        public function removeQuestionsOfUsers($students)
+        {
+            $req = $this->m_dao->prepare('DELETE FROM QuestionsOfUsers WHERE Id_user = ?');
+
+            foreach($students as $student)
+                $req->execute(array($student->getUsername()));
+        }
     }
 ?>

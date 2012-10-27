@@ -21,9 +21,8 @@ Vacances de Toussain:
     - Assignation des packages aux élèves
 
     - Lors du batch d'inscription, inscrire même les élèves n'étant jamais venu sur le site web
-    (et donc création dans la table Users)
+    (et donc création dans la table Users => on met quel status?)
 
     - Affichage des étudiant lors du batch d'inscription quand ça fonctionne pas
-
-    - Lors du repassage du QCM par une promo, enlever les questions/réponses des élèves de cette promo
-    (ceux qui auraient déjà passer le QCM)
+    
+    - Erreur 404, fr en
