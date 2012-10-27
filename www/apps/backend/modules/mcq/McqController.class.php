@@ -36,7 +36,7 @@
 
                 $answers = array();
                 foreach($questions as $question)
-                    array_merge($answers, $this->m_managers->getManagerOf('answer')->get($question->getId()));
+                    $answers = array_merge($answers, $this->m_managers->getManagerOf('answer')->get($question->getId()));
 
                 $answersOfUser = $this->m_managers->getManagerOf('answer')->loadAnswersOfUser($username);
 
@@ -250,7 +250,7 @@
 
                             if(!$answered)
                                 $mail .= '<li>Pas de réponse à cette question.</li>';
-                            $mail .= '</ul>';
+                            $mail .= '<br/></ul>';
                         }
 
                         $mail .= '</ul>';

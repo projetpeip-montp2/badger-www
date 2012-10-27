@@ -29,18 +29,13 @@ $(document).ready(function(){
 }
 else
 {
-/*
-    var_dump($questions);
-    echo '<br/><br/><br/>';
-    var_dump($answers);
-    echo '<br/><br/><br/>';
-    var_dump($answersOfUser);
-    die;
-*/
+    $mail = '<ul>';
     foreach($questions as $question)
     {
-        echo $question->getLabel('fr');
-        echo '<br/>';
+        $answered = false;
+
+        $mail .= '<li>' . $question->getLabel('fr') . '</li>';
+        $mail .= '<ul>';
         foreach($answers as $answer)
         {
             if($answer->getIdQuestion() == $question->getId())
@@ -48,10 +43,19 @@ else
                 foreach($answersOfUser as $answerOfUser)
                 {
                     if($answerOfUser->getIdAnswer() == $answer->getId())
-                        echo $answer->getLabel('fr');
+                    {
+                        $answered = true;
+                        $mail .= '<li>' . $answer->getLabel('fr') . '</li>';
+                    }
                 }
             }
         }
-        echo '<br/>';
+
+        if(!$answered)
+            $mail .= '<li>Pas de réponse à cette question.</li>';
+        $mail .= '<br/></ul>';
     }
+    $mail .= '</ul>';
+
+    echo $mail;
 }
