@@ -23,7 +23,7 @@ Vacances de Toussain:
     - Lors du batch d'inscription, inscrire même les élèves n'étant jamais venu sur le site web
     (et donc création dans la table Users)
 
-    - Affichage de la promo lors du batch d'inscription, ainsi que dans les informations partie Admin
+    - Affichage des étudiant lors du batch d'inscription quand ça fonctionne pas
 
     - Lors du repassage du QCM par une promo, enlever les questions/réponses des élèves de cette promo
     (ceux qui auraient déjà passer le QCM)

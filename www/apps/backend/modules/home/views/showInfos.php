@@ -106,7 +106,10 @@ $(document).ready(function() {
             else
             {
                 foreach($incompleteStudents as $student)
-                    echo '<li>' . $student->getName() . ' ' . $student->getSurname() . '</li>';
+                    echo '<li>' . $student->getName() . ' ' . 
+                                  $student->getSurname() . '  (' .
+                                  $student->getDepartment() . ' ' . 
+                                  intval($student->getSchoolYear() + 2) . ')</li>';
             }
         ?>
         </ul>
