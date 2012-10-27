@@ -7,7 +7,10 @@
     $TEXT['Page_English'] = "Anglais";
     $TEXT['Page_French'] = "Français";
     $TEXT['Page_LegalNotice'] = "Mentions légales";
-    $TEXT['Page_Footer'] = "Droits réservés &copy; 2011 - 2012 Polytech'Montpellier";
+    $TEXT['Page_Footer'] = "Droits réservés &copy; 2011 - 2013 Polytech'Montpellier";
+
+    $TEXT['Page_Error404'] = "Erreur 404";
+    $TEXT['Page_Error403'] = "Erreur 403";
 
     $TEXT['Menu'] = "Menu";
     $TEXT['Menu_Home'] = "Accueil";
