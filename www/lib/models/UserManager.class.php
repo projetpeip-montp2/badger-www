@@ -234,5 +234,18 @@
 
             $this->m_dao->query('INSERT INTO SpecificLogins (UsernameUM2, Username) VALUES(\'vincent.berry\', \'berry\')');
         }
+
+        public function insertUnknownStudents($department, $schoolYear, $status)
+        {
+            $this->checkStatus($status);
+
+            $req = $this->m_dao->prepare('SELECT Username FROM UsersPolytech WHERE Departement=? AND anApogee=? AND Username NOT IN (SELECT Id_user FROM Users)');
+            $req->execute(array($department, $schoolYear));
+
+
+            $reqNext = $this->m_dao->prepare("INSERT INTO Users(Id_user, MCQStatus, MCQMark, PresentMark, GenerateTime) VALUES(?, ?, 0, 0, NOW())");
+            while($data = $req->fetch())
+                $reqNext->execute(array($data["Username"], $status));
+        }
     }
 ?>

@@ -5,6 +5,9 @@ tout les élèves de ce dernier à un package.</p>
 
 <p>Attention:</p>
 <ul>
+    <li>Pour pouvoir inscrire des élèves d'une promo, il faut <font color="red">ABSOLUMENT</font> que cette
+        promo possède au moins un QCM!!!</li>
+
     <li>Seuls les élèves dont le nouveau package n'engendrera pas de problème
         dans les horaires seront inscris!</li>
 

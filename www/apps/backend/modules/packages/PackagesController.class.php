@@ -95,6 +95,21 @@
                     $this->app()->httpResponse()->redirect($request->requestURI());
                 }
 
+
+                // First, we need to add unknown student (i.e. who is not present in User db)
+                $mcqStatus = 'Visitor';
+                $managerMCQ = $this->m_managers->getManagerOf('mcq');
+                $mcqs = $managerMCQ->get();
+                foreach($mcqs as $elem)
+                {
+                    if($department == $elem->getDepartment() && intval($schoolYear) - 2 == $elem->getSchoolYear())
+                        $mcqStatus = 'CanTakeMCQ';
+                }
+
+                $userManager = $this->m_managers->getManagerOf('user');
+                $userManager->insertUnknownStudents($department, intval($schoolYear) - 2, $mcqStatus);
+
+
                 $subscribe = 0;
                 $studentsCanTakeMCQ = 0;
                 $studentsFinish = 0;
@@ -112,15 +127,18 @@
                 $students = $userManager->getFromDepartmentAndSchoolYear($department, intval($schoolYear) - 2);
                 foreach($students as $student)
                 {
+                    if($student->getMCQStatus() == 'CanTakeMCQ')
+                        $studentsCanTakeMCQ++;
+                }
+
+                foreach($students as $student)
+                {
                     $username = $student->getUsername();
                     $registrationsOfUser = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
 
                     // Student must be CanTakeMCQ
                     if($student->getMCQStatus() != 'CanTakeMCQ')
                         continue;
-
-                    else
-                        $studentsCanTakeMCQ++;
 
                     // The user cannot subscribe to more than the fixed number of packages
                     $packagesCount = $this->countSelectedPackages($registrationsOfUser);
@@ -164,15 +182,20 @@
                 $message = '';
 
                 if($noPlace)
-                    $message .= 'La simulation a été arrété par manque de place dans le package. ';
+                    $message .= 'L\'opération s\'est terminée par manque de place dans le package. <br/><br/>';
 
                 $message .= 'Sur ' . count($students) . ' élèves de la promo (' . $department . ' ' . $schoolYear . '), 
                             dont ' . $studentsCanTakeMCQ . ' pouvant être inscrits, ' . $subscribe . 
                             ' ont été inscrits au package demandé. ';
 
-                $message .= 'Sur les étudiants non inscrits : ' . $studentsFinish . ' ont finis leurs inscriptions, ' . 
-                            $studentsAlreadyRegistered . ' sont déjà inscrit au package, ' . $studentsConflict . 
-                            ' sont en conflicts avec ce package.';
+                if($studentsFinish != 0 || 
+                   $studentsAlreadyRegistered != 0 ||
+                   $studentsConflict != 0)
+                {
+                    $message .= '<br/><br/>Sur les étudiants non inscrits : ' . $studentsFinish . ' ont finis leurs inscriptions, ' . 
+                                $studentsAlreadyRegistered . ' sont déjà inscrit au package, ' . $studentsConflict . 
+                                ' sont en conflicts avec ce package.';
+                }
     
                 $this->app()->user()->setFlashInfo($message);
                 $this->app()->httpResponse()->redirect($request->requestURI());  
