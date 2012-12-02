@@ -63,6 +63,25 @@
             $this->app()->httpResponse()->redirect('/admin/packages/index.html');
         }
 
+        public function executeRegistrationStudent(HTTPRequest $request)
+        {
+            $this->page()->addVar("viewTitle", "Inscription d'un étudiant");
+
+            if($request->postExists('Envoyer'))
+            {
+                $this->page()->addVar("display", true);
+
+                $packages = $this->m_managers->getManagerOf('package')->get();
+                $this->page()->addVar("packages", $packages);
+
+                $username = $request->postData('username');
+                $this->page()->addVar("username", $username);
+
+                $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
+                $this->page()->addVar("registrations", $registrations);
+            }
+        }
+
         public function executeRegistrationBatch(HTTPRequest $request)
         {
             $this->page()->addVar("viewTitle", "Inscription par promotion");
