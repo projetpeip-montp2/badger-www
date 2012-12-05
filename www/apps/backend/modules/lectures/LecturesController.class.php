@@ -158,7 +158,7 @@
                     {
                         if(count($lineDatas) != 8)
                         {
-                            $this->app()->user()->setFlashError('Le fichier n\'a pas 7 colonnes');
+                            $this->app()->user()->setFlashError('Le fichier n\'a pas 8 colonnes');
                             $this->app()->httpResponse()->redirect($request->requestURI());
                         }
 

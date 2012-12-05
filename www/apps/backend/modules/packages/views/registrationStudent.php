@@ -46,17 +46,8 @@ else
 <script type="text/javascript" src="/web/js/autocompleteUsername2.js"></script>
 
 <script type="text/javascript">
-function dump(obj) {
-    var out = '';
-    for (var i in obj) {
-        out += i + ": " + obj[i] + "\n";
-    }
 
-    alert(out);
-}
-
-
-function updateCheckboxes(checkbox)
+function checkConflicts(checkbox)
 {
     var idTmp = -1;
     if(checkbox)
@@ -76,9 +67,13 @@ function updateCheckboxes(checkbox)
     	location.reload();
     }).done(function(msg) {
         msg = jQuery.parseJSON(msg);
-        dump(msg);
-
-//        $('#' + msg.idPackage).removeAttr('checked');
+        if(!jQuery.isEmptyObject(msg))
+        {
+            for(name in msg)
+                result += '-> ' + msg[name] + '\n';
+            alert('Ce package est incompatible avec les packages suivants : \n' + result);
+            checkbox.removeAttr('checked');
+        }
     });
 }
 
@@ -87,10 +82,9 @@ $(document).ready(
     {
         // Give focus on input field
         $(".username").focus();
-        updateCheckboxes(null);
 
         $('input:checkbox').bind('click', function() {
-            updateCheckboxes($(this));
+            checkConflicts($(this));
         });
     });
 </script>

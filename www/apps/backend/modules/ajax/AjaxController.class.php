@@ -438,7 +438,80 @@
 			$this->m_ajaxContent .= $value;
 		}
 
+        public function executeCheckLecturesConflict(HTTPRequest $request)
+        {
+            $this->page()->setIsAjaxPage(TRUE);
 
+            $username = $request->postData('username');
+            $idPackage = $request->postData('idPackage');
+
+            $packages = $this->m_managers->getManagerOf('package')->get();
+            $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($username);
+
+            $subscribe = true;
+            foreach($registrations as $reg)
+                if($reg->getIdPackage() == $idPackage)
+                    $subscribe = false;
+
+            // Registrations of the user deleted
+            if(!$subscribe)
+            {
+                $lectures = $this->m_managers->getManagerOf('lecture')->get($idPackage);
+                foreach($lectures as $lecture)
+                    $this->m_managers->getManagerOf('registration')->subscribe($idPackage, $lecture->getId(), $username, 0);
+            }
+            // Check conflicts with other lectures and subscribe if none
+            else
+            {
+/*
+                $package = $this->m_managers->getManagerOf('package')->get($idPackage);
+                $package = $package[0];
+                if ($package->getRegistrationsCount() < $package->getCapacity())
+                {
+*/
+                $lectureManager = $this->m_managers->getManagerOf('lecture');
+
+                // Get student's lectures
+                $lectures = array();
+                foreach($registrations as $reg)
+                    $lectures = array_merge($lectures, $lectureManager->get($reg->getIdPackage(), $reg->getIdLecture()));
+
+                // Add new package's lectures
+                $newLectures = $lectureManager->get($idPackage);
+
+                $conflicts = array();
+                foreach($newLectures as $newLecture)
+                {
+                    foreach($lectures as $lecture)
+                    {
+                        if(Tools::conflict($newLecture,$lecture) && !in_array($lecture->getIdPackage(), $conflicts))
+                            $conflicts[] = $lecture->getIdPackage();
+                    }
+                }
+
+                if(count($conflicts) == 0)
+                    foreach($newLectures as $lecture)
+                        $this->m_managers->getManagerOf('registration')->subscribe($idPackage, $lecture->getId(), $username, 1);
+                else
+                {
+                    $packagesNames = array();
+                    foreach($conflicts as $conflict)
+                    {
+                        foreach($packages as $package)
+                        {
+                            if($package->getId() == $conflict)
+                                $packagesNames[] = $package->getName('fr');
+                        }
+                    }
+                    $result = json_encode($packagesNames);
+                    if($result === FALSE)
+                        throw new RuntimeException('Error during json_encode in AjaxController::checkLecturesConflicts');
+
+        		    $this->addToAjaxContent($result);
+        			echo $this->getAjaxContent();
+                }
+            }
+        }
 
         public function executeAutocompleteUsername(HTTPRequest $request)
         {
@@ -547,5 +620,7 @@
                 }
             }
         }
+
+        
 	}
 ?>

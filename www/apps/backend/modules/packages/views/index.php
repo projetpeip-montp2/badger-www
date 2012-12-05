@@ -1,5 +1,5 @@
 <ul>
-    <li><a href="/admin/packages/registrationStudent.html">Inscrire un élève à un package</a></li>
+    <li><a href="/admin/packages/registrationStudent.html">Gestion des inscriptions d'un élève</a></li>
     <li><a href="/admin/packages/registrationBatch.html">Inscrire des promos entières à un package</a></li>
 </ul>
 
