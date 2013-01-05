@@ -60,7 +60,7 @@
         if(!empty($newDpts))
         {
             $newDptsENT = array_merge($dptsENT, $newDpts);
-            $req = $daoENT->query("ALTER TABLE UsersPolytech MODIFY Departement ENUM('" . implode("','", $newDptsENT) . "')");
+            $req = $daoENT->exec("ALTER TABLE UsersPolytech MODIFY Departement ENUM('" . implode("','", $newDptsENT) . "')");
         }
 
         // Retrieve students and Mifare from Polytech

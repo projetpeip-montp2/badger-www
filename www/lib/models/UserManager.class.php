@@ -230,9 +230,9 @@
 
         public function insertFirstUser()
         {
-            $this->m_dao->query('INSERT INTO UsersPolytech (Username, VraiNom, VraiPrenom, Departement, anApogee) VALUES(\'berry\', \'Berry\', \'Vincent\', \'INFO\', 0)');
+            $this->m_dao->exec('INSERT INTO UsersPolytech (Username, VraiNom, VraiPrenom, Departement, anApogee) VALUES(\'berry\', \'Berry\', \'Vincent\', \'INFO\', 0)');
 
-            $this->m_dao->query('INSERT INTO SpecificLogins (UsernameUM2, Username) VALUES(\'vincent.berry\', \'berry\')');
+            $this->m_dao->exec('INSERT INTO SpecificLogins (UsernameUM2, Username) VALUES(\'vincent.berry\', \'berry\')');
         }
 
         public function insertUnknownStudents($department, $schoolYear, $status)

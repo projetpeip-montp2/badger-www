@@ -16,9 +16,11 @@ else
 ?>
     Inscriptions de <strong id="user"><?php echo $username; ?></strong>
     <br/>
+    Les changements se font à la volée en cochant/décochant les packages.
+    <br/>
     <form>
         <ul>
-<?
+<?php
     foreach($packages as $package)
     {
         $registered = false;

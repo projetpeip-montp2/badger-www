@@ -9,7 +9,7 @@
                 throw new InvalidArgumentException('No tables in arguments, need at least one.');
 
             for ($i=0; $i<$num; $i++)
-                $this->m_dao->query('DELETE FROM ' . $tables[$i]);
+                $this->m_dao->exec('DELETE FROM ' . $tables[$i]);
         }
     }
 ?>

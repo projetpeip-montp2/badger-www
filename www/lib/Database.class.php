@@ -120,19 +120,26 @@
 
 	    public function __construct($host, $username, $password, $dbName, $port = 3306)
 	    {	
-		    $this->m_link = mysqli_connect($host, $username, $password, $dbName, $port);
+		    $this->m_link = new PDO('mysql:host='.$host.';port='.$port.';dbname='.$dbName, $username, $password);
+            /*
+                mysqli_connect($host, $username, $password, $dbName, $port);
 
 		    if($this->m_link === FALSE)
 			    throw new RuntimeException('Cannot connect to MySQL');
+            */
 	    }
 	
-	    public function __destruct()
+	    /*
+        public function __destruct()
 	    {
 		    mysqli_close($this->m_link);
 	    }
-	
-	    public function query($request)
+        */
+
+        // Exec : INSERT, UPDATE, DELETE
+        public function exec($request)
 	    {
+            /*
 		    $req = mysqli_query($this->m_link, $request);
 		
 		    if($req === FALSE)
@@ -141,10 +148,29 @@
 		    $stmt = new Statement($this->m_link, null, $req);
 		
 		    return ($stmt);
+            */
+            return $this->m_link->exec($request);
+	    }
+
+        // Query : All other request types
+	    public function query($request)
+	    {
+            /*
+		    $req = mysqli_query($this->m_link, $request);
+		
+		    if($req === FALSE)
+			    throw new RuntimeException('Cannot execute request "' . mysqli_error($this->m_link) . '"');
+			
+		    $stmt = new Statement($this->m_link, null, $req);
+		
+		    return ($stmt);
+            */
+            return $this->m_link->query($request);
 	    }
 	
 	    public function prepare($preparedRequest)
 	    {
+            /*
 		    $id = uniqid();
 
 		    if(mysqli_query($this->m_link, "PREPARE $id FROM '$preparedRequest'") == FALSE)
@@ -153,16 +179,21 @@
 		    $stmt = new Statement($this->m_link, $id);
 
 		    return ($stmt);
+            */
+            return $this->m_link->prepare($preparedRequest);
 	    }
 
 	    public function lastInsertId()
 	    {
+            /*
             $id = mysqli_insert_id($this->m_link);
 
 		    if($id == 0)
 			    throw new RuntimeException('Cannot retrieve the last insert id');
 
             return $id;
+            */
+            return $this->m_link->lastInsertId();
 	    }
     }
 ?>
