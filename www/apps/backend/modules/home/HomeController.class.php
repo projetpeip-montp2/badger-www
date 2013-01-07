@@ -58,12 +58,15 @@
             $incompleteStudents = array();
             foreach($users as $user)
             {
-                $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($user->getUsername());
-                $count = $this->countSelectedPackages($registrations);
+                if($user->getMCQStatus() != "Visitor")
+                {
+                    $registrations = $this->m_managers->getManagerOf('registration')->getRegistrationsFromUser($user->getUsername());
+                    $count = $this->countSelectedPackages($registrations);
 
-                // Detect students with not enough registrations
-                if($count < $configManager->get('packageRegistrationsCount'))
-                    $incompleteStudents[] = $user;
+                    // Detect students with not enough registrations
+                    if($count < $configManager->get('packageRegistrationsCount'))
+                        $incompleteStudents[] = $user;
+                }
             }
 
             $this->page()->addVar('allPackages', $packages);
