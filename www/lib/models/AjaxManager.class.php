@@ -3,7 +3,7 @@
     {
         public function getUsername($begin)
         {
-            $req = $this->m_dao->prepare("SELECT Id_user FROM Users WHERE Id_user LIKE \'" . $begin . "%\'");
+            $req = $this->m_dao->prepare('SELECT Id_user FROM Users WHERE Id_user LIKE "' . $begin . '%"');
             $req->execute();
 
             $usernames = array();
