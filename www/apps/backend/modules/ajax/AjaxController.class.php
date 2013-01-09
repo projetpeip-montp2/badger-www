@@ -503,7 +503,8 @@
                                 $packagesNames[] = $package->getName('fr');
                         }
                     }
-                    $result = json_encode($packagesNames);
+                    $conflicts = (count($packagesNames) > 0) ? 'T' : 'F';
+                    $result = json_encode(array('conflicts' => $conflicts, 'names' => $packagesNames));
                     if($result === FALSE)
                         throw new RuntimeException('Error during json_encode in AjaxController::checkLecturesConflicts');
 

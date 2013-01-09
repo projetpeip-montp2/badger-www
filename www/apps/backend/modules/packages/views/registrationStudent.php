@@ -69,11 +69,12 @@ function checkConflicts(checkbox)
     	location.reload();
     }).done(function(msg) {
         msg = jQuery.parseJSON(msg);
-        if(!jQuery.isEmptyObject(msg))
+        if(msg.conflicts == "T")
         {
-            for(name in msg)
-                result += '-> ' + msg[name] + '\n';
-            alert('Ce package est incompatible avec les packages suivants : \n' + result);
+            result = '';
+            for(name in msg.names)
+                result += '-> ' + msg.names[name] + '\n';
+            alert('Le package nouvellement coché est incompatible avec les packages suivants : \n' + result);
             checkbox.removeAttr('checked');
         }
     });
