@@ -463,12 +463,13 @@
             // Check conflicts with other lectures and subscribe if none
             else
             {
-/*
+                $full = 'F';
+
                 $package = $this->m_managers->getManagerOf('package')->get($idPackage);
                 $package = $package[0];
-                if ($package->getRegistrationsCount() < $package->getCapacity())
-                {
-*/
+                if ($package->getRegistrationsCount() + 1 > $package->getCapacity())
+                    $full = 'T';
+
                 $lectureManager = $this->m_managers->getManagerOf('lecture');
 
                 // Get student's lectures
@@ -489,10 +490,10 @@
                     }
                 }
 
-                if(count($conflicts) == 0)
+                if(count($conflicts) == 0 && $full != 'T')
                     foreach($newLectures as $lecture)
                         $this->m_managers->getManagerOf('registration')->subscribe($idPackage, $lecture->getId(), $username, 1);
-                else
+                else if(count($conflicts > 0))
                 {
                     $packagesNames = array();
                     foreach($conflicts as $conflict)
@@ -504,13 +505,13 @@
                         }
                     }
                     $conflicts = (count($packagesNames) > 0) ? 'T' : 'F';
-                    $result = json_encode(array('conflicts' => $conflicts, 'names' => $packagesNames));
-                    if($result === FALSE)
-                        throw new RuntimeException('Error during json_encode in AjaxController::checkLecturesConflicts');
-
-        		    $this->addToAjaxContent($result);
-        			echo $this->getAjaxContent();
                 }
+                $result = json_encode(array('fullPackage' => $full,'conflicts' => $conflicts, 'names' => $packagesNames));
+                if($result === FALSE)
+                    throw new RuntimeException('Error during json_encode in AjaxController::checkLecturesConflicts');
+
+    		    $this->addToAjaxContent($result);
+			    echo $this->getAjaxContent();
             }
         }
 

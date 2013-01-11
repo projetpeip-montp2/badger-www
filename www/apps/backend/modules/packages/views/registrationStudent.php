@@ -69,7 +69,12 @@ function checkConflicts(checkbox)
     	location.reload();
     }).done(function(msg) {
         msg = jQuery.parseJSON(msg);
-        if(msg.conflicts == "T")
+        if(msg.fullPackage == "T")
+        {
+            alert('Le package nouvellement coché est plein.');
+            checkbox.removeAttr('checked');
+        }
+        else if(msg.conflicts == "T")
         {
             result = '';
             for(name in msg.names)

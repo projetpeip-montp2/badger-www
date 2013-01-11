@@ -6,6 +6,8 @@
         public function executeIndex(HTTPRequest $request)
         {
             $manager = $this->m_managers->getManagerOf('user');
+
+            // Retrieve the logon session variable obtained by PHPCas
             $logon = $this->app()->user()->getAttribute('logon');
 
             $associatedLogon = $manager->isSpecificLogon($logon);

@@ -12,6 +12,7 @@
     $pos = strpos($username, '@');
     $logon = substr($username, 0, $pos);
 
+    // The logDone session variable is set in the connection controller
     if( !isset($_SESSION['logDone']) )
     {
         // Emulate Polytech' Montpellier Intranet
