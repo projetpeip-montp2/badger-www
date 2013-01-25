@@ -38,7 +38,7 @@
 
         public function getFromDepartmentAndSchoolYear($department, $schoolYear)
         {
-            $req = $this->m_dao->prepare('SELECT Username FROM UsersPolytech WHERE Departement = ? AND anApogee = ?');
+            $req = $this->m_dao->prepare('SELECT Username FROM UsersPolytech WHERE Departement = ? AND anApogee = ? AND Actif = \'O\'');
             $req->execute(array($department, $schoolYear));
 
             $reqNext = $this->m_dao->prepare('SELECT MCQStatus FROM Users WHERE Id_User = ?');
